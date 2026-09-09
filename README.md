@@ -8,6 +8,10 @@
   A universal, matrix-driven programming language and compiler architecture based on canonical Semantic/UAST representations.
 </p>
 
+## Download
+
+https://github.com/tarekwasfy01/Semantic-Programming-Language/releases/download/v1.0.0/Semantic.Programming.Language.zip
+
 ## Overview
 
 Semantic Programming Language represents programs independently of their original source language.
@@ -61,6 +65,7 @@ Native executable
 
 The files are stored through Git LFS because they contain the consolidated semantic representation of the compiler.
 
+Native ecxecutable https://github.com/tarekwasfy01/Semantic-Programming-Language/releases/download/v1.0.0/Semantic.Programming.Language.zip
 ## Self-hosting
 
 Semantic uses a bootstrapped self-hosting architecture.
@@ -157,6 +162,23 @@ sp transpile -from python -to go input.py -o output.go
 sp transpile -from c -to rust input.c -o output.rs
 sp semantic-transpile -target cpp program.se -o output.cpp
 ```
+### Semantic Moduls
+
+Experimental support for Semantic Modules. 
+The Goal is to make packages from all implemented languages accesible by transpiling and decompiling packages from other languages.
+
+
+```powershell
+CodeTranspiler.exe module import <source|module.se|module.spz>
+CodeTranspiler.exe module import --language go <source.go>
+CodeTranspiler.exe module list
+CodeTranspiler.exe module info <cache-key>
+CodeTranspiler.exe module verify <cache-key>
+CodeTranspiler.exe module remove <cache-key>
+CodeTranspiler.exe semantic module import <target>
+CodeTranspiler.exe semantic module import --language go <target>
+Manage Semantic Modules in %LOCALAPPDATA%\\Semantic\\Modules.
+ ```
 
 ### Execute a program
 
