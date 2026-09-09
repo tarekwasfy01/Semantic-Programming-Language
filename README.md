@@ -8,6 +8,8 @@
   A universal, matrix-driven programming language and compiler architecture based on canonical Semantic/UAST representations.
 </p>
 
+#Unfortuanetly self hosting is still not reached
+
 ## Download
 
 https://github.com/tarekwasfy01/Semantic-Programming-Language/releases/download/v1.0.0/Semantic.Programming.Language.zip
