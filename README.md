@@ -194,36 +194,6 @@ Import it in Go:
 import codetranspiler "github.com/tarekwasfy01/Code-Transpiler"
 ```
 
-Example:
-
-```go
-package main
-
-import (
-	"fmt"
-	"log"
-
-	codetranspiler "github.com/tarekwasfy01/Code-Transpiler"
-)
-
-func main() {
-	source := `
-package main
-
-func main() {
-	println("Hello from Semantic")
-}
-`
-
-	output, err := codetranspiler.Transpile("go", "rust", source)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Print(output)
-}
-```
-
 The Go package provides the bootstrap frontend, canonical SemanticProgram/UAST model, transformation pipeline, target emitters, native backend, GUI and CLI.
 
 ## Semantic representation
