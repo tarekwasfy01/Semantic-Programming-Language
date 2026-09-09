@@ -8,7 +8,7 @@
   A universal, matrix-driven programming language and compiler architecture based on canonical Semantic/UAST representations.
 </p>
 
-#Unfortuanetly self hosting is still not reached
+# Unfortuanetly self hosting is still not reached
 
 ## Download
 
