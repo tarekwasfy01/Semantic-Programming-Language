@@ -244,6 +244,18 @@ Encode(Decode(Encode(C(D)))) = Encode(C(D))
 
 This means that decoding and encoding an already canonical Semantic document produces the same canonical bytes.
 
+For a program graph `G`:
+
+```text
+F(G) = G_explicit ∪ derive(F(G))
+closure(B) = G
+```
+
+where `B` is the smallest explicit basis. Grammar compression encodes a
+repeated production `A → X₁…Xₙ` once and uses references, reducing repeated
+cost from `k·Σ|Xᵢ|` to `Σ|Xᵢ| + k·|ref(A)|`. `.spz` compresses that canonical
+stream; decoding satisfies `Decode(Encode(C(D))) ≡ C(D)`.
+
 ## SFGC
 
 **SFGC** means **Semantic Fixed-Point Grammar Compression**.
