@@ -4,6 +4,10 @@
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Numpy/releases/download/V1.0.0/semantic-.numpy.zip"
   },
   {
+    "name": "rasterama",
+    "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/rasterama-20260916-232002/rasterama-20260916-232002.zip"
+  },
+  {
     "name": "rasterio",
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/rasterio-20260916-214936/rasterio-20260916-214936.zip"
   },
