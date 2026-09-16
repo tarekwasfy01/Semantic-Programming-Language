@@ -195,7 +195,7 @@
       <div class="eyebrow"><span class="dot"></span> Semantic Module</div>
       <h1 id="moduleName">Module</h1>
       <p id="moduleDescription" class="module-subtle">A module in the Semantic ecosystem.</p>
-      <p class="load-note">README, license and icon are read from the module ZIP first; several browser CORS relays are tried in sequence, then the main repository is used only as fallback.</p>
+      <p class="load-note">README, license and icon are read only from the module ZIP. Several browser CORS relays are tried in sequence if direct loading is blocked.</p>
 
       <div class="module-actions">
         <a id="downloadButton" class="btn btn-primary" href="#" target="_blank" rel="noopener">Download Module ↓</a>
@@ -220,7 +220,7 @@
       <article id="readme" class="module-card module-readme">
         <div class="module-progress">
           <div>
-            <img class="module-progress-tree" src="assets/img/tree-of-life.png" alt="">
+            <img class="module-progress-tree" src="assets/img/semantic-logo.png" alt="">
             <p class="module-progress-title">Trying to fetch the module info<span class="module-progress-dots"></span></p>
             <p class="module-progress-text">You can already view the module source or download it while this loads.</p>
           </div>
@@ -229,7 +229,7 @@
 
       <aside class="module-side">
         <div class="module-card module-facts">
-          <div class="module-fact"><small>Metadata source</small><div>ZIP → Corsfix → cors.lol → AllOrigins → main repo</div></div>
+          <div class="module-fact"><small>Metadata source</small><div>Module ZIP only</div></div>
           <div class="module-fact"><small>ZIP transport</small><div id="zipTransport">Checking in background…</div></div>
           <div class="module-fact">
             <small>Module archive</small>
@@ -660,145 +660,9 @@
   }
 
 
-  function rawGitHubUrl(owner, repo, branch, path) {
-    return (
-      `https://raw.githubusercontent.com/${encodeURIComponent(owner)}/` +
-      `${encodeURIComponent(repo)}/${encodeURIComponent(branch)}/${path}`
-    );
-  }
 
-  async function firstRawFile(owner, repo, branch, candidates) {
-    for (const path of candidates) {
-      const text = await fetchRaw(
-        rawGitHubUrl(owner, repo, branch, path)
-      );
 
-      if (text !== null) {
-        return {path, text};
-      }
-    }
 
-    return null;
-  }
-
-  async function firstRawBlob(owner, repo, branch, candidates) {
-    for (const path of candidates) {
-      try {
-        const r = await fetch(
-          rawGitHubUrl(owner, repo, branch, path),
-          {cache: "no-store"}
-        );
-
-        if (r.ok) {
-          return {
-            path,
-            blob: await r.blob()
-          };
-        }
-      } catch {}
-    }
-
-    return null;
-  }
-
-  async function loadFallbackFromMainRepo(owner, repo, needs = {}) {
-    // Stable fallback: only conventional metadata files from the main branch.
-    // Nothing else from the repository is used.
-    const branch = "main";
-
-    const result = {
-      readmeLoaded: false,
-      licenseLoaded: false,
-      iconLoaded: false
-    };
-
-    if (needs.readme) {
-      const readme = await firstRawFile(
-        owner,
-        repo,
-        branch,
-        [
-          "README.md",
-          "Readme.md",
-          "readme.md",
-          "README.markdown",
-          "README.txt",
-          "readme.txt"
-        ]
-      );
-
-      if (readme) {
-        if (/\.(md|markdown)$/i.test(readme.path)) {
-          renderMarkdown(readme.text, {
-            owner,
-            repo,
-            branch,
-            path: readme.path
-          });
-        } else {
-          renderText(readme.text);
-        }
-
-        result.readmeLoaded = true;
-      }
-    }
-
-    if (needs.license) {
-      const license = await firstRawFile(
-        owner,
-        repo,
-        branch,
-        [
-          "LICENSE.md",
-          "License.md",
-          "license.md",
-          "LICENSE.txt",
-          "License.txt",
-          "license.txt",
-          "LICENSE",
-          "License",
-          "license",
-          "LICENCE.md",
-          "Licence.md",
-          "licence.md",
-          "LICENCE.txt",
-          "Licence.txt",
-          "licence.txt",
-          "LICENCE",
-          "Licence",
-          "licence"
-        ]
-      );
-
-      if (license) {
-        setLicense(license.text);
-        result.licenseLoaded = true;
-      }
-    }
-
-    if (needs.icon) {
-      const icon = await firstRawBlob(
-        owner,
-        repo,
-        branch,
-        [
-          "icon.ico",
-          "Icon.ico",
-          "ICON.ico"
-        ]
-      );
-
-      if (icon) {
-        const objectUrl = URL.createObjectURL(icon.blob);
-        $("#moduleIcon").innerHTML =
-          `<img alt="" src="${objectUrl}">`;
-
-        result.iconLoaded = true;
-      }
-    }
-
-    return result;
-  }
 
   function showInstantModuleShell() {
     const p = getParams();
@@ -850,15 +714,6 @@
     }
   }
 
-  function finishMissingMetadata(zipResult, fallback) {
-    if (
-      !((zipResult.ok && zipResult.licenseLoaded) || fallback.licenseLoaded)
-    ) {
-      $("#licenseName").textContent = "Not detected";
-      $("#copyright").textContent = "Not detected";
-      $("#licenseText").textContent = "No license file found.";
-    }
-  }
 
   // Render the useful page shell immediately, before any network work.
   showInstantModuleShell();
@@ -867,8 +722,8 @@
     try {
       const p = getParams();
 
-      // Registry lookup happens in the background and only improves/corrects
-      // the URL/name if necessary. It no longer blocks the page.
+      // Registry is only used to resolve/correct the module name and ZIP URL.
+      // README, license and icon are NEVER taken from a repository.
       try {
         await loadRegistry();
       } catch {}
@@ -884,18 +739,26 @@
             <img src="assets/img/semantic-logo.png" alt="Semantic">
             <h2>Module information is unavailable.</h2>
             <p>No module archive URL was provided.</p>
-          </div>`;
-        $("#toc").innerHTML = `<span style="color:#746c65">No module</span>`;
+          </div>
+        `;
+
+        $("#toc").innerHTML =
+          `<span style="color:#746c65">No module</span>`;
+
         $("#licenseName").textContent = "Not available";
         $("#copyright").textContent = "Not available";
         $("#licenseText").textContent = "No archive URL available.";
+
+        if ($("#zipTransport")) {
+          $("#zipTransport").textContent = "Unavailable";
+        }
+
         return;
       }
 
       const sourceUrl = sourceFromArchive(archiveUrl);
-      const gh = parseGitHubRelease(archiveUrl);
 
-      // Correct the immediate shell if registry data differs from URL params.
+      // Correct the instantly-rendered shell with registry values if needed.
       $("#moduleName").textContent = name;
       document.title = `${name} — Semantic Module`;
 
@@ -917,15 +780,26 @@
         try {
           await navigator.clipboard.writeText(command);
           $("#copyInstall").textContent = "Copied";
-          setTimeout(() => $("#copyInstall").textContent = "Copy", 1200);
+
+          setTimeout(() => {
+            $("#copyInstall").textContent = "Copy";
+          }, 1200);
         } catch {}
       };
 
       /*
-        Progressive metadata loading:
-        - The page is already visible at this point.
-        - ZIP/proxy work runs while the visitor can use Download / Source.
-        - README placeholder stays visible until content is available.
+        SEMANTIC MODULE STORE RULE
+
+        README, LICENSE and icon are loaded ONLY from the module ZIP.
+
+        The repository is used ONLY for the "Open Source" link.
+        It is never used as a metadata fallback.
+
+        ZIP transport order:
+        1. Direct
+        2. Corsfix
+        3. cors.lol
+        4. AllOrigins
       */
       const zipResult = await loadFromZip(archiveUrl, true);
 
@@ -933,85 +807,51 @@
         $("#zipTransport").textContent =
           zipResult.ok
             ? zipResult.transport
-            : "Unavailable — trying repository fallback";
-      }
-
-      let fallback = {
-        readmeLoaded: false,
-        licenseLoaded: false,
-        iconLoaded: false
-      };
-
-      if (
-        gh &&
-        (
-          !zipResult.ok ||
-          !zipResult.readmeLoaded ||
-          !zipResult.licenseLoaded ||
-          !zipResult.iconLoaded
-        )
-      ) {
-        // Update the progress text while repository fallback is running.
-        if (!(zipResult.ok && zipResult.readmeLoaded)) {
-          const progressTitle = $("#readme .module-progress-title");
-          const progressText = $("#readme .module-progress-text");
-
-          if (progressTitle) {
-            progressTitle.innerHTML =
-              `ZIP metadata unavailable — trying the main repository<span class="module-progress-dots"></span>`;
-          }
-
-          if (progressText) {
-            progressText.textContent =
-              "The module page remains usable while the fallback is checked.";
-          }
-        }
-
-        fallback = await loadFallbackFromMainRepo(
-          gh.owner,
-          gh.repo,
-          {
-            readme:
-              !zipResult.ok ||
-              !zipResult.readmeLoaded,
-
-            license:
-              !zipResult.ok ||
-              !zipResult.licenseLoaded,
-
-            icon:
-              !zipResult.ok ||
-              !zipResult.iconLoaded
-          }
-        );
-      }
-
-      const hasReadme =
-        (zipResult.ok && zipResult.readmeLoaded) ||
-        fallback.readmeLoaded;
-
-      if (!hasReadme) {
-        showNoReadme(
-          "README could not be loaded from the module ZIP or its repository."
-        );
-      }
-
-      finishMissingMetadata(zipResult, fallback);
-
-      if ($("#zipTransport") && !zipResult.ok) {
-        $("#zipTransport").textContent =
-          fallback.readmeLoaded || fallback.licenseLoaded || fallback.iconLoaded
-            ? "Repository fallback"
             : "Unavailable";
       }
 
+      if (!zipResult.ok) {
+        showNoReadme(
+          "The module ZIP could not be inspected through any available browser transport."
+        );
+
+        $("#licenseName").textContent = "Unavailable";
+        $("#copyright").textContent = "Unavailable";
+        $("#licenseText").textContent =
+          "License information could not be read from the module ZIP.";
+
+        return;
+      }
+
+      if (!zipResult.readmeLoaded) {
+        showNoReadme(
+          "No README.md, README.markdown or README.txt was found inside the module ZIP."
+        );
+      }
+
+      if (!zipResult.licenseLoaded) {
+        $("#licenseName").textContent = "Not detected";
+        $("#copyright").textContent = "Not detected";
+        $("#licenseText").textContent =
+          "No LICENSE or LICENCE file was found inside the module ZIP.";
+      }
+
+      // If no icon exists in the ZIP, keep the normal Semantic fallback icon.
+      // Do not fetch any icon from the repository.
+
     } catch (error) {
-      // Keep the already-rendered page usable instead of replacing it with
-      // a blocking error screen.
-      showNoReadme(`Could not finish loading module metadata: ${error.message}`);
+      showNoReadme(
+        `Could not finish loading module metadata from the ZIP: ${error.message}`
+      );
+
       $("#licenseName").textContent = "Unavailable";
       $("#copyright").textContent = "Unavailable";
-      $("#licenseText").textContent = "Module metadata could not be loaded.";
+      $("#licenseText").textContent =
+        "Module metadata could not be loaded from the ZIP.";
+
+      if ($("#zipTransport")) {
+        $("#zipTransport").textContent = "Unavailable";
+      }
     }
   }
 
