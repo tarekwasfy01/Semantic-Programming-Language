@@ -1,1 +1,5 @@
-[]
+const response = await fetch("./modules.json", {
+  cache: "no-store"
+});
+
+const modules = await response.json();
