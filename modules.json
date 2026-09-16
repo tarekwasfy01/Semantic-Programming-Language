@@ -1,5 +1,13 @@
 [
   {
+    "name": "numpy-2.5.3",
+    "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Numpy/releases/download/V1.0.0/semantic-.numpy.zip"
+  },
+  {
+    "name": "rasterio",
+    "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/rasterio-20260916-214936/rasterio-20260916-214936.zip"
+  },
+  {
     "name": "Semantic-Chroma",
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Chroma-Synthax-Highliting-Module/releases/download/v0.1.1/Semantic-Chroma.zip"
   },
@@ -10,10 +18,6 @@
   {
     "name": "Semantic-Go-Webview2",
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Go-Webview2/releases/download/v0.1.1/Semantic-WebView2.zip"
-  },
-  {
-    "name": "numpy-2.5.3",
-    "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Numpy/releases/download/V1.0.0/semantic-.numpy.zip"
   },
   {
     "name": "Semantic-Qt",
