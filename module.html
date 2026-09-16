@@ -7,51 +7,133 @@
 <meta name="description" content="Semantic Programming Language module page">
 <link rel="icon" href="favicon.ico">
 <link rel="stylesheet" href="assets/css/semantic.css">
+
 <style>
   .module-page{max-width:1400px;margin:0 auto;padding:0 24px 90px}
-  .module-top{max-width:960px;margin:70px auto 50px;text-align:center}
-  .module-top .module-page-icon{width:96px;height:96px;margin:0 auto 20px;border:1px solid #eadfd4;border-radius:25px;display:grid;place-items:center;background:#fff;overflow:hidden;box-shadow:0 18px 55px rgba(70,40,15,.07)}
+  .module-top{max-width:960px;margin:68px auto 46px;text-align:center}
+  .module-page-icon{
+    width:88px;height:88px;margin:0 auto 20px;border:1px solid #eadfd4;border-radius:23px;
+    display:grid;place-items:center;background:#fff;overflow:hidden;
+    box-shadow:0 18px 55px rgba(70,40,15,.07)
+  }
   .module-page-icon img{width:100%;height:100%;object-fit:contain}
-  .module-fallback{font:700 36px Georgia,serif;color:#ff6a00}
-  .module-top h1{font:600 clamp(42px,6vw,72px)/1.02 Georgia,serif;letter-spacing:-.04em;margin:10px 0 12px}
+  .module-fallback{font:700 32px Georgia,serif;color:#ff6a00}
+  .module-top h1{
+    font:600 clamp(34px,4.6vw,56px)/1.05 Georgia,serif;
+    letter-spacing:-.035em;margin:10px 0 12px
+  }
   .module-subtle{color:#746c65}
-  .module-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:25px}
-  .install-panel{max-width:780px;margin:30px auto 0;padding:18px;border:1px solid #eadfd4;border-radius:18px;background:#fff;text-align:left}
-  .install-panel small{display:block;color:#746c65;text-transform:uppercase;letter-spacing:.1em;font-size:11px;margin-bottom:8px}
+  .module-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:24px}
+  .install-panel{
+    max-width:780px;margin:28px auto 0;padding:17px;border:1px solid #eadfd4;
+    border-radius:18px;background:#fff;text-align:left
+  }
+  .install-panel small{
+    display:block;color:#746c65;text-transform:uppercase;letter-spacing:.1em;
+    font-size:11px;margin-bottom:8px
+  }
   .install-line{display:flex;gap:10px;align-items:center}
-  .install-line code{flex:1;overflow:auto;background:#17130f;color:#fff4eb;padding:13px 15px;border-radius:12px;white-space:nowrap}
+  .install-line code{
+    flex:1;overflow:auto;background:#17130f;color:#fff4eb;padding:13px 15px;
+    border-radius:12px;white-space:nowrap
+  }
   .copy-btn{border:1px solid #eadfd4;background:#fff;border-radius:12px;padding:11px 14px;cursor:pointer}
-  .module-grid{display:grid;grid-template-columns:220px minmax(0,1fr) 270px;gap:38px;align-items:start}
+
+  .module-grid{
+    display:grid;grid-template-columns:220px minmax(0,1fr) 280px;
+    gap:38px;align-items:start
+  }
   .module-side{position:sticky;top:100px;font-size:14px}
-  .module-side h3{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#746c65}
-  .module-toc a{display:block;text-decoration:none;color:#746c65;padding:5px 0 5px 12px;border-left:1px solid #eadfd4}
+  .module-side h3{
+    font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:#746c65
+  }
+  .module-toc a{
+    display:block;text-decoration:none;color:#746c65;padding:5px 0 5px 12px;
+    border-left:1px solid #eadfd4
+  }
   .module-toc a:hover{color:#ff6a00;border-color:#ff6a00}
-  .module-card{background:#fff;border:1px solid #eadfd4;border-radius:24px;padding:24px;box-shadow:0 18px 55px rgba(70,40,15,.045)}
-  .module-readme{min-height:420px}
-  .module-readme h1,.module-readme h2,.module-readme h3{font-family:Georgia,serif;letter-spacing:-.025em;scroll-margin-top:110px}
-  .module-readme pre{overflow:auto;background:#17130f;color:#f8efe8;padding:18px;border-radius:16px}
-  .module-readme :not(pre)>code{background:#fff5ed;padding:.12em .35em;border-radius:6px;color:#a74400}
-  .module-readme img{max-width:100%;height:auto}
+
+  .module-card{
+    background:#fff;border:1px solid #eadfd4;border-radius:24px;padding:30px;
+    box-shadow:0 18px 55px rgba(70,40,15,.045)
+  }
+
+  /* README TYPOGRAPHY — intentionally much smaller than the page hero */
+  .module-readme{min-height:420px;font-size:15.5px;line-height:1.72}
+  .module-readme > :first-child{margin-top:0}
+  .module-readme h1,
+  .module-readme h2,
+  .module-readme h3,
+  .module-readme h4{
+    font-family:Georgia,"Times New Roman",serif;
+    letter-spacing:-.02em;
+    line-height:1.18;
+    scroll-margin-top:110px
+  }
+  .module-readme h1{font-size:30px;margin:0 0 18px}
+  .module-readme h2{font-size:24px;margin:34px 0 12px}
+  .module-readme h3{font-size:20px;margin:28px 0 10px}
+  .module-readme h4{font-size:17px;margin:24px 0 8px}
+  .module-readme p{margin:0 0 16px}
+  .module-readme ul,.module-readme ol{padding-left:22px}
+  .module-readme blockquote{
+    margin:20px 0;padding:2px 0 2px 18px;border-left:3px solid #ff6a00;color:#746c65
+  }
+  .module-readme pre{
+    overflow:auto;background:#17130f;color:#f8efe8;padding:18px;border-radius:16px;
+    font-size:13px;line-height:1.55
+  }
+  .module-readme code{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+  .module-readme :not(pre)>code{
+    background:#fff5ed;padding:.12em .35em;border-radius:6px;color:#a74400
+  }
+  .module-readme img{max-width:100%;height:auto;border-radius:10px}
+  .module-readme table{width:100%;border-collapse:collapse;display:block;overflow:auto}
+  .module-readme th,.module-readme td{border:1px solid #eadfd4;padding:8px 10px;text-align:left}
+
   .module-facts{display:grid;gap:18px}
   .module-fact{padding-bottom:16px;border-bottom:1px solid #eadfd4}
   .module-fact:last-child{border:0}
-  .module-fact small{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#746c65;margin-bottom:5px}
+  .module-fact small{
+    display:block;font-size:11px;text-transform:uppercase;letter-spacing:.1em;
+    color:#746c65;margin-bottom:5px
+  }
   .module-fact a{color:#ff6a00;text-decoration:none;word-break:break-word}
-  .license-text{white-space:pre-wrap;font:12px ui-monospace,monospace;max-height:250px;overflow:auto;color:#4d4640}
+  .license-text{
+    white-space:pre-wrap;font:12px/1.55 ui-monospace,monospace;max-height:310px;
+    overflow:auto;color:#4d4640
+  }
   .module-empty{text-align:center;padding:65px 20px;color:#746c65}
-  .module-empty img{width:min(330px,80%);margin-bottom:18px}
+  .module-empty img{width:min(300px,75%);margin-bottom:18px}
   .module-status{max-width:880px;margin:70px auto;padding:0 20px;text-align:center;color:#746c65}
-  .module-warning{border:1px solid #ffd4b6;background:#fff8f2;color:#854019;border-radius:16px;padding:14px 16px;margin-bottom:20px}
-  @media(max-width:980px){.module-grid{grid-template-columns:1fr}.module-side{position:static}.toc-side{display:none}}
-  @media(max-width:600px){.install-line{align-items:stretch;flex-direction:column}}
+  .module-warning{
+    border:1px solid #ffd4b6;background:#fff8f2;color:#854019;
+    border-radius:16px;padding:14px 16px;margin-bottom:20px
+  }
+  .load-note{font-size:12px;color:#8a8179;margin-top:8px}
+
+  @media(max-width:980px){
+    .module-grid{grid-template-columns:1fr}
+    .module-side{position:static}
+    .toc-side{display:none}
+  }
+  @media(max-width:600px){
+    .install-line{align-items:stretch;flex-direction:column}
+    .module-card{padding:22px}
+    .module-readme h1{font-size:26px}
+    .module-readme h2{font-size:22px}
+    .module-readme h3{font-size:19px}
+  }
 </style>
+
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.6/dist/purify.min.js"></script>
 </head>
-<body>
 
+<body>
 <div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+
 <nav class="nav">
   <div class="shell nav-inner">
     <a class="brand" href="index.html">
@@ -80,7 +162,7 @@
         <a id="sourceButton" class="btn" href="#" target="_blank" rel="noopener">Open Source ↗</a>
       </div>
 
-      <div id="installPanel" class="install-panel">
+      <div class="install-panel">
         <small>Install with Semantic CLI</small>
         <div class="install-line">
           <code id="installCommand"></code>
@@ -99,11 +181,30 @@
 
       <aside class="module-side">
         <div class="module-card module-facts">
-          <div class="module-fact"><small>Module archive</small><a id="archiveUrl" target="_blank" rel="noopener"></a></div>
-          <div class="module-fact"><small>Source</small><a id="sourceUrl" target="_blank" rel="noopener"></a></div>
-          <div class="module-fact"><small>License</small><div id="licenseName">Not detected</div></div>
-          <div class="module-fact"><small>Copyright</small><div id="copyright">Not detected</div></div>
-          <div class="module-fact"><small>License text</small><div id="licenseText" class="license-text">No license file found.</div></div>
+          <div class="module-fact">
+            <small>Module archive</small>
+            <a id="archiveUrl" target="_blank" rel="noopener"></a>
+          </div>
+
+          <div class="module-fact">
+            <small>Source</small>
+            <a id="sourceUrl" target="_blank" rel="noopener"></a>
+          </div>
+
+          <div class="module-fact">
+            <small>License</small>
+            <div id="licenseName">Not detected</div>
+          </div>
+
+          <div class="module-fact">
+            <small>Copyright</small>
+            <div id="copyright">Not detected</div>
+          </div>
+
+          <div class="module-fact">
+            <small>License text</small>
+            <div id="licenseText" class="license-text">No license file found.</div>
+          </div>
         </div>
       </aside>
     </div>
@@ -116,28 +217,17 @@
   </div>
 </main>
 
-<footer class="footer">
-  <div class="shell footer-grid">
-    <img class="small-logo" src="assets/img/semantic-logo.png" alt="Semantic">
-    <div class="footer-links">
-      <a href="privacy.html">Privacy</a>
-      <a href="legal.html">Legal Notice</a>
-      <a href="docs/create-module.html">Documentation</a>
-    </div>
-    <div>© <span data-year></span> Semantic</div>
-  </div>
-</footer>
-
 <script src="assets/js/config.js"></script>
 <script src="assets/js/app.js"></script>
+
 <script>
 (() => {
   const cfg = window.SEMANTIC_CONFIG || {};
+  const $ = s => document.querySelector(s);
   let registry = [];
 
-  const $ = s => document.querySelector(s);
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
   }[c]));
 
   async function fetchJSON(url) {
@@ -151,78 +241,49 @@
     registry = Array.isArray(data) ? data : [];
   }
 
-  function params() {
+  function getParams() {
     const p = new URLSearchParams(location.search);
     return {
       name: p.get("name") || "",
-      url: p.get("url") || "",
-      repo: p.get("repo") || "",
-      source: p.get("source") || "",
-      official: p.get("official") === "1"
+      url: p.get("url") || ""
     };
   }
 
   function findRegistryModule(name) {
-    return registry.find(x =>
-      x && typeof x.name === "string" &&
-      x.name.toLowerCase() === String(name || "").toLowerCase()
+    return registry.find(m =>
+      m &&
+      typeof m.name === "string" &&
+      m.name.toLowerCase() === String(name || "").toLowerCase()
     );
   }
 
-  function parseGitHubRepo(url) {
+  function parseGitHubRelease(url) {
     try {
       const u = new URL(url);
       if (u.hostname !== "github.com") return null;
       const parts = u.pathname.split("/").filter(Boolean);
-      if (parts.length < 2) return null;
-      return {owner:parts[0], repo:parts[1].replace(/\.git$/i,"")};
-    } catch {
-      return null;
-    }
-  }
 
-  function parseGitHubReleaseAsset(url) {
-    try {
-      const u = new URL(url);
-      if (u.hostname !== "github.com") return null;
-      const parts = u.pathname.split("/").filter(Boolean);
+      // owner/repo/releases/download/tag/file.zip
       if (parts.length >= 6 && parts[2] === "releases" && parts[3] === "download") {
-        return {owner:parts[0], repo:parts[1], tag:parts[4]};
+        return {
+          owner: parts[0],
+          repo: parts[1],
+          tag: parts[4],
+          file: parts.slice(5).join("/")
+        };
       }
-      return null;
-    } catch {
-      return null;
-    }
+
+      // plain GitHub repository
+      if (parts.length >= 2) {
+        return {owner:parts[0], repo:parts[1].replace(/\.git$/i,""), tag:null, file:null};
+      }
+    } catch {}
+    return null;
   }
 
-  async function latestGitHubArchive(repoRef) {
-    const api = `https://api.github.com/repos/${encodeURIComponent(repoRef.owner)}/${encodeURIComponent(repoRef.repo)}/releases/latest`;
-    const release = await fetchJSON(api);
-
-    // Prefer a published ZIP asset. This is what the Semantic registry expects.
-    const asset = (release.assets || []).find(a => /\.zip$/i.test(a.name));
-    if (asset) {
-      return {
-        archiveUrl: asset.browser_download_url,
-        sourceUrl: `https://github.com/${repoRef.owner}/${repoRef.repo}`,
-        releaseUrl: release.html_url,
-        release
-      };
-    }
-
-    // Fallback: repository source zip. It may not contain a .smod.
-    return {
-      archiveUrl: release.zipball_url,
-      sourceUrl: `https://github.com/${repoRef.owner}/${repoRef.repo}`,
-      releaseUrl: release.html_url,
-      release,
-      fallbackSourceZip: true
-    };
-  }
-
-  function githubSourceFromArchive(url) {
-    const rel = parseGitHubReleaseAsset(url);
-    return rel ? `https://github.com/${rel.owner}/${rel.repo}` : "";
+  function sourceFromArchive(url) {
+    const gh = parseGitHubRelease(url);
+    return gh ? `https://github.com/${gh.owner}/${gh.repo}` : url;
   }
 
   function detectLicense(text) {
@@ -239,15 +300,27 @@
 
   function extractCopyright(text) {
     if (!text) return "Not detected";
-    const line = text.split(/\r?\n/).map(x => x.trim()).find(x => /copyright|\(c\)|©/i.test(x));
-    return line || "Not detected";
+    const lines = text.split(/\r?\n/).map(x => x.trim()).filter(Boolean);
+    return lines.find(x => /copyright|©|\(c\)/i.test(x)) || "Not detected";
+  }
+
+  function setLicense(text) {
+    if (!text) return;
+    $("#licenseName").textContent = detectLicense(text);
+    $("#copyright").textContent = extractCopyright(text);
+    $("#licenseText").textContent = text.slice(0, 20000);
   }
 
   function addHeadingIds(root) {
     const seen = new Map();
-    [...root.querySelectorAll("h1,h2,h3")].forEach(h => {
-      let id = h.textContent.toLowerCase().trim()
-        .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "section";
+
+    [...root.querySelectorAll("h1,h2,h3,h4")].forEach(h => {
+      let id = h.textContent
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "") || "section";
+
       const n = seen.get(id) || 0;
       seen.set(id, n + 1);
       if (n) id += "-" + (n + 1);
@@ -257,6 +330,7 @@
 
   function buildToc(root) {
     const headings = [...root.querySelectorAll("h2,h3")];
+
     $("#toc").innerHTML = headings.length
       ? headings.map(h =>
           `<a href="#${h.id}" style="${h.tagName === "H3" ? "padding-left:26px" : ""}">${esc(h.textContent)}</a>`
@@ -264,196 +338,264 @@
       : `<span style="color:#746c65">No sections</span>`;
   }
 
-  function showNoReadme(extra = "") {
+  function renderMarkdown(markdown) {
+    const html = marked.parse(markdown || "", {
+      gfm: true,
+      breaks: false
+    });
+
+    $("#readme").innerHTML = DOMPurify.sanitize(html, {
+      USE_PROFILES: {html:true}
+    });
+
+    addHeadingIds($("#readme"));
+    buildToc($("#readme"));
+  }
+
+  function renderText(text) {
+    $("#readme").innerHTML = `<pre>${esc(text || "")}</pre>`;
+    $("#toc").innerHTML = `<span style="color:#746c65">Text README</span>`;
+  }
+
+  function showNoReadme(message = "") {
     $("#readme").innerHTML = `
-      ${extra}
+      ${message ? `<div class="module-warning">${esc(message)}</div>` : ""}
       <div class="module-empty">
         <img src="assets/img/semantic-logo.png" alt="Semantic">
         <h2>Unfortunately, we could not find a README.</h2>
         <p>The module is still available for download and installation.</p>
-      </div>`;
+      </div>
+    `;
     $("#toc").innerHTML = `<span style="color:#746c65">No README</span>`;
   }
 
-  async function fetchGitHubTextFiles(sourceUrl) {
-    const repo = parseGitHubRepo(sourceUrl);
-    if (!repo) return null;
+  function zipFind(zip, regex) {
+    const names = Object.keys(zip.files).filter(n => !zip.files[n].dir);
 
-    const base = `https://api.github.com/repos/${repo.owner}/${repo.repo}`;
-
-    const readmePromise = fetch(`${base}/readme`, {
-      headers: {"Accept":"application/vnd.github.raw+json"}
-    }).then(r => r.ok ? r.text() : null).catch(() => null);
-
-    async function firstExisting(paths) {
-      for (const path of paths) {
-        try {
-          const r = await fetch(`${base}/contents/${path}`, {
-            headers: {"Accept":"application/vnd.github.raw+json"}
-          });
-          if (r.ok) return {path, text:await r.text()};
-        } catch {}
-      }
-      return null;
-    }
-
-    const [readme, license] = await Promise.all([
-      readmePromise,
-      firstExisting(["LICENSE.md","LICENSE.txt","LICENSE","license.md","license.txt","license"])
-    ]);
-
-    return {readme, license};
+    // Prefer shallow/root files before deeply nested duplicates.
+    return names
+      .filter(n => regex.test(n))
+      .sort((a,b) => a.split("/").length - b.split("/").length)[0] || null;
   }
 
-  async function renderGitHubMetadata(sourceUrl) {
-    const data = await fetchGitHubTextFiles(sourceUrl);
-    if (!data) return false;
-
-    if (data.license?.text) {
-      $("#licenseName").textContent = detectLicense(data.license.text);
-      $("#copyright").textContent = extractCopyright(data.license.text);
-      $("#licenseText").textContent = data.license.text.slice(0, 12000);
-    }
-
-    if (data.readme) {
-      const html = marked.parse(data.readme, {gfm:true});
-      $("#readme").innerHTML = DOMPurify.sanitize(html, {USE_PROFILES:{html:true}});
-      addHeadingIds($("#readme"));
-      buildToc($("#readme"));
-      return true;
-    }
-    return false;
-  }
-
-  function zipFileByRegex(zip, regex) {
-    return Object.keys(zip.files).find(n => !zip.files[n].dir && regex.test(n));
-  }
-
-  async function tryArchiveMetadata(archiveUrl) {
+  async function loadFromZip(url) {
     try {
-      const r = await fetch(archiveUrl, {redirect:"follow"});
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const response = await fetch(url, {
+        method: "GET",
+        mode: "cors",
+        redirect: "follow",
+        cache: "no-store"
+      });
 
-      const zip = await JSZip.loadAsync(await r.blob());
-      const smod = zipFileByRegex(zip, /(^|\/)[^/]+\.smod$/i);
-      const readme = zipFileByRegex(zip, /(^|\/)readme\.(md|txt)$/i);
-      const license = zipFileByRegex(zip, /(^|\/)license\.(md|txt)$/i);
-      const icon = zipFileByRegex(zip, /(^|\/)[^/]+\.ico$/i);
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-      if (icon) {
-        try {
-          const blob = await zip.file(icon).async("blob");
-          $("#moduleIcon").innerHTML = `<img alt="" src="${URL.createObjectURL(blob)}">`;
-        } catch {}
+      const buffer = await response.arrayBuffer();
+      const zip = await JSZip.loadAsync(buffer);
+
+      const readme = zipFind(zip, /(^|\/)readme\.(md|txt)$/i);
+      const license = zipFind(zip, /(^|\/)(license|licence)(\.(md|txt))?$/i);
+      const icon = zipFind(zip, /(^|\/)[^/]+\.ico$/i);
+
+      let readmeLoaded = false;
+
+      if (readme) {
+        const text = await zip.file(readme).async("text");
+        if (/\.md$/i.test(readme)) renderMarkdown(text);
+        else renderText(text);
+        readmeLoaded = true;
       }
 
       if (license) {
         const text = await zip.file(license).async("text");
-        $("#licenseName").textContent = detectLicense(text);
-        $("#copyright").textContent = extractCopyright(text);
-        $("#licenseText").textContent = text.slice(0, 12000);
+        setLicense(text);
       }
 
-      if (readme) {
-        const raw = await zip.file(readme).async("text");
-        const html = /\.md$/i.test(readme)
-          ? marked.parse(raw, {gfm:true})
-          : `<pre>${esc(raw)}</pre>`;
-        $("#readme").innerHTML = DOMPurify.sanitize(html, {USE_PROFILES:{html:true}});
-        addHeadingIds($("#readme"));
-        buildToc($("#readme"));
+      if (icon) {
+        try {
+          const blob = await zip.file(icon).async("blob");
+          $("#moduleIcon").innerHTML =
+            `<img alt="" src="${URL.createObjectURL(blob)}">`;
+        } catch {}
       }
 
-      return {ok:true, smod:!!smod, readme:!!readme};
+      return {
+        ok: true,
+        readmeLoaded,
+        licenseLoaded: !!license
+      };
     } catch (error) {
-      return {ok:false, error};
+      return {
+        ok: false,
+        error
+      };
     }
   }
 
-  async function resolveModule() {
-    const p = params();
-    const registered = p.name ? findRegistryModule(p.name) : null;
+  async function fetchRaw(url) {
+    try {
+      const r = await fetch(url, {cache:"no-store"});
+      if (!r.ok) return null;
+      return await r.text();
+    } catch {
+      return null;
+    }
+  }
 
-    let name = p.name || registered?.name || "Module";
-    let requestedUrl = registered?.url || p.url || "";
-    let archiveUrl = requestedUrl;
-    let sourceUrl = p.repo ? `https://github.com/${p.repo}` : githubSourceFromArchive(requestedUrl);
+  async function githubRepoInfo(owner, repo) {
+    try {
+      return await fetchJSON(
+        `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`
+      );
+    } catch {
+      return null;
+    }
+  }
 
-    const sourceType = p.source || (parseGitHubRepo(requestedUrl) && !parseGitHubReleaseAsset(requestedUrl) ? "github-repo" : "archive");
+  async function loadFromGitHubRepository(owner, repo) {
+    const info = await githubRepoInfo(owner, repo);
+    if (!info) return {readmeLoaded:false, licenseLoaded:false};
 
-    if (sourceType === "github-repo") {
-      const repo = parseGitHubRepo(requestedUrl);
-      if (!repo) throw new Error("Invalid GitHub repository URL.");
-      sourceUrl = requestedUrl;
-      const latest = await latestGitHubArchive(repo);
-      archiveUrl = latest.archiveUrl;
+    const branch = info.default_branch || "main";
+
+    const readmeCandidates = [
+      "README.md",
+      "readme.md",
+      "README.txt",
+      "readme.txt"
+    ];
+
+    const licenseCandidates = [
+      "LICENSE.md",
+      "LICENSE.txt",
+      "LICENSE",
+      "license.md",
+      "license.txt",
+      "license",
+      "LICENCE.md",
+      "LICENCE.txt",
+      "LICENCE"
+    ];
+
+    let readmeText = null;
+    let readmePath = null;
+
+    for (const file of readmeCandidates) {
+      const raw =
+        `https://raw.githubusercontent.com/${owner}/${repo}/${encodeURIComponent(branch)}/${file}`;
+      const text = await fetchRaw(raw);
+      if (text !== null) {
+        readmeText = text;
+        readmePath = file;
+        break;
+      }
     }
 
-    if (!archiveUrl) return null;
-    return {name, archiveUrl, sourceUrl:sourceUrl || requestedUrl};
+    let licenseText = null;
+
+    for (const file of licenseCandidates) {
+      const raw =
+        `https://raw.githubusercontent.com/${owner}/${repo}/${encodeURIComponent(branch)}/${file}`;
+      const text = await fetchRaw(raw);
+      if (text !== null) {
+        licenseText = text;
+        break;
+      }
+    }
+
+    if (readmeText !== null) {
+      if (/\.md$/i.test(readmePath)) renderMarkdown(readmeText);
+      else renderText(readmeText);
+    }
+
+    if (licenseText !== null) {
+      setLicense(licenseText);
+    }
+
+    return {
+      readmeLoaded: readmeText !== null,
+      licenseLoaded: licenseText !== null
+    };
   }
 
   async function main() {
     try {
       await loadRegistry();
-      const mod = await resolveModule();
 
-      if (!mod) {
+      const p = getParams();
+      const registered = p.name ? findRegistryModule(p.name) : null;
+
+      const name = registered?.name || p.name || "Module";
+      const archiveUrl = registered?.url || p.url || "";
+
+      if (!archiveUrl) {
         $("#loading").hidden = true;
         $("#notFound").hidden = false;
         return;
       }
 
-      $("#moduleName").textContent = mod.name;
-      $("#downloadButton").href = mod.archiveUrl;
-      $("#archiveUrl").href = mod.archiveUrl;
-      $("#archiveUrl").textContent = mod.archiveUrl;
+      const sourceUrl = sourceFromArchive(archiveUrl);
+      const gh = parseGitHubRelease(archiveUrl);
 
-      $("#sourceButton").href = mod.sourceUrl;
-      $("#sourceUrl").href = mod.sourceUrl;
-      $("#sourceUrl").textContent = mod.sourceUrl;
+      $("#moduleName").textContent = name;
+      $("#downloadButton").href = archiveUrl;
+      $("#archiveUrl").href = archiveUrl;
+      $("#archiveUrl").textContent = archiveUrl;
 
-      const command = `sp module import ${mod.archiveUrl}`;
+      $("#sourceButton").href = sourceUrl;
+      $("#sourceUrl").href = sourceUrl;
+      $("#sourceUrl").textContent = sourceUrl;
+
+      const command = `sp module import ${archiveUrl}`;
       $("#installCommand").textContent = command;
+
       $("#copyInstall").addEventListener("click", async () => {
         try {
           await navigator.clipboard.writeText(command);
           $("#copyInstall").textContent = "Copied";
-          setTimeout(() => $("#copyInstall").textContent = "Copy", 1400);
+          setTimeout(() => $("#copyInstall").textContent = "Copy", 1200);
         } catch {}
       });
 
-      // First try to display README/LICENSE through GitHub's text API.
-      // This works even when the release ZIP itself is blocked by browser CORS.
-      const githubReadmeShown = await renderGitHubMetadata(mod.sourceUrl);
+      /*
+        Loading strategy:
+        1. Try the actual ZIP first — this gives us exactly the README/LICENSE/icon shipped with the module.
+        2. If the ZIP host blocks browser CORS or doesn't contain metadata,
+           fall back to raw.githubusercontent.com for GitHub-hosted modules.
+      */
+      const zipResult = await loadFromZip(archiveUrl);
 
-      // Then optionally inspect the actual ZIP. If CORS allows it, ZIP metadata
-      // (README/LICENSE/icon) takes precedence over repository metadata.
-      const archive = await tryArchiveMetadata(mod.archiveUrl);
+      let fallback = {readmeLoaded:false, licenseLoaded:false};
 
-      if (!archive.ok && !githubReadmeShown) {
-        showNoReadme(`
-          <div class="module-warning">
-            <b>The module archive could not be inspected in this browser.</b><br>
-            Download and CLI installation still work. The archive host may block browser CORS access.
-          </div>
-        `);
-      } else if (archive.ok && !archive.readme && !githubReadmeShown) {
-        showNoReadme();
+      if (
+        gh &&
+        (
+          !zipResult.ok ||
+          !zipResult.readmeLoaded ||
+          !zipResult.licenseLoaded
+        )
+      ) {
+        fallback = await loadFromGitHubRepository(gh.owner, gh.repo);
       }
 
-      if (archive.ok && !archive.smod) {
-        const warning = document.createElement("div");
-        warning.className = "module-warning";
-        warning.innerHTML = "<b>Archive note:</b> the browser could not find a <code>.smod</code> file in this ZIP. Registered community modules are validated by the GitHub workflow before indexing.";
-        $("#readme").prepend(warning);
+      const hasReadme =
+        (zipResult.ok && zipResult.readmeLoaded) ||
+        fallback.readmeLoaded;
+
+      if (!hasReadme) {
+        showNoReadme(
+          zipResult.ok
+            ? "No README.md or README.txt was found in the module archive or repository."
+            : "The archive could not be inspected in the browser. A repository fallback was attempted."
+        );
       }
 
       $("#loading").hidden = true;
       $("#view").hidden = false;
-      document.title = `${mod.name} — Semantic Module`;
+      document.title = `${name} — Semantic Module`;
+
     } catch (error) {
-      $("#loading").innerHTML = `<b>Could not open module.</b><br>${esc(error.message)}`;
+      $("#loading").innerHTML =
+        `<b>Could not open module.</b><br>${esc(error.message)}`;
     }
   }
 
