@@ -1,7 +1,15 @@
 window.SEMANTIC_CONFIG = {
-  registryRepo: 'SemanticProgrammingLanguage/Module-Registry',
-  semanticRepo: 'tarekwasfy01/Semantic-Programming-Language',
-  transpilerRepo: 'tarekwasfy01/Code-Transpiler',
-  officialOwner: 'SemanticProgrammingLanguage',
-  registryFile: 'modules.json'
+  repoOwner: "tarekwasfy01",
+  repoName: "Semantic-Programming-Language",
+
+  websiteBranch: "website",
+  registryBranch: "website",
+
+  registryFile: "modules.json",
+
+  semanticRepo:
+    "tarekwasfy01/Semantic-Programming-Language",
+
+  codeTranspilerRepo:
+    "tarekwasfy01/Code-Transpiler"
 };
