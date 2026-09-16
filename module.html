@@ -156,6 +156,7 @@
       <div class="eyebrow"><span class="dot"></span> Semantic Module</div>
       <h1 id="moduleName">Module</h1>
       <p id="moduleDescription" class="module-subtle">A module in the Semantic ecosystem.</p>
+      <p class="load-note">README, license and icon are read from the module ZIP first; several browser CORS relays are tried in sequence, then the main repository is used only as fallback.</p>
 
       <div class="module-actions">
         <a id="downloadButton" class="btn btn-primary" href="#" target="_blank" rel="noopener">Download Module ↓</a>
@@ -181,7 +182,8 @@
 
       <aside class="module-side">
         <div class="module-card module-facts">
-          <div class="module-fact"><small>Metadata source</small><div>Module ZIP</div></div>
+          <div class="module-fact"><small>Metadata source</small><div>ZIP → Corsfix → cors.lol → AllOrigins → main repo</div></div>
+          <div class="module-fact"><small>ZIP transport</small><div id="zipTransport">Checking…</div></div>
           <div class="module-fact">
             <small>Module archive</small>
             <a id="archiveUrl" target="_blank" rel="noopener"></a>
@@ -225,6 +227,24 @@
 (() => {
   const cfg = window.SEMANTIC_CONFIG || {};
   const $ = s => document.querySelector(s);
+
+  // Browser-compatible CORS relay fallbacks.
+  // Proxifly's free-proxy-list contains HTTP/SOCKS forward proxies;
+  // browsers cannot select those per fetch(), so they cannot be used here directly.
+  const ZIP_PROXY_BUILDERS = [
+    {
+      name: "Corsfix",
+      build: url => "https://proxy.corsfix.com/?" + url
+    },
+    {
+      name: "cors.lol",
+      build: url => "https://api.cors.lol/?url=" + encodeURIComponent(url)
+    },
+    {
+      name: "AllOrigins",
+      build: url => "https://api.allorigins.win/raw?url=" + encodeURIComponent(url)
+    }
+  ];
   let registry = [];
 
   const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({
@@ -408,60 +428,165 @@
       .sort((a,b) => a.split("/").length - b.split("/").length)[0] || null;
   }
 
-  async function loadFromZip(url, renderReadmeFromZip = true) {
+  async function fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
+
     try {
-      const response = await fetch(url, {
-        method: "GET",
-        mode: "cors",
-        redirect: "follow",
-        cache: "no-store"
+      return await fetch(url, {
+        ...options,
+        signal: controller.signal
       });
+    } finally {
+      clearTimeout(timer);
+    }
+  }
 
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  async function tryZipResponse(response, sourceName) {
+    if (!response || !response.ok) {
+      throw new Error(
+        `${sourceName}: HTTP ${response ? response.status : "error"}`
+      );
+    }
 
-      const buffer = await response.arrayBuffer();
-      const zip = await JSZip.loadAsync(buffer);
+    const MAX_ZIP_SIZE = 150 * 1024 * 1024;
+    const length = Number(response.headers.get("content-length") || "0");
 
+    if (length && length > MAX_ZIP_SIZE) {
+      throw new Error(`${sourceName}: ZIP is too large.`);
+    }
+
+    const buffer = await response.arrayBuffer();
+
+    if (!buffer.byteLength || buffer.byteLength > MAX_ZIP_SIZE) {
+      throw new Error(`${sourceName}: invalid ZIP size.`);
+    }
+
+    // Important: validate the actual body as ZIP here.
+    // Some public proxies return an HTML/JSON error with HTTP 200.
+    const zip = await JSZip.loadAsync(buffer);
+
+    return {zip, buffer};
+  }
+
+  async function loadFromZip(url, renderReadmeFromZip = true) {
+    const attempts = [];
+    let zip = null;
+    let transport = "Direct";
+
+    // 1. Direct request first: free and fastest when host already supports CORS.
+    try {
+      const response = await fetchWithTimeout(
+        url,
+        {
+          method: "GET",
+          mode: "cors",
+          redirect: "follow",
+          cache: "no-store"
+        },
+        12000
+      );
+
+      const result = await tryZipResponse(response, "Direct");
+      zip = result.zip;
+    } catch (error) {
+      attempts.push(`Direct: ${error.message || error}`);
+    }
+
+    // 2. Sequential CORS relays. Only continue when the previous one failed.
+    if (!zip) {
+      for (const proxy of ZIP_PROXY_BUILDERS) {
+        try {
+          const proxiedUrl = proxy.build(url);
+
+          const response = await fetchWithTimeout(
+            proxiedUrl,
+            {
+              method: "GET",
+              cache: "no-store"
+            },
+            18000
+          );
+
+          const result = await tryZipResponse(response, proxy.name);
+          zip = result.zip;
+          transport = proxy.name;
+          break;
+        } catch (error) {
+          attempts.push(`${proxy.name}: ${error.message || error}`);
+        }
+      }
+    }
+
+    if (!zip) {
+      return {
+        ok: false,
+        transport: null,
+        attempts,
+        error: new Error("All ZIP transports failed.")
+      };
+    }
+
+    try {
       const readme = zipFind(zip, /(^|\/)readme\.(md|markdown|txt)$/i);
-      const license = zipFind(zip, /(^|\/)(license|licence)(\.(md|markdown|txt))?$/i);
+      const license = zipFind(
+        zip,
+        /(^|\/)(license|licence)(\.(md|markdown|txt))?$/i
+      );
 
-      // Prefer a root-level icon.ico, then any .ico inside the archive.
       const icon =
         zipFind(zip, /(^|\/)icon\.ico$/i) ||
         zipFind(zip, /(^|\/)[^/]+\.ico$/i);
 
       let readmeLoaded = false;
+      let licenseLoaded = false;
+      let iconLoaded = false;
 
       if (readme) {
-        const text = await zip.file(readme).async("text");
+        const readmeText = await zip.file(readme).async("text");
+
         if (renderReadmeFromZip) {
-          if (/\.(md|markdown)$/i.test(readme)) renderMarkdown(text);
-          else renderText(text);
+          if (/\.(md|markdown)$/i.test(readme)) {
+            renderMarkdown(readmeText);
+          } else {
+            renderText(readmeText);
+          }
         }
+
         readmeLoaded = true;
       }
 
       if (license) {
-        const text = await zip.file(license).async("text");
-        setLicense(text);
+        const licenseText = await zip.file(license).async("text");
+        setLicense(licenseText);
+        licenseLoaded = true;
       }
 
       if (icon) {
         try {
           const blob = await zip.file(icon).async("blob");
+          const objectUrl = URL.createObjectURL(blob);
+
           $("#moduleIcon").innerHTML =
-            `<img alt="" src="${URL.createObjectURL(blob)}">`;
+            `<img alt="" src="${objectUrl}">`;
+
+          iconLoaded = true;
         } catch {}
       }
 
       return {
         ok: true,
+        transport,
+        attempts,
         readmeLoaded,
-        licenseLoaded: !!license
+        licenseLoaded,
+        iconLoaded
       };
     } catch (error) {
       return {
         ok: false,
+        transport,
+        attempts,
         error
       };
     }
@@ -487,6 +612,146 @@
     }
   }
 
+
+  function rawGitHubUrl(owner, repo, branch, path) {
+    return (
+      `https://raw.githubusercontent.com/${encodeURIComponent(owner)}/` +
+      `${encodeURIComponent(repo)}/${encodeURIComponent(branch)}/${path}`
+    );
+  }
+
+  async function firstRawFile(owner, repo, branch, candidates) {
+    for (const path of candidates) {
+      const text = await fetchRaw(
+        rawGitHubUrl(owner, repo, branch, path)
+      );
+
+      if (text !== null) {
+        return {path, text};
+      }
+    }
+
+    return null;
+  }
+
+  async function firstRawBlob(owner, repo, branch, candidates) {
+    for (const path of candidates) {
+      try {
+        const r = await fetch(
+          rawGitHubUrl(owner, repo, branch, path),
+          {cache: "no-store"}
+        );
+
+        if (r.ok) {
+          return {
+            path,
+            blob: await r.blob()
+          };
+        }
+      } catch {}
+    }
+
+    return null;
+  }
+
+  async function loadFallbackFromMainRepo(owner, repo, needs = {}) {
+    // Stable fallback: only conventional metadata files from the main branch.
+    // Nothing else from the repository is used.
+    const branch = "main";
+
+    const result = {
+      readmeLoaded: false,
+      licenseLoaded: false,
+      iconLoaded: false
+    };
+
+    if (needs.readme) {
+      const readme = await firstRawFile(
+        owner,
+        repo,
+        branch,
+        [
+          "README.md",
+          "Readme.md",
+          "readme.md",
+          "README.markdown",
+          "README.txt",
+          "readme.txt"
+        ]
+      );
+
+      if (readme) {
+        if (/\.(md|markdown)$/i.test(readme.path)) {
+          renderMarkdown(readme.text, {
+            owner,
+            repo,
+            branch,
+            path: readme.path
+          });
+        } else {
+          renderText(readme.text);
+        }
+
+        result.readmeLoaded = true;
+      }
+    }
+
+    if (needs.license) {
+      const license = await firstRawFile(
+        owner,
+        repo,
+        branch,
+        [
+          "LICENSE.md",
+          "License.md",
+          "license.md",
+          "LICENSE.txt",
+          "License.txt",
+          "license.txt",
+          "LICENSE",
+          "License",
+          "license",
+          "LICENCE.md",
+          "Licence.md",
+          "licence.md",
+          "LICENCE.txt",
+          "Licence.txt",
+          "licence.txt",
+          "LICENCE",
+          "Licence",
+          "licence"
+        ]
+      );
+
+      if (license) {
+        setLicense(license.text);
+        result.licenseLoaded = true;
+      }
+    }
+
+    if (needs.icon) {
+      const icon = await firstRawBlob(
+        owner,
+        repo,
+        branch,
+        [
+          "icon.ico",
+          "Icon.ico",
+          "ICON.ico"
+        ]
+      );
+
+      if (icon) {
+        const objectUrl = URL.createObjectURL(icon.blob);
+        $("#moduleIcon").innerHTML =
+          `<img alt="" src="${objectUrl}">`;
+
+        result.iconLoaded = true;
+      }
+    }
+
+    return result;
+  }
 
   async function main() {
     try {
@@ -528,20 +793,67 @@
       });
 
       /*
-        ZIP-only loading strategy:
-        README, license and icon are read exclusively from the module ZIP.
-        Nothing is fetched from the GitHub repository for module metadata.
+        Metadata loading:
+        1. Try the module ZIP directly.
+        2. If direct CORS fails, use Corsfix for the ZIP.
+        3. If ZIP inspection still fails, or metadata is missing,
+           fall back to README / LICENSE / icon.ico from the repository's
+           main branch.
+
+        The download button always keeps the original archive URL.
       */
       const zipResult = await loadFromZip(archiveUrl, true);
 
+      if ($("#zipTransport")) {
+        $("#zipTransport").textContent =
+          zipResult.ok
+            ? zipResult.transport
+            : "Unavailable — repository fallback";
+      }
+
+      let fallback = {
+        readmeLoaded: false,
+        licenseLoaded: false,
+        iconLoaded: false
+      };
+
+      if (
+        gh &&
+        (
+          !zipResult.ok ||
+          !zipResult.readmeLoaded ||
+          !zipResult.licenseLoaded ||
+          !zipResult.iconLoaded
+        )
+      ) {
+        fallback = await loadFallbackFromMainRepo(
+          gh.owner,
+          gh.repo,
+          {
+            readme:
+              !zipResult.ok ||
+              !zipResult.readmeLoaded,
+
+            license:
+              !zipResult.ok ||
+              !zipResult.licenseLoaded,
+
+            icon:
+              !zipResult.ok ||
+              !zipResult.iconLoaded
+          }
+        );
+      }
+
       const hasReadme =
-        zipResult.ok && zipResult.readmeLoaded;
+        (zipResult.ok && zipResult.readmeLoaded) ||
+        fallback.readmeLoaded;
 
       if (!hasReadme) {
         showNoReadme(
           zipResult.ok
-            ? "No README.md or README.txt was found inside the module ZIP."
-            : "The module ZIP could not be inspected in this browser. The archive host may block cross-origin access (CORS)."
+            ? `README was not found in the module ZIP (loaded via ${zipResult.transport}) and no README fallback was found in the repository's main branch.`
+            : "The ZIP could not be loaded through any available browser CORS relay, and no README fallback was found in the repository's main branch."
         );
       }
 
