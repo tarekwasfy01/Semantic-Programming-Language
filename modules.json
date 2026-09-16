@@ -1,5 +1,9 @@
 [
   {
+    "name": "mustatilcore",
+    "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/mustatilcore-20260916-235503/mustatilcore-20260916-235503.zip"
+  },
+  {
     "name": "numpy-2.5.3",
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Numpy/releases/download/V1.0.0/semantic-.numpy.zip"
   },
