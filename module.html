@@ -112,6 +112,47 @@
   }
   .load-note{font-size:12px;color:#8a8179;margin-top:8px}
 
+
+  .module-progress{
+    min-height:360px;
+    display:grid;
+    place-items:center;
+    text-align:center;
+    color:#746c65;
+    padding:42px 20px;
+  }
+  .module-progress-tree{
+    width:92px;
+    height:92px;
+    object-fit:contain;
+    margin:0 auto 20px;
+    animation:semantic-tree-spin 2.4s linear infinite;
+    transform-origin:center;
+  }
+  .module-progress-title{
+    margin:0 0 7px;
+    font:600 19px/1.3 Georgia,serif;
+    color:#29231f;
+  }
+  .module-progress-text{
+    margin:0;
+    font-size:13px;
+    color:#8a8179;
+  }
+  .module-progress-dots::after{
+    content:"";
+    animation:semantic-loading-dots 1.4s steps(4,end) infinite;
+  }
+  @keyframes semantic-tree-spin{
+    to{transform:rotate(360deg)}
+  }
+  @keyframes semantic-loading-dots{
+    0%{content:""}
+    25%{content:"."}
+    50%{content:".."}
+    75%,100%{content:"..."}
+  }
+
   @media(max-width:980px){
     .module-grid{grid-template-columns:1fr}
     .module-side{position:static}
@@ -148,9 +189,7 @@
 </nav>
 
 <main class="module-page">
-  <div id="loading" class="module-status">Loading module…</div>
-
-  <section id="view" hidden>
+  <section id="view">
     <header class="module-top">
       <div id="moduleIcon" class="module-page-icon"><span class="module-fallback">S</span></div>
       <div class="eyebrow"><span class="dot"></span> Semantic Module</div>
@@ -178,12 +217,20 @@
         <nav id="toc" class="module-toc"></nav>
       </aside>
 
-      <article id="readme" class="module-card module-readme"></article>
+      <article id="readme" class="module-card module-readme">
+        <div class="module-progress">
+          <div>
+            <img class="module-progress-tree" src="assets/img/semantic-logo.png" alt="">
+            <p class="module-progress-title">Trying to fetch the module info<span class="module-progress-dots"></span></p>
+            <p class="module-progress-text">You can already view the module source or download it while this loads.</p>
+          </div>
+        </div>
+      </article>
 
       <aside class="module-side">
         <div class="module-card module-facts">
           <div class="module-fact"><small>Metadata source</small><div>ZIP → Corsfix → cors.lol → AllOrigins → main repo</div></div>
-          <div class="module-fact"><small>ZIP transport</small><div id="zipTransport">Checking…</div></div>
+          <div class="module-fact"><small>ZIP transport</small><div id="zipTransport">Checking in background…</div></div>
           <div class="module-fact">
             <small>Module archive</small>
             <a id="archiveUrl" target="_blank" rel="noopener"></a>
@@ -196,17 +243,17 @@
 
           <div class="module-fact">
             <small>License</small>
-            <div id="licenseName">Not detected</div>
+            <div id="licenseName">Loading…</div>
           </div>
 
           <div class="module-fact">
             <small>Copyright</small>
-            <div id="copyright">Not detected</div>
+            <div id="copyright">Loading…</div>
           </div>
 
           <div class="module-fact">
             <small>License text</small>
-            <div id="licenseText" class="license-text">No license file found.</div>
+            <div id="licenseText" class="license-text">Trying to fetch license information…</div>
           </div>
         </div>
       </aside>
@@ -753,30 +800,112 @@
     return result;
   }
 
+  function showInstantModuleShell() {
+    const p = getParams();
+
+    // Use URL params immediately so the visitor lands on a real module page
+    // before registry/proxy work has finished.
+    const name = p.name || "Semantic Module";
+    const archiveUrl = p.url || "";
+    const sourceUrl = archiveUrl ? sourceFromArchive(archiveUrl) : "";
+    const gh = archiveUrl ? parseGitHubRelease(archiveUrl) : null;
+
+    $("#moduleName").textContent = name;
+    document.title = `${name} — Semantic Module`;
+
+    if (archiveUrl) {
+      $("#downloadButton").href = archiveUrl;
+      $("#archiveUrl").href = archiveUrl;
+      $("#archiveUrl").textContent = archiveUrl;
+
+      const command = `sp module import ${archiveUrl}`;
+      $("#installCommand").textContent = command;
+
+      $("#copyInstall").onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(command);
+          $("#copyInstall").textContent = "Copied";
+          setTimeout(() => $("#copyInstall").textContent = "Copy", 1200);
+        } catch {}
+      };
+    } else {
+      $("#downloadButton").style.display = "none";
+      $("#installCommand").textContent = "Waiting for module URL…";
+      $("#archiveUrl").textContent = "Resolving…";
+    }
+
+    if (sourceUrl) {
+      $("#sourceButton").href = sourceUrl;
+      $("#sourceUrl").href = sourceUrl;
+      $("#sourceUrl").textContent = sourceUrl;
+    } else {
+      $("#sourceButton").style.display = "none";
+      $("#sourceUrl").textContent = "Resolving…";
+    }
+
+    // Give GitHub-hosted modules an immediately useful description.
+    if (gh) {
+      $("#moduleDescription").textContent =
+        `${gh.owner}/${gh.repo} — Semantic module`;
+    }
+  }
+
+  function finishMissingMetadata(zipResult, fallback) {
+    if (
+      !((zipResult.ok && zipResult.licenseLoaded) || fallback.licenseLoaded)
+    ) {
+      $("#licenseName").textContent = "Not detected";
+      $("#copyright").textContent = "Not detected";
+      $("#licenseText").textContent = "No license file found.";
+    }
+  }
+
+  // Render the useful page shell immediately, before any network work.
+  showInstantModuleShell();
+
   async function main() {
     try {
-      await loadRegistry();
-
       const p = getParams();
+
+      // Registry lookup happens in the background and only improves/corrects
+      // the URL/name if necessary. It no longer blocks the page.
+      try {
+        await loadRegistry();
+      } catch {}
+
       const registered = p.name ? findRegistryModule(p.name) : null;
 
-      const name = registered?.name || p.name || "Module";
+      const name = registered?.name || p.name || "Semantic Module";
       const archiveUrl = registered?.url || p.url || "";
 
       if (!archiveUrl) {
-        $("#loading").hidden = true;
-        $("#notFound").hidden = false;
+        $("#readme").innerHTML = `
+          <div class="module-empty">
+            <img src="assets/img/semantic-logo.png" alt="Semantic">
+            <h2>Module information is unavailable.</h2>
+            <p>No module archive URL was provided.</p>
+          </div>`;
+        $("#toc").innerHTML = `<span style="color:#746c65">No module</span>`;
+        $("#licenseName").textContent = "Not available";
+        $("#copyright").textContent = "Not available";
+        $("#licenseText").textContent = "No archive URL available.";
         return;
       }
 
       const sourceUrl = sourceFromArchive(archiveUrl);
       const gh = parseGitHubRelease(archiveUrl);
 
+      // Correct the immediate shell if registry data differs from URL params.
       $("#moduleName").textContent = name;
+      document.title = `${name} — Semantic Module`;
+
+      $("#downloadButton").style.display = "";
       $("#downloadButton").href = archiveUrl;
+
       $("#archiveUrl").href = archiveUrl;
       $("#archiveUrl").textContent = archiveUrl;
 
+      $("#sourceButton").style.display = "";
       $("#sourceButton").href = sourceUrl;
       $("#sourceUrl").href = sourceUrl;
       $("#sourceUrl").textContent = sourceUrl;
@@ -784,23 +913,19 @@
       const command = `sp module import ${archiveUrl}`;
       $("#installCommand").textContent = command;
 
-      $("#copyInstall").addEventListener("click", async () => {
+      $("#copyInstall").onclick = async () => {
         try {
           await navigator.clipboard.writeText(command);
           $("#copyInstall").textContent = "Copied";
           setTimeout(() => $("#copyInstall").textContent = "Copy", 1200);
         } catch {}
-      });
+      };
 
       /*
-        Metadata loading:
-        1. Try the module ZIP directly.
-        2. If direct CORS fails, use Corsfix for the ZIP.
-        3. If ZIP inspection still fails, or metadata is missing,
-           fall back to README / LICENSE / icon.ico from the repository's
-           main branch.
-
-        The download button always keeps the original archive URL.
+        Progressive metadata loading:
+        - The page is already visible at this point.
+        - ZIP/proxy work runs while the visitor can use Download / Source.
+        - README placeholder stays visible until content is available.
       */
       const zipResult = await loadFromZip(archiveUrl, true);
 
@@ -808,7 +933,7 @@
         $("#zipTransport").textContent =
           zipResult.ok
             ? zipResult.transport
-            : "Unavailable — repository fallback";
+            : "Unavailable — trying repository fallback";
       }
 
       let fallback = {
@@ -826,6 +951,22 @@
           !zipResult.iconLoaded
         )
       ) {
+        // Update the progress text while repository fallback is running.
+        if (!(zipResult.ok && zipResult.readmeLoaded)) {
+          const progressTitle = $("#readme .module-progress-title");
+          const progressText = $("#readme .module-progress-text");
+
+          if (progressTitle) {
+            progressTitle.innerHTML =
+              `ZIP metadata unavailable — trying the main repository<span class="module-progress-dots"></span>`;
+          }
+
+          if (progressText) {
+            progressText.textContent =
+              "The module page remains usable while the fallback is checked.";
+          }
+        }
+
         fallback = await loadFallbackFromMainRepo(
           gh.owner,
           gh.repo,
@@ -851,19 +992,26 @@
 
       if (!hasReadme) {
         showNoReadme(
-          zipResult.ok
-            ? `README was not found in the module ZIP (loaded via ${zipResult.transport}) and no README fallback was found in the repository's main branch.`
-            : "The ZIP could not be loaded through any available browser CORS relay, and no README fallback was found in the repository's main branch."
+          "README could not be loaded from the module ZIP or its repository."
         );
       }
 
-      $("#loading").hidden = true;
-      $("#view").hidden = false;
-      document.title = `${name} — Semantic Module`;
+      finishMissingMetadata(zipResult, fallback);
+
+      if ($("#zipTransport") && !zipResult.ok) {
+        $("#zipTransport").textContent =
+          fallback.readmeLoaded || fallback.licenseLoaded || fallback.iconLoaded
+            ? "Repository fallback"
+            : "Unavailable";
+      }
 
     } catch (error) {
-      $("#loading").innerHTML =
-        `<b>Could not open module.</b><br>${esc(error.message)}`;
+      // Keep the already-rendered page usable instead of replacing it with
+      // a blocking error screen.
+      showNoReadme(`Could not finish loading module metadata: ${error.message}`);
+      $("#licenseName").textContent = "Unavailable";
+      $("#copyright").textContent = "Unavailable";
+      $("#licenseText").textContent = "Module metadata could not be loaded.";
     }
   }
 
