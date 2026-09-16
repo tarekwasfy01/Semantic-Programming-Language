@@ -1,4 +1,10 @@
-[ {
+[
+  {
+    "name": "numpy-2.5.3",
+    "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Numpy/releases/download/V1.0.0/semantic-.numpy.zip"
+  },
+  {
     "name": "Semantic-Webview2",
     "url": "https://example.com/Semantic-Webview2-v1.zip"
-  }]
+  }
+]
