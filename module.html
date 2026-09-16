@@ -70,7 +70,7 @@
     line-height:1.18;
     scroll-margin-top:110px
   }
-  .module-readme h1{font-size:30px;margin:0 0 18px}
+  .module-readme h1{font-size:27px;margin:0 0 18px}
   .module-readme h2{font-size:24px;margin:34px 0 12px}
   .module-readme h3{font-size:20px;margin:28px 0 10px}
   .module-readme h4{font-size:17px;margin:24px 0 8px}
@@ -120,7 +120,7 @@
   @media(max-width:600px){
     .install-line{align-items:stretch;flex-direction:column}
     .module-card{padding:22px}
-    .module-readme h1{font-size:26px}
+    .module-readme h1{font-size:24px}
     .module-readme h2{font-size:22px}
     .module-readme h3{font-size:19px}
   }
@@ -181,6 +181,7 @@
 
       <aside class="module-side">
         <div class="module-card module-facts">
+          <div class="module-fact"><small>Metadata source</small><div>Module ZIP</div></div>
           <div class="module-fact">
             <small>Module archive</small>
             <a id="archiveUrl" target="_blank" rel="noopener"></a>
@@ -338,7 +339,7 @@
       : `<span style="color:#746c65">No sections</span>`;
   }
 
-  function renderMarkdown(markdown) {
+  function renderMarkdown(markdown, githubContext = null) {
     const html = marked.parse(markdown || "", {
       gfm: true,
       breaks: false
@@ -347,6 +348,35 @@
     $("#readme").innerHTML = DOMPurify.sanitize(html, {
       USE_PROFILES: {html:true}
     });
+
+    // GitHub READMEs often contain relative images and links.
+    // Resolve those against the repository so they work on the Semantic website.
+    if (githubContext) {
+      const {owner, repo, branch, path = "README.md"} = githubContext;
+      const dir = path.includes("/") ? path.slice(0, path.lastIndexOf("/") + 1) : "";
+
+      $("#readme").querySelectorAll("img[src]").forEach(img => {
+        const src = img.getAttribute("src") || "";
+        if (!src || /^(https?:|data:|blob:|#)/i.test(src)) return;
+
+        const clean = src.replace(/^\.\//, "");
+        img.src =
+          `https://raw.githubusercontent.com/${encodeURIComponent(owner)}/` +
+          `${encodeURIComponent(repo)}/${encodeURIComponent(branch)}/${dir}${clean}`;
+      });
+
+      $("#readme").querySelectorAll("a[href]").forEach(a => {
+        const href = a.getAttribute("href") || "";
+        if (!href || /^(https?:|mailto:|tel:|#)/i.test(href)) return;
+
+        const clean = href.replace(/^\.\//, "");
+        a.href =
+          `https://github.com/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/blob/` +
+          `${encodeURIComponent(branch)}/${dir}${clean}`;
+        a.target = "_blank";
+        a.rel = "noopener";
+      });
+    }
 
     addHeadingIds($("#readme"));
     buildToc($("#readme"));
@@ -378,7 +408,7 @@
       .sort((a,b) => a.split("/").length - b.split("/").length)[0] || null;
   }
 
-  async function loadFromZip(url) {
+  async function loadFromZip(url, renderReadmeFromZip = true) {
     try {
       const response = await fetch(url, {
         method: "GET",
@@ -392,16 +422,22 @@
       const buffer = await response.arrayBuffer();
       const zip = await JSZip.loadAsync(buffer);
 
-      const readme = zipFind(zip, /(^|\/)readme\.(md|txt)$/i);
-      const license = zipFind(zip, /(^|\/)(license|licence)(\.(md|txt))?$/i);
-      const icon = zipFind(zip, /(^|\/)[^/]+\.ico$/i);
+      const readme = zipFind(zip, /(^|\/)readme\.(md|markdown|txt)$/i);
+      const license = zipFind(zip, /(^|\/)(license|licence)(\.(md|markdown|txt))?$/i);
+
+      // Prefer a root-level icon.ico, then any .ico inside the archive.
+      const icon =
+        zipFind(zip, /(^|\/)icon\.ico$/i) ||
+        zipFind(zip, /(^|\/)[^/]+\.ico$/i);
 
       let readmeLoaded = false;
 
       if (readme) {
         const text = await zip.file(readme).async("text");
-        if (/\.md$/i.test(readme)) renderMarkdown(text);
-        else renderText(text);
+        if (renderReadmeFromZip) {
+          if (/\.(md|markdown)$/i.test(readme)) renderMarkdown(text);
+          else renderText(text);
+        }
         readmeLoaded = true;
       }
 
@@ -451,71 +487,6 @@
     }
   }
 
-  async function loadFromGitHubRepository(owner, repo) {
-    const info = await githubRepoInfo(owner, repo);
-    if (!info) return {readmeLoaded:false, licenseLoaded:false};
-
-    const branch = info.default_branch || "main";
-
-    const readmeCandidates = [
-      "README.md",
-      "readme.md",
-      "README.txt",
-      "readme.txt"
-    ];
-
-    const licenseCandidates = [
-      "LICENSE.md",
-      "LICENSE.txt",
-      "LICENSE",
-      "license.md",
-      "license.txt",
-      "license",
-      "LICENCE.md",
-      "LICENCE.txt",
-      "LICENCE"
-    ];
-
-    let readmeText = null;
-    let readmePath = null;
-
-    for (const file of readmeCandidates) {
-      const raw =
-        `https://raw.githubusercontent.com/${owner}/${repo}/${encodeURIComponent(branch)}/${file}`;
-      const text = await fetchRaw(raw);
-      if (text !== null) {
-        readmeText = text;
-        readmePath = file;
-        break;
-      }
-    }
-
-    let licenseText = null;
-
-    for (const file of licenseCandidates) {
-      const raw =
-        `https://raw.githubusercontent.com/${owner}/${repo}/${encodeURIComponent(branch)}/${file}`;
-      const text = await fetchRaw(raw);
-      if (text !== null) {
-        licenseText = text;
-        break;
-      }
-    }
-
-    if (readmeText !== null) {
-      if (/\.md$/i.test(readmePath)) renderMarkdown(readmeText);
-      else renderText(readmeText);
-    }
-
-    if (licenseText !== null) {
-      setLicense(licenseText);
-    }
-
-    return {
-      readmeLoaded: readmeText !== null,
-      licenseLoaded: licenseText !== null
-    };
-  }
 
   async function main() {
     try {
@@ -557,35 +528,20 @@
       });
 
       /*
-        Loading strategy:
-        1. Try the actual ZIP first — this gives us exactly the README/LICENSE/icon shipped with the module.
-        2. If the ZIP host blocks browser CORS or doesn't contain metadata,
-           fall back to raw.githubusercontent.com for GitHub-hosted modules.
+        ZIP-only loading strategy:
+        README, license and icon are read exclusively from the module ZIP.
+        Nothing is fetched from the GitHub repository for module metadata.
       */
-      const zipResult = await loadFromZip(archiveUrl);
-
-      let fallback = {readmeLoaded:false, licenseLoaded:false};
-
-      if (
-        gh &&
-        (
-          !zipResult.ok ||
-          !zipResult.readmeLoaded ||
-          !zipResult.licenseLoaded
-        )
-      ) {
-        fallback = await loadFromGitHubRepository(gh.owner, gh.repo);
-      }
+      const zipResult = await loadFromZip(archiveUrl, true);
 
       const hasReadme =
-        (zipResult.ok && zipResult.readmeLoaded) ||
-        fallback.readmeLoaded;
+        zipResult.ok && zipResult.readmeLoaded;
 
       if (!hasReadme) {
         showNoReadme(
           zipResult.ok
-            ? "No README.md or README.txt was found in the module archive or repository."
-            : "The archive could not be inspected in the browser. A repository fallback was attempted."
+            ? "No README.md or README.txt was found inside the module ZIP."
+            : "The module ZIP could not be inspected in this browser. The archive host may block cross-origin access (CORS)."
         );
       }
 
