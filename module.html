@@ -261,7 +261,6 @@
 
 <script>
 (() => {
-  const cfg = window.SEMANTIC_CONFIG || {};
   const $ = s => document.querySelector(s);
 
   // Browser-compatible CORS relay fallbacks.
@@ -797,6 +796,18 @@
       like README content in the browser. Instead ask the GitHub Releases API
       which assets actually exist, then fetch the exact browser_download_url.
     */
+    // Direct sibling assets are used when the GitHub Releases API is unavailable.
+    const slash = archiveUrl.lastIndexOf("/");
+    const archiveBase = slash >= 0 ? archiveUrl.slice(0, slash + 1) : "";
+    async function directAsset(names) {
+      for (const name of names) {
+        const result = await fetchReleaseText(archiveBase + name);
+        if (result.ok) return { name, url: archiveBase + name, text: result.text, transport: result.transport };
+      }
+      return null;
+    }
+    const directReadme = await directAsset(["README.md", "README.txt", "README", "readme.md", "readme.txt"]);
+    const directLicense = await directAsset(["LICENSE", "LICENSE.md", "LICENSE.txt", "LICENCE", "LICENCE.md", "COPYING"]);
     let release = null;
 
     try {
@@ -866,10 +877,12 @@
       };
     }
 
-    const [readme, license] = await Promise.all([
+    const [readmeAsset, licenseAsset] = await Promise.all([
       loadAsset(findAsset("readme")),
       loadAsset(findAsset("license"))
     ]);
+    const readme = directReadme || readmeAsset;
+    const license = directLicense || licenseAsset;
 
     return {
       readme,
@@ -1180,6 +1193,12 @@
 </script>
 </body>
 </html>
+
+
+
+
+
+
 
 
 
