@@ -575,10 +575,10 @@
     }
 
     try {
-      const readme = zipFind(zip, /(^|\/)readme\.(md|markdown|txt)$/i);
+      const readme = zipFind(zip, /(^|\/)readme(\.(md|markdown|txt))?$/i);
       const license = zipFind(
         zip,
-        /(^|\/)(license|licence)(\.(md|markdown|txt))?$/i
+        /(^|\/)(license|licence|copying)(\.(md|markdown|txt))?$/i
       );
 
       const icon =
@@ -718,36 +718,112 @@
   // Render the useful page shell immediately, before any network work.
   showInstantModuleShell();
 
-  async function loadReleaseFallback(archiveUrl) {
-    const slash = archiveUrl.lastIndexOf("/");
-    if (slash < 0) return { readme: null, license: null };
+  async function fetchReleaseText(url) {
+    // Direct first.
+    try {
+      const response = await fetchWithTimeout(
+        url,
+        {
+          method: "GET",
+          mode: "cors",
+          redirect: "follow",
+          cache: "no-store"
+        },
+        12000
+      );
 
-    const base = archiveUrl.slice(0, slash + 1);
+      if (response.ok) {
+        const text = await response.text();
+        if (text.trim()) {
+          return {
+            ok: true,
+            text,
+            transport: "Direct"
+          };
+        }
+      }
+    } catch {}
+
+    // If GitHub blocks browser CORS, use the same relay chain as the ZIP.
+    for (const proxy of ZIP_PROXY_BUILDERS) {
+      try {
+        const response = await fetchWithTimeout(
+          proxy.build(url),
+          {
+            method: "GET",
+            cache: "no-store"
+          },
+          18000
+        );
+
+        if (!response.ok) continue;
+
+        const text = await response.text();
+
+        // Reject obvious HTML proxy/error pages.
+        const trimmed = text.trim();
+        if (
+          trimmed &&
+          !/^<!doctype html/i.test(trimmed) &&
+          !/^<html/i.test(trimmed)
+        ) {
+          return {
+            ok: true,
+            text,
+            transport: proxy.name
+          };
+        }
+      } catch {}
+    }
+
+    return {
+      ok: false,
+      text: "",
+      transport: null
+    };
+  }
+
+  async function loadReleaseFallback(archiveUrl) {
+    const gh = parseGitHubRelease(archiveUrl);
+
+    // Release-sidecar lookup only applies to GitHub release download URLs.
+    if (!gh || !gh.tag || !gh.file) {
+      return {
+        readme: null,
+        license: null
+      };
+    }
+
+    const releaseBase =
+      `https://github.com/${encodeURIComponent(gh.owner)}/` +
+      `${encodeURIComponent(gh.repo)}/releases/download/` +
+      `${encodeURIComponent(gh.tag)}/`;
 
     async function tryText(names) {
       for (const name of names) {
-        const url = base + name;
+        const url = releaseBase + encodeURIComponent(name);
+        const result = await fetchReleaseText(url);
 
-        try {
-          const response = await fetch(url, {
-            cache: "no-store",
-            redirect: "follow"
-          });
-
-          if (!response.ok) continue;
-
-          const text = await response.text();
-          if (text.trim()) {
-            return { name, url, text };
-          }
-        } catch {}
+        if (result.ok) {
+          return {
+            name,
+            url,
+            text: result.text,
+            transport: result.transport
+          };
+        }
       }
 
       return null;
     }
 
     const [readme, license] = await Promise.all([
-      tryText(["README.md", "README.markdown", "README.txt", "README"]),
+      tryText([
+        "README.md",
+        "README.markdown",
+        "README.txt",
+        "README"
+      ]),
       tryText([
         "LICENSE.md",
         "LICENSE.markdown",
@@ -756,13 +832,18 @@
         "LICENCE.md",
         "LICENCE.markdown",
         "LICENCE.txt",
-        "LICENCE"
+        "LICENCE",
+        "COPYING.md",
+        "COPYING.txt",
+        "COPYING"
       ])
     ]);
 
-    return { readme, license };
+    return {
+      readme,
+      license
+    };
   }
-
 
   async function main() {
     try {
@@ -853,7 +934,7 @@
         $("#zipTransport").textContent =
           zipResult.ok
             ? zipResult.transport
-            : "Unavailable";
+            : "ZIP unavailable";
       }
 
       // Additional fallback only:
@@ -871,6 +952,17 @@
       ) {
         releaseFallback =
           await loadReleaseFallback(archiveUrl);
+
+        if ($("#zipTransport") && (releaseFallback.readme || releaseFallback.license)) {
+          const transports = [
+            releaseFallback.readme?.transport,
+            releaseFallback.license?.transport
+          ].filter(Boolean);
+
+          $("#zipTransport").textContent =
+            (zipResult.ok ? `${zipResult.transport} + ` : "") +
+            `release fallback${transports.length ? ` (${[...new Set(transports)].join(", ")})` : ""}`;
+        }
       }
 
       if (!zipResult.ok || !zipResult.readmeLoaded) {
