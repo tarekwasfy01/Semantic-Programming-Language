@@ -1,5 +1,9 @@
 [
   {
+    "name": "math",
+    "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/math-20260917-001652/math-20260917-001652.zip"
+  },
+  {
     "name": "mustatilcore",
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/mustatilcore-20260916-235503/mustatilcore-20260916-235503.zip"
   },
