@@ -195,7 +195,7 @@
       <div class="eyebrow"><span class="dot"></span> Semantic Module</div>
       <h1 id="moduleName">Module</h1>
       <p id="moduleDescription" class="module-subtle">A module in the Semantic ecosystem.</p>
-      <p class="load-note">README, license and icon are read only from the module ZIP. Several browser CORS relays are tried in sequence if direct loading is blocked.</p>
+      <p class="load-note">README and license are read from the module ZIP first and from matching release assets only as a fallback. The icon remains ZIP-only.</p>
 
       <div class="module-actions">
         <a id="downloadButton" class="btn btn-primary" href="#" target="_blank" rel="noopener">Download Module ↓</a>
@@ -229,7 +229,7 @@
 
       <aside class="module-side">
         <div class="module-card module-facts">
-          <div class="module-fact"><small>Metadata source</small><div>Module ZIP only</div></div>
+          <div class="module-fact"><small>Metadata source</small><div>ZIP first → release fallback</div></div>
           <div class="module-fact"><small>ZIP transport</small><div id="zipTransport">Checking in background…</div></div>
           <div class="module-fact">
             <small>Module archive</small>
@@ -575,10 +575,10 @@
     }
 
     try {
-      const readme = zipFind(zip, /(^|\/)readme(\.(md|markdown|txt))?$/i);
+      const readme = zipFind(zip, /(^|\/)readme(\.(md|markdown|txt|rst))?$/i);
       const license = zipFind(
         zip,
-        /(^|\/)(license|licence|copying)(\.(md|markdown|txt))?$/i
+        /(^|\/)(license|licence|copying)(\.(md|markdown|txt|rst))?$/i
       );
 
       const icon =
@@ -734,7 +734,15 @@
 
       if (response.ok) {
         const text = await response.text();
-        if (text.trim()) {
+        const trimmed = text.trim();
+
+        // A missing/redirected GitHub asset can sometimes end up as an HTML page.
+        // Never treat HTML as README/LICENSE content.
+        if (
+          trimmed &&
+          !/^<!doctype html/i.test(trimmed) &&
+          !/^<html/i.test(trimmed)
+        ) {
           return {
             ok: true,
             text,
@@ -786,7 +794,6 @@
   async function loadReleaseFallback(archiveUrl) {
     const gh = parseGitHubRelease(archiveUrl);
 
-    // Release-sidecar lookup only applies to GitHub release download URLs.
     if (!gh || !gh.tag || !gh.file) {
       return {
         readme: null,
@@ -794,49 +801,85 @@
       };
     }
 
-    const releaseBase =
-      `https://github.com/${encodeURIComponent(gh.owner)}/` +
-      `${encodeURIComponent(gh.repo)}/releases/download/` +
-      `${encodeURIComponent(gh.tag)}/`;
+    /*
+      Do not guess release asset URLs.
 
-    async function tryText(names) {
-      for (const name of names) {
-        const url = releaseBase + encodeURIComponent(name);
-        const result = await fetchReleaseText(url);
+      GitHub can redirect a non-existing guessed asset to HTML, which can look
+      like README content in the browser. Instead ask the GitHub Releases API
+      which assets actually exist, then fetch the exact browser_download_url.
+    */
+    let release = null;
 
-        if (result.ok) {
-          return {
-            name,
-            url,
-            text: result.text,
-            transport: result.transport
-          };
-        }
+    try {
+      release = await fetchJSON(
+        `https://api.github.com/repos/${encodeURIComponent(gh.owner)}/` +
+        `${encodeURIComponent(gh.repo)}/releases/tags/${encodeURIComponent(gh.tag)}`
+      );
+    } catch {}
+
+    const assets = Array.isArray(release?.assets)
+      ? release.assets
+      : [];
+
+    function findAsset(kind) {
+      const patterns = kind === "readme"
+        ? [
+            /^readme\.md$/i,
+            /^readme\.markdown$/i,
+            /^readme\.txt$/i,
+            /^readme\.rst$/i,
+            /^readme$/i
+          ]
+        : [
+            /^license\.md$/i,
+            /^license\.markdown$/i,
+            /^license\.txt$/i,
+            /^license\.rst$/i,
+            /^license$/i,
+            /^licence\.md$/i,
+            /^licence\.markdown$/i,
+            /^licence\.txt$/i,
+            /^licence\.rst$/i,
+            /^licence$/i,
+            /^copying\.md$/i,
+            /^copying\.txt$/i,
+            /^copying\.rst$/i,
+            /^copying$/i
+          ];
+
+      for (const pattern of patterns) {
+        const asset = assets.find(a =>
+          a &&
+          typeof a.name === "string" &&
+          pattern.test(a.name) &&
+          typeof a.browser_download_url === "string"
+        );
+
+        if (asset) return asset;
       }
 
       return null;
     }
 
+    async function loadAsset(asset) {
+      if (!asset) return null;
+
+      const result =
+        await fetchReleaseText(asset.browser_download_url);
+
+      if (!result.ok) return null;
+
+      return {
+        name: asset.name,
+        url: asset.browser_download_url,
+        text: result.text,
+        transport: result.transport
+      };
+    }
+
     const [readme, license] = await Promise.all([
-      tryText([
-        "README.md",
-        "README.markdown",
-        "README.txt",
-        "README"
-      ]),
-      tryText([
-        "LICENSE.md",
-        "LICENSE.markdown",
-        "LICENSE.txt",
-        "LICENSE",
-        "LICENCE.md",
-        "LICENCE.markdown",
-        "LICENCE.txt",
-        "LICENCE",
-        "COPYING.md",
-        "COPYING.txt",
-        "COPYING"
-      ])
+      loadAsset(findAsset("readme")),
+      loadAsset(findAsset("license"))
     ]);
 
     return {
