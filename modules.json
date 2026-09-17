@@ -1,5 +1,9 @@
 [
   {
+    "name": "fmt",
+    "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/fmt-20260917-003016/fmt-20260917-003016.zip"
+  },
+  {
     "name": "math",
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/math-20260917-001652/math-20260917-001652.zip"
   },
