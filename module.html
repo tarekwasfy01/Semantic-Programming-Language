@@ -195,7 +195,7 @@
       <div class="eyebrow"><span class="dot"></span> Semantic Module</div>
       <h1 id="moduleName">Module</h1>
       <p id="moduleDescription" class="module-subtle">A module in the Semantic ecosystem.</p>
-      <p class="load-note">README and license are read from the module ZIP first and from matching release assets only as a fallback. The icon remains ZIP-only.</p>
+      <p class="load-note">README and license are read from the module ZIP first, then matching release assets, then the source repository as a final fallback. The icon remains ZIP-only.</p>
 
       <div class="module-actions">
         <a id="downloadButton" class="btn btn-primary" href="#" target="_blank" rel="noopener">Download Module ↓</a>
@@ -229,7 +229,7 @@
 
       <aside class="module-side">
         <div class="module-card module-facts">
-          <div class="module-fact"><small>Metadata source</small><div>ZIP first → release fallback</div></div>
+          <div class="module-fact"><small>Metadata source</small><div>ZIP → release → repository</div></div>
           <div class="module-fact"><small>ZIP transport</small><div id="zipTransport">Checking in background…</div></div>
           <div class="module-fact">
             <small>Module archive</small>
@@ -888,6 +888,87 @@
     };
   }
 
+  async function loadRepositoryFallback(archiveUrl) {
+    const gh = parseGitHubRelease(archiveUrl);
+
+    if (!gh || !gh.owner || !gh.repo) {
+      return {
+        readme: null,
+        license: null
+      };
+    }
+
+    async function loadGitHubMetadata(endpoint) {
+      try {
+        const data = await fetchJSON(
+          `https://api.github.com/repos/${encodeURIComponent(gh.owner)}/` +
+          `${encodeURIComponent(gh.repo)}/${endpoint}`
+        );
+
+        if (!data || typeof data !== "object") return null;
+
+        // Prefer the exact raw download URL GitHub gives us.
+        if (typeof data.download_url === "string" && data.download_url) {
+          const result = await fetchReleaseText(data.download_url);
+
+          if (result.ok) {
+            return {
+              name: data.name || endpoint,
+              path: data.path || data.name || endpoint,
+              url: data.download_url,
+              htmlUrl: data.html_url || null,
+              text: result.text,
+              transport: result.transport
+            };
+          }
+        }
+
+        // Fallback to API-provided base64 content if present.
+        if (
+          typeof data.content === "string" &&
+          String(data.encoding || "").toLowerCase() === "base64"
+        ) {
+          try {
+            const normalized = data.content.replace(/\s+/g, "");
+            const binary = atob(normalized);
+            const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+            const decoded = new TextDecoder("utf-8").decode(bytes);
+
+            if (decoded.trim()) {
+              return {
+                name: data.name || endpoint,
+                path: data.path || data.name || endpoint,
+                url: data.download_url || data.html_url || null,
+                htmlUrl: data.html_url || null,
+                text: decoded,
+                transport: "GitHub API"
+              };
+            }
+          } catch {}
+        }
+      } catch {}
+
+      return null;
+    }
+
+    const repoInfoPromise = githubRepoInfo(gh.owner, gh.repo);
+
+    const [readme, license, repoInfo] = await Promise.all([
+      loadGitHubMetadata("readme"),
+      loadGitHubMetadata("license"),
+      repoInfoPromise
+    ]);
+
+    return {
+      readme,
+      license,
+      branch: repoInfo?.default_branch || "main",
+      owner: gh.owner,
+      repo: gh.repo
+    };
+  }
+
+
   async function main() {
     try {
       const p = getParams();
@@ -960,10 +1041,10 @@
       /*
         SEMANTIC MODULE STORE RULE
 
-        README, LICENSE and icon are loaded ONLY from the module ZIP.
-
-        The repository is used ONLY for the "Open Source" link.
-        It is never used as a metadata fallback.
+        README and LICENSE are loaded from the ZIP first.
+        Release assets are the first fallback.
+        The repository is the final fallback.
+        The icon remains ZIP-only.
 
         ZIP transport order:
         1. Direct
@@ -980,12 +1061,36 @@
             : "ZIP unavailable";
       }
 
-      // Additional fallback only:
-      // ZIP remains the primary source. Release assets are checked only when
-      // README and/or LICENSE could not be loaded from the ZIP.
+      /*
+        Metadata priority:
+
+        1. Module ZIP
+           - Direct
+           - Corsfix
+           - cors.lol
+           - AllOrigins
+
+        2. Matching assets beside the ZIP in the GitHub release
+
+        3. Repository README / LICENSE
+
+        The release and repository fallbacks are started together after the
+        ZIP attempt finishes. Release assets still have priority over repo
+        metadata when both exist.
+
+        The loading spinner stays visible until one of these paths resolves.
+      */
       let releaseFallback = {
         readme: null,
         license: null
+      };
+
+      let repoFallback = {
+        readme: null,
+        license: null,
+        branch: "main",
+        owner: null,
+        repo: null
       };
 
       if (
@@ -993,48 +1098,87 @@
         !zipResult.readmeLoaded ||
         !zipResult.licenseLoaded
       ) {
-        releaseFallback =
-          await loadReleaseFallback(archiveUrl);
+        [releaseFallback, repoFallback] = await Promise.all([
+          loadReleaseFallback(archiveUrl),
+          loadRepositoryFallback(archiveUrl)
+        ]);
+      }
 
-        if ($("#zipTransport") && (releaseFallback.readme || releaseFallback.license)) {
-          const transports = [
-            releaseFallback.readme?.transport,
-            releaseFallback.license?.transport
-          ].filter(Boolean);
+      if ($("#zipTransport")) {
+        const pieces = [];
 
-          $("#zipTransport").textContent =
-            (zipResult.ok ? `${zipResult.transport} + ` : "") +
-            `release fallback${transports.length ? ` (${[...new Set(transports)].join(", ")})` : ""}`;
+        if (zipResult.ok) {
+          pieces.push(zipResult.transport);
+        } else {
+          pieces.push("ZIP unavailable");
         }
+
+        if (releaseFallback.readme || releaseFallback.license) {
+          pieces.push("release fallback");
+        }
+
+        if (
+          (!releaseFallback.readme && repoFallback.readme) ||
+          (!releaseFallback.license && repoFallback.license)
+        ) {
+          pieces.push("repo fallback");
+        }
+
+        $("#zipTransport").textContent = pieces.join(" + ");
       }
 
       if (!zipResult.ok || !zipResult.readmeLoaded) {
-        if (releaseFallback.readme) {
-          if (/\.(md|markdown)$/i.test(releaseFallback.readme.name)) {
-            renderMarkdown(releaseFallback.readme.text);
+        const readme =
+          releaseFallback.readme ||
+          repoFallback.readme;
+
+        if (readme) {
+          if (/\.(md|markdown)$/i.test(readme.name || readme.path || "")) {
+            const isRepoReadme =
+              !releaseFallback.readme &&
+              repoFallback.readme === readme;
+
+            if (
+              isRepoReadme &&
+              repoFallback.owner &&
+              repoFallback.repo
+            ) {
+              renderMarkdown(readme.text, {
+                owner: repoFallback.owner,
+                repo: repoFallback.repo,
+                branch: repoFallback.branch,
+                path: readme.path || readme.name || "README.md"
+              });
+            } else {
+              renderMarkdown(readme.text);
+            }
           } else {
-            renderText(releaseFallback.readme.text);
+            renderText(readme.text);
           }
         } else {
           showNoReadme(
-            "No README was found inside the module ZIP."
+            "No README was found in the module ZIP, beside the ZIP in the release, or in the source repository."
           );
         }
       }
 
       if (!zipResult.ok || !zipResult.licenseLoaded) {
-        if (releaseFallback.license) {
-          setLicense(releaseFallback.license.text);
+        const license =
+          releaseFallback.license ||
+          repoFallback.license;
+
+        if (license) {
+          setLicense(license.text);
         } else {
           $("#licenseName").textContent = "Not detected";
           $("#copyright").textContent = "Not detected";
           $("#licenseText").textContent =
-            "No LICENSE or LICENCE file was found inside the module ZIP.";
+            "No LICENSE or LICENCE file was found in the module ZIP, beside the ZIP in the release, or in the source repository.";
         }
       }
 
+      // The icon remains ZIP-only.
       // If no icon exists in the ZIP, keep the normal Semantic fallback icon.
-      // Do not fetch any icon from the repository or release assets.
 
     } catch (error) {
       showNoReadme(
