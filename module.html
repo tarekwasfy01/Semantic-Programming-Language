@@ -974,6 +974,7 @@
   async function main() {
     try {
       const p = getParams();
+      const storeEntry = p.official === "1" && p.source === "archive";
 
       // Registry is only used to resolve/correct the module name and ZIP URL.
       // README, license and icon are NEVER taken from a repository.
@@ -1074,7 +1075,7 @@
 
         2. Matching assets beside the ZIP in the GitHub release
 
-        3. Repository README / LICENSE (disabled on module store)
+        3. Repository README / LICENSE (disabled only for module-store entries)
 
         The release and repository fallbacks are started together after the
         ZIP attempt finishes. Release assets still have priority over repo
@@ -1087,7 +1088,7 @@
         license: null
       };
 
-      const repoFallback = { readme: null, license: null, branch: null, owner: null, repo: null };
+      const repoFallback = storeEntry ? { readme: null, license: null, branch: null, owner: null, repo: null } : await loadRepositoryFallback(archiveUrl);
 
       if (
         !zipResult.ok ||
@@ -1193,6 +1194,8 @@
 </script>
 </body>
 </html>
+
+
 
 
 
