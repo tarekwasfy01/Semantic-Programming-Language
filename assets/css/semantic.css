@@ -23,3 +23,58 @@ body:before{content:"";position:fixed;z-index:-2;left:50%;top:16vh;width:min(72v
 @media(max-width:600px){.mantra-bar{min-height:42px;line-height:1.45}.nav{top:42px}.hero-brand{min-height:680px;padding-top:88px}.hero-tree{width:92vw}.hero-kicker{letter-spacing:.34em}.quote-card,.quote-card-main{padding:26px}.brand img{height:21px}.hero-statement{font-size:12px}}
 .module-manifesto{margin-top:28px;padding:18px 20px;border-left:2px solid var(--orange);display:flex;gap:18px;align-items:baseline;background:rgba(255,255,255,.56);border-radius:0 18px 18px 0}.module-manifesto strong{white-space:nowrap}.module-manifesto span{color:var(--muted);font-size:14px}
 @media(max-width:700px){.module-manifesto{align-items:flex-start;flex-direction:column;gap:5px}.module-manifesto strong{white-space:normal}}
+/* =========================================================
+   GLOBAL STICKY HEADER
+   Mantra bar + navigation stay permanently connected
+   ========================================================= */
+
+:root{
+  --semantic-mantra-height: 32px;
+}
+
+.mantra-bar{
+  position:sticky;
+  top:0;
+  z-index:1001;
+
+  height:var(--semantic-mantra-height);
+  min-height:var(--semantic-mantra-height);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0;
+  border:0;
+
+  background:#17130f;
+}
+
+.nav{
+  position:sticky;
+  top:var(--semantic-mantra-height);
+  z-index:1000;
+
+  margin-top:0;
+  border-top:0;
+}
+
+/* Prevent any visible gap between both bars */
+.mantra-bar + .nav{
+  margin-top:0;
+}
+
+/* Elements that use sticky offsets should stay below both bars */
+.module-side,
+.module-readme h1,
+.module-readme h2,
+.module-readme h3,
+.module-readme h4{
+  scroll-margin-top:120px;
+}
+
+@media(max-width:600px){
+  :root{
+    --semantic-mantra-height:30px;
+  }
+}
