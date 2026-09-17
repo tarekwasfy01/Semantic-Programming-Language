@@ -175,18 +175,7 @@
 <body>
 <div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
 
-<nav class="nav">
-  <div class="shell nav-inner">
-    <a class="brand" href="index.html">
-      <img class="wordmark-only" src="assets/img/semantic-wordmark.png" alt="Semantic">
-    </a>
-    <div class="nav-links">
-      <a href="index.html">Language</a>
-      <a href="modules.html">Modules</a>
-      <a href="docs/create-module.html">Docs</a>
-    </div>
-  </div>
-</nav>
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div><nav class="nav"><div class="shell nav-inner"><a class="brand" href="index.html"><div class="semantic-brand"><img src="assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon"><img src="assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark"></div></a><div class="nav-links"><a href="index.html#language">Language</a><a href="index.html#ai">For AI</a><a href="index.html#tooling">Tooling</a><a href="modules.html">Modules</a><a href="docs/create-module.html">Docs</a><a class="nav-cta" href="modules.html">Explore modules</a></div></div></nav>
 
 <main class="module-page">
   <section id="view">
@@ -267,7 +256,7 @@
   </div>
 </main>
 
-<script src="assets/js/config.js"></script>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="modules.html">Modules</a><a href="docs/create-module.html">Documentation</a><a href="privacy.html">Privacy</a><a href="legal.html">Legal Notice</a><a href="legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer><script src="assets/js/config.js"></script>
 <script src="assets/js/app.js"></script>
 
 <script>
@@ -1072,7 +1061,7 @@
 
         2. Matching assets beside the ZIP in the GitHub release
 
-        3. Repository README / LICENSE
+        3. Repository README / LICENSE (disabled on module store)
 
         The release and repository fallbacks are started together after the
         ZIP attempt finishes. Release assets still have priority over repo
@@ -1085,23 +1074,14 @@
         license: null
       };
 
-      let repoFallback = {
-        readme: null,
-        license: null,
-        branch: "main",
-        owner: null,
-        repo: null
-      };
+      const repoFallback = { readme: null, license: null, branch: null, owner: null, repo: null };
 
       if (
         !zipResult.ok ||
         !zipResult.readmeLoaded ||
         !zipResult.licenseLoaded
       ) {
-        [releaseFallback, repoFallback] = await Promise.all([
-          loadReleaseFallback(archiveUrl),
-          loadRepositoryFallback(archiveUrl)
-        ]);
+        releaseFallback = await loadReleaseFallback(archiveUrl);
       }
 
       if ($("#zipTransport")) {
@@ -1121,7 +1101,7 @@
           (!releaseFallback.readme && repoFallback.readme) ||
           (!releaseFallback.license && repoFallback.license)
         ) {
-          pieces.push("repo fallback");
+          pieces.push("release fallback");
         }
 
         $("#zipTransport").textContent = pieces.join(" + ");
@@ -1200,3 +1180,6 @@
 </script>
 </body>
 </html>
+
+
+
