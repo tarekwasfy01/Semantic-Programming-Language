@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FAQ — Semantic Wiki</title>
+  <meta name="description" content="FAQ Is MSPLC already fully selfhosting? Not yet. Real Semantic compiler units are producing native object files, but the complete Stage 2 → Stage 3 bootstrap has not been">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
+</head>
+<body>
+
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand">
+  <img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon">
+  <img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark">
+</div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
+
+<main class="wiki-main"><div class="shell wiki-shell">
+  <article class="wiki-article"><h1 id="faq">FAQ</h1>
+<h2 id="is-msplc-already-fully-selfhosting">Is MSPLC already fully selfhosting?</h2>
+<p>Not yet. Real Semantic compiler units are producing native object files, but the complete Stage 2 → Stage 3 bootstrap has not been verified end-to-end.</p>
+<h2 id="why-not-just-embed-a-working-exe-in-the-semantic-source">Why not just embed a working EXE in the Semantic source?</h2>
+<p>That can be a temporary bootstrap/transport trick, but it does not demonstrate that the compiler compiled itself. The final selfhosting proof must derive the next compiler from the compiler’s Semantic source.</p>
+<h2 id="why-produce-many-obj-files-first">Why produce many <code>.obj</code> files first?</h2>
+<p>It localizes failures. A monolithic build tells you only that “the compiler failed”. Per-unit objects show which modules already native-lower and preserve successful work while the remaining backend gaps are fixed.</p>
+<h2 id="why-do-some-workers-finish-in-one-second-even-with-a-120-second-timeout">Why do some workers finish in one second even with a 120-second timeout?</h2>
+<p>The timeout is a maximum. A worker that encounters a deterministic compile error exits immediately. Only a worker that is still running after 120 seconds is killed as a timeout.</p>
+<h2 id="why-use-child-processes-instead-of-goroutines">Why use child processes instead of goroutines?</h2>
+<p>A stuck compiler path cannot be reliably force-stopped as a goroutine. A child process can be hard-killed without stopping the parent queue.</p>
+<h2 id="why-does-the-compiler-reject-unknown-semantics-instead-of-guessing">Why does the compiler reject unknown semantics instead of guessing?</h2>
+<p>Because generated native code must preserve program meaning. Guessing a field layout, ABI, ownership rule or control-flow behavior can create a binary that appears to work while being semantically wrong.</p>
+<h2 id="are-se-sp-and-spz-different-irs">Are <code>.se</code>, <code>.sp</code> and <code>.spz</code> different IRs?</h2>
+<p>No. They are representations/transports around the same SemanticProgram/UAST model. The project architecture aims to maintain one canonical semantic truth.</p>
+<h2 id="does-the-native-backend-require-gcc-clang-or-an-assembler">Does the native backend require GCC, Clang or an assembler?</h2>
+<p>The intended direct native path constructs machine/object/executable artifacts itself. External assembly/compiler routes may be useful as verification paths but are not the target dependency for selfhosting.</p>
+</article>
+  <aside class="wiki-sidebar" aria-label="Wiki register">
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
+<li><a href="/wiki/">Home</a></li>
+<li><a href="/wiki/getting-started/">Getting Started</a></li>
+<li><a href="/wiki/project-status/">Project Status</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul>
+<li><a href="/wiki/architecture/">Architecture</a></li>
+<li><a href="/wiki/semantic-formats/">Semantic Formats</a></li>
+<li><a href="/wiki/universal-ast/">Universal AST</a></li>
+<li><a href="/wiki/module-system/">Module System</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul>
+<li><a href="/wiki/native-compilation/">Native Compilation</a></li>
+<li><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li>
+<li><a href="/wiki/selfhosting/">Selfhosting</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul>
+<li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
+<li><a href="/wiki/error-reference/">Error Reference</a></li>
+<li><a class="active" href="/wiki/faq/">FAQ</a></li>
+<li><a href="/wiki/contributing/">Contributing</a></li>
+</ul></div>
+</div>
+<div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
+<li><a href="#is-msplc-already-fully-selfhosting">Is MSPLC already fully selfhosting?</a></li>
+<li><a href="#why-not-just-embed-a-working-exe-in-the-semantic-source">Why not just embed a working EXE in the Semantic source?</a></li>
+<li><a href="#why-produce-many-obj-files-first">Why produce many .obj files first?</a></li>
+<li><a href="#why-do-some-workers-finish-in-one-second-even-with-a-120-second-timeout">Why do some workers finish in one second even with a 120-second timeout?</a></li>
+<li><a href="#why-use-child-processes-instead-of-goroutines">Why use child processes instead of goroutines?</a></li>
+<li><a href="#why-does-the-compiler-reject-unknown-semantics-instead-of-guessing">Why does the compiler reject unknown semantics instead of guessing?</a></li>
+<li><a href="#are-se-sp-and-spz-different-irs">Are .se, .sp and .spz different IRs?</a></li>
+<li><a href="#does-the-native-backend-require-gcc-clang-or-an-assembler">Does the native backend require GCC, Clang or an assembler?</a></li>
+</ul></div>
+<div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
+</aside>
+</div></main>
+
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>

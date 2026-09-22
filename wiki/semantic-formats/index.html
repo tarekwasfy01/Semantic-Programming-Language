@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Semantic Formats — Semantic Wiki</title>
+  <meta name="description" content="Semantic Formats Semantic source and transport currently use several related representations. .se .se is the readable Semantic language used by the selfhosting/compiler e">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
+</head>
+<body>
+
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand">
+  <img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon">
+  <img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark">
+</div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
+
+<main class="wiki-main"><div class="shell wiki-shell">
+  <article class="wiki-article"><h1 id="semantic-formats">Semantic Formats</h1>
+<p>Semantic source and transport currently use several related representations.</p>
+<h2 id="se"><code>.se</code></h2>
+<p><code>.se</code> is the readable Semantic language used by the selfhosting/compiler experiments in this repository. It is the format currently fed into the native MSPLC object pipeline.</p>
+<p>For the selfhosting work, <code>.se</code> files are treated as compiler source modules rather than as opaque containers for a prebuilt executable.</p>
+<h2 id="sp"><code>.sp</code></h2>
+<p><code>.sp</code> is a readable, versioned transport representation of the existing <code>SemanticProgram</code> / Universal AST.</p>
+<p>Canonical envelope:</p>
+<pre><code class="language-text">sp 1
+program {
+    schema = 1
+    source_language = &quot;go&quot;
+    field.evaluation = &quot;eager_left_to_right&quot;
+    field.universal_ast = { ... }
+}
+</code></pre>
+<p>The important property is that <code>.sp</code> does <strong>not</strong> introduce a second IR. It serializes the canonical semantic program.</p>
+<h2 id="spz"><code>.spz</code></h2>
+<p><code>.spz</code> is the compressed Semantic transport form. It is intended to decode back into the same canonical <code>.sp</code> semantics.</p>
+<div class="mermaid">flowchart LR
+    U[SemanticProgram / UAST]
+    U <--> SE[.se]
+    U <--> SP[.sp]
+    SP <--> SPZ[.spz]
+    U <--> J[JSON debug/interchange]
+</div>
+<h2 id="json">JSON</h2>
+<p>JSON remains useful for inspection, interchange and validation. It exposes the structured program graph, node fields, semantic evidence and relation matrices.</p>
+<h2 id="format-rule">Format rule</h2>
+<p>The representation may change, but program meaning must not:</p>
+<pre><code class="language-text">Decode(Encode(P)) ≡ P
+</code></pre>
+<p>Unknown extensions or semantics must be preserved deliberately or rejected explicitly.</p>
+</article>
+  <aside class="wiki-sidebar" aria-label="Wiki register">
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
+<li><a href="/wiki/">Home</a></li>
+<li><a href="/wiki/getting-started/">Getting Started</a></li>
+<li><a href="/wiki/project-status/">Project Status</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul>
+<li><a href="/wiki/architecture/">Architecture</a></li>
+<li><a class="active" href="/wiki/semantic-formats/">Semantic Formats</a></li>
+<li><a href="/wiki/universal-ast/">Universal AST</a></li>
+<li><a href="/wiki/module-system/">Module System</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul>
+<li><a href="/wiki/native-compilation/">Native Compilation</a></li>
+<li><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li>
+<li><a href="/wiki/selfhosting/">Selfhosting</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul>
+<li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
+<li><a href="/wiki/error-reference/">Error Reference</a></li>
+<li><a href="/wiki/faq/">FAQ</a></li>
+<li><a href="/wiki/contributing/">Contributing</a></li>
+</ul></div>
+</div>
+<div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
+<li><a href="#se">.se</a></li>
+<li><a href="#sp">.sp</a></li>
+<li><a href="#spz">.spz</a></li>
+<li><a href="#json">JSON</a></li>
+<li><a href="#format-rule">Format rule</a></li>
+</ul></div>
+<div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
+</aside>
+</div></main>
+
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>

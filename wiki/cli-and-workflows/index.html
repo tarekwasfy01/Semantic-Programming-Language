@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CLI &amp; Workflows — Semantic Wiki</title>
+  <meta name="description" content="CLI &amp; Workflows This page collects the commands most useful while working on the Semantic/native compiler pipeline. Stable object runner bat START HERE.bat Runs the norma">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
+</head>
+<body>
+
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand">
+  <img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon">
+  <img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark">
+</div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
+
+<main class="wiki-main"><div class="shell wiki-shell">
+  <article class="wiki-article"><h1 id="cli-workflows">CLI &amp; Workflows</h1>
+<p>This page collects the commands most useful while working on the Semantic/native compiler pipeline.</p>
+<h2 id="stable-object-runner">Stable object runner</h2>
+<pre><code class="language-bat">START-HERE.bat
+</code></pre>
+<p>Runs the normal per-unit object build.</p>
+<pre><code class="language-bat">START-FAST-5S.bat
+</code></pre>
+<p>Short diagnostic pass. Useful for quickly finding deterministic compiler failures, but large units may legitimately timeout.</p>
+<pre><code class="language-bat">RETRY-120S.bat
+</code></pre>
+<p>Retries failed/slow units with a larger hard timeout.</p>
+<pre><code class="language-bat">STATUS.bat
+</code></pre>
+<p>Prints the current unit/object summary.</p>
+<pre><code class="language-bat">MAKE-REPORT.bat
+</code></pre>
+<p>Collects statuses, errors and object paths into a report.</p>
+<pre><code class="language-bat">CLEAN.bat
+</code></pre>
+<p>Removes generated build state so the next run starts cleanly.</p>
+<h2 id="semantic-transport-examples">Semantic transport examples</h2>
+<p>Documented Semantic CLI flows include patterns such as:</p>
+<pre><code class="language-text">semantic-export -source go input.go -format sp -o program.sp
+semantic-transpile -target rust program.sp -o output.rs
+semantic-convert program.json -o program.sp
+semantic-format program.sp -o formatted.sp
+semantic-validate program.sp
+semantic-info program.sp
+</code></pre>
+<h2 id="module-examples">Module examples</h2>
+<pre><code class="language-text">CodeTranspiler.exe semantic module import path\to\package
+CodeTranspiler.exe semantic module import --language go path\to\main.go
+CodeTranspiler.exe semantic module list
+CodeTranspiler.exe semantic module verify &lt;cache-key&gt;
+</code></pre>
+<h2 id="selfhosting-target-commands">Selfhosting target commands</h2>
+<p>The eventual native user-facing flow should be as simple as:</p>
+<pre><code class="language-text">msplc.exe msplc-selfhost.se stage2.exe
+stage2.exe msplc-selfhost.se stage3.exe
+</code></pre>
+<p>The debug object runner is an engineering aid on the path to that interface.</p>
+</article>
+  <aside class="wiki-sidebar" aria-label="Wiki register">
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
+<li><a href="/wiki/">Home</a></li>
+<li><a href="/wiki/getting-started/">Getting Started</a></li>
+<li><a href="/wiki/project-status/">Project Status</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul>
+<li><a href="/wiki/architecture/">Architecture</a></li>
+<li><a href="/wiki/semantic-formats/">Semantic Formats</a></li>
+<li><a href="/wiki/universal-ast/">Universal AST</a></li>
+<li><a href="/wiki/module-system/">Module System</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul>
+<li><a href="/wiki/native-compilation/">Native Compilation</a></li>
+<li><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li>
+<li><a href="/wiki/selfhosting/">Selfhosting</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul>
+<li><a class="active" href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
+<li><a href="/wiki/error-reference/">Error Reference</a></li>
+<li><a href="/wiki/faq/">FAQ</a></li>
+<li><a href="/wiki/contributing/">Contributing</a></li>
+</ul></div>
+</div>
+<div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
+<li><a href="#stable-object-runner">Stable object runner</a></li>
+<li><a href="#semantic-transport-examples">Semantic transport examples</a></li>
+<li><a href="#module-examples">Module examples</a></li>
+<li><a href="#selfhosting-target-commands">Selfhosting target commands</a></li>
+</ul></div>
+<div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
+</aside>
+</div></main>
+
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>

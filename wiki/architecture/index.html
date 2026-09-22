@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Architecture — Semantic Wiki</title>
+  <meta name="description" content="Architecture Canonical identity The architectural invariant is: text SemanticProgram = Universal Semantic AST = canonical IR There are not two permanent intermediate repr">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
+</head>
+<body>
+
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand">
+  <img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon">
+  <img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark">
+</div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
+
+<main class="wiki-main"><div class="shell wiki-shell">
+  <article class="wiki-article"><h1 id="architecture">Architecture</h1>
+<h2 id="canonical-identity">Canonical identity</h2>
+<p>The architectural invariant is:</p>
+<pre><code class="language-text">SemanticProgram = Universal Semantic AST = canonical IR
+</code></pre>
+<p>There are not two permanent intermediate representations. Historical statement/expression trees may still appear as migration or compatibility views, but they must not become a second source of semantic truth.</p>
+<h2 id="compiler-layers">Compiler layers</h2>
+<div class="mermaid">flowchart TB
+    S[Source text] --> F[Language frontend]
+    F --> U[SemanticProgram / Universal AST]
+
+    U --> V[Validation & semantic contracts]
+    U --> R[Semantic runtime]
+    U --> E[Source emitters]
+    U --> N[Native backend]
+
+    N --> I[Machine IR]
+    I --> X[x86-64 selector]
+    X --> C[COFF object writer]
+    C --> P[PE image / executable]
+</div>
+<h2 id="universal-semantic-payload">Universal semantic payload</h2>
+<p>The canonical representation carries more than a syntax tree. Depending on the node and frontend evidence it can include:</p>
+<ul>
+<li>stable node IDs and scopes;</li>
+<li>structured types and type origin;</li>
+<li>semantic facets;</li>
+<li>source spans;</li>
+<li>effects;</li>
+<li>symbol/binding evidence;</li>
+<li>evaluation ordering;</li>
+<li>call and dispatch information;</li>
+<li>syntax/control/data/type/effect relations;</li>
+<li>extensions and contracts.</li>
+</ul>
+<p>A backend is responsible for preserving the semantics it claims to support. Unknown data is not permission to guess.</p>
+<h2 id="capability-model">Capability model</h2>
+<p>Backend behavior is intended to be explicit. A semantic feature can be classified as:</p>
+<ul>
+<li><code>direct</code></li>
+<li><code>lowerable</code></li>
+<li><code>runtime-required</code></li>
+<li><code>unsupported</code></li>
+<li><code>unknown</code></li>
+</ul>
+<p>Unsupported or unknown demand should be rejected rather than emitted incorrectly.</p>
+<h2 id="compatibility-views">Compatibility views</h2>
+<p>Legacy views can still be reconstructed for compatibility, but the data flow should remain one-way:</p>
+<pre><code class="language-text">Canonical UAST
+    ↓
+Derived compatibility view
+</code></pre>
+<p>A mutation to a compatibility view must not overwrite the canonical UAST.</p>
+<h2 id="why-this-matters-for-selfhosting">Why this matters for selfhosting</h2>
+<p>A selfhosting compiler exercises the architecture more aggressively than ordinary transpilation. The compiler itself uses structures, maps, control flow, selectors, indexing, module metadata, native machine descriptions and object emission. Every semantic hole becomes visible during bootstrap.</p>
+<p>That is why the object-debug pipeline is useful: it exposes precisely which compiler units have enough native semantic coverage and which still hit a fail-closed boundary.</p>
+</article>
+  <aside class="wiki-sidebar" aria-label="Wiki register">
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
+<li><a href="/wiki/">Home</a></li>
+<li><a href="/wiki/getting-started/">Getting Started</a></li>
+<li><a href="/wiki/project-status/">Project Status</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul>
+<li><a class="active" href="/wiki/architecture/">Architecture</a></li>
+<li><a href="/wiki/semantic-formats/">Semantic Formats</a></li>
+<li><a href="/wiki/universal-ast/">Universal AST</a></li>
+<li><a href="/wiki/module-system/">Module System</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul>
+<li><a href="/wiki/native-compilation/">Native Compilation</a></li>
+<li><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li>
+<li><a href="/wiki/selfhosting/">Selfhosting</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul>
+<li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
+<li><a href="/wiki/error-reference/">Error Reference</a></li>
+<li><a href="/wiki/faq/">FAQ</a></li>
+<li><a href="/wiki/contributing/">Contributing</a></li>
+</ul></div>
+</div>
+<div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
+<li><a href="#canonical-identity">Canonical identity</a></li>
+<li><a href="#compiler-layers">Compiler layers</a></li>
+<li><a href="#universal-semantic-payload">Universal semantic payload</a></li>
+<li><a href="#capability-model">Capability model</a></li>
+<li><a href="#compatibility-views">Compatibility views</a></li>
+<li><a href="#why-this-matters-for-selfhosting">Why this matters for selfhosting</a></li>
+</ul></div>
+<div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
+</aside>
+</div></main>
+
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>

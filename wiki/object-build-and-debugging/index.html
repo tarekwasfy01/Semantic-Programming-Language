@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Object Build &amp; Debugging — Semantic Wiki</title>
+  <meta name="description" content="Object Build &amp; Debugging The object runner exists to answer one question precisely: Which parts of the compiler can already be lowered to native COFF objects, and where d">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
+</head>
+<body>
+
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand">
+  <img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon">
+  <img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark">
+</div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
+
+<main class="wiki-main"><div class="shell wiki-shell">
+  <article class="wiki-article"><h1 id="object-build-debugging">Object Build &amp; Debugging</h1>
+<p>The object runner exists to answer one question precisely:</p>
+<blockquote>
+<p>Which parts of the compiler can already be lowered to native COFF objects, and where does lowering fail?</p>
+</blockquote>
+<h2 id="stable-strategy">Stable strategy</h2>
+<p>The reliable build strategy is <strong>one Semantic unit per child process</strong>.</p>
+<ul>
+<li>several units run in parallel;</li>
+<li>each process has a hard timeout;</li>
+<li>a failed unit does not abort the queue;</li>
+<li>successful units persist their <code>.obj</code> files;</li>
+<li>status and logs remain available after the run.</li>
+</ul>
+<h2 id="status-phases">Status phases</h2>
+<table>
+<thead>
+<tr>
+  <th>Phase</th>
+  <th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>queued</code></td>
+  <td>waiting for a worker slot</td>
+</tr>
+<tr>
+  <td><code>compiling</code></td>
+  <td>worker process active</td>
+</tr>
+<tr>
+  <td><code>objects_ready</code></td>
+  <td>unit compiled and objects were persisted</td>
+</tr>
+<tr>
+  <td><code>failed</code></td>
+  <td>compiler returned a real diagnostic</td>
+</tr>
+<tr>
+  <td><code>timeout</code></td>
+  <td>worker exceeded the hard timeout and was killed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="common-error-families">Common error families</h2>
+<h3 id="nativeexternalvalueunresolved"><code>NATIVE_EXTERNAL_VALUE_UNRESOLVED</code></h3>
+<p>Example:</p>
+<pre><code class="language-text">NATIVE_EXTERNAL_VALUE_UNRESOLVED: &quot;m.Rows&quot;
+</code></pre>
+<p>Usually means the source-level selector exists but the native selector cannot map its base value/type/layout safely.</p>
+<h3 id="nativeunresolvedbinding"><code>NATIVE_UNRESOLVED_BINDING</code></h3>
+<p>Example:</p>
+<pre><code class="language-text">NATIVE_UNRESOLVED_BINDING: &quot;ID&quot;
+</code></pre>
+<p>Often indicates that a transported node retained the field or local name but lost enough context to identify the source binding.</p>
+<h3 id="native-member-has-no-structured-layout"><code>native member ... has no structured layout</code></h3>
+<p>The compiler found a member operation but cannot prove a safe field offset for the base type.</p>
+<h3 id="unimplementednativegap"><code>UNIMPLEMENTED_NATIVE_GAP</code></h3>
+<p>A structural native lowering case is recognized but not yet implemented. This is intentionally explicit.</p>
+<h2 id="debugging-by-family-not-file">Debugging by family, not file</h2>
+<p>A single resolver bug can affect dozens of compiler units. The preferred loop is:</p>
+<pre><code class="language-text">run all units
+→ group errors by root cause
+→ implement one general fix
+→ run all units again
+→ compare ready/object counts
+</code></pre>
+<p>This is more valuable than patching individual functions with special cases.</p>
+<h2 id="what-a-useful-report-contains">What a useful report contains</h2>
+<ul>
+<li>total/ready/failed/timeout counts;</li>
+<li>object count;</li>
+<li>one current error per failed unit;</li>
+<li>worker durations;</li>
+<li>object paths;</li>
+<li>worker logs where needed.</li>
+</ul>
+<h2 id="historical-example">Historical example</h2>
+<p>An earlier stable report showed 95 total units with 16 ready units and 54 objects. Later resolver work substantially increased object production. Treat these numbers as development snapshots, not compatibility guarantees.</p>
+</article>
+  <aside class="wiki-sidebar" aria-label="Wiki register">
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
+<li><a href="/wiki/">Home</a></li>
+<li><a href="/wiki/getting-started/">Getting Started</a></li>
+<li><a href="/wiki/project-status/">Project Status</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul>
+<li><a href="/wiki/architecture/">Architecture</a></li>
+<li><a href="/wiki/semantic-formats/">Semantic Formats</a></li>
+<li><a href="/wiki/universal-ast/">Universal AST</a></li>
+<li><a href="/wiki/module-system/">Module System</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul>
+<li><a href="/wiki/native-compilation/">Native Compilation</a></li>
+<li><a class="active" href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li>
+<li><a href="/wiki/selfhosting/">Selfhosting</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul>
+<li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
+<li><a href="/wiki/error-reference/">Error Reference</a></li>
+<li><a href="/wiki/faq/">FAQ</a></li>
+<li><a href="/wiki/contributing/">Contributing</a></li>
+</ul></div>
+</div>
+<div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
+<li><a href="#stable-strategy">Stable strategy</a></li>
+<li><a href="#status-phases">Status phases</a></li>
+<li><a href="#common-error-families">Common error families</a></li>
+<li class="toc-sub"><a href="#nativeexternalvalueunresolved">NATIVE_EXTERNAL_VALUE_UNRESOLVED</a></li>
+<li class="toc-sub"><a href="#nativeunresolvedbinding">NATIVE_UNRESOLVED_BINDING</a></li>
+<li class="toc-sub"><a href="#native-member-has-no-structured-layout">native member ... has no structured layout</a></li>
+<li class="toc-sub"><a href="#unimplementednativegap">UNIMPLEMENTED_NATIVE_GAP</a></li>
+<li><a href="#debugging-by-family-not-file">Debugging by family, not file</a></li>
+<li><a href="#what-a-useful-report-contains">What a useful report contains</a></li>
+<li><a href="#historical-example">Historical example</a></li>
+</ul></div>
+<div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
+</aside>
+</div></main>
+
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>

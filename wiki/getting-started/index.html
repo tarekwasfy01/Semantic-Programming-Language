@@ -2,68 +2,136 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Getting Started · Semantic Programming Language</title>
-  <meta name="description" content="Install Semantic and choose a compilation path.">
-  <link rel="stylesheet" href="https://www.semantic-programming-language.com/wiki/assets/wiki.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Getting Started — Semantic Wiki</title>
+  <meta name="description" content="Getting Started This page focuses on the current Windows x86 64 object build workflow used while the selfhosting compiler is being completed. Requirements Windows x64 the">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
 </head>
 <body>
 
-<header>
-  <nav class="nav">
-    <a class="brand" href="https://www.semantic-programming-language.com/">
-      <img src="https://www.semantic-programming-language.com/assets/img/tree-of-life.png" alt="Semantic">
-      <span>Semantic</span>
-    </a>
-    <div class="nav-links">
-      <a href="https://www.semantic-programming-language.com/">Home</a>
-      <a href="https://www.semantic-programming-language.com/wiki/">Wiki</a>
-      <a href="https://www.semantic-programming-language.com/wiki/language/">Language</a>
-      <a href="https://www.semantic-programming-language.com/wiki/compiler/">Compiler</a>
-      <a href="https://github.com/tarekwasfy01/Semantic-Programming-Language">GitHub</a>
-    </div>
-  </nav>
-</header>
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand">
+  <img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon">
+  <img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark">
+</div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
 
-<main>
-
-<div class="breadcrumbs"><a href="https://www.semantic-programming-language.com/wiki/">Wiki</a> / Getting Started</div>
-<h1>Getting Started</h1>
-<p class="lead">Install Semantic, configure your editor, and choose the toolchain that fits your project.</p>
-
-<h2>1. Install Semantic</h2>
-<p>Semantic is available for Windows and Linux.</p>
-<div class="actions">
-  <a class="button" href="https://snapcraft.io/semantic-programming-language">Snap Store</a>
-  <a class="button" href="https://get.microsoft.com/installer/download/9n1kb1kxxtmn?referrer=appbadge">Microsoft Store</a>
-</div>
-
-<h2>2. Install Editor Support</h2>
+<main class="wiki-main"><div class="shell wiki-shell">
+  <article class="wiki-article"><h1 id="getting-started">Getting Started</h1>
+<p>This page focuses on the current <strong>Windows x86-64 object-build workflow</strong> used while the selfhosting compiler is being completed.</p>
+<h2 id="requirements">Requirements</h2>
 <ul>
-  <li><a href="https://marketplace.visualstudio.com/items?itemName=semanticprogramminglanguage.semantic-programming-language">Visual Studio Code</a></li>
-  <li><a href="https://marketplace.visualstudio.com/items?itemName=semanticprogramminglanguage.SemanticProgrammingLanguage">Visual Studio</a></li>
-  <li><a href="https://plugins.jetbrains.com/plugin/34329-semantic-syntax">JetBrains IDEs</a></li>
-  <li><a href="https://open-vsx.org/extension/semanticprogramminglanguage/semantic-programming-language">Open VSX</a></li>
+<li>Windows x64</li>
+<li>the packaged <code>msplc-project-debug.exe</code></li>
+<li>the <code>units\</code> directory containing the Semantic <code>.se</code> compiler units</li>
+<li>enough free disk space for build artifacts and logs</li>
 </ul>
-
-<h2>3. Choose a Compilation Path</h2>
-<div class="grid">
-  <a class="card" href="https://www.semantic-programming-language.com/wiki/compiler/llvm/"><strong>LLVM</strong><span>Compile through LLVM toward native machine code.</span></a>
-  <a class="card" href="https://www.semantic-programming-language.com/wiki/compiler/code-transpiler/"><strong>Code Transpiler CLI</strong><span>Translate Semantic into target source code and existing toolchains.</span></a>
-  <a class="card" href="https://www.semantic-programming-language.com/wiki/compiler/mini-msplc/"><strong>Mini MSPLC</strong><span>A compact compiler path used for bootstrap and compiler development.</span></a>
-  <a class="card" href="https://www.semantic-programming-language.com/wiki/compiler/self-hosting/"><strong>Self-Hosting</strong><span>Understand the roadmap toward Semantic compiling Semantic.</span></a>
+<p>The runner package is intentionally self-contained for debugging. You do not need to open the EXE by double-clicking; the batch files pass the required arguments.</p>
+<h2 id="recommended-workflow">Recommended workflow</h2>
+<h3 id="1-start-the-normal-build">1. Start the normal build</h3>
+<pre><code class="language-bat">START-HERE.bat
+</code></pre>
+<p>The stable runner:</p>
+<ul>
+<li>scans the Semantic units;</li>
+<li>builds a best-effort project index;</li>
+<li>starts several isolated worker processes;</li>
+<li>gives each unit its own hard timeout;</li>
+<li>keeps successful <code>.obj</code> files even when other units fail;</li>
+<li>records a status file and worker log for each unit.</li>
+</ul>
+<h3 id="2-retry-slow-units">2. Retry slow units</h3>
+<pre><code class="language-bat">RETRY-120S.bat
+</code></pre>
+<p>A timeout is a <strong>maximum</strong> worker runtime. A unit that encounters a real compiler error can fail immediately; it does not wait for the timeout budget to expire.</p>
+<h3 id="3-inspect-current-status">3. Inspect current status</h3>
+<pre><code class="language-bat">STATUS.bat
+</code></pre>
+<p>Typical summary:</p>
+<pre><code class="language-text">STATUS total=95 ready=... compiling=0 queued=0 timeout=... failed=... objects=...
+</code></pre>
+<h3 id="4-produce-a-diagnostic-report">4. Produce a diagnostic report</h3>
+<pre><code class="language-bat">MAKE-REPORT.bat
+</code></pre>
+<p>The report groups unit status, errors and object paths so backend failures can be fixed by error family instead of one file at a time.</p>
+<h2 id="where-objects-are-written">Where objects are written</h2>
+<pre><code class="language-text">build\
+  objects\
+    units\
+      &lt;unit&gt;\
+        status.json
+        worker.log
+        objects\
+          00000_*.obj
+          00001_*.obj
+          ...
+</code></pre>
+<h2 id="why-isolated-workers">Why isolated workers?</h2>
+<p>A goroutine timeout cannot safely stop a compiler path that is stuck in native lowering. A child process can be terminated by the parent without losing artifacts already produced by other workers.</p>
+<div class="mermaid">flowchart TD
+    A[95 Semantic units] --> B[Worker queue]
+    B --> W1[Worker 1]
+    B --> W2[Worker 2]
+    B --> W3[Worker N]
+    W1 -->|success| O1[Persist .obj]
+    W2 -->|compiler error| F1[Record FAILED]
+    W3 -->|hard timeout| T1[Kill worker / record TIMEOUT]
+    O1 --> R[Continue queue]
+    F1 --> R
+    T1 --> R
 </div>
+<h2 id="important-distinction-failed-vs-timeout">Important distinction: FAILED vs TIMEOUT</h2>
+<p><strong>FAILED</strong> means the compiler returned an actual diagnostic such as an unresolved binding or unsupported native node.</p>
+<p><strong>TIMEOUT</strong> means the worker was still running when its hard time budget expired and was killed.</p>
+<p>Increasing the timeout only helps the second category.</p>
+<hr />
+<p class="wiki-next"><strong>Next:</strong> <a href="/wiki/architecture/">Architecture →</a></p>
+</article>
+  <aside class="wiki-sidebar" aria-label="Wiki register">
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
+<li><a href="/wiki/">Home</a></li>
+<li><a class="active" href="/wiki/getting-started/">Getting Started</a></li>
+<li><a href="/wiki/project-status/">Project Status</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul>
+<li><a href="/wiki/architecture/">Architecture</a></li>
+<li><a href="/wiki/semantic-formats/">Semantic Formats</a></li>
+<li><a href="/wiki/universal-ast/">Universal AST</a></li>
+<li><a href="/wiki/module-system/">Module System</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul>
+<li><a href="/wiki/native-compilation/">Native Compilation</a></li>
+<li><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li>
+<li><a href="/wiki/selfhosting/">Selfhosting</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul>
+<li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
+<li><a href="/wiki/error-reference/">Error Reference</a></li>
+<li><a href="/wiki/faq/">FAQ</a></li>
+<li><a href="/wiki/contributing/">Contributing</a></li>
+</ul></div>
+</div>
+<div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#recommended-workflow">Recommended workflow</a></li>
+<li class="toc-sub"><a href="#1-start-the-normal-build">1. Start the normal build</a></li>
+<li class="toc-sub"><a href="#2-retry-slow-units">2. Retry slow units</a></li>
+<li class="toc-sub"><a href="#3-inspect-current-status">3. Inspect current status</a></li>
+<li class="toc-sub"><a href="#4-produce-a-diagnostic-report">4. Produce a diagnostic report</a></li>
+<li><a href="#where-objects-are-written">Where objects are written</a></li>
+<li><a href="#why-isolated-workers">Why isolated workers?</a></li>
+<li><a href="#important-distinction-failed-vs-timeout">Important distinction: FAILED vs TIMEOUT</a></li>
+</ul></div>
+<div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
+</aside>
+</div></main>
 
-<h2>4. Explore the Language</h2>
-<p>Continue with the <a href="https://www.semantic-programming-language.com/wiki/language/">language overview</a> and the guide to <a href="https://www.semantic-programming-language.com/wiki/language/modules/">modules</a>.</p>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
 
-</main>
-
-<footer>
-  <img src="https://www.semantic-programming-language.com/assets/img/tree-of-life.png" alt="Semantic">
-  <div><strong>Semantic Programming Language</strong></div>
-  <div>A language for humans, AI, compilers, and machines.</div>
-</footer>
-
-</body>
-</html>
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>

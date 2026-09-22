@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contributing — Semantic Wiki</title>
+  <meta name="description" content="Contributing The most valuable compiler fixes are general semantic fixes , not per file exceptions. Good contribution pattern text 1. Reproduce a failing unit. 2. Identif">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
+</head>
+<body>
+
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand">
+  <img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon">
+  <img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark">
+</div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
+
+<main class="wiki-main"><div class="shell wiki-shell">
+  <article class="wiki-article"><h1 id="contributing">Contributing</h1>
+<p>The most valuable compiler fixes are <strong>general semantic fixes</strong>, not per-file exceptions.</p>
+<h2 id="good-contribution-pattern">Good contribution pattern</h2>
+<pre><code class="language-text">1. Reproduce a failing unit.
+2. Identify the shared error family.
+3. Prove the missing semantic information.
+4. Implement a general resolver/lowering rule.
+5. Keep ambiguous cases fail-closed.
+6. Run the full unit corpus.
+7. Compare ready/failed/timeout/object counts.
+</code></pre>
+<h2 id="examples-of-good-fixes">Examples of good fixes</h2>
+<ul>
+<li>preserving parameter binding types in exported Semantic source;</li>
+<li>reconstructing a selector path from verified source/type information;</li>
+<li>implementing switch/type-switch semantics in the native lowerer;</li>
+<li>adding project-wide type layouts with ambiguity checks;</li>
+<li>teaching the linker a real cross-unit semantic relocation.</li>
+</ul>
+<h2 id="avoid">Avoid</h2>
+<ul>
+<li>returning zero/default values just to get past a test;</li>
+<li>treating unsupported nodes as no-ops;</li>
+<li>selecting a struct field offset only because its name exists somewhere;</li>
+<li>embedding a prebuilt compiler as the claimed selfhost result;</li>
+<li>changing the stable worker orchestration unnecessarily while debugging backend semantics.</li>
+</ul>
+<h2 id="regression-discipline">Regression discipline</h2>
+<p>A useful patch should be checked in two ways:</p>
+<ol>
+<li><strong>targeted regression</strong> — the failing unit gets past the old error;</li>
+<li><strong>full corpus regression</strong> — previously successful object units stay successful.</li>
+</ol>
+<p>The object count alone is not sufficient: a patch that produces more files by miscompiling semantics is a regression, not progress.</p>
+</article>
+  <aside class="wiki-sidebar" aria-label="Wiki register">
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
+<li><a href="/wiki/">Home</a></li>
+<li><a href="/wiki/getting-started/">Getting Started</a></li>
+<li><a href="/wiki/project-status/">Project Status</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul>
+<li><a href="/wiki/architecture/">Architecture</a></li>
+<li><a href="/wiki/semantic-formats/">Semantic Formats</a></li>
+<li><a href="/wiki/universal-ast/">Universal AST</a></li>
+<li><a href="/wiki/module-system/">Module System</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul>
+<li><a href="/wiki/native-compilation/">Native Compilation</a></li>
+<li><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li>
+<li><a href="/wiki/selfhosting/">Selfhosting</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul>
+<li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
+<li><a href="/wiki/error-reference/">Error Reference</a></li>
+<li><a href="/wiki/faq/">FAQ</a></li>
+<li><a class="active" href="/wiki/contributing/">Contributing</a></li>
+</ul></div>
+</div>
+<div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
+<li><a href="#good-contribution-pattern">Good contribution pattern</a></li>
+<li><a href="#examples-of-good-fixes">Examples of good fixes</a></li>
+<li><a href="#avoid">Avoid</a></li>
+<li><a href="#regression-discipline">Regression discipline</a></li>
+</ul></div>
+<div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
+</aside>
+</div></main>
+
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>

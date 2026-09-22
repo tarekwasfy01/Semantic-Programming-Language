@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Native Compilation — Semantic Wiki</title>
+  <meta name="description" content="Native Compilation The native backend targets Windows x86 64 and produces machine code/object/executable artifacts directly from Semantic/UAST data. Pipeline mermaid flow">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
+</head>
+<body>
+
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand">
+  <img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon">
+  <img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark">
+</div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
+
+<main class="wiki-main"><div class="shell wiki-shell">
+  <article class="wiki-article"><h1 id="native-compilation">Native Compilation</h1>
+<p>The native backend targets <strong>Windows x86-64</strong> and produces machine-code/object/executable artifacts directly from Semantic/UAST data.</p>
+<h2 id="pipeline">Pipeline</h2>
+<div class="mermaid">flowchart LR
+    U[Universal AST] --> L[Native lowering]
+    L --> M[Machine IR]
+    M --> S[x86-64 instruction selection]
+    S --> R[Register/frame handling]
+    R --> O[COFF .obj]
+    O --> K[Semantic linker]
+    K --> P[PE .exe]
+</div>
+<h2 id="direct-construction">Direct construction</h2>
+<p>The goal of the direct path is that it does not need an external C/C++ compiler or assembler for normal operation. An assembly route may exist as a verification/cross-check path, but it is not the intended selfhosting dependency.</p>
+<h2 id="coff-object-artifacts">COFF object artifacts</h2>
+<p>During bootstrap debugging, each successful Semantic unit can emit one or more COFF objects. Object artifacts are useful because they separate:</p>
+<ul>
+<li>semantic parsing/indexing;</li>
+<li>native lowering;</li>
+<li>object encoding;</li>
+<li>final project linking.</li>
+</ul>
+<p>This makes it possible to keep successful work even if another compiler unit fails.</p>
+<h2 id="cross-unit-linking">Cross-unit linking</h2>
+<p>The debug pipeline uses the project’s semantic linker because ordinary COFF staging objects do not necessarily encode every semantic cross-unit identity required by the project model.</p>
+<h2 id="native-backend-boundaries">Native backend boundaries</h2>
+<p>Typical fail-closed gaps encountered during selfhosting include:</p>
+<ul>
+<li>unresolved local or captured bindings;</li>
+<li>lost source variable aliases;</li>
+<li>missing structured field layout;</li>
+<li>selector/index chains whose source type was not preserved;</li>
+<li>type switches and switch-case transport gaps;</li>
+<li>external/package constants;</li>
+<li>unsupported effects or ABI behavior.</li>
+</ul>
+<p>The bootstrap effort fixes these as general backend capabilities rather than hard-coding one compiler function at a time.</p>
+</article>
+  <aside class="wiki-sidebar" aria-label="Wiki register">
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
+<li><a href="/wiki/">Home</a></li>
+<li><a href="/wiki/getting-started/">Getting Started</a></li>
+<li><a href="/wiki/project-status/">Project Status</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul>
+<li><a href="/wiki/architecture/">Architecture</a></li>
+<li><a href="/wiki/semantic-formats/">Semantic Formats</a></li>
+<li><a href="/wiki/universal-ast/">Universal AST</a></li>
+<li><a href="/wiki/module-system/">Module System</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul>
+<li><a class="active" href="/wiki/native-compilation/">Native Compilation</a></li>
+<li><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li>
+<li><a href="/wiki/selfhosting/">Selfhosting</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul>
+<li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
+<li><a href="/wiki/error-reference/">Error Reference</a></li>
+<li><a href="/wiki/faq/">FAQ</a></li>
+<li><a href="/wiki/contributing/">Contributing</a></li>
+</ul></div>
+</div>
+<div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
+<li><a href="#pipeline">Pipeline</a></li>
+<li><a href="#direct-construction">Direct construction</a></li>
+<li><a href="#coff-object-artifacts">COFF object artifacts</a></li>
+<li><a href="#cross-unit-linking">Cross-unit linking</a></li>
+<li><a href="#native-backend-boundaries">Native backend boundaries</a></li>
+</ul></div>
+<div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
+</aside>
+</div></main>
+
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>

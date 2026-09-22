@@ -2,186 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Wiki · Semantic Programming Language</title>
-  <meta name="description" content="Semantic Programming Language documentation and wiki.">
-  <link rel="stylesheet" href="https://www.semantic-programming-language.com/wiki/assets/wiki.css">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MSPLC &amp; Semantic Programming Wiki — Semantic Wiki</title>
+  <meta name="description" content="MSPLC &amp; Semantic Programming Wiki Semantic first compilation, Universal AST, native x86 64 and the road to true selfhosting. ! Status https://img.shields.io/badge/status ">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
 </head>
 <body>
 
-<header>
-  <nav class="nav">
-    <a class="brand" href="https://www.semantic-programming-language.com/">
-      <img src="https://www.semantic-programming-language.com/assets/img/tree-of-life.png" alt="Semantic">
-      <span>Semantic</span>
-    </a>
-    <div class="nav-links">
-      <a href="https://www.semantic-programming-language.com/">Home</a>
-      <a href="https://www.semantic-programming-language.com/wiki/">Wiki</a>
-      <a href="https://www.semantic-programming-language.com/wiki/language/">Language</a>
-      <a href="https://www.semantic-programming-language.com/wiki/compiler/">Compiler</a>
-      <a href="https://github.com/tarekwasfy01/Semantic-Programming-Language">GitHub</a>
-    </div>
-  </nav>
-</header>
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand">
+  <img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon">
+  <img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark">
+</div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
 
-<main>
-
-<div class="wiki-shell">
-  <article class="wiki-content">
-
-    <section class="wiki-home-hero">
-      <img
-        class="logo"
-        alt="Semantic Programming Language Logo"
-        src="https://github.com/user-attachments/assets/ec1d4462-c5b0-4aa0-841a-435bf0868b1d"
-      >
-
-      <h1>Semantic Programming Language</h1>
-
-      <p><a href="https://www.semantic-programming-language.com/">Official Website</a></p>
-
-      <p><strong>A programming language for AI, machines, automation, and intelligent software.</strong></p>
-
-      <p class="muted">
-        Semantic is designed to express meaning, structure, and intent in a form that can be understood by humans, AI systems, compilers, and machines.
-      </p>
-
-      <div class="badges">
-        <a href="https://snapcraft.io/semantic-programming-language"><img alt="Snap Store" src="https://snapcraft.io/semantic-programming-language/badge.svg"></a>
-        <img alt="VS Code Marketplace Version" src="https://vsmarketplacebadges.dev/version/semanticprogramminglanguage.semantic-programming-language.svg">
-        <img alt="Visual Studio Marketplace Version" src="https://vsmarketplacebadges.dev/version/semanticprogramminglanguage.SemanticProgrammingLanguage.svg">
-        <img alt="Azure DevOps Marketplace Version" src="https://vsmarketplacebadges.dev/version/semanticprogramminglanguage.semantic-programminglanguage.svg">
-        <a href="https://pkg.go.dev/github.com/tarekwasfy01/Code-Transpiler/v2"><img src="https://pkg.go.dev/badge/github.com/tarekwasfy01/Code-Transpiler.svg/v2" alt="Go Reference"></a>
-        <a href="https://www.semantic-programming-language.com/"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/tarekwasfy01/Semantic-Programming-Language/website/assets/badges/semantic-main-badge.json" alt="Semantic Programming Language"></a>
-        <a href="https://plugins.jetbrains.com/plugin/34329"><img alt="JetBrains Marketplace" src="https://img.shields.io/badge/JetBrains-Marketplace-orange?logo=jetbrains"></a>
-      </div>
-
-      <div class="store-buttons">
-        <a href="https://snapcraft.io/semantic-programming-language"><img alt="Get it from the Snap Store" src="https://snapcraft.io/en/dark/install.svg"></a>
-        <a href="https://get.microsoft.com/installer/download/9n1kb1kxxtmn?referrer=appbadge"><img alt="Get it from Microsoft" src="https://get.microsoft.com/images/en-us%20dark.svg"></a>
-      </div>
-    </section>
-
-    <section class="wiki-home-section" id="what-is-semantic">
-      <h2>What is Semantic?</h2>
-      <p><strong>Semantic is a programming language built for a world where software is written and processed by humans, AI systems, compilers, and machines.</strong></p>
-      <p>The language focuses on explicit structure, meaning, modularity, and machine-readable programs.</p>
-      <p>Semantic can be used for AI systems, automation, code generation, machine-to-machine workflows, and general software development.</p>
-      <p><a href="https://www.semantic-programming-language.com/wiki/language/"><strong>Read more →</strong></a></p>
-    </section>
-
-    <section class="wiki-home-section" id="getting-started">
-      <h2>Getting Started</h2>
-      <p>Install Semantic, configure your editor, write your first Semantic program, and choose the compilation path that fits your project.</p>
-      <p><a href="https://www.semantic-programming-language.com/wiki/getting-started/"><strong>Get started →</strong></a></p>
-    </section>
-
-    <section class="wiki-home-section" id="compiler">
-      <h2>Compiler & Toolchain</h2>
-      <p>Semantic is developed around several compilation paths:</p>
-      <p><strong>Mini MSPLC</strong> · <strong>LLVM compilation</strong> · <strong>Code Transpiler CLI</strong></p>
-      <p>LLVM provides a path toward native machine code, while the Code Transpiler CLI connects Semantic with existing programming ecosystems. Mini MSPLC is part of the compiler bootstrap and development process.</p>
-      <p><a href="https://www.semantic-programming-language.com/wiki/compiler/"><strong>Read more →</strong></a></p>
-    </section>
-
-    <section class="wiki-home-section" id="self-hosting">
-      <h2>Self-Hosting</h2>
-      <p>A long-term goal of Semantic is a <strong>self-hosted compiler</strong> — Semantic compiling Semantic.</p>
-      <p><a href="https://www.semantic-programming-language.com/wiki/compiler/self-hosting/"><strong>Read more →</strong></a></p>
-    </section>
-
-    <section class="wiki-home-section" id="modules">
-      <h2>Modules</h2>
-      <p>Semantic supports modular software development with clear, reusable boundaries for larger programs.</p>
-      <p><a href="https://www.semantic-programming-language.com/wiki/language/modules/"><strong>Read more →</strong></a></p>
-    </section>
-
-    <section class="wiki-home-section" id="ai-machines">
-      <h2>AI & Machine-Oriented Programming</h2>
-      <p>Semantic is designed with machine processing in mind. Programs should be structured enough to be generated, analyzed, transformed, and compiled by AI systems and automated tools.</p>
-      <pre><code>Humans  ←→  Semantic  ←→  AI  ←→  Compilers  ←→  Machines</code></pre>
-      <p><a href="https://www.semantic-programming-language.com/wiki/concepts/ai-and-machines/"><strong>Read more →</strong></a></p>
-    </section>
-
-    <section class="wiki-home-section" id="code-transpiler">
-      <h2>Code Transpiler</h2>
-      <p>The <strong>Code Transpiler CLI</strong> provides source-to-source compilation and integration with existing development environments.</p>
-      <p><strong>Latest release: v2.0.7</strong></p>
-      <p>
-        <a href="https://github.com/tarekwasfy01/Code-Transpiler/releases/tag/v2.0.7">Download</a>
-        ·
-        <a href="https://github.com/tarekwasfy01/Code-Transpiler">Source Code</a>
-        ·
-        <a href="https://pkg.go.dev/github.com/tarekwasfy01/Code-Transpiler/v2">Go Package</a>
-      </p>
-      <p><a href="https://www.semantic-programming-language.com/wiki/compiler/code-transpiler/"><strong>Read more →</strong></a></p>
-    </section>
-
-    <section class="wiki-home-section" id="editor-support">
-      <h2>Editor Support</h2>
-      <p>Semantic integrates with popular development environments.</p>
-      <p>
-        <a href="https://marketplace.visualstudio.com/items?itemName=semanticprogramminglanguage.semantic-programming-language">Visual Studio Code</a>
-        ·
-        <a href="https://marketplace.visualstudio.com/items?itemName=semanticprogramminglanguage.SemanticProgrammingLanguage">Visual Studio</a>
-        ·
-        <a href="https://plugins.jetbrains.com/plugin/34329-semantic-syntax">JetBrains</a>
-        ·
-        <a href="https://open-vsx.org/extension/semanticprogramminglanguage/semantic-programming-language">Open VSX</a>
-      </p>
-      <p><a href="https://www.semantic-programming-language.com/wiki/tooling/"><strong>Read more →</strong></a></p>
-    </section>
-
-    <section class="wiki-home-section">
-      <p align="center">
-        <img width="60" alt="Semantic Programming Language" src="https://www.semantic-programming-language.com/assets/img/tree-of-life.png">
-      </p>
-      <p align="center">
-        <strong>Semantic Programming Language</strong><br>
-        A language for humans, AI, compilers, and machines.
-      </p>
-    </section>
-  </article>
-
-  <aside class="wiki-sidebar" aria-label="Wiki register">
-    <h3>Pages</h3>
-    <ul>
-      <li><a href="https://www.semantic-programming-language.com/wiki/">Home</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/getting-started/">Getting Started</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/language/">Language Overview</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/language/modules/">Modules</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/concepts/ai-and-machines/">AI & Machines</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/compiler/">Compiler & Toolchain</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/compiler/architecture/">Compiler Architecture</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/compiler/mini-msplc/">Mini MSPLC</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/compiler/llvm/">LLVM Compilation</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/compiler/code-transpiler/">Code Transpiler CLI</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/compiler/self-hosting/">Self-Hosting</a></li>
-      <li><a href="https://www.semantic-programming-language.com/wiki/tooling/">Editor & Tooling</a></li>
-    </ul>
-
-    <h3 style="margin-top:26px;">On this page</h3>
-    <ul>
-      <li><a href="#what-is-semantic">What is Semantic?</a></li>
-      <li><a href="#getting-started">Getting Started</a></li>
-      <li><a href="#compiler">Compiler & Toolchain</a></li>
-      <li><a href="#self-hosting">Self-Hosting</a></li>
-      <li><a href="#modules">Modules</a></li>
-      <li><a href="#ai-machines">AI & Machines</a></li>
-      <li><a href="#code-transpiler">Code Transpiler</a></li>
-      <li><a href="#editor-support">Editor Support</a></li>
-    </ul>
-  </aside>
+<main class="wiki-main"><div class="shell wiki-shell">
+  <article class="wiki-article"><h1 id="msplc-semantic-programming-wiki">MSPLC &amp; Semantic Programming Wiki</h1>
+<blockquote>
+<p><strong>Semantic-first compilation, Universal AST, native x86-64 and the road to true selfhosting.</strong></p>
+</blockquote>
+<p><img src="https://img.shields.io/badge/status-active%20development-orange" alt="Status" />
+<img src="https://img.shields.io/badge/native-Windows%20x86--64-blue" alt="Target" />
+<img src="https://img.shields.io/badge/canonical%20IR-Universal%20AST-purple" alt="IR" />
+<img src="https://img.shields.io/badge/formats-.se%20%7C%20.sp%20%7C%20.spz-green" alt="Formats" /></p>
+<p>MSPLC is the experimental native compiler path around the <strong>Semantic Programming</strong> representation used by Code Transpiler. The project is built around one core idea:</p>
+<blockquote>
+<p><code>SemanticProgram = Universal AST = canonical IR</code></p>
+</blockquote>
+<p>Source languages are lowered into a language-independent semantic program. Backends consume that semantic graph directly and either emit source, validate semantic contracts, or lower to native machine code and object/executable formats.</p>
+<h2 id="the-big-picture">The big picture</h2>
+<div class="mermaid">flowchart LR
+    A[Source language] --> B[Frontend]
+    B --> C[SemanticProgram / UAST]
+    C --> D1[Source emitter]
+    C --> D2[Semantic runtime]
+    C --> D3[Native x86-64 backend]
+    D3 --> E[COFF .obj]
+    E --> F[PE .exe]
+    C --> G[.se / .sp / .spz]
 </div>
+<h2 id="what-this-wiki-covers">What this wiki covers</h2>
+<ul>
+<li>how the Semantic formats relate to each other;</li>
+<li>how the Universal AST is used as the canonical program representation;</li>
+<li>how native Windows x86-64 compilation works;</li>
+<li>how the current per-unit object build/debug pipeline works;</li>
+<li>what <strong>true selfhosting</strong> means for MSPLC;</li>
+<li>how to diagnose unresolved bindings, member layouts and backend gaps;</li>
+<li>how to contribute without hiding unsupported semantics behind fallbacks.</li>
+</ul>
+<h2 id="current-selfhosting-goal">Current selfhosting goal</h2>
+<p>The target is a real compiler bootstrap chain:</p>
+<pre><code class="language-text">msplc.exe msplc-selfhost.se stage2.exe
+stage2.exe msplc-selfhost.se stage3.exe
+</code></pre>
+<p>The important requirement is that the compiler source is genuine Semantic source and the next compiler is produced by the compiler itself. Embedding or replaying a prebuilt executable is <strong>not</strong> considered selfhosting.</p>
+<h2 id="start-here">Start here</h2>
+<ol>
+<li>Read <strong><a href="/wiki/getting-started/">Getting Started</a></strong> for the practical build flow.</li>
+<li>Read <strong><a href="/wiki/architecture/">Architecture</a></strong> to understand the canonical IR.</li>
+<li>Read <strong><a href="/wiki/semantic-formats/">Semantic Formats</a></strong> for <code>.se</code>, <code>.sp</code> and <code>.spz</code>.</li>
+<li>Read <strong><a href="/wiki/native-compilation/">Native Compilation</a></strong> for x86-64/COFF/PE.</li>
+<li>Read <strong><a href="/wiki/selfhosting/">Selfhosting</a></strong> for the bootstrap definition and milestones.</li>
+<li>Read <strong><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></strong> when working on the current compiler bootstrap.</li>
+</ol>
+<h2 id="design-principles">Design principles</h2>
+<ul>
+<li><strong>One semantic truth.</strong> UAST is canonical; compatibility views are derived.</li>
+<li><strong>Fail closed.</strong> Unknown or unsupported semantics must produce an explicit error.</li>
+<li><strong>No fake success.</strong> A backend must not silently drop fields, facets or relations.</li>
+<li><strong>Deterministic transport.</strong> Semantic formats are intended to preserve the same program meaning.</li>
+<li><strong>Incremental native progress.</strong> Object artifacts are persisted as soon as a unit succeeds.</li>
+<li><strong>Selfhosting means selfhosting.</strong> No embedded seed executable in the final bootstrap proof.</li>
+</ul>
+<hr />
+<p class="wiki-next"><strong>Next:</strong> <a href="/wiki/getting-started/">Getting Started →</a></p>
+</article>
+  <aside class="wiki-sidebar" aria-label="Wiki register">
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
+<li><a class="active" href="/wiki/">Home</a></li>
+<li><a href="/wiki/getting-started/">Getting Started</a></li>
+<li><a href="/wiki/project-status/">Project Status</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul>
+<li><a href="/wiki/architecture/">Architecture</a></li>
+<li><a href="/wiki/semantic-formats/">Semantic Formats</a></li>
+<li><a href="/wiki/universal-ast/">Universal AST</a></li>
+<li><a href="/wiki/module-system/">Module System</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul>
+<li><a href="/wiki/native-compilation/">Native Compilation</a></li>
+<li><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li>
+<li><a href="/wiki/selfhosting/">Selfhosting</a></li>
+</ul></div>
+<div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul>
+<li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
+<li><a href="/wiki/error-reference/">Error Reference</a></li>
+<li><a href="/wiki/faq/">FAQ</a></li>
+<li><a href="/wiki/contributing/">Contributing</a></li>
+</ul></div>
+</div>
+<div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
+<li><a href="#the-big-picture">The big picture</a></li>
+<li><a href="#what-this-wiki-covers">What this wiki covers</a></li>
+<li><a href="#current-selfhosting-goal">Current selfhosting goal</a></li>
+<li><a href="#start-here">Start here</a></li>
+<li><a href="#design-principles">Design principles</a></li>
+</ul></div>
+<div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
+</aside>
+</div></main>
 
-</main>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
 
-<footer>
-  <img src="https://www.semantic-programming-language.com/assets/img/tree-of-life.png" alt="Semantic">
-  <div><strong>Semantic Programming Language</strong></div>
-  <div>A language for humans, AI, compilers, and machines.</div>
-</footer>
-
-</body>
-</html>
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>
