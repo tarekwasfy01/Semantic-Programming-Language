@@ -27,7 +27,7 @@
 <img src="https://img.shields.io/badge/native-Windows%20x86--64-blue" alt="Target" />
 <img src="https://img.shields.io/badge/canonical%20IR-Universal%20AST-purple" alt="IR" />
 <img src="https://img.shields.io/badge/formats-.se%20%7C%20.sp%20%7C%20.spz-green" alt="Formats" /></p>
-<p>MSPLC is the experimental native compiler path around the <strong>Semantic Programming</strong> representation used by Code Transpiler. The project is built around one core idea:</p>
+<p> is the experimental native compiler path around the <strong>Semantic Programming</strong> representation used by Code Transpiler. The project is built around one core idea:</p>
 <blockquote>
 <p><code>SemanticProgram = Universal AST = canonical IR</code></p>
 </blockquote>
@@ -49,14 +49,14 @@
 <li>how the Universal AST is used as the canonical program representation;</li>
 <li>how native Windows x86-64 compilation works;</li>
 <li>how the current per-unit object build/debug pipeline works;</li>
-<li>what <strong>true selfhosting</strong> means for MSPLC;</li>
+<li>what <strong>true selfhosting</strong> means for ;</li>
 <li>how to diagnose unresolved bindings, member layouts and backend gaps;</li>
 <li>how to contribute without hiding unsupported semantics behind fallbacks.</li>
 </ul>
 <h2 id="current-selfhosting-goal">Current selfhosting goal</h2>
 <p>The target is a real compiler bootstrap chain:</p>
-<pre><code class="language-text">msplc.exe msplc-selfhost.se stage2.exe
-stage2.exe msplc-selfhost.se stage3.exe
+<pre><code class="language-text">.exe -selfhost.se stage2.exe
+stage2.exe -selfhost.se stage3.exe
 </code></pre>
 <p>The important requirement is that the compiler source is genuine Semantic source and the next compiler is produced by the compiler itself. Embedding or replaying a prebuilt executable is <strong>not</strong> considered selfhosting.</p>
 <h2 id="start-here">Start here</h2>
@@ -81,7 +81,7 @@ stage2.exe msplc-selfhost.se stage3.exe
 <p class="wiki-next"><strong>Next:</strong> <a href="/wiki/getting-started/">Getting Started →</a></p>
 </article>
   <aside class="wiki-sidebar" aria-label="Wiki register">
-<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>MSPLC Wiki</h3>
+<div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3>
 <div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul>
 <li><a class="active" href="/wiki/">Home</a></li>
 <li><a href="/wiki/getting-started/">Getting Started</a></li>
