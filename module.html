@@ -112,6 +112,39 @@
   }
   .load-note{font-size:12px;color:#8a8179;margin-top:8px}
 
+  .module-content{min-width:0;display:grid;gap:18px}
+  .badge-panel{
+    padding:22px 24px;border:1px solid #eadfd4;border-radius:20px;background:#fff;
+    box-shadow:0 18px 55px rgba(70,40,15,.04)
+  }
+  .badge-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:17px}
+  .badge-panel-title{margin:0 0 5px;font:600 19px/1.25 Georgia,serif;color:#29231f}
+  .badge-panel-subtitle{margin:0;color:#8a8179;font-size:12.5px;line-height:1.5}
+  .badge-layout{display:grid;grid-template-columns:180px minmax(0,1fr);gap:18px;align-items:stretch}
+  .badge-preview{
+    min-height:112px;border:1px solid #eadfd4;border-radius:15px;background:#fffaf6;
+    display:grid;place-items:center;padding:18px;text-align:center
+  }
+  .badge-preview a{display:inline-flex;line-height:0}
+  .badge-preview img{max-width:100%;height:auto}
+  .badge-preview small{display:block;margin-top:10px;color:#8a8179;font-size:10px;text-transform:uppercase;letter-spacing:.09em}
+  .badge-code-box{border:1px solid #eadfd4;border-radius:15px;overflow:hidden;background:#fff}
+  .badge-tabs{display:flex;align-items:center;gap:4px;padding:7px;border-bottom:1px solid #eadfd4;background:#fffaf6}
+  .badge-tab{
+    border:0;background:transparent;color:#746c65;border-radius:9px;padding:7px 10px;
+    font:600 11px/1 ui-sans-serif,system-ui,sans-serif;cursor:pointer
+  }
+  .badge-tab[aria-selected="true"]{background:#17130f;color:#fff}
+  .badge-copy{
+    margin-left:auto;border:1px solid #eadfd4;background:#fff;border-radius:9px;padding:7px 10px;
+    color:#4d4640;font:600 11px/1 ui-sans-serif,system-ui,sans-serif;cursor:pointer
+  }
+  .badge-code{
+    display:block;min-height:68px;max-height:150px;overflow:auto;margin:0;padding:15px 16px;
+    color:#3f3832;background:#fff;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace;
+    white-space:pre-wrap;overflow-wrap:anywhere
+  }
+
 
   .module-progress{
     min-height:360px;
@@ -164,6 +197,10 @@
     .module-readme h1{font-size:24px}
     .module-readme h2{font-size:22px}
     .module-readme h3{font-size:19px}
+    .badge-panel{padding:18px}
+    .badge-panel-head{display:block}
+    .badge-layout{grid-template-columns:1fr}
+    .badge-preview{min-height:88px}
   }
 </style>
 
@@ -206,15 +243,46 @@
         <nav id="toc" class="module-toc"></nav>
       </aside>
 
-      <article id="readme" class="module-card module-readme">
-        <div class="module-progress">
-          <div>
-            <img class="module-progress-tree" src="assets/img/tree-of-life.png" alt="">
-            <p class="module-progress-title">Trying to fetch the module info<span class="module-progress-dots"></span></p>
-            <p class="module-progress-text">You can already view the module source or download it while this loads.</p>
+      <div class="module-content">
+        <article id="readme" class="module-card module-readme">
+          <div class="module-progress">
+            <div>
+              <img class="module-progress-tree" src="assets/img/tree-of-life.png" alt="">
+              <p class="module-progress-title">Trying to fetch the module info<span class="module-progress-dots"></span></p>
+              <p class="module-progress-text">You can already view the module source or download it while this loads.</p>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+
+        <section id="badgePanel" class="badge-panel" aria-labelledby="badgePanelTitle">
+          <div class="badge-panel-head">
+            <div>
+              <h2 id="badgePanelTitle" class="badge-panel-title">Module badge</h2>
+              <p class="badge-panel-subtitle">Show this Semantic module and its current version in your README or website.</p>
+            </div>
+          </div>
+
+          <div class="badge-layout">
+            <div class="badge-preview">
+              <div>
+                <a id="badgePreviewLink" href="#" target="_blank" rel="noopener">
+                  <img id="badgePreview" alt="Semantic module badge" src="">
+                </a>
+                <small>Shields.io badge</small>
+              </div>
+            </div>
+
+            <div class="badge-code-box">
+              <div class="badge-tabs" role="tablist" aria-label="Badge code format">
+                <button class="badge-tab" type="button" role="tab" aria-selected="true" data-badge-format="markdown">Markdown</button>
+                <button class="badge-tab" type="button" role="tab" aria-selected="false" data-badge-format="html">HTML</button>
+                <button id="copyBadgeCode" class="badge-copy" type="button">Copy</button>
+              </div>
+              <code id="badgeCode" class="badge-code"></code>
+            </div>
+          </div>
+        </section>
+      </div>
 
       <aside class="module-side">
         <div class="module-card module-facts">
@@ -301,7 +369,10 @@
     const p = new URLSearchParams(location.search);
     return {
       name: p.get("name") || "",
-      url: p.get("url") || ""
+      url: p.get("url") || "",
+      version: p.get("version") || "",
+      official: p.get("official") || "",
+      source: p.get("source") || ""
     };
   }
 
@@ -341,6 +412,82 @@
     const gh = parseGitHubRelease(url);
     return gh ? `https://github.com/${gh.owner}/${gh.repo}` : url;
   }
+
+  const SEMANTIC_BADGE_JSON_URL =
+    "https://www.semantic-programming-language.com/assets/badges/semantic-badge.json";
+
+  let activeBadgeFormat = "markdown";
+  let badgeSnippets = {markdown:"", html:""};
+
+  function resolveModuleVersion({registered = null, params = null, archiveUrl = ""} = {}) {
+    const gh = archiveUrl ? parseGitHubRelease(archiveUrl) : null;
+    return String(
+      registered?.version ||
+      params?.version ||
+      gh?.tag ||
+      "latest"
+    ).replace(/^refs\/tags\//, "");
+  }
+
+  function currentModulePageUrl() {
+    const u = new URL(location.href);
+    u.hash = "";
+    return u.href;
+  }
+
+  function buildSemanticBadgeUrl() {
+    // All badge rendering data — label, version/message, colours and custom
+    // Tree-of-Life logo — comes from our hosted Shields endpoint JSON.
+    return `https://img.shields.io/endpoint?url=${SEMANTIC_BADGE_JSON_URL}`;
+  }
+
+  function updateBadgeCode() {
+    const code = $("#badgeCode");
+    if (code) code.textContent = badgeSnippets[activeBadgeFormat] || "";
+
+    document.querySelectorAll("[data-badge-format]").forEach(button => {
+      button.setAttribute(
+        "aria-selected",
+        button.dataset.badgeFormat === activeBadgeFormat ? "true" : "false"
+      );
+    });
+  }
+
+  function renderModuleBadge(moduleName, version) {
+    const panel = $("#badgePanel");
+    const preview = $("#badgePreview");
+    const previewLink = $("#badgePreviewLink");
+    if (!panel || !preview || !previewLink) return;
+
+    const safeVersion = String(version || "latest");
+    const badgeUrl = buildSemanticBadgeUrl();
+    const pageUrl = currentModulePageUrl();
+    const alt = `${moduleName || "Semantic module"} — Semantic ${safeVersion}`;
+
+    preview.src = badgeUrl;
+    preview.alt = alt;
+    previewLink.href = pageUrl;
+
+    badgeSnippets.markdown = `[![${alt}](${badgeUrl})](${pageUrl})`;
+    badgeSnippets.html = `<a href="${pageUrl}"><img alt="${alt}" src="${badgeUrl}" /></a>`;
+    updateBadgeCode();
+  }
+
+  document.querySelectorAll("[data-badge-format]").forEach(button => {
+    button.addEventListener("click", () => {
+      activeBadgeFormat = button.dataset.badgeFormat || "markdown";
+      updateBadgeCode();
+    });
+  });
+
+  $("#copyBadgeCode")?.addEventListener("click", async () => {
+    const button = $("#copyBadgeCode");
+    try {
+      await navigator.clipboard.writeText(badgeSnippets[activeBadgeFormat] || "");
+      button.textContent = "Copied";
+      setTimeout(() => { button.textContent = "Copy"; }, 1200);
+    } catch {}
+  });
 
   function detectLicense(text) {
     if (!text) return "Not detected";
@@ -700,6 +847,11 @@
       $("#moduleDescription").textContent =
         `${gh.owner}/${gh.repo} — Semantic module`;
     }
+
+    renderModuleBadge(
+      name,
+      resolveModuleVersion({params:p, archiveUrl})
+    );
   }
 
 
@@ -984,6 +1136,9 @@
 
       const name = registered?.name || p.name || "Semantic Module";
       const archiveUrl = registered?.url || p.url || "";
+      const moduleVersion = resolveModuleVersion({registered, params:p, archiveUrl});
+
+      renderModuleBadge(name, moduleVersion);
 
       if (!archiveUrl) {
         $("#readme").innerHTML = `
