@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compiler Architecture · Semantic Programming Language</title>
+  <meta name="description" content="How the Semantic compiler and toolchain are structured.">
+  <link rel="stylesheet" href="https://www.semantic-programming-language.com/wiki/assets/wiki.css">
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <a class="brand" href="https://www.semantic-programming-language.com/">
+      <img src="https://www.semantic-programming-language.com/assets/img/tree-of-life.png" alt="Semantic">
+      <span>Semantic</span>
+    </a>
+    <div class="nav-links">
+      <a href="https://www.semantic-programming-language.com/">Home</a>
+      <a href="https://www.semantic-programming-language.com/wiki/">Wiki</a>
+      <a href="https://www.semantic-programming-language.com/wiki/language/">Language</a>
+      <a href="https://www.semantic-programming-language.com/wiki/compiler/">Compiler</a>
+      <a href="https://github.com/tarekwasfy01/Semantic-Programming-Language">GitHub</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<div class="breadcrumbs"><a href="https://www.semantic-programming-language.com/wiki/">Wiki</a> / <a href="https://www.semantic-programming-language.com/wiki/compiler/">Compiler</a> / Architecture</div>
+<h1>Compiler Architecture</h1>
+<p class="lead">The Semantic toolchain is intended to support different outputs for different environments.</p>
+
+<h2>Shared Front-End Work</h2>
+<p>A compiler path typically begins by reading Semantic source, parsing it, validating language rules, and producing a representation that can be transformed by a backend.</p>
+
+<pre><code>Semantic Source
+      ↓
+    Parser
+      ↓
+Semantic Analysis
+      ↓
+Compiler Representation
+      ↓
+ Backend / Transpiler</code></pre>
+
+<h2>Backends and Paths</h2>
+<ul>
+  <li><strong>Mini MSPLC</strong> supports compact compiler development and bootstrapping.</li>
+  <li><strong>LLVM</strong> provides a route to LLVM IR and native machine code.</li>
+  <li><strong>Code Transpiler CLI</strong> provides source-to-source compilation into existing ecosystems.</li>
+</ul>
+
+<p>This multi-path design allows Semantic to participate in native compilation, source transformation, and the compiler bootstrap process at the same time.</p>
+
+</main>
+
+<footer>
+  <img src="https://www.semantic-programming-language.com/assets/img/tree-of-life.png" alt="Semantic">
+  <div><strong>Semantic Programming Language</strong></div>
+  <div>A language for humans, AI, compilers, and machines.</div>
+</footer>
+
+</body>
+</html>
