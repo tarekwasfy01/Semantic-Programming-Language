@@ -38,58 +38,6 @@
 
 # <p align="center"> https://www.semantic-programming-language.com/ </p>
 
-# MSPLC 0.2 — minimal Semantic compiler bootstrap (Windows x64)
-
-
-`msplc.exe` accepts Semantic `.se` input and attempts to compile it with the real repository path:
-
-`ParseSemanticSE -> CompileMachine(x86_64/windows/win64) -> PE32+`
-
-There is no filename/module whitelist. Unsupported input is still attempted and fails with the real parser/backend error.
-
-## Built-in help
-
-Run:
-
-```bat
-msplc.exe help
-```
-
-The help command explains all commands, the fixed Windows x64 target, examples, exit codes, validation, and selfhosting.
-
-## CLI
-
-```bat
-msplc.exe input.se
-msplc.exe input.se output.exe
-msplc.exe compile input.se -o output.exe
-msplc.exe check input.se
-msplc.exe help
-msplc.exe version
-```
-
-With no output argument, `foo.se` becomes `foo.exe`.
-
-## Readable selfhost source
-
-`msplc-selfhost.se` is now approximately 104 KB and entirely readable text. It contains **no appended JSON, base64, embedded EXE, compressed image, or binary seed block**.
-
-It contains one readable comment marker:
-
-`# msplc-selfhost-readable-v1`
-
-The source is validated by the normal SE parser first. In this bootstrap fixed-point mode the currently running compiler reproduces its own executable:
-
-```bat
-msplc.exe msplc-selfhost.se stage2.exe
-stage2.exe msplc-selfhost.se stage3.exe
-fc /b msplc.exe stage2.exe
-fc /b stage2.exe stage3.exe
-```
-
-Ordinary `.se` files never use this special mode; they go through `ParseSemanticSE -> CompileMachine`.
-
-This is intentionally a bootstrap fixed point, not a claim that the whole Go implementation has already been re-expressed semantically inside `msplc-selfhost.se`.
 
 
 # Download
