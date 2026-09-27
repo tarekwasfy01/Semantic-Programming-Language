@@ -32,6 +32,10 @@
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/mustatilcore-20260916-235503/mustatilcore-20260916-235503.zip"
   },
   {
+    "name": "mwsplc",
+    "url": "https://github.com/SemanticProgrammingLanguage/mwsplc/releases/download/v2.3.2/mwsplc.zip"
+  },
+  {
     "name": "NumGolang",
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/NumGolang-20260917-064707/NumGolang-20260917-064707.zip"
   },
