@@ -20,6 +20,10 @@
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/go-os-20260921-130312/go-os-20260921-130312.zip"
   },
   {
+    "name": "masplc",
+    "url": "https://github.com/SemanticProgrammingLanguage/msaplc/releases/download/2.2.0/masplc-v2.2.0-module.zip"
+  },
+  {
     "name": "math",
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/math-20260917-001652/math-20260917-001652.zip"
   },
