@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Selfhosting — Semantic Wiki</title>
-  <meta name="description" content="Selfhosting Definition For this project, true selfhosting means the compiler is capable of compiling its own Semantic source into the next compiler executable. The intend">
+  <meta name="description" content="Semantic selfhosting and the MSPLC Linux self-hosting milestone.">
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/semantic.css">
@@ -63,7 +63,9 @@ Stage 3 compiler
 <li>use that executable for the next bootstrap stage.</li>
 </ol>
 <h2 id="current-status">Current status</h2>
-<p>The project has moved beyond a seed-only demonstration: real compiler <code>.se</code> units are being lowered into native objects. Full Stage 2 → Stage 3 selfhosting is still a work in progress and should not be claimed until the same Semantic compiler source can produce the next compiler end-to-end.</p>
+<p><strong>MSPLC now provides a minimal Linux-only self-hosting compiler for x86-64.</strong> Its 48 Semantic source units compile directly to Linux ELF, and the Stage 1 → Stage 2 → Stage 3 proof is reproducible with byte-identical artifacts and no external compiler, assembler, or linker in the self-hosting transitions.</p>
+<p>MSPLC is available as an official <a href="https://www.semantic-programming-language.com/module.html?name=msplc&amp;url=https%3A%2F%2Fgithub.com%2FSemanticProgrammingLanguage%2FMinimal-Sematic-Programming-Language-Compiler-Linux-Module%2Freleases%2Fdownload%2Fv1.0.0%2FMSPLC-1.0.0-Linux.zip&amp;official=1&amp;source=archive">Semantic module</a> and is maintained in the <a href="https://github.com/tarekwasfy01/Semantic-Programming-Language/tree/main/msplc">GitHub repository</a>.</p>
+<p>This milestone is intentionally scoped to the minimal Linux compiler. It does not yet claim that the full universal Semantic compiler or Windows PE backend is self-hosted.</p>
 </article>
   <aside class="wiki-sidebar" aria-label="Wiki register">
 <div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3>
