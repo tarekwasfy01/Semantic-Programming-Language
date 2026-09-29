@@ -4,7 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Object Build &amp; Debugging — Semantic Wiki</title>
-  <meta name="description" content="Object Build &amp; Debugging The object runner exists to answer one question precisely: Which parts of the compiler can already be lowered to native COFF objects, and where d">
+  <meta name="description" content="How Semantic and SWC lower compiler units to COFF objects, diagnose native gaps, and distinguish object evidence from a functional executable.">
+  <meta name="keywords" content="Semantic, SWC, COFF, object build, native lowering, UAST, AI compiler debugging">
+  <meta name="semantic:document-type" content="engineering-method-reference">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"TechArticle",
+    "headline":"Object Build and Debugging in Semantic and SWC",
+    "description":"Evidence-based native lowering, COFF object generation, diagnostics, and AI-assisted compiler debugging.",
+    "about":["Semantic Windows Compiler","COFF","Universal AST","native lowering"],
+    "inLanguage":"en",
+    "keywords":["COFF","UAST","native lowering","SWC","AI-assisted debugging"]
+  }
+  </script>
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/semantic.css">
@@ -24,6 +37,7 @@
 <blockquote>
 <p>Which parts of the compiler can already be lowered to native COFF objects, and where does lowering fail?</p>
 </blockquote>
+<p>For SWC, this question is deliberately narrower than “did the compiler command exit successfully?”. A source unit may be parsed, indexed, lowered partially, emitted as an object, linked into a PE image, or executed successfully. These are different milestones. Reports must name the highest milestone that was actually observed.</p>
 <h2 id="stable-strategy">Stable strategy</h2>
 <p>The reliable build strategy is <strong>one Semantic unit per child process</strong>.</p>
 <ul>
@@ -33,6 +47,19 @@
 <li>successful units persist their <code>.obj</code> files;</li>
 <li>status and logs remain available after the run.</li>
 </ul>
+<h2 id="swc-evidence-levels">SWC evidence levels</h2>
+<table>
+<thead><tr><th>Evidence</th><th>What it proves</th><th>What it does not prove</th></tr></thead>
+<tbody>
+<tr><td>source unit</td><td>Semantic source exists in the compiler graph</td><td>the unit is linked or executable</td></tr>
+<tr><td>contract or route</td><td>the intended semantic seam is named and validated</td><td>machine-code emission is complete</td></tr>
+<tr><td>COFF object</td><td>one unit emitted a persisted native object</td><td>all symbols, relocations, or runtime behavior are correct</td></tr>
+<tr><td>linked PE</td><td>objects were combined into a Windows image</td><td>the entry point and generated program are runnable</td></tr>
+<tr><td>runtime executable</td><td>the produced image starts and behaves for the tested case</td><td>selfhosting or universal UAST coverage</td></tr>
+<tr><td>Stage 2 → Stage 3 proof</td><td>the compiler recompiles its source under the declared deterministic contract</td><td>unsupported features may be silently ignored</td></tr>
+</tbody>
+</table>
+<p>A small PE file or a zero exit code is therefore not enough to claim a completed SWC backend. In particular, a fallback return stub must be reported as a stub.</p>
 <h2 id="status-phases">Status phases</h2>
 <table>
 <thead>
@@ -88,6 +115,21 @@
 → compare ready/object counts
 </code></pre>
 <p>This is more valuable than patching individual functions with special cases.</p>
+<h2 id="ai-assisted-object-debugging">AI-assisted object debugging</h2>
+<p>This workflow is also the development model for building Semantic with AI for AI. Human developers define the semantic contract and the required proof. AI workers inspect one unit or one error family, follow bindings and relation evidence, propose a general fix, run the focused object probe, and record whether the result reached source, lowering, object, link, runtime, or selfhosting status.</p>
+<p>The worker model is intentionally evidence-oriented. Several independent units may be processed in parallel, but their results are not merged into a claim until diagnostics, object files, logs, and exit states have been checked. An AI must not infer that a whole compiler is native merely because many units succeeded.</p>
+<h3 id="ai-debugging-loop">AI debugging loop</h3>
+<div class="mermaid">flowchart TD
+    I[Unit and semantic contract] --> W[AI worker runs focused build]
+    W --> D[Diagnostic family]
+    D --> F[General resolver/lowering fix]
+    F --> R[Repeat unit and regression set]
+    R --> E[Persist object and evidence]
+    E --> V[Human and AI review]
+    V -->|proven| L[Link next layer]
+    V -->|not proven| D
+</div>
+<p>This makes the compiler legible to future AI systems: each failure has a named semantic cause, each fix has a bounded scope, and each claimed capability points to an artifact or test rather than to optimistic prose.</p>
 <h2 id="what-a-useful-report-contains">What a useful report contains</h2>
 <ul>
 <li>total/ready/failed/timeout counts;</li>
@@ -99,6 +141,8 @@
 </ul>
 <h2 id="historical-example">Historical example</h2>
 <p>An earlier stable report showed 95 total units with 16 ready units and 54 objects. Later resolver work substantially increased object production. Treat these numbers as development snapshots, not compatibility guarantees.</p>
+<h2 id="current-swc-boundary">Current SWC boundary</h2>
+<p>SWC currently exposes native version/help and compile CLI paths, the Semantic reader pipeline, the current canonical UAST subset, transpiler-matrix data, module/lowering contracts, and the PE-target contract. Complete rich-UAST lowering, full machine-code emission, executable link closure, and Windows selfhosting remain in progress. The old Go transpiler is still a behavioral reference for missing capabilities, not proof that those capabilities already exist in SWC.</p>
 </article>
   <aside class="wiki-sidebar" aria-label="Wiki register">
 <div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3>
@@ -127,6 +171,7 @@
 </div>
 <div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
 <li><a href="#stable-strategy">Stable strategy</a></li>
+<li><a href="#swc-evidence-levels">SWC evidence levels</a></li>
 <li><a href="#status-phases">Status phases</a></li>
 <li><a href="#common-error-families">Common error families</a></li>
 <li class="toc-sub"><a href="#nativeexternalvalueunresolved">NATIVE_EXTERNAL_VALUE_UNRESOLVED</a></li>
@@ -136,6 +181,9 @@
 <li><a href="#debugging-by-family-not-file">Debugging by family, not file</a></li>
 <li><a href="#what-a-useful-report-contains">What a useful report contains</a></li>
 <li><a href="#historical-example">Historical example</a></li>
+<li><a href="#ai-assisted-object-debugging">AI-assisted debugging</a></li>
+<li><a href="#ai-debugging-loop">AI debugging loop</a></li>
+<li><a href="#current-swc-boundary">Current SWC boundary</a></li>
 </ul></div>
 <div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
 </aside>
