@@ -63,9 +63,26 @@ Stage 3 compiler
 <li>use that executable for the next bootstrap stage.</li>
 </ol>
 <h2 id="current-status">Current status</h2>
-<p><strong>MSPLC now provides a minimal Linux-only self-hosting compiler for x86-64.</strong> Its 48 Semantic source units compile directly to Linux ELF, and the Stage 1 → Stage 2 → Stage 3 proof is reproducible with byte-identical artifacts and no external compiler, assembler, or linker in the self-hosting transitions.</p>
+<p><strong>MSPLC provides a minimal Linux-only self-hosting compiler for x86-64.</strong> Its 48 Semantic source units compile directly to Linux ELF, and the Stage 1 → Stage 2 → Stage 3 proof is reproducible with byte-identical artifacts and no external compiler, assembler, or linker in the self-hosting transitions.</p>
 <p>MSPLC is available as an official <a href="https://www.semantic-programming-language.com/module.html?name=msplc&amp;url=https%3A%2F%2Fgithub.com%2FSemanticProgrammingLanguage%2FMinimal-Sematic-Programming-Language-Compiler-Linux-Module%2Freleases%2Fdownload%2Fv1.0.0%2FMSPLC-1.0.0-Linux.zip&amp;official=1&amp;source=archive">Semantic module</a> and is maintained in the <a href="https://github.com/tarekwasfy01/Semantic-Programming-Language/tree/main/msplc">GitHub repository</a>.</p>
-<p>This milestone is intentionally scoped to the minimal Linux compiler. It does not yet claim that the full universal Semantic compiler or Windows PE backend is self-hosted.</p>
+<p>This Linux milestone is intentionally separate from the Windows compiler effort. It does not claim that the full universal Semantic compiler or Windows PE backend is self-hosted.</p>
+<h2 id="swc-windows-compiler">SWC Windows compiler</h2>
+<p>The <strong>Semantic Windows Compiler (SWC)</strong> is the current native Windows x64 compiler project for Semantic source and Universal AST documents. Its executable-facing command is <code>swc</code>, and its current source and release package are maintained in the <a href="https://github.com/tarekwasfy01/Semantic-Programming-Language/tree/main/mwsplc">Semantic Programming Language repository</a>.</p>
+<p>The SWC package contains the native <code>swc.exe</code>, the canonical Semantic compiler source, Semantic reader units, matrix-driven transpiler data, UAST routing/lowering units, tests, and development tools. It intentionally does not claim that the complete universal compiler is finished.</p>
+<h3 id="swc-current-cli">Current CLI</h3>
+<pre><code class="language-text">swc version
+swc help
+swc compile &lt;input.se|input.sp|input.spz|input.json|input.smod&gt; -o &lt;output.exe&gt; [--embed-all|--embed-needed|--no-modules]</code></pre>
+<p>The current native executable accepts the documented compile formats and module-mode flags. The Semantic reader, format dispatch, matrix data, and lowering contracts are present in the source tree.</p>
+<h3 id="swc-current-boundary">Current implementation boundary</h3>
+<p>SWC is not yet a full native replacement for the former Go transpiler. The matrix and transpiler routes are connected as compiler seams, but the complete UAST-to-machine-code emitter and PE linker closure are still being implemented. Compiling a large rich Semantic source can therefore currently produce a small fallback PE stub; that is not a successful executable build.</p>
+<ul>
+<li>Native Windows x64 CLI and version/help dispatch: available.</li>
+<li>Semantic source reader and current canonical UAST subset: available.</li>
+<li>Transpiler matrix and module/lowering contracts: integrated as active implementation paths.</li>
+<li>Complete rich-UAST lowering, PE code emission, and executable linking: in progress.</li>
+<li>Full Windows SWC selfhosting: not claimed yet.</li>
+</ul>
 </article>
   <aside class="wiki-sidebar" aria-label="Wiki register">
 <div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3>
@@ -98,6 +115,9 @@ Stage 3 compiler
 <li><a href="#bootstrap-stages">Bootstrap stages</a></li>
 <li><a href="#why-object-first-debugging-helps">Why object-first debugging helps</a></li>
 <li><a href="#current-status">Current status</a></li>
+<li><a href="#swc-windows-compiler">SWC Windows compiler</a></li>
+<li><a href="#swc-current-cli">Current SWC CLI</a></li>
+<li><a href="#swc-current-boundary">Current SWC boundary</a></li>
 </ul></div>
 <div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
 </aside>
