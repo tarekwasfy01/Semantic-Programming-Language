@@ -1,10 +1,10 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>FAQ — Semantic Wiki</title>
-  <meta name="description" content="FAQ Is MSPLC already fully selfhosting? Not yet. Real Semantic compiler units are producing native object files, but the complete Stage 2 → Stage 3 bootstrap has not been">
+  <title>FAQ â€” Semantic Wiki</title>
+  <meta name="description" content="FAQ Is MSPLC already fully selfhosting? Not yet. Real Semantic compiler units are producing native object files, but the complete Stage 2 â†’ Stage 3 bootstrap has not been">
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/semantic.css">
@@ -21,11 +21,11 @@
 <main class="wiki-main"><div class="shell wiki-shell">
   <article class="wiki-article"><h1 id="faq">FAQ</h1>
 <h2 id="is-msplc-already-fully-selfhosting">Is MSPLC already fully selfhosting?</h2>
-<p>Not yet. Real Semantic compiler units are producing native object files, but the complete Stage 2 → Stage 3 bootstrap has not been verified end-to-end.</p>
+<p>Not yet. Real Semantic compiler units are producing native object files, but the complete Stage 2 â†’ Stage 3 bootstrap has not been verified end-to-end.</p>
 <h2 id="why-not-just-embed-a-working-exe-in-the-semantic-source">Why not just embed a working EXE in the Semantic source?</h2>
-<p>That can be a temporary bootstrap/transport trick, but it does not demonstrate that the compiler compiled itself. The final selfhosting proof must derive the next compiler from the compiler’s Semantic source.</p>
+<p>That can be a temporary bootstrap/transport trick, but it does not demonstrate that the compiler compiled itself. The final selfhosting proof must derive the next compiler from the compilerâ€™s Semantic source.</p>
 <h2 id="why-produce-many-obj-files-first">Why produce many <code>.obj</code> files first?</h2>
-<p>It localizes failures. A monolithic build tells you only that “the compiler failed”. Per-unit objects show which modules already native-lower and preserve successful work while the remaining backend gaps are fixed.</p>
+<p>It localizes failures. A monolithic build tells you only that â€œthe compiler failedâ€. Per-unit objects show which modules already native-lower and preserve successful work while the remaining backend gaps are fixed.</p>
 <h2 id="why-do-some-workers-finish-in-one-second-even-with-a-120-second-timeout">Why do some workers finish in one second even with a 120-second timeout?</h2>
 <p>The timeout is a maximum. A worker that encounters a deterministic compile error exits immediately. Only a worker that is still running after 120 seconds is killed as a timeout.</p>
 <h2 id="why-use-child-processes-instead-of-goroutines">Why use child processes instead of goroutines?</h2>
@@ -59,7 +59,7 @@
 <li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
 <li><a href="/wiki/error-reference/">Error Reference</a></li>
 <li><a class="active" href="/wiki/faq/">FAQ</a></li>
-<li><a href="/wiki/contributing/">Contributing</a></li>
+<li><a href="/wiki/chatgpt-plugins/">ChatGPT Plugins</a></li><li><a href="/wiki/contributing/">Contributing</a></li>
 </ul></div>
 </div>
 <div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
@@ -76,9 +76,10 @@
 </aside>
 </div></main>
 
-<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>Â© <span data-year></span> Semantic</div></div></footer>
 
 <script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
 </body></html>
+

@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Object Build &amp; Debugging — Semantic Wiki</title>
+  <title>Object Build &amp; Debugging â€” Semantic Wiki</title>
   <meta name="description" content="How Semantic and SWC lower compiler units to COFF objects, diagnose native gaps, and distinguish object evidence from a functional executable.">
   <meta name="keywords" content="Semantic, SWC, COFF, object build, native lowering, UAST, AI compiler debugging">
   <meta name="semantic:document-type" content="engineering-method-reference">
@@ -37,7 +37,7 @@
 <blockquote>
 <p>Which parts of the compiler can already be lowered to native COFF objects, and where does lowering fail?</p>
 </blockquote>
-<p>For SWC, this question is deliberately narrower than “did the compiler command exit successfully?”. A source unit may be parsed, indexed, lowered partially, emitted as an object, linked into a PE image, or executed successfully. These are different milestones. Reports must name the highest milestone that was actually observed.</p>
+<p>For SWC, this question is deliberately narrower than â€œdid the compiler command exit successfully?â€. A source unit may be parsed, indexed, lowered partially, emitted as an object, linked into a PE image, or executed successfully. These are different milestones. Reports must name the highest milestone that was actually observed.</p>
 <h2 id="stable-strategy">Stable strategy</h2>
 <p>The reliable build strategy is <strong>one Semantic unit per child process</strong>.</p>
 <ul>
@@ -56,7 +56,7 @@
 <tr><td>COFF object</td><td>one unit emitted a persisted native object</td><td>all symbols, relocations, or runtime behavior are correct</td></tr>
 <tr><td>linked PE</td><td>objects were combined into a Windows image</td><td>the entry point and generated program are runnable</td></tr>
 <tr><td>runtime executable</td><td>the produced image starts and behaves for the tested case</td><td>selfhosting or universal UAST coverage</td></tr>
-<tr><td>Stage 2 → Stage 3 proof</td><td>the compiler recompiles its source under the declared deterministic contract</td><td>unsupported features may be silently ignored</td></tr>
+<tr><td>Stage 2 â†’ Stage 3 proof</td><td>the compiler recompiles its source under the declared deterministic contract</td><td>unsupported features may be silently ignored</td></tr>
 </tbody>
 </table>
 <p>A small PE file or a zero exit code is therefore not enough to claim a completed SWC backend. In particular, a fallback return stub must be reported as a stub.</p>
@@ -109,10 +109,10 @@
 <h2 id="debugging-by-family-not-file">Debugging by family, not file</h2>
 <p>A single resolver bug can affect dozens of compiler units. The preferred loop is:</p>
 <pre><code class="language-text">run all units
-→ group errors by root cause
-→ implement one general fix
-→ run all units again
-→ compare ready/object counts
+â†’ group errors by root cause
+â†’ implement one general fix
+â†’ run all units again
+â†’ compare ready/object counts
 </code></pre>
 <p>This is more valuable than patching individual functions with special cases.</p>
 <h2 id="ai-assisted-object-debugging">AI-assisted object debugging</h2>
@@ -166,7 +166,7 @@
 <li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
 <li><a href="/wiki/error-reference/">Error Reference</a></li>
 <li><a href="/wiki/faq/">FAQ</a></li>
-<li><a href="/wiki/contributing/">Contributing</a></li>
+<li><a href="/wiki/chatgpt-plugins/">ChatGPT Plugins</a></li><li><a href="/wiki/contributing/">Contributing</a></li>
 </ul></div>
 </div>
 <div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
@@ -189,9 +189,10 @@
 </aside>
 </div></main>
 
-<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>Â© <span data-year></span> Semantic</div></div></footer>
 
 <script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
 </body></html>
+

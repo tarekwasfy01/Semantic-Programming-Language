@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>CLI &amp; Workflows — Semantic Wiki</title>
+  <title>CLI &amp; Workflows â€” Semantic Wiki</title>
   <meta name="description" content="CLI &amp; Workflows This page collects the commands most useful while working on the Semantic/native compiler pipeline. Stable object runner bat START HERE.bat Runs the norma">
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -61,6 +61,9 @@ CodeTranspiler.exe semantic module verify &lt;cache-key&gt;
 stage2.exe msplc-selfhost.se stage3.exe
 </code></pre>
 <p>The debug object runner is an engineering aid on the path to that interface.</p>
+<h2 id="swc-cli">SWC command line</h2><p>The current native Windows compiler is called <code>swc</code> and is distributed as <code>swc.exe</code>.</p><pre><code class="language-text">swc version
+swc help
+swc compile &lt;input.se|input.sp|input.spz|input.json|input.smod&gt; -o &lt;output.exe&gt; [--embed-all|--embed-needed|--no-modules]</code></pre><p>The SWC source, matrix, reader, module units, tests, and release package are maintained in the <a href="https://github.com/tarekwasfy01/Semantic-Programming-Language/tree/main/mwsplc">mwsplc repository</a>. The complete rich-UAST machine-code emitter is still being expanded, so generated output must be checked for real runtime behavior.</p>
 </article>
   <aside class="wiki-sidebar" aria-label="Wiki register">
 <div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3>
@@ -84,7 +87,7 @@ stage2.exe msplc-selfhost.se stage3.exe
 <li><a class="active" href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
 <li><a href="/wiki/error-reference/">Error Reference</a></li>
 <li><a href="/wiki/faq/">FAQ</a></li>
-<li><a href="/wiki/contributing/">Contributing</a></li>
+<li><a href="/wiki/chatgpt-plugins/">ChatGPT Plugins</a></li><li><a href="/wiki/contributing/">Contributing</a></li>
 </ul></div>
 </div>
 <div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
@@ -97,9 +100,11 @@ stage2.exe msplc-selfhost.se stage3.exe
 </aside>
 </div></main>
 
-<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>Â© <span data-year></span> Semantic</div></div></footer>
 
 <script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
 </body></html>
+
+

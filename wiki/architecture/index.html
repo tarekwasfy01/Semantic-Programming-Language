@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Architecture — Semantic Wiki</title>
+  <title>Architecture â€” Semantic Wiki</title>
   <meta name="description" content="Architecture Canonical identity The architectural invariant is: text SemanticProgram = Universal Semantic AST = canonical IR There are not two permanent intermediate repr">
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -68,7 +68,7 @@
 <h2 id="compatibility-views">Compatibility views</h2>
 <p>Legacy views can still be reconstructed for compatibility, but the data flow should remain one-way:</p>
 <pre><code class="language-text">Canonical UAST
-    ↓
+    â†“
 Derived compatibility view
 </code></pre>
 <p>A mutation to a compatibility view must not overwrite the canonical UAST.</p>
@@ -98,7 +98,7 @@ Derived compatibility view
 <li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
 <li><a href="/wiki/error-reference/">Error Reference</a></li>
 <li><a href="/wiki/faq/">FAQ</a></li>
-<li><a href="/wiki/contributing/">Contributing</a></li>
+<li><a href="/wiki/chatgpt-plugins/">ChatGPT Plugins</a></li><li><a href="/wiki/contributing/">Contributing</a></li>
 </ul></div>
 </div>
 <div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
@@ -113,9 +113,10 @@ Derived compatibility view
 </aside>
 </div></main>
 
-<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>Â© <span data-year></span> Semantic</div></div></footer>
 
 <script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
 </body></html>
+

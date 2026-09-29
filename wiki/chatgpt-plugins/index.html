@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ChatGPT Plugins — Semantic Wiki</title>
+  <meta name="description" content="Semantic ChatGPT Plugin: installation, downloads, usage, and how ChatGPT connects to Semantic modules and tools.">
+  <meta name="keywords" content="Semantic ChatGPT Plugin, Semantic Programming Language, ChatGPT, AI tools, Semantic modules">
+  <meta name="semantic:document-type" content="integration-guide">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"TechArticle","headline":"Semantic ChatGPT Plugin","description":"Installation and usage guide for the Semantic ChatGPT Plugin.","about":["Semantic Programming Language","ChatGPT plugin","AI tooling"],"inLanguage":"en"}
+  </script>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/css/semantic.css">
+  <link rel="stylesheet" href="/wiki/assets/wiki.css">
+</head>
+<body>
+<div class="mantra-bar">Speak in meaning. <span>Think beyond syntax.</span> Built beyond language.</div>
+<nav class="nav"><div class="shell nav-inner"><a class="brand" href="/"><div class="semantic-brand"><img src="/assets/img/tree-of-life.png" alt="Semantic icon" class="semantic-brand-icon"><img src="/assets/img/semantic-wordmark.png" alt="Semantic" class="semantic-brand-wordmark"></div></a><div class="nav-links"><a href="/#language">Language</a><a href="/#ai">For AI</a><a href="/#tooling">Tooling</a><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Docs</a><a href="/wiki/" class="wiki-nav-active">Wiki</a><a class="nav-cta" href="/modules.html">Explore modules</a></div></div></nav>
+<main class="wiki-main"><div class="shell wiki-shell">
+<article class="wiki-article"><div class="eyebrow">Semantic Wiki · AI integrations</div><h1 id="chatgpt-plugins">Semantic ChatGPT Plugin</h1>
+<p><strong>Semantic ChatGPT Plugin</strong> connects ChatGPT with Semantic projects, modules, source representations, compiler workflows, and AI-readable program meaning. It is the integration layer for using Semantic from ChatGPT and for allowing AI-assisted development tools to work with Semantic artifacts.</p>
+<p><a class="nav-cta" href="https://github.com/SemanticProgrammingLanguage/Semantic-ChatGPT-Plugin" target="_blank" rel="noopener">View plugin source on GitHub</a> <a class="nav-cta" href="https://github.com/SemanticProgrammingLanguage/Semantic-ChatGPT-Plugin/releases" target="_blank" rel="noopener">Download releases</a></p>
+<h2 id="what-it-provides">What the plugin provides</h2>
+<ul><li>ChatGPT access to Semantic-aware tools and project workflows.</li><li>Support for reading Semantic source, UAST-oriented representations, module metadata, and compiler evidence.</li><li>A bridge between natural-language AI work and explicit Semantic contracts, bindings, relations, and status.</li><li>A foundation for AI-assisted transpilation, module discovery, documentation, testing, and compiler development.</li></ul>
+<h2 id="installation">Installation</h2>
+<ol><li>Open the <a href="https://github.com/SemanticProgrammingLanguage/Semantic-ChatGPT-Plugin/releases" target="_blank" rel="noopener">GitHub Releases page</a>.</li><li>Download the release asset for your platform or follow the repository's installation instructions.</li><li>Install or enable the plugin in the ChatGPT environment that supports the Semantic integration.</li><li>Restart or refresh the host application if it does not discover the plugin immediately.</li></ol>
+<p>For development builds, clone the <a href="https://github.com/SemanticProgrammingLanguage/Semantic-ChatGPT-Plugin" target="_blank" rel="noopener">plugin repository</a>, follow its README, and use the repository's own build and configuration instructions. The repository is the authoritative source for release-specific prerequisites and asset names.</p>
+<h2 id="first-use">First use</h2>
+<pre><code class="language-text">Open ChatGPT with the Semantic plugin enabled.
+Ask it to inspect a Semantic project, module, .se/.sp/.spz document, or UAST contract.
+Request evidence-backed results: source path, semantic entity, relation, lowering status, and test result.</code></pre>
+<p>Useful requests include:</p>
+<ul><li>“Read this Semantic document and explain its entities, bindings, scopes, and relations.”</li><li>“Show which modules this project needs and where each package is resolved from.”</li><li>“Trace this UAST node through reader, lowering, PE emission, and runtime evidence.”</li><li>“Update the Semantic documentation and keep implemented, contract-only, and pending behavior separate.”</li></ul>
+<h2 id="semantic-ai-workflow">Semantic and AI workflow</h2>
+<p>The plugin is part of the Semantic idea of <strong>AI for AI</strong>: AI helps build the language, compiler, modules, tests, and documentation, while Semantic gives AI systems an explicit representation of program meaning to read and transform. The plugin should preserve meaning instead of guessing from surface syntax.</p>
+<ol><li>Identify the Semantic format and version.</li><li>Resolve entities, declarations, references, bindings, scopes, types, and relations.</li><li>Check contracts, effects, module identity, evaluation order, ABI, and backend requirements.</li><li>Use focused probes and repository evidence for unknown constructs.</li><li>Report exactly what is implemented, what is a contract or route, and what remains unproven.</li></ol>
+<h2 id="modules-and-swc">Modules, registry, and SWC</h2>
+<p>The plugin works with the wider Semantic module ecosystem: package manifests, Semantic-ready files, module identities, source hashes, dependencies, registry discovery, and local module stores. It can be used to inspect module graphs and prepare work for the <strong>Semantic Windows Compiler (SWC)</strong>.</p>
+<p>SWC is the native Windows x64 compiler track. Its current package contains the compiler source, Semantic reader, UAST units, transpiler matrix, module contracts, tests, and <code>swc.exe</code>. The complete rich-UAST machine-code backend is still being expanded, so the plugin must distinguish a source/contract/route from a linked and runnable executable.</p>
+<h2 id="evidence-and-safety">Evidence and safety</h2>
+<p>The plugin does not turn an AI answer into compiler proof. A successful command, generated object, or small PE stub is not automatically a functional program. Ask for concrete evidence: paths, hashes, diagnostics, object/link results, runtime exit status, and selfhosting stage comparisons.</p>
+<p>Do not paste secrets, private registry credentials, signing keys, or unpublished source into an external ChatGPT/plugin context unless the hosting policy explicitly permits it.</p>
+<h2 id="links">Links</h2>
+<ul><li><a href="https://github.com/SemanticProgrammingLanguage/Semantic-ChatGPT-Plugin" target="_blank" rel="noopener">Plugin source repository</a></li><li><a href="https://github.com/SemanticProgrammingLanguage/Semantic-ChatGPT-Plugin/releases" target="_blank" rel="noopener">Plugin downloads and releases</a></li><li><a href="/modules.html">Semantic package registry</a></li><li><a href="/wiki/module-system/">Semantic module system</a></li><li><a href="/wiki/project-status/">Current project status</a></li><li><a href="/wiki/selfhosting/">Selfhosting</a></li></ul>
+</article>
+<aside class="wiki-sidebar" aria-label="Wiki register"><div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3><div class="wiki-nav-group"><div class="wiki-nav-title">Overview</div><ul><li><a href="/wiki/">Home</a></li><li><a href="/wiki/getting-started/">Getting Started</a></li><li><a href="/wiki/project-status/">Project Status</a></li></ul></div><div class="wiki-nav-group"><div class="wiki-nav-title">Semantic core</div><ul><li><a href="/wiki/architecture/">Architecture</a></li><li><a href="/wiki/semantic-formats/">Semantic Formats</a></li><li><a href="/wiki/universal-ast/">Universal AST</a></li><li><a href="/wiki/module-system/">Module System</a></li></ul></div><div class="wiki-nav-group"><div class="wiki-nav-title">Native compiler</div><ul><li><a href="/wiki/native-compilation/">Native Compilation</a></li><li><a href="/wiki/object-build-and-debugging/">Object Build &amp; Debugging</a></li><li><a href="/wiki/selfhosting/">Selfhosting</a></li></ul></div><div class="wiki-nav-group"><div class="wiki-nav-title">AI integrations</div><ul><li><a class="active" href="/wiki/chatgpt-plugins/">ChatGPT Plugins</a></li></ul></div><div class="wiki-nav-group"><div class="wiki-nav-title">Reference</div><ul><li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li><li><a href="/wiki/error-reference/">Error Reference</a></li><li><a href="/wiki/faq/">FAQ</a></li><li><a href="/wiki/contributing/">Contributing</a></li></ul></div></div><div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul><li><a href="#what-it-provides">What it provides</a></li><li><a href="#installation">Installation</a></li><li><a href="#first-use">First use</a></li><li><a href="#semantic-ai-workflow">Semantic and AI</a></li><li><a href="#modules-and-swc">Modules and SWC</a></li><li><a href="#evidence-and-safety">Evidence and safety</a></li></ul></div><div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div></aside>
+</div></main>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+<script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script><script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script><script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
+</body></html>

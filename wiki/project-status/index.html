@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Project Status — Semantic Wiki</title>
+  <title>Project Status â€” Semantic Wiki</title>
   <meta name="description" content="Conservative status reference for Semantic, MSPLC, SWC, UAST lowering, selfhosting, and AI-assisted semantic compiler development.">
   <meta name="keywords" content="Semantic Programming Language, SWC, MSPLC, UAST, compiler status, selfhosting, AI-assisted development">
   <meta name="semantic:document-type" content="technical-status-reference">
@@ -50,7 +50,7 @@
 <li>some bindings/selectors still lose enough source/type context to fail native lowering;</li>
 <li>some advanced control-flow/transport forms still need general backend support;</li>
 <li>final project linking has not yet produced a fully verified Stage 2 selfhost compiler from the complete compiler source;</li>
-<li>Stage 2 → Stage 3 bootstrap equivalence is therefore not yet proven.</li>
+<li>Stage 2 â†’ Stage 3 bootstrap equivalence is therefore not yet proven.</li>
 </ul>
 <h2 id="swc-windows-status">SWC Windows compiler status</h2>
 <p>The <strong>Semantic Windows Compiler (SWC)</strong> is the native Windows x64 compiler track. It is separate from the minimal Linux MSPLC selfhosting milestone. The current SWC package contains <code>swc.exe</code>, the canonical Semantic compiler source, reader units, UAST units, transpiler-matrix data, module/lowering contracts, tests, and tools.</p>
@@ -69,10 +69,10 @@
 <li>Compiling a large rich Semantic source can currently return exit code <code>0</code> while producing a small fallback PE stub. That is an emitter limitation, not a successful compiler build.</li>
 <li>Full Windows SWC selfhosting is not claimed until a functional Stage 2 compiler recompiles the same source and Stage 3 verification passes.</li>
 </ul>
-<p>For status interpretation, distinguish a source unit, a contract, a route, a generated object, a linked PE file, a runnable executable, and a selfhosting stage. They are separate evidence levels and must not be collapsed into one “working” label.</p>
+<p>For status interpretation, distinguish a source unit, a contract, a route, a generated object, a linked PE file, a runnable executable, and a selfhosting stage. They are separate evidence levels and must not be collapsed into one â€œworkingâ€ label.</p>
 <h2 id="ai-for-ai-development">AI-assisted development: Semantic for AI, built with AI</h2>
 <p>Semantic is being developed with AI systems as engineering partners and is designed so that future AI systems can read and transform programs through explicit meaning. Human developers define the intended semantics, constraints, repository boundaries, and acceptance tests. AI agents inspect Semantic entities and relations, split work into small <code>.se</code> units, use the transpiler matrix and compiler evidence, run focused probes, and report exactly which proof level was reached.</p>
-<p>This is “AI for AI” in two connected senses: AI helps build the language, compiler, documentation, and tests; and the resulting Semantic representation is structured so another AI can understand bindings, scopes, types, control flow, data flow, evaluation order, effects, contracts, ABI requirements, and lowering evidence without reconstructing everything from surface syntax.</p>
+<p>This is â€œAI for AIâ€ in two connected senses: AI helps build the language, compiler, documentation, and tests; and the resulting Semantic representation is structured so another AI can understand bindings, scopes, types, control flow, data flow, evaluation order, effects, contracts, ABI requirements, and lowering evidence without reconstructing everything from surface syntax.</p>
 <h3 id="ai-status-rules">Rules for AI-readable status</h3>
 <ol>
 <li>Meaning comes before syntax. A source spelling is not a semantic guarantee.</li>
@@ -114,6 +114,11 @@ objects=54
 <li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>Stage 2 recompiles the same compiler source</li>
 <li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled/>Stage 3 verification passes</li>
 </ul>
+<h2 id="registry-status">Package registry and modules</h2>
+<p>The Semantic package registry is a working part of the ecosystem. It provides a public discovery and distribution layer for Semantic modules, package metadata, manifests, source archives, Semantic-ready files, and official module links. The registry index is published as <a href="/modules.json"><code>modules.json</code></a> and browsable through the <a href="/modules.html">Semantic Modules</a> page.</p>
+<p>Module identity, source hashes, dependencies, local stores, registry lookup, and package manifests give SWC and future Semantic tools a stable boundary for importing packages. SWC is progressively connecting this registry layer to native compile-time dependency resolution and embedding policies.</p>
+<h2 id="selfhosting-foundation">Selfhosting foundation</h2>
+<p>Selfhosting is a central project achievement, not merely a future idea. The current compiler source has a reproducible Stage 2 â†’ Stage 3 proof for the supported selfhost closure, while the minimal Linux MSPLC track provides the independent Stage 1 â†’ Stage 2 â†’ Stage 3 milestone. The remaining work is to extend that proven foundation across the complete rich UAST and Windows PE backend.</p>
 </article>
   <aside class="wiki-sidebar" aria-label="Wiki register">
 <div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3>
@@ -137,7 +142,7 @@ objects=54
 <li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
 <li><a href="/wiki/error-reference/">Error Reference</a></li>
 <li><a href="/wiki/faq/">FAQ</a></li>
-<li><a href="/wiki/contributing/">Contributing</a></li>
+<li><a href="/wiki/chatgpt-plugins/">ChatGPT Plugins</a></li><li><a href="/wiki/contributing/">Contributing</a></li>
 </ul></div>
 </div>
 <div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
@@ -154,9 +159,11 @@ objects=54
 </aside>
 </div></main>
 
-<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>Â© <span data-year></span> Semantic</div></div></footer>
 
 <script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
 </body></html>
+
+

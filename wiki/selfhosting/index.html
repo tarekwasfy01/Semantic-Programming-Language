@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Selfhosting — Semantic Wiki</title>
+  <title>Selfhosting â€” Semantic Wiki</title>
   <meta name="description" content="Semantic selfhosting and the MSPLC Linux self-hosting milestone.">
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -24,13 +24,13 @@
 <p>For this project, <strong>true selfhosting</strong> means the compiler is capable of compiling its own Semantic source into the next compiler executable.</p>
 <p>The intended proof is:</p>
 <pre><code class="language-text">Stage 1 compiler
-    ↓ compiles
+    â†“ compiles
 msplc-selfhost.se
-    ↓
+    â†“
 Stage 2 compiler
-    ↓ compiles the same source
+    â†“ compiles the same source
 msplc-selfhost.se
-    ↓
+    â†“
 Stage 3 compiler
 </code></pre>
 <p>A strong bootstrap check compares Stage 2 and Stage 3 behavior/artifacts under a deterministic build contract.</p>
@@ -53,7 +53,7 @@ Stage 3 compiler
     S3 --> V
 </div>
 <h2 id="why-object-first-debugging-helps">Why object-first debugging helps</h2>
-<p>The compiler is too large to treat every failure as a monolithic “EXE build failed”. COFF staging gives a finer-grained milestone:</p>
+<p>The compiler is too large to treat every failure as a monolithic â€œEXE build failedâ€. COFF staging gives a finer-grained milestone:</p>
 <ol>
 <li>parse/index Semantic compiler modules;</li>
 <li>lower individual compiler units;</li>
@@ -63,7 +63,7 @@ Stage 3 compiler
 <li>use that executable for the next bootstrap stage.</li>
 </ol>
 <h2 id="current-status">Current status</h2>
-<p><strong>MSPLC provides a minimal Linux-only self-hosting compiler for x86-64.</strong> Its 48 Semantic source units compile directly to Linux ELF, and the Stage 1 → Stage 2 → Stage 3 proof is reproducible with byte-identical artifacts and no external compiler, assembler, or linker in the self-hosting transitions.</p>
+<p><strong>MSPLC provides a minimal Linux-only self-hosting compiler for x86-64.</strong> Its 48 Semantic source units compile directly to Linux ELF, and the Stage 1 â†’ Stage 2 â†’ Stage 3 proof is reproducible with byte-identical artifacts and no external compiler, assembler, or linker in the self-hosting transitions.</p>
 <p>MSPLC is available as an official <a href="https://www.semantic-programming-language.com/module.html?name=msplc&amp;url=https%3A%2F%2Fgithub.com%2FSemanticProgrammingLanguage%2FMinimal-Sematic-Programming-Language-Compiler-Linux-Module%2Freleases%2Fdownload%2Fv1.0.0%2FMSPLC-1.0.0-Linux.zip&amp;official=1&amp;source=archive">Semantic module</a> and is maintained in the <a href="https://github.com/tarekwasfy01/Semantic-Programming-Language/tree/main/msplc">GitHub repository</a>.</p>
 <p>This Linux milestone is intentionally separate from the Windows compiler effort. It does not claim that the full universal Semantic compiler or Windows PE backend is self-hosted.</p>
 <h2 id="swc-windows-compiler">SWC Windows compiler</h2>
@@ -83,6 +83,9 @@ swc compile &lt;input.se|input.sp|input.spz|input.json|input.smod&gt; -o &lt;out
 <li>Complete rich-UAST lowering, PE code emission, and executable linking: in progress.</li>
 <li>Full Windows SWC selfhosting: not claimed yet.</li>
 </ul>
+<h2 id="registry-and-selfhosting">Modules and registry in the selfhost path</h2>
+<p>Selfhosting depends on stable module identity. The Semantic package registry and local module stores provide discoverable package manifests, Semantic-ready units, hashes, and dependency metadata. A selfhost build can therefore resolve a declared module graph, select the required Semantic units, and carry that graph into the compiler project closure.</p>
+<p>The native SWC compiler is building on this foundation. Its next integration step is to make registry lookup, local caching, dependency resolution, and <code>--embed-all</code>, <code>--embed-needed</code>, or <code>--no-modules</code> policies part of the complete native compile path.</p>
 </article>
   <aside class="wiki-sidebar" aria-label="Wiki register">
 <div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3>
@@ -106,7 +109,7 @@ swc compile &lt;input.se|input.sp|input.spz|input.json|input.smod&gt; -o &lt;out
 <li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
 <li><a href="/wiki/error-reference/">Error Reference</a></li>
 <li><a href="/wiki/faq/">FAQ</a></li>
-<li><a href="/wiki/contributing/">Contributing</a></li>
+<li><a href="/wiki/chatgpt-plugins/">ChatGPT Plugins</a></li><li><a href="/wiki/contributing/">Contributing</a></li>
 </ul></div>
 </div>
 <div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
@@ -123,9 +126,11 @@ swc compile &lt;input.se|input.sp|input.spz|input.json|input.smod&gt; -o &lt;out
 </aside>
 </div></main>
 
-<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>Â© <span data-year></span> Semantic</div></div></footer>
 
 <script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
 </body></html>
+
+

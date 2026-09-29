@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Error Reference — Semantic Wiki</title>
+  <title>Error Reference â€” Semantic Wiki</title>
   <meta name="description" content="Error Reference NATIVE EXTERNAL VALUE UNRESOLVED Meaning: a qualified value or selector could not be resolved as a safe local/project value. Examples: text u.Relations fn">
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -68,12 +68,13 @@ StringWrap
 <h2 id="unimplementednativegap"><code>UNIMPLEMENTED_NATIVE_GAP</code></h2>
 <p><strong>Meaning:</strong> the native backend intentionally recognizes but does not yet implement the semantic node.</p>
 <p>Examples encountered during bootstrap have included switch-related transport forms.</p>
-<p>The correct fix is to implement semantics-preserving lowering — not to skip the node.</p>
+<p>The correct fix is to implement semantics-preserving lowering â€” not to skip the node.</p>
 <h2 id="hard-timeout">Hard timeout</h2>
 <pre><code class="language-text">hard timeout exceeded
 </code></pre>
 <p>This is not a semantic diagnostic. It means the worker process was still running when the parent killed it.</p>
 <p>Use a longer timeout only when the unit is genuinely progressing slowly. A deterministic resolver failure should be fixed instead.</p>
+<h2 id="swc-errors">SWC error interpretation</h2><p>SWC errors identify the current semantic or backend boundary. A resolver, layout, or UAST error is useful evidence for the next implementation unit. A zero exit code with a small fallback PE must still be checked at runtime and must not be reported as a completed compiler build.</p>
 </article>
   <aside class="wiki-sidebar" aria-label="Wiki register">
 <div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3>
@@ -97,7 +98,7 @@ StringWrap
 <li><a href="/wiki/cli-and-workflows/">CLI &amp; Workflows</a></li>
 <li><a class="active" href="/wiki/error-reference/">Error Reference</a></li>
 <li><a href="/wiki/faq/">FAQ</a></li>
-<li><a href="/wiki/contributing/">Contributing</a></li>
+<li><a href="/wiki/chatgpt-plugins/">ChatGPT Plugins</a></li><li><a href="/wiki/contributing/">Contributing</a></li>
 </ul></div>
 </div>
 <div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
@@ -111,9 +112,11 @@ StringWrap
 </aside>
 </div></main>
 
-<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>© <span data-year></span> Semantic</div></div></footer>
+<footer class="footer"><div class="shell footer-grid"><img class="small-logo" src="/assets/img/semantic-wordmark.png" alt="Semantic"><div class="footer-links"><a href="/modules.html">Modules</a><a href="/docs/create-module.html">Documentation</a><a href="/privacy.html">Privacy</a><a href="/legal.html">Legal Notice</a><a href="/legal.html">Impressum</a><a href="https://github.com/SemanticProgrammingLanguage" target="_blank" rel="noopener">GitHub</a></div><div>Â© <span data-year></span> Semantic</div></div></footer>
 
 <script src="/assets/js/config.js"></script><script src="/assets/js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
 </body></html>
+
+
