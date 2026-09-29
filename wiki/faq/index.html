@@ -1,10 +1,10 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>FAQ â€” Semantic Wiki</title>
-  <meta name="description" content="FAQ Is MSPLC already fully selfhosting? Not yet. Real Semantic compiler units are producing native object files, but the complete Stage 2 â†’ Stage 3 bootstrap has not been">
+  <title>FAQ - Semantic Wiki</title>
+  <meta name="description" content="Semantic, SWC, selfhosting, modules, package registry, UAST, AI tooling, and compiler workflow FAQ.">
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/semantic.css">
@@ -36,6 +36,22 @@
 <p>No. They are representations/transports around the same SemanticProgram/UAST model. The project architecture aims to maintain one canonical semantic truth.</p>
 <h2 id="does-the-native-backend-require-gcc-clang-or-an-assembler">Does the native backend require GCC, Clang or an assembler?</h2>
 <p>The intended direct native path constructs machine/object/executable artifacts itself. External assembly/compiler routes may be useful as verification paths but are not the target dependency for selfhosting.</p>
+<h2 id="what-is-swc">What is SWC?</h2>
+<p><strong>SWC</strong> is the Semantic Windows Compiler: the native Windows x64 compiler track for Semantic source, Semantic transport formats, modules, and the Universal AST. It provides the current <code>swc.exe</code> CLI, reader pipeline, UAST units, transpiler matrix, module contracts, tests, and PE-target work.</p>
+<h2 id="is-the-windows-backend-finished">Is the Windows backend finished?</h2>
+<p>The compiler foundation is real and selfhost-verified for the supported source closure. Broad rich-UAST lowering, complete machine-code emission, and linkable/runnable PE output for arbitrary large Semantic programs are still being expanded. A small PE file or exit code <code>0</code> can still represent a fallback stub, so runtime behavior must be checked.</p>
+<h2 id="can-i-import-packages">Can I import packages?</h2>
+<p>Yes. The Semantic package registry is the public discovery and distribution layer. Browse packages on the <a href="/modules.html">Module Store</a> or inspect the machine-readable <a href="/modules.json"><code>modules.json</code></a> index. Packages can carry manifests, Semantic-ready <code>.se</code>/<code>.sp</code>/<code>.spz</code> files, hashes, dependencies, and release URLs.</p>
+<h3 id="how-to-import-a-package">How do I start an import?</h3>
+<ol><li>Open <a href="/modules.html#quickImport">Import a package</a>.</li><li>Select the source language.</li><li>Enter the package name or repository path.</li><li>Choose a Semantic module name and optional version.</li><li>Click <strong>Import via GitHub</strong>, review the pre-filled issue, and submit it.</li><li>The import workflow resolves the source, transpiles or loads it as Semantic, validates the package manifest, and updates the registry after successful processing.</li></ol>
+<h2 id="what-does-module-import-mean-for-swc">What does module import mean for SWC?</h2>
+<p>SWC uses the same package identity and module-store model: resolve a module, inspect its manifest and dependencies, select required Semantic units, and apply an embedding policy. The registry layer is operational; complete native compile-time resolution and all embedding modes are the next SWC integration boundary.</p>
+<h2 id="what-is-the-chatgpt-plugin">What is the Semantic ChatGPT Plugin?</h2>
+<p>The <a href="/wiki/chatgpt-plugins/">Semantic ChatGPT Plugin</a> connects ChatGPT with Semantic projects, modules, UAST documents, compiler evidence, and AI-assisted workflows. Its source and releases are available in the <a href="https://github.com/SemanticProgrammingLanguage/Semantic-ChatGPT-Plugin" target="_blank" rel="noopener">Semantic ChatGPT Plugin repository</a>.</p>
+<h2 id="how-is-ai-used">How is AI used in the project?</h2>
+<p>Semantic is developed <strong>with AI for AI</strong>. Humans define meaning, contracts, constraints, and proof requirements. AI workers implement small Semantic units, inspect bindings and relations, run focused tests, compare artifacts, and report exactly what is proven. Semantic then gives future AI systems an explicit graph of entities, scopes, types, control flow, data flow, effects, contracts, and lowering evidence instead of requiring them to guess from syntax.</p>
+<h2 id="does-swc-replace-the-go-transpiler">Does SWC already replace every Go transpiler feature?</h2>
+<p>Not yet. The transpiler matrix, frontend contracts, module routes, and selected lowering paths are integrated as the native migration foundation. Full parity requires completing the remaining UAST families, source transformations, module resolution, PE emission, runtime support, and regression proofs.</p>
 </article>
   <aside class="wiki-sidebar" aria-label="Wiki register">
 <div class="wiki-sidebar-block"><div class="eyebrow">Wiki register</div><h3>Semantic Wiki</h3>
@@ -63,7 +79,7 @@
 </ul></div>
 </div>
 <div class="wiki-sidebar-block wiki-toc"><div class="wiki-nav-title">On this page</div><ul>
-<li><a href="#is-msplc-already-fully-selfhosting">Is MSPLC already fully selfhosting?</a></li>
+<li><a href="#is-msplc-already-fully-selfhosting">Is Semantic already selfhosting?</a></li><li><a href="#what-is-swc">What is SWC?</a></li><li><a href="#is-the-windows-backend-finished">Is the Windows backend finished?</a></li><li><a href="#can-i-import-packages">Can I import packages?</a></li><li><a href="#how-to-import-a-package">How do I start an import?</a></li><li><a href="#what-is-the-chatgpt-plugin">What is the ChatGPT Plugin?</a></li><li><a href="#how-is-ai-used">How is AI used?</a></li>
 <li><a href="#why-not-just-embed-a-working-exe-in-the-semantic-source">Why not just embed a working EXE in the Semantic source?</a></li>
 <li><a href="#why-produce-many-obj-files-first">Why produce many .obj files first?</a></li>
 <li><a href="#why-do-some-workers-finish-in-one-second-even-with-a-120-second-timeout">Why do some workers finish in one second even with a 120-second timeout?</a></li>
@@ -82,4 +98,5 @@
 <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
 <script>if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'dark',securityLevel:'loose'})};document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());</script>
 </body></html>
+
 
