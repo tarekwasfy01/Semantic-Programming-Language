@@ -16,6 +16,10 @@
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/fmt-20260917-003016/fmt-20260917-003016.zip"
   },
   {
+    "name": "FreeSimpleGUI",
+    "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/FreeSimpleGUI-20260929-013808/FreeSimpleGUI-20260929-013808.zip"
+  },
+  {
     "name": "go-os",
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/go-os-20260921-130312/go-os-20260921-130312.zip"
   },
