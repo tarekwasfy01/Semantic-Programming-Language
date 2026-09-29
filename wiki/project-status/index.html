@@ -4,7 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Project Status — Semantic Wiki</title>
-  <meta name="description" content="Project Status This page is intentionally conservative. It records engineering state, not a release promise. What works today Semantic compiler units can be parsed/indexe">
+  <meta name="description" content="Conservative status reference for Semantic, MSPLC, SWC, UAST lowering, selfhosting, and AI-assisted semantic compiler development.">
+  <meta name="keywords" content="Semantic Programming Language, SWC, MSPLC, UAST, compiler status, selfhosting, AI-assisted development">
+  <meta name="semantic:document-type" content="technical-status-reference">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"TechArticle",
+    "headline":"Semantic project status",
+    "description":"Conservative engineering status for the Semantic compiler family, including MSPLC Linux selfhosting and the Windows SWC backend.",
+    "about":["Semantic Programming Language","MSPLC","Semantic Windows Compiler","Universal AST"],
+    "inLanguage":"en",
+    "keywords":["UAST","SWC","selfhosting","AI-assisted compiler development"]
+  }
+  </script>
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/assets/css/semantic.css">
@@ -39,6 +52,46 @@
 <li>final project linking has not yet produced a fully verified Stage 2 selfhost compiler from the complete compiler source;</li>
 <li>Stage 2 → Stage 3 bootstrap equivalence is therefore not yet proven.</li>
 </ul>
+<h2 id="swc-windows-status">SWC Windows compiler status</h2>
+<p>The <strong>Semantic Windows Compiler (SWC)</strong> is the native Windows x64 compiler track. It is separate from the minimal Linux MSPLC selfhosting milestone. The current SWC package contains <code>swc.exe</code>, the canonical Semantic compiler source, reader units, UAST units, transpiler-matrix data, module/lowering contracts, tests, and tools.</p>
+<h3 id="swc-available-now">Available now</h3>
+<ul>
+<li><code>swc version</code> and <code>swc help</code> are native CLI paths.</li>
+<li><code>swc compile</code> accepts the current Semantic transport forms <code>.se</code>, <code>.sp</code>, <code>.spz</code>, <code>.json</code>, and <code>.smod</code>.</li>
+<li>Compile mode flags are defined for <code>--embed-all</code>, <code>--embed-needed</code>, and <code>--no-modules</code>.</li>
+<li>The source tree contains the Semantic reader pipeline, format dispatch, current UAST subset, matrix data, module seams, and PE-target contracts.</li>
+</ul>
+<h3 id="swc-not-yet-proven">Not yet proven</h3>
+<ul>
+<li>The former Go transpiler is not yet fully replaced by a native SWC transpiler.</li>
+<li>The complete rich-UAST lowering closure is not yet implemented.</li>
+<li>Complete PE machine-code emission and executable linking are not yet closed.</li>
+<li>Compiling a large rich Semantic source can currently return exit code <code>0</code> while producing a small fallback PE stub. That is an emitter limitation, not a successful compiler build.</li>
+<li>Full Windows SWC selfhosting is not claimed until a functional Stage 2 compiler recompiles the same source and Stage 3 verification passes.</li>
+</ul>
+<p>For status interpretation, distinguish a source unit, a contract, a route, a generated object, a linked PE file, a runnable executable, and a selfhosting stage. They are separate evidence levels and must not be collapsed into one “working” label.</p>
+<h2 id="ai-for-ai-development">AI-assisted development: Semantic for AI, built with AI</h2>
+<p>Semantic is being developed with AI systems as engineering partners and is designed so that future AI systems can read and transform programs through explicit meaning. Human developers define the intended semantics, constraints, repository boundaries, and acceptance tests. AI agents inspect Semantic entities and relations, split work into small <code>.se</code> units, use the transpiler matrix and compiler evidence, run focused probes, and report exactly which proof level was reached.</p>
+<p>This is “AI for AI” in two connected senses: AI helps build the language, compiler, documentation, and tests; and the resulting Semantic representation is structured so another AI can understand bindings, scopes, types, control flow, data flow, evaluation order, effects, contracts, ABI requirements, and lowering evidence without reconstructing everything from surface syntax.</p>
+<h3 id="ai-status-rules">Rules for AI-readable status</h3>
+<ol>
+<li>Meaning comes before syntax. A source spelling is not a semantic guarantee.</li>
+<li>Known facts, implementation seams, probes, and unverified assumptions are recorded separately.</li>
+<li>Unknown UAST nodes or relations are rejected or marked explicitly; they are not silently invented.</li>
+<li>A successful command exit code is not proof of a functional output executable.</li>
+<li>Every major implementation step should be followed by focused tests and, where relevant, a selfhosting check.</li>
+</ol>
+<h3 id="ai-development-loop">Development loop</h3>
+<div class="mermaid">flowchart LR
+    H[Human intent and acceptance criteria] --> C[Semantic contract]
+    C --> U[Small .se unit]
+    U --> T[Focused test or probe]
+    T --> E[Object, PE, runtime, or selfhost evidence]
+    E --> R[Human and AI review]
+    R -->|proven| N[Next unit]
+    R -->|not proven| C
+</div>
+<p>The project therefore treats AI output as reviewable engineering evidence, not as an authority. The desired end state is a compiler and program representation that humans can audit, machines can execute, and AI systems can reason about without silently losing semantic information.</p>
 <h2 id="development-snapshots">Development snapshots</h2>
 <p>Object counts are debugging metrics, not language-version guarantees. Historical runs have shown steady progress as common resolver and lowering families were implemented.</p>
 <p>One stable uploaded run reported:</p>
@@ -92,6 +145,10 @@ objects=54
 <li><a href="#what-is-still-incomplete">What is still incomplete</a></li>
 <li><a href="#development-snapshots">Development snapshots</a></li>
 <li><a href="#milestones">Milestones</a></li>
+<li><a href="#swc-windows-status">SWC Windows status</a></li>
+<li><a href="#swc-not-yet-proven">SWC proof boundary</a></li>
+<li><a href="#ai-for-ai-development">AI-assisted development</a></li>
+<li><a href="#ai-development-loop">AI development loop</a></li>
 </ul></div>
 <div class="wiki-sidebar-block wiki-sidebar-legal"><a href="/legal.html">Impressum</a></div>
 </aside>
