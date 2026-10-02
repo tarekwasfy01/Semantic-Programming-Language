@@ -1,0 +1,43 @@
+{
+  "SLC-macOS-to-Linux-ELF.se": {
+    "bytes": 1062708,
+    "sha256": "59aa7bfbae401845b81968af4ed3e75b14786f93f476e487cea4e6018b7c91fd",
+    "function_bindings": 61,
+    "unique_function_bindings": 61,
+    "target_markers": [
+      "elf_init",
+      "elf_finish",
+      "compile_program",
+      "compile_file",
+      "main"
+    ]
+  },
+  "SLC-macOS-to-Windows-PE64.se": {
+    "bytes": 1244065,
+    "sha256": "3f3deb3312314dfb7c23282dab757b20436c170be457177a677ddd54185dc421",
+    "function_bindings": 66,
+    "unique_function_bindings": 66,
+    "target_markers": [
+      "elf_init",
+      "elf_finish",
+      "pe_init",
+      "pe_finish",
+      "compile_program",
+      "compile_file",
+      "main"
+    ]
+  },
+  "SLC-macOS-x86_64-Selfhost.se": {
+    "bytes": 1317147,
+    "sha256": "3081ad76e379b324be13ebeb032161d1fedf20e93c6efdcd1ef51b79a9fec347",
+    "function_bindings": 61,
+    "unique_function_bindings": 61,
+    "target_markers": [
+      "elf_init",
+      "elf_finish",
+      "compile_program",
+      "compile_file",
+      "main"
+    ]
+  }
+}

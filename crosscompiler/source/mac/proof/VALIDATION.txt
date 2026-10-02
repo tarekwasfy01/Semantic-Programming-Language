@@ -1,0 +1,15 @@
+SLC macOS cross-target validation
+=================================
+
+Mac-hosted compiler binaries built as Mach-O x86_64:
+- SLC-macOS-to-Linux-ELF
+- SLC-macOS-to-Windows-PE64
+
+Both were rebuilt twice from their Semantic sources and were byte-identical.
+
+Target-backend twin validation (same Semantic compiler logic, Linux host):
+- Linux target produced return42-linux.elf: ELF64 x86-64, magic 7f 45 4c 46.
+- Windows target produced return42-windows.exe: PE32+ x86-64, magic MZ and PE\0\0.
+
+Darling execution note:
+The bundled Darling runtime is present, but this container forbids the UTS/IPC namespace unshare that Darling requires. Direct mldr reaches the Darling server check-in and fails because darlingserver cannot be started here without those namespaces. Therefore the Mach-O binaries are structurally validated here, while actual Mac-host execution must be run in a namespace-capable Linux/Darling environment.

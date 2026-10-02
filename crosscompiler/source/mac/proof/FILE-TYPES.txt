@@ -1,0 +1,5 @@
+/mnt/data/SLC-macOS-CrossTargets-2026-10-02/bin/SLC-macOS-to-Linux-ELF:    Mach-O 64-bit x86_64 executable, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL>
+/mnt/data/SLC-macOS-CrossTargets-2026-10-02/bin/SLC-macOS-to-Windows-PE64: Mach-O 64-bit x86_64 executable, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL>
+/mnt/data/SLC-macOS-CrossTargets-2026-10-02/bin/SLC-macOS-x86_64:          Mach-O 64-bit x86_64 executable, flags:<NOUNDEFS|DYLDLINK|TWOLEVEL>
+/mnt/data/SLC-macOS-CrossTargets-2026-10-02/proof/return42-linux.elf:      ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, no section header
+/mnt/data/SLC-macOS-CrossTargets-2026-10-02/proof/return42-windows.exe:    PE32+ executable for MS Windows 6.00 (console), x86-64

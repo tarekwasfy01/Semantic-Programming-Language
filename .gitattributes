@@ -8,3 +8,5 @@ mwsplc/**/*.exe filter=lfs diff=lfs merge=lfs -text
 mwsplc/**/*.dll filter=lfs diff=lfs merge=lfs -text
 mwsplc/**/*.zip filter=lfs diff=lfs merge=lfs -text
 mwsplc/**/*.bin filter=lfs diff=lfs merge=lfs -text
+crosscompiler/source/mac/proof/*.elf filter=lfs diff=lfs merge=lfs -text
+crosscompiler/bin/SLC-macOS-* filter=lfs diff=lfs merge=lfs -text

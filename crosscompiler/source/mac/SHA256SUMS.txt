@@ -1,0 +1,13 @@
+88ad86c7bf55e50a04e8ede965c2489bcca6bb6a8bcb2c27a5a16c31e3c35b0d  ./README.md
+e41cf961408ffca89dcd1002df9c151b2b057a06a9b1df723b455497358d8d9b  ./proof/FILE-TYPES.txt
+b3492e994affe4369fde1376a777043c63096229b30e6c94beced19b91ba8faf  ./proof/SOURCE-AUDIT.json
+03516fa620f4d5e6c1772d4c7be8942b2616d87950ab15fe22a446f4b433a5e8  ./proof/VALIDATION.txt
+224ce3cbe5c15b3a4af94329fb6c7ba95f2dbd3a83e649eba01294201886bbac  ./proof/macos-to-linux-macho-headers.txt
+dc874e3f0edf1e6e55e2f0037c8091100a37d180538d3d7cca7cb0a0c3636859  ./proof/macos-to-windows-macho-headers.txt
+7fa9733728aca25af6ebea6dca3fae400355a7b08dba814d748b3ed394da8db9  ./proof/return42-linux.elf
+8db69a661494c8124d56298bc947fe0363535ad6408ddef2f4421e3903708149  ./proof/return42-windows.exe
+59aa7bfbae401845b81968af4ed3e75b14786f93f476e487cea4e6018b7c91fd  ./se/SLC-macOS-to-Linux-ELF.se
+3f3deb3312314dfb7c23282dab757b20436c170be457177a677ddd54185dc421  ./se/SLC-macOS-to-Windows-PE64.se
+3081ad76e379b324be13ebeb032161d1fedf20e93c6efdcd1ef51b79a9fec347  ./se/SLC-macOS-x86_64-Selfhost.se
+e7d39599a9e35a96648d54d37b031abf9ddd085d02f485ebe318a055c0f39ebc  ./tests/return42.se
+c5649e67a1aeeb52f5b1110c49f600bf06f4cc6588e48ddebe553cbd840e8185  ./verify-under-darling.sh
