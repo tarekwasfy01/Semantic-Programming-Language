@@ -53,12 +53,286 @@
 <li>how to diagnose unresolved bindings, member layouts and backend gaps;</li>
 <li>how to contribute without hiding unsupported semantics behind fallbacks.</li>
 </ul>
-<h2 id="current-selfhosting-goal">Current selfhosting goal</h2>
-<p>The target is a real compiler bootstrap chain:</p>
-<pre><code class="language-text">.exe -selfhost.se stage2.exe
+```html
+<h2 id="current-selfhosting-goal">SWC and true selfhosting</h2>
+
+<p>
+<strong>SWC</strong> is the native compiler path for <strong>Semantic Programming</strong>.
+Its purpose is not merely to translate Semantic source into another high-level language,
+but to compile the canonical <strong>SemanticProgram / Universal AST</strong> directly into
+native Windows x86-64 programs.
+</p>
+
+<p>
+The compiler therefore sits directly on top of the same semantic representation used
+throughout the Semantic Programming toolchain:
+</p>
+
+<blockquote>
+<p><code>Semantic source → SemanticProgram / UAST → native x86-64 → COFF → PE</code></p>
+</blockquote>
+
+<p>
+This is an important distinction. SWC is not intended to be a wrapper around another
+language compiler and it is not a source-to-source bootstrap shortcut. The native backend
+consumes the language-independent semantic graph, lowers supported operations to machine
+code, creates Windows COFF object files and ultimately produces PE executables.
+</p>
+
+<h3 id="swc-compiler-pipeline">The SWC compiler pipeline</h3>
+
+<p>A native SWC compilation conceptually consists of the following stages:</p>
+
+<ol>
+<li>
+<strong>Load Semantic source.</strong>
+The compiler reads the Semantic program that is to be compiled. The source may originate
+from Semantic source files or from one of the serialized Semantic representations used by
+the toolchain.
+</li>
+
+<li>
+<strong>Construct or load the canonical SemanticProgram.</strong>
+Program meaning is represented by the Universal AST. The backend does not treat the
+surface syntax as the canonical program representation.
+</li>
+
+<li>
+<strong>Resolve semantic relations.</strong>
+Bindings, declarations, types, members, calls, fields and other relations required by
+native lowering must be resolved before code generation can safely continue.
+</li>
+
+<li>
+<strong>Lower supported semantics to native x86-64.</strong>
+The native backend transforms Semantic operations into Windows x86-64 machine code.
+Unsupported operations are compiler errors rather than silently ignored constructs.
+</li>
+
+<li>
+<strong>Build COFF object units.</strong>
+Successfully lowered compilation units are written as <code>.obj</code> artifacts.
+Persisting object files per unit makes the bootstrap process easier to inspect and allows
+failures to be isolated to the unit that introduces an unsupported semantic requirement.
+</li>
+
+<li>
+<strong>Link the final PE executable.</strong>
+The generated objects are combined into a native Windows executable that can run without
+requiring the original source compiler process.
+</li>
+</ol>
+
+<div class="mermaid">flowchart TD
+    A[Semantic source] --> B[Frontend / loader]
+    B --> C[SemanticProgram / Universal AST]
+    C --> D[Binding and layout resolution]
+    D --> E[Native semantic lowering]
+    E --> F[x86-64 machine code]
+    F --> G[COFF .obj units]
+    G --> H[PE linker]
+    H --> I[Native SWC .exe]
+</div>
+
+<h3 id="why-swc-matters-for-selfhosting">Why SWC matters for selfhosting</h3>
+
+<p>
+The long-term purpose of SWC is <strong>true compiler selfhosting</strong>. That means the
+compiler itself must be expressible as genuine Semantic source and the resulting native
+compiler must be capable of compiling the same compiler source again.
+</p>
+
+<p>The intended bootstrap chain is:</p>
+
+<pre><code class="language-text">stage1.exe -selfhost.se stage2.exe
 stage2.exe -selfhost.se stage3.exe
 </code></pre>
-<p>The important requirement is that the compiler source is genuine Semantic source and the next compiler is produced by the compiler itself. Embedding or replaying a prebuilt executable is <strong>not</strong> considered selfhosting.</p>
+
+<p>
+Here, <code>stage1.exe</code> is the existing trusted compiler used to start the bootstrap.
+It compiles the Semantic implementation of SWC, represented here by
+<code>-selfhost.se</code>, and produces <code>stage2.exe</code>.
+</p>
+
+<p>
+The critical step is the second compilation. <code>stage2.exe</code> must itself understand
+the Semantic compiler source, execute the same semantic compilation pipeline and produce
+<code>stage3.exe</code>. At that point the compiler is no longer merely capable of compiling
+ordinary Semantic programs: it is capable of compiling its own implementation.
+</p>
+
+<blockquote>
+<p>
+<strong>Selfhosting is proven by compilation, not by packaging.</strong>
+</p>
+</blockquote>
+
+<h3 id="what-counts-as-true-selfhosting">What counts as true selfhosting?</h3>
+
+<p>
+For SWC, selfhosting specifically means that the next compiler generation is produced from
+the actual Semantic implementation of the compiler.
+</p>
+
+<p>A valid bootstrap therefore requires:</p>
+
+<ul>
+<li>the compiler implementation to exist as genuine Semantic source;</li>
+<li>SWC to parse or load that program into the canonical SemanticProgram / UAST;</li>
+<li>the required compiler semantics to be supported by the native backend;</li>
+<li>native x86-64 code to be generated from those semantics;</li>
+<li>real COFF object files and a PE executable to be produced;</li>
+<li>the generated compiler to be able to repeat the process itself.</li>
+</ul>
+
+<p>
+Several shortcuts deliberately do <strong>not</strong> satisfy this definition. A bootstrap
+is not considered selfhosting if the generated executable merely contains, extracts,
+copies or replays an already compiled compiler binary. Likewise, replacing unsupported
+compiler semantics with silent fallbacks would make the bootstrap result misleading.
+</p>
+
+<p>
+The selfhosting work therefore follows the same principle as the rest of the native
+backend:
+</p>
+
+<blockquote>
+<p><strong>Fail closed instead of pretending that unsupported semantics succeeded.</strong></p>
+</blockquote>
+
+<h3 id="stage2-stage3-bootstrap">Stage 2 and Stage 3</h3>
+
+<p>
+The distinction between Stage 2 and Stage 3 is useful because it exposes whether the new
+compiler is actually operational.
+</p>
+
+<ul>
+<li>
+<strong>Stage 1</strong> is the trusted seed compiler used to compile the Semantic SWC
+implementation.
+</li>
+<li>
+<strong>Stage 2</strong> is the first compiler executable produced from that Semantic
+implementation.
+</li>
+<li>
+<strong>Stage 3</strong> is produced by Stage 2 compiling the compiler implementation again.
+</li>
+</ul>
+
+<p>
+Reaching Stage 2 demonstrates that the existing compiler can compile the Semantic
+implementation. Reaching Stage 3 demonstrates something stronger: the compiler produced
+from Semantic source is itself capable of performing the compiler bootstrap.
+</p>
+
+<div class="mermaid">flowchart LR
+    A[Stage 1 compiler] -->|compile selfhost.se| B[Stage 2 compiler]
+    B -->|compile selfhost.se| C[Stage 3 compiler]
+    C --> D[Compare / validate bootstrap result]
+</div>
+
+<h3 id="object-build-bootstrap-debugging">Object-by-object bootstrap development</h3>
+
+<p>
+Compiler selfhosting exercises a much larger part of the language than small native test
+programs. It stresses function calls, data structures, member access, control flow,
+bindings, layouts, runtime interactions and many other semantic relationships at once.
+</p>
+
+<p>
+For that reason, the current SWC workflow builds and preserves native object artifacts as
+individual compilation units succeed. Instead of treating the compiler as one opaque
+all-or-nothing build, the bootstrap can be inspected at the point where a specific unit
+fails.
+</p>
+
+<p>This makes it possible to distinguish failures such as:</p>
+
+<ul>
+<li>an unresolved semantic binding;</li>
+<li>an unknown declaration or callable target;</li>
+<li>a missing member or field layout;</li>
+<li>an unsupported UAST node or semantic facet;</li>
+<li>a native lowering operation that has not yet been implemented;</li>
+<li>a relocation or object-generation problem;</li>
+<li>a link-time dependency that is still missing.</li>
+</ul>
+
+<p>
+This incremental approach is important for a selfhosting compiler because every newly
+supported semantic construct reduces the distance between compiling isolated native
+programs and compiling the compiler itself.
+</p>
+
+<h3 id="selfhosting-as-backend-completeness-test">Selfhosting as a backend completeness test</h3>
+
+<p>
+Selfhosting is also a practical test of the Semantic architecture itself. Since SWC
+operates on the canonical Universal AST, every construct needed by the compiler must have a
+well-defined representation and a native interpretation.
+</p>
+
+<p>
+If the compiler source expresses a concept that cannot be represented faithfully in the
+UAST, the semantic model is incomplete. If the UAST represents it correctly but SWC cannot
+lower it, the native backend is incomplete. If the backend silently discards the
+information, the resulting compiler cannot be considered a trustworthy bootstrap.
+</p>
+
+<p>
+This is why the selfhosting effort is closely connected to the project's core design
+principles:
+</p>
+
+<ul>
+<li><strong>One semantic truth:</strong> SWC compiles the canonical UAST rather than inventing a second native-only program model.</li>
+<li><strong>Fail closed:</strong> unsupported semantics stop compilation with a visible error.</li>
+<li><strong>No fake success:</strong> semantic information must not disappear during native lowering.</li>
+<li><strong>Deterministic transport:</strong> loading the same Semantic program through different supported Semantic formats should preserve its meaning.</li>
+<li><strong>Incremental progress:</strong> successful native units are retained and can be inspected independently.</li>
+<li><strong>Real bootstrap:</strong> the final proof is a compiler produced by a compiler produced from Semantic compiler source.</li>
+</ul>
+
+<h3 id="swc-github">SWC development on GitHub</h3>
+
+<p>
+The Semantic Programming source code and ongoing compiler development are available on
+GitHub. The repositories contain the implementation work around the Semantic
+representation, tooling and native compiler path:
+</p>
+
+<p>
+<a href="https://github.com/SemanticProgrammingLanguage"
+   target="_blank"
+   rel="noopener noreferrer">
+<strong>Semantic Programming Language on GitHub →</strong>
+</a>
+</p>
+
+<p>
+For contributors working on SWC, the most useful areas to understand first are the
+Universal AST, semantic binding and layout resolution, native lowering, COFF object
+generation, PE linking and the selfhosting build/debug workflow.
+</p>
+
+<p>
+The end goal can be summarized in one line:
+</p>
+
+<blockquote>
+<p>
+<code>Semantic compiler source → SWC → native compiler → SWC again</code>
+</p>
+</blockquote>
+
+<p>
+When that chain works without embedding or replaying a prebuilt compiler, SWC has reached
+true native selfhosting.
+</p>
+```
 <h2 id="start-here">Start here</h2>
 <ol>
 <li>Read <strong><a href="/wiki/getting-started/">Getting Started</a></strong> for the practical build flow.</li>
