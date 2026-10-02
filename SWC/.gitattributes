@@ -1,3 +1,0 @@
-*.exe filter=lfs diff=lfs merge=lfs -text
-*.smod filter=lfs diff=lfs merge=lfs -text
-*.spz filter=lfs diff=lfs merge=lfs -text
