@@ -9,15 +9,15 @@
     {
       "kind": "semantic",
       "language": "semantic",
-      "path": "../se/units/cli/SLCTranspileText.se",
-      "semantic_path": "../se/units/cli/SLCTranspileText.se",
+      "path": "../units/cli/SLCTranspileText.se",
+      "semantic_path": "../units/cli/SLCTranspileText.se",
       "status": "SEMANTIC_READY"
     },
     {
       "kind": "semantic",
       "language": "semantic",
-      "path": "../se/units/cli/SLCTranspileCLI.se",
-      "semantic_path": "../se/units/cli/SLCTranspileCLI.se",
+      "path": "../units/cli/SLCTranspileCLI.se",
+      "semantic_path": "../units/cli/SLCTranspileCLI.se",
       "status": "SEMANTIC_READY"
     }
   ]
