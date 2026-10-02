@@ -1,25 +1,3 @@
-# Semantic Programming Language
-se 1
-program {
-schema=1
-projection="semantic_document.v1"
-origin={"source_language":"semantic","modules":[],"entry_point":"__make_float64"}
-evaluation="eager_left_to_right"
-index_base=0
-value_model="explicit"
-nodes=[
-{"id":0,"structural_kind":"SymbolRef","fields":{"kind":"identifier","name":"x"}},
-{"id":1,"structural_kind":"ReturnStmt","fields":{"kind":"return"}},
-{"id":2,"structural_kind":"ClosureExpr","fields":{"kind":"function","name":"__make_float64","operation":{"function_binding":"__make_float64"}}},
-{"id":3,"structural_kind":"ParameterDecl","fields":{"kind":"parameter","name":"x"}},
-{"id":4,"structural_kind":"Scope","fields":{"kind":"block"}},
-{"id":5,"structural_kind":"Scope","fields":{"kind":"block","scope_id":0}},
-]
-relations=[
-{"kind":"syntax.child","from":1,"to":{"domain":"node","id":"0"},"attributes":{"role":"expression","ordinal":0}},
-{"kind":"syntax.child","from":2,"to":{"domain":"node","id":"3"},"attributes":{"role":"parameter","ordinal":0}},
-{"kind":"syntax.child","from":4,"to":{"domain":"node","id":"1"},"attributes":{"role":"statement","ordinal":0}},
-{"kind":"syntax.child","from":2,"to":{"domain":"node","id":"4"},"attributes":{"role":"body","ordinal":0}},
-{"kind":"syntax.child","from":5,"to":{"domain":"node","id":"2"},"attributes":{"role":"statement","ordinal":0}},
-]
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ad8f46d818877a3b56fc7e681cadfcf90cb58a4f664a7081a2e5e62dbf443211
+size 1340

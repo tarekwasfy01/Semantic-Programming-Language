@@ -5,7 +5,11 @@
       "backend_kind": "pe",
       "entry": "compile_program",
       "emitter": "pe64Image",
-      "runtime": "windows-x64"
+      "runtime": "windows-x64",
+      "shared_modules": [
+        "source/shared/modules/transpiler.smod",
+        "source/shared/modules/transpiler-matrix-full.smod"
+      ]
     },
     "x86_64-linux-elf": {
       "backend_kind": "elf",
