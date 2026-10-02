@@ -24,6 +24,10 @@
     "url": "https://github.com/SemanticProgrammingLanguage/Semantic-Module-Store/releases/download/go-os-20260921-130312/go-os-20260921-130312.zip"
   },
   {
+    "name": "grok",
+    "url": "https://github.com/SemanticProgrammingLanguage/grok-Unified-Semantic-Module-v0.2.1-/releases/download/v0.2.5/grok-0.2.5.zip"
+  },
+  {
     "name": "masplc",
     "url": "https://github.com/SemanticProgrammingLanguage/msaplc/releases/download/2.2.0/masplc-v2.2.0-module.zip"
   },
