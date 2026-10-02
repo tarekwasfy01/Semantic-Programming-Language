@@ -1,0 +1,51 @@
+{
+  "schema": "swc.cross.validation.v2",
+  "date": "2026-10-02",
+  "active_windows_compiler_promoted": {
+    "path": "../../../swc.exe",
+    "date": "2026-10-02",
+    "previous_sha256": "0D90484BCC8DA564F864285C02F70558E3AE63A2E6CB39CEAA52B0D870FE16EF",
+    "promoted_sha256": "460C7ACF2FDDD329B04D6DAB4C790DFB44AAD8D85D94FA28AB28F755B0D219A9",
+    "bytes": 2926817,
+    "runtime": "swc 2.3.2 windows-x64; version and help exit 0"
+  },
+  "platform_selfhost_proof": {
+    "windows_pe_embed_all": {
+      "stage1": "../out/swc-cross-windows-embed-all.exe",
+      "stage2": "../out/swc-cross-windows-stage2.exe",
+      "stage3": "../out/swc-cross-windows-stage3.exe",
+      "status": "PASS",
+      "bytes_each": 2926817,
+      "sha256_each": "460C7ACF2FDDD329B04D6DAB4C790DFB44AAD8D85D94FA28AB28F755B0D219A9",
+      "format": "PE/MZ x86-64",
+      "runtime": "swc 2.3.2 windows-x64; version exit 0"
+    },
+    "linux_elf_embed_all": {
+      "stage1": "../../SLC-Native-EmbedAll-2026-10-02/bin/SLC",
+      "stage2": "../../SLC-Native-EmbedAll-2026-10-02/build/SLC-cross-stage2",
+      "stage3": "../../SLC-Native-EmbedAll-2026-10-02/build/SLC-cross-stage3",
+      "status": "PASS",
+      "sha256_each": "c27823e26e315bb6026f25e00ae3693d255a30541ffeae26c94478563bb81056",
+      "format": "ELF x86-64, statically linked",
+      "runtime": "SLC 2.2.0; version exit 0"
+    }
+  },
+  "cross_target_dispatch": {
+    "status": "NOT_YET_PROVEN",
+    "reason": "The validated outputs selfhost their native PE and ELF compiler roots. A single selfhosted dispatcher that selects PE or ELF code emission from an explicit target has not yet been validated.",
+    "blocked_shared_graph_case": "The 226-unit flattened cross manifest exits 6 in the Linux native Embed-All route; the monolithic shared graph exceeds or conflicts with the older bootstrap route."
+  },
+  "rejected_activation_candidates": {
+    "F:/download/swc-full-2.3.2-transpiler-parity.exe": {
+      "reason": "Static PE audit identifies a Go host image (Go build marker, a 0x06b155b0-byte .rdata section, and kernel32.dll import). It is not proof that Semantic units were lowered into the active SWC native closure.",
+      "derived_output": "../out/swc-matrix-full-stage1.exe",
+      "derived_output_reason": "The generated 2,926,817-byte PE contains only one .text section and imports msvcrt.dll. It has no emitted .rdata/module closure, so it cannot prove Embed-All lowering."
+    }
+  },
+  "removed_failed_test_outputs": [
+    "cross-elf-from-windows.bin",
+    "cross-exe-from-linux.bin",
+    "SLC-highcap-bootstrap.elf"
+  ],
+  "promotion_rule": "The native Windows Stage-3 candidate was promoted to swc.exe after explicit user authorization. The legacy Go-host candidate remains rejected."
+}

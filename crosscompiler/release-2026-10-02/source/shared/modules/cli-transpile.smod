@@ -1,0 +1,24 @@
+{
+  "schema": "slc.semantic-module.v1",
+  "name": "slc-transpile-cli",
+  "version": "1",
+  "language": "semantic",
+  "status": "SEMANTIC_READY",
+  "dependencies": [],
+  "files": [
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../se/units/cli/SLCTranspileText.se",
+      "semantic_path": "../se/units/cli/SLCTranspileText.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../se/units/cli/SLCTranspileCLI.se",
+      "semantic_path": "../se/units/cli/SLCTranspileCLI.se",
+      "status": "SEMANTIC_READY"
+    }
+  ]
+}

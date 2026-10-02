@@ -1,0 +1,822 @@
+{
+  "schema": "slc.semantic-module.v1",
+  "name": "legacy-transpiler-matrix",
+  "version": "1",
+  "language": "semantic",
+  "status": "SEMANTIC_READY",
+  "dependencies": [],
+  "files": [
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/backend/max_int.se",
+      "semantic_path": "../units/matrix/backend/max_int.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/backend/min_native.se",
+      "semantic_path": "../units/matrix/backend/min_native.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/backend/native_bool_int.se",
+      "semantic_path": "../units/matrix/backend/native_bool_int.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/backend/value_or_unknown.se",
+      "semantic_path": "../units/matrix/backend/value_or_unknown.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/capability_matrix.se",
+      "semantic_path": "../units/matrix/capability_matrix.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/cli-command-route.se",
+      "semantic_path": "../units/matrix/cli-command-route.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/cli-main-dispatch-minimal.se",
+      "semantic_path": "../units/matrix/cli-main-dispatch-minimal.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/cli-main-dispatch.se",
+      "semantic_path": "../units/matrix/cli-main-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/cli-main-functional.se",
+      "semantic_path": "../units/matrix/cli-main-functional.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/core-coff-module-writer.se",
+      "semantic_path": "../units/matrix/core-coff-module-writer.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/frontend-logical-and-contract.se",
+      "semantic_path": "../units/matrix/frontend-logical-and-contract.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/frontend-switch-case-contract.se",
+      "semantic_path": "../units/matrix/frontend-switch-case-contract.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/frontend-switch-default-contract.se",
+      "semantic_path": "../units/matrix/frontend-switch-default-contract.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/frontend-switch-match-contract.se",
+      "semantic_path": "../units/matrix/frontend-switch-match-contract.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-aggregate-lowering-role.se",
+      "semantic_path": "../units/matrix/legacy-aggregate-lowering-role.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-aggregate-pe-emission.se",
+      "semantic_path": "../units/matrix/legacy-aggregate-pe-emission.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-binding-evidence-gate.se",
+      "semantic_path": "../units/matrix/legacy-binding-evidence-gate.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-foreach-lowering-role.se",
+      "semantic_path": "../units/matrix/legacy-foreach-lowering-role.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-index-call-contract.se",
+      "semantic_path": "../units/matrix/legacy-index-call-contract.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-index-lowering-kind.se",
+      "semantic_path": "../units/matrix/legacy-index-lowering-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-literal-family.se",
+      "semantic_path": "../units/matrix/legacy-literal-family.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-member-lowering-kind.se",
+      "semantic_path": "../units/matrix/legacy-member-lowering-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-member-pe-emission.se",
+      "semantic_path": "../units/matrix/legacy-member-pe-emission.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-module-emit-call.se",
+      "semantic_path": "../units/matrix/legacy-module-emit-call.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-module-emit-entry-call.se",
+      "semantic_path": "../units/matrix/legacy-module-emit-entry-call.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-module-emit-rel32.se",
+      "semantic_path": "../units/matrix/legacy-module-emit-rel32.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-module-emit-return-imm.se",
+      "semantic_path": "../units/matrix/legacy-module-emit-return-imm.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-module-emit-stub.se",
+      "semantic_path": "../units/matrix/legacy-module-emit-stub.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-module-lowering-route.se",
+      "semantic_path": "../units/matrix/legacy-module-lowering-route.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-module-pe-emission-route.se",
+      "semantic_path": "../units/matrix/legacy-module-pe-emission-route.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-parser-parse-semantic-se.se",
+      "semantic_path": "../units/matrix/legacy-parser-parse-semantic-se.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-parser-parse-semantic-sp-core.se",
+      "semantic_path": "../units/matrix/legacy-parser-parse-semantic-sp-core.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-parser-parse-semantic-sp.se",
+      "semantic_path": "../units/matrix/legacy-parser-parse-semantic-sp.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-primitive-table.se",
+      "semantic_path": "../units/matrix/legacy-primitive-table.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-rich-format-gate.se",
+      "semantic_path": "../units/matrix/legacy-rich-format-gate.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-route-pe-lowering.se",
+      "semantic_path": "../units/matrix/legacy-route-pe-lowering.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-se-port-matrix.se",
+      "semantic_path": "../units/matrix/legacy-se-port-matrix.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-se-source-manifest.se",
+      "semantic_path": "../units/matrix/legacy-se-source-manifest.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-slice-bound-kind.se",
+      "semantic_path": "../units/matrix/legacy-slice-bound-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/legacy-transpile-command-route.se",
+      "semantic_path": "../units/matrix/legacy-transpile-command-route.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/merge-call-probe.se",
+      "semantic_path": "../units/matrix/merge-call-probe.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/module-command-kind.se",
+      "semantic_path": "../units/matrix/module-command-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/module-embed-mode.se",
+      "semantic_path": "../units/matrix/module-embed-mode.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/module-resolve-route.se",
+      "semantic_path": "../units/matrix/module-resolve-route.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/module-spec-kind.se",
+      "semantic_path": "../units/matrix/module-spec-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/module-store-default-path.se",
+      "semantic_path": "../units/matrix/module-store-default-path.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/module-store-path.se",
+      "semantic_path": "../units/matrix/module-store-path.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/module-store-resolver.se",
+      "semantic_path": "../units/matrix/module-store-resolver.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/module-store-select-path.se",
+      "semantic_path": "../units/matrix/module-store-select-path.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-container-kind.se",
+      "semantic_path": "../units/matrix/rich-container-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-core-lowering-dispatch.se",
+      "semantic_path": "../units/matrix/rich-core-lowering-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-envelope-gate.se",
+      "semantic_path": "../units/matrix/rich-envelope-gate.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-envelope-marker.se",
+      "semantic_path": "../units/matrix/rich-envelope-marker.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-foreach-lowering-dispatch.se",
+      "semantic_path": "../units/matrix/rich-foreach-lowering-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-index-lowering-dispatch.se",
+      "semantic_path": "../units/matrix/rich-index-lowering-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-lexeme-kind.se",
+      "semantic_path": "../units/matrix/rich-lexeme-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-logical-and-truth.se",
+      "semantic_path": "../units/matrix/rich-logical-and-truth.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-logical-or-truth.se",
+      "semantic_path": "../units/matrix/rich-logical-or-truth.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-loop-control-dispatch.se",
+      "semantic_path": "../units/matrix/rich-loop-control-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-matrix-break-family.se",
+      "semantic_path": "../units/matrix/rich-matrix-break-family.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-matrix-cardinality.se",
+      "semantic_path": "../units/matrix/rich-matrix-cardinality.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-matrix-kind-catalog.se",
+      "semantic_path": "../units/matrix/rich-matrix-kind-catalog.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-matrix-presence-code.se",
+      "semantic_path": "../units/matrix/rich-matrix-presence-code.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-matrix-primitive-family.se",
+      "semantic_path": "../units/matrix/rich-matrix-primitive-family.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-matrix-schema-kind.se",
+      "semantic_path": "../units/matrix/rich-matrix-schema-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-matrix-uast-kind-code.se",
+      "semantic_path": "../units/matrix/rich-matrix-uast-kind-code.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-matrix-uast-kind-lookup.se",
+      "semantic_path": "../units/matrix/rich-matrix-uast-kind-lookup.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-member-lowering-dispatch.se",
+      "semantic_path": "../units/matrix/rich-member-lowering-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-reader-minimal-dispatch.se",
+      "semantic_path": "../units/matrix/rich-reader-minimal-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-relation-role-code.se",
+      "semantic_path": "../units/matrix/rich-relation-role-code.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-relation-role-validator.se",
+      "semantic_path": "../units/matrix/rich-relation-role-validator.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-scalar-kind.se",
+      "semantic_path": "../units/matrix/rich-scalar-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-section-kind.se",
+      "semantic_path": "../units/matrix/rich-section-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-slice-lowering-dispatch.se",
+      "semantic_path": "../units/matrix/rich-slice-lowering-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-switch-default-dispatch.se",
+      "semantic_path": "../units/matrix/rich-switch-default-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/rich-unary-switch-dispatch.se",
+      "semantic_path": "../units/matrix/rich-unary-switch-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-contract-reader.se",
+      "semantic_path": "../units/matrix/se-contract-reader.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-document-reader.se",
+      "semantic_path": "../units/matrix/se-document-reader.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-format-kind.se",
+      "semantic_path": "../units/matrix/se-format-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-full-reader-stage-kind.se",
+      "semantic_path": "../units/matrix/se-full-reader-stage-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-list-reader.se",
+      "semantic_path": "../units/matrix/se-list-reader.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-node-transfer.se",
+      "semantic_path": "../units/matrix/se-node-transfer.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-normalize-document.se",
+      "semantic_path": "../units/matrix/se-normalize-document.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-object-reader.se",
+      "semantic_path": "../units/matrix/se-object-reader.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-reader-lower-link.se",
+      "semantic_path": "../units/matrix/se-reader-lower-link.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-relation-reader.se",
+      "semantic_path": "../units/matrix/se-relation-reader.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-scalar-reader.se",
+      "semantic_path": "../units/matrix/se-scalar-reader.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/se-token-kind.se",
+      "semantic_path": "../units/matrix/se-token-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/semantic-format-lower-link.se",
+      "semantic_path": "../units/matrix/semantic-format-lower-link.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/semantic-input-dispatch.se",
+      "semantic_path": "../units/matrix/semantic-input-dispatch.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/semantic-reader-pipeline.se",
+      "semantic_path": "../units/matrix/semantic-reader-pipeline.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/show-modules-read-probe.se",
+      "semantic_path": "../units/matrix/show-modules-read-probe.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/show-modules-reader-core.se",
+      "semantic_path": "../units/matrix/show-modules-reader-core.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/show-modules-reader.se",
+      "semantic_path": "../units/matrix/show-modules-reader.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/smod-resolver-core.se",
+      "semantic_path": "../units/matrix/smod-resolver-core.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/smod-source-path-safe.se",
+      "semantic_path": "../units/matrix/smod-source-path-safe.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/transpile-core-route.se",
+      "semantic_path": "../units/matrix/transpile-core-route.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/transpile-matrix-route.se",
+      "semantic_path": "../units/matrix/transpile-matrix-route.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/transpiler-matrix-header.se",
+      "semantic_path": "../units/matrix/transpiler-matrix-header.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-aggregate-contract.se",
+      "semantic_path": "../units/matrix/uast-aggregate-contract.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-aggregate-element-address.se",
+      "semantic_path": "../units/matrix/uast-aggregate-element-address.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-break.se",
+      "semantic_path": "../units/matrix/uast-break.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-continue.se",
+      "semantic_path": "../units/matrix/uast-continue.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-foreach-bound-check.se",
+      "semantic_path": "../units/matrix/uast-foreach-bound-check.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-foreach-contract.se",
+      "semantic_path": "../units/matrix/uast-foreach-contract.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-foreach-iteration-state.se",
+      "semantic_path": "../units/matrix/uast-foreach-iteration-state.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-foreach-next.se",
+      "semantic_path": "../units/matrix/uast-foreach-next.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-index-address.se",
+      "semantic_path": "../units/matrix/uast-index-address.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-index-call-abi.se",
+      "semantic_path": "../units/matrix/uast-index-call-abi.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-loop-label-stack.se",
+      "semantic_path": "../units/matrix/uast-loop-label-stack.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-member-address.se",
+      "semantic_path": "../units/matrix/uast-member-address.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-missing-lowering-matrix.se",
+      "semantic_path": "../units/matrix/uast-missing-lowering-matrix.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-nil-literal.se",
+      "semantic_path": "../units/matrix/uast-nil-literal.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-slice-span.se",
+      "semantic_path": "../units/matrix/uast-slice-span.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/uast-structural-kind.se",
+      "semantic_path": "../units/matrix/uast-structural-kind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/matrix/win64-pe-target-contract.se",
+      "semantic_path": "../units/matrix/win64-pe-target-contract.se",
+      "status": "SEMANTIC_READY"
+    }
+  ]
+}

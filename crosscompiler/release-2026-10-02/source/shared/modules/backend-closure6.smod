@@ -1,0 +1,276 @@
+{
+  "schema": "slc.semantic-module.v1",
+  "name": "backend-closure6",
+  "version": "1",
+  "language": "semantic",
+  "status": "SEMANTIC_READY",
+  "dependencies": [],
+  "files": [
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/UniversalFrontendConstructMatrix.se",
+      "semantic_path": "../units/backend6/UniversalFrontendConstructMatrix.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/aggregateKind.se",
+      "semantic_path": "../units/backend6/aggregateKind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/boolState.se",
+      "semantic_path": "../units/backend6/boolState.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/boolStringPointer.se",
+      "semantic_path": "../units/backend6/boolStringPointer.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/buildTargetSyntaxTemplateAnalysis.se",
+      "semantic_path": "../units/backend6/buildTargetSyntaxTemplateAnalysis.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/canonicalHarvestConstruct.se",
+      "semantic_path": "../units/backend6/canonicalHarvestConstruct.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/cloneUniversalASTSurface.se",
+      "semantic_path": "../units/backend6/cloneUniversalASTSurface.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/containsAny.se",
+      "semantic_path": "../units/backend6/containsAny.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/csvRows.se",
+      "semantic_path": "../units/backend6/csvRows.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/evidenceList.se",
+      "semantic_path": "../units/backend6/evidenceList.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/executionFieldPrimitives.se",
+      "semantic_path": "../units/backend6/executionFieldPrimitives.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/executionRelationPrimitives.se",
+      "semantic_path": "../units/backend6/executionRelationPrimitives.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/fieldMapString.se",
+      "semantic_path": "../units/backend6/fieldMapString.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/fieldString.se",
+      "semantic_path": "../units/backend6/fieldString.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/hasUniversalField.se",
+      "semantic_path": "../units/backend6/hasUniversalField.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/indentUnit.se",
+      "semantic_path": "../units/backend6/indentUnit.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/intPointer.se",
+      "semantic_path": "../units/backend6/intPointer.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/isUnknownSemanticType.se",
+      "semantic_path": "../units/backend6/isUnknownSemanticType.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/metadataOnlyProjection.se",
+      "semantic_path": "../units/backend6/metadataOnlyProjection.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/projectionFieldUse.se",
+      "semantic_path": "../units/backend6/projectionFieldUse.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/projectionFormForStructure.se",
+      "semantic_path": "../units/backend6/projectionFormForStructure.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/projectionImplementedStructure.se",
+      "semantic_path": "../units/backend6/projectionImplementedStructure.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/projectionNames.se",
+      "semantic_path": "../units/backend6/projectionNames.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/projectionRelationUse.se",
+      "semantic_path": "../units/backend6/projectionRelationUse.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/semanticFieldNames.se",
+      "semantic_path": "../units/backend6/semanticFieldNames.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/stringOrUnknown.se",
+      "semantic_path": "../units/backend6/stringOrUnknown.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/structuralOrSemanticKind.se",
+      "semantic_path": "../units/backend6/structuralOrSemanticKind.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/structureProjectionSignature.se",
+      "semantic_path": "../units/backend6/structureProjectionSignature.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/sumRow.se",
+      "semantic_path": "../units/backend6/sumRow.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/targetBlockClose.se",
+      "semantic_path": "../units/backend6/targetBlockClose.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/targetBlockOpen.se",
+      "semantic_path": "../units/backend6/targetBlockOpen.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/targetLiteralSpecExisting.se",
+      "semantic_path": "../units/backend6/targetLiteralSpecExisting.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/targetProjectionFormsExisting.se",
+      "semantic_path": "../units/backend6/targetProjectionFormsExisting.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/targetSyntaxTokensExisting.se",
+      "semantic_path": "../units/backend6/targetSyntaxTokensExisting.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/targetTypedOperationSpecExisting.se",
+      "semantic_path": "../units/backend6/targetTypedOperationSpecExisting.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/typeHasAggregateShape.se",
+      "semantic_path": "../units/backend6/typeHasAggregateShape.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/typeOrUnknown.se",
+      "semantic_path": "../units/backend6/typeOrUnknown.se",
+      "status": "SEMANTIC_READY"
+    },
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../units/backend6/universalOperatorSpecs.se",
+      "semantic_path": "../units/backend6/universalOperatorSpecs.se",
+      "status": "SEMANTIC_READY"
+    }
+  ]
+}

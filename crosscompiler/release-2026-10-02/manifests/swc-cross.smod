@@ -1,0 +1,63 @@
+{
+  "schema": "slc.semantic-module.v1",
+  "name": "swc-cross",
+  "version": "2026.10.02",
+  "language": "semantic",
+  "entry_point": "compile_program",
+  "status": "CANDIDATE",
+  "architecture": "x86_64",
+  "shared": {
+    "source_root": "../source/shared/se",
+    "primary": "SLC-transpiler-integrated-frontend12-stringeq.se",
+    "units_root": "units",
+    "responsibilities": [
+      "rich semantic reader",
+      "frontend and UAST lowering",
+      "transpile and target matrix",
+      "SMOD resolution and Embed-All",
+      "semantic graph merge and rebinding"
+    ]
+  },
+  "targets": [
+    {
+      "id": "x86_64-windows-pe",
+      "kind": "pe",
+      "source_root": "../source/windows",
+      "entry_source": "se/swc-selfhost-windows.se",
+      "delta_root": "windows-delta-reference",
+      "status": "reference-integrated"
+    },
+    {
+      "id": "x86_64-linux-elf",
+      "kind": "elf",
+      "source_root": "../source/linux",
+      "entry_source": "integration/SLC-unified-previous-selfhost.se",
+      "elf_functions": ["elf_init", "elf_finish", "compile_program", "read_file", "write_file"],
+      "status": "reference-integrated"
+    }
+  ],
+  "dependencies": [
+    "../source/shared/modules/backend-closure2.smod",
+    "../source/shared/modules/backend-closure3.smod",
+    "../source/shared/modules/backend-closure4.smod",
+    "../source/shared/modules/backend-closure5.smod",
+    "../source/shared/modules/backend-closure6.smod",
+    "../source/shared/modules/backend-closure7.smod",
+    "../source/shared/modules/cli-transpile.smod",
+    "../source/shared/modules/matrix.smod",
+    "../source/shared/modules/runtime-append.smod",
+    "../source/shared/modules/transpiler.smod",
+    "../source/shared/modules/windows-delta.smod"
+  ],
+  "active_windows_exe": "../../release/SWC-2.3.2-selfhost/swc.exe",
+  "validation": {
+    "active_windows_exe_must_not_be_overwritten": true,
+    "required": [
+      "shared graph parses",
+      "target dispatch resolves exactly one backend",
+      "Windows candidate version and compile pass",
+      "Linux candidate version and ELF emission pass",
+      "selfhost round trip for each target"
+    ]
+  }
+}
