@@ -27,7 +27,7 @@
 </p>
 
 <h1 align="center"><a href="https://snapcraft.io/semantic-programming-language">
-  <img alt="Get it from the Snap Store" src="https://snapcraft.io/en/dark/install.svg" />
+  <img alt="Get it from the Snap Store" src="https://snapcraft.io/en/dark/install.svg" width="200"/>
  <a href="https://get.microsoft.com/installer/download/9n1kb1kxxtmn?referrer=appbadge">
     <img src="https://get.microsoft.com/images/en-us%20dark.svg" width="200" alt="Get it from Microsoft" /></a></h1>
 <h1 align="center">Semantic Programming Language</h1>
