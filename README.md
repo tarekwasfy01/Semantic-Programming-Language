@@ -11,7 +11,14 @@
   <img alt="VS Marketplace Version" src="https://vsmarketplacebadges.dev/version/semanticprogramminglanguage.SemanticProgrammingLanguage.svg" />
 
   <img alt="VS Marketplace Version" src="https://vsmarketplacebadges.dev/version/semanticprogramminglanguage.semantic-programminglanguage.svg" />
-
+  
+ <a href="https://hub.xerj.org/contributors/tarekwasfy01" target="_blank" rel="noopener noreferrer">
+  <img
+    src="https://hub.xerj.org/contributors/tarekwasfy01/badge.svg"
+    alt="XERJ Corpus Hub contributor"
+  />
+</a>
+  
   <a href="https://pkg.go.dev/github.com/tarekwasfy01/Code-Transpiler/v2">
     <img src="https://pkg.go.dev/badge/github.com/tarekwasfy01/Code-Transpiler.svg/v2" alt="Go Reference" />
   </a>
