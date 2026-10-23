@@ -1,68 +1,43 @@
-# SWC crosscompiler sources and Windows compiler status
+# SWC crosscompiler
 
-Current Windows update: **2026-10-16**. The active Windows compiler is
-self-hosted and no longer has static DLL/CRT imports.
+This directory keeps the Windows, Linux, and macOS crosscompiler sources and
+artifacts in the existing repository layout. The current Windows snapshot is
+dated 2026-10-23.
 
-- `bin/swc.exe`: **228,352 bytes**, SHA256
-  `D2148E6C8B4EEB829B4F956AECD95F967E98DD2C4424C942211FE8082BD1D4F5`.
-- `source/windows/se/swc-selfhost-windows.se`: **7,278,749 bytes**, SHA256
-  `AF18A2A4DF71AD90E9F0BEB5A74E5C290AC63EF436379B2132DDA6605AFDDD45`.
-- `manifests/swc.smod`: the active, manifest-relative build entry.
-- Stage1/Stage2/Stage3 are byte-identical; 38 native regression checks pass.
-- `.text` virtual size: 227,759 bytes. No appended source or executable payload.
+## Current Windows snapshot
 
-Import, bound-import, IAT and delay-import directories are zero. Windows APIs
-are resolved dynamically through the PEB: Windows itself remains required.
-No Go runtime, external helper executable, LLVM or external linker is needed
-to run or selfhost this Windows compiler.
+- Executable: `bin/swc.exe` — 234,496 bytes, SHA-256
+  `DCAF7908851E94C9F9E6A255725AC649F33A11C3C6082EFC9C1F2BE9E5365446`.
+- Selfhost source: `source/windows/se/swc-selfhost-windows.se` — 7,707,761
+  bytes, SHA-256
+  `BDD02D5CAD98380E28547BBFD403677E8B34CA14D9FFD4A24EC369F493C8C00E`.
+- Build manifest: `manifests/swc.smod`; it selects that source by a relative
+  path and records its SHA-256 and byte length.
+- Shared Semantic units and the transpiler matrix remain under their existing
+  `source/shared/se/` paths. This snapshot updates existing unit files and adds
+  missing units only inside the existing `units/` directory; it creates no new
+  directory tree.
 
-## Build and validate
+## Build
 
-From the repository root, using PowerShell 7:
+From the repository root in PowerShell:
 
 ```powershell
 ./crosscompiler/bin/swc.exe compile ./crosscompiler/manifests/swc.smod -o ./swc-rebuilt.exe --embed-all
-./scripts/test-importfree-candidate.ps1 -Compiler ./crosscompiler/bin/swc.exe -FixtureDirectory ./crosscompiler/source/windows/se -OutputDirectory ./tmp/release-validation
 ```
 
-From `crosscompiler/`, the equivalent selfhost command is:
+The manifest is the build entry for the complete Windows Semantic source.
+The checked-in executable is not replaced by this command.
 
-```powershell
-./bin/swc.exe compile ./manifests/swc.smod -o ./swc-rebuilt.exe --embed-all
-```
+## Verification boundary for this snapshot
 
-Forward slashes and Windows backslashes are supported for the manifest path.
-SMOD compilation without the optional flag no longer dereferences a missing
-argument. The redundant second SMOD compilation has been removed. Filenames
-with spaces and drive-absolute unit paths are covered by native tests.
+On 2026-10-23, `swc.exe version` returned `swc 2.3.2 windows-x64`. The native
+`return42.se` fixture compiled and exited with code 42. Stage2 compiled the
+current source with `--embed-all`, exited 0, and matched the checked-in
+234,496-byte executable byte-for-byte. Stage3, invoked from Stage2 with the
+same source and mode, crashed with `0xC0000005` (process status
+`-1073741819`). Therefore this snapshot passes Stage2 but **does not pass the
+full Stage2/Stage3 selfhost gate**. See `docs/RELEASE-2026-10-23.md`.
 
-## Tested coverage and boundaries
-
-The regression suite checks actual native execution: return42, argc/argv,
-redirected output, exact file write/read, tuple construction and nested indexing,
-flat binding-pattern swaps and single evaluation, foreach sum/break/continue,
-and the supported slice identity/index contract. Four invalid fixtures fail
-closed with exit 3 and no executable, including memory-intrinsic arity.
-This does not prove every arity variant or every catalogued UAST construct.
-
-See [the current release evidence](docs/RELEASE-2026-10-16.md).
-Older dated reports are historical evidence, not the current status.
-
-## Existing layout
-
-- `source/windows/se/`: active Windows graph and native regression fixtures.
-- `source/shared/se/units/`: individual Semantic implementation units.
-- `source/shared/se/transpiler-matrix/`: unchanged matrix sources.
-- `source/shared/modules/`: shared library/module manifests.
-- `source/linux/`, `source/mac/`: preserved platform sources.
-- `manifests/`: active and historical compiler manifests.
-- `docs/`: release evidence, audits and historical results.
-
-The active SMOD selects the complete validated Windows graph. Shared units can
-be ahead of that graph; their mere presence is not proof they are executed.
-The transpiler CLI is not claimed as completed by this update. Separate
-`.rdata`/`.data` emission and full UAST coverage are not claimed either.
-
-Linux, macOS and the separate cross-target binaries are preserved. They were
-not rebuilt or revalidated by this Windows release. Existing LFS rules remain
-in place; no unrelated repository files are removed.
+The dated reports from 2026-10-16 remain historical evidence and are not
+silently presented as fresh test results for this newer source snapshot.
