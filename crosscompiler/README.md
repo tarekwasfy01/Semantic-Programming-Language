@@ -32,12 +32,12 @@ The checked-in executable is not replaced by this command.
 ## Verification boundary for this snapshot
 
 On 2026-10-23, `swc.exe version` returned `swc 2.3.2 windows-x64`. The native
-`return42.se` fixture compiled and exited with code 42. Stage2 compiled the
-current source with `--embed-all`, exited 0, and matched the checked-in
-234,496-byte executable byte-for-byte. Stage3, invoked from Stage2 with the
-same source and mode, crashed with `0xC0000005` (process status
-`-1073741819`). Therefore this snapshot passes Stage2 but **does not pass the
-full Stage2/Stage3 selfhost gate**. See `docs/RELEASE-2026-10-23.md`.
+`return42.se` fixture compiled and exited with code 42. Stage2 and Stage3 both
+compiled the current `manifests/swc.smod` with `--embed-all`, exited 0, and
+produced byte-identical 234,496-byte executables matching the checked-in
+compiler SHA-256. The full manifest-based Stage2/Stage3 selfhost gate passes.
+The direct raw-`.se` invocation is not the validated build route; its Stage3
+attempt crashed. See `docs/RELEASE-2026-10-23.md` for exact commands and hashes.
 
 The dated reports from 2026-10-16 remain historical evidence and are not
 silently presented as fresh test results for this newer source snapshot.
