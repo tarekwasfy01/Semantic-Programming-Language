@@ -1,20 +1,13 @@
 # SWC crosscompiler
 
-This directory keeps the Windows, Linux, and macOS crosscompiler sources and
-artifacts in the existing repository layout. The current Windows snapshot is
-dated 2026-10-25. Other platform artifacts were not changed in this update.
+This directory keeps the Windows, Linux, and macOS crosscompiler sources and artifacts in the existing repository layout. The Windows snapshot was updated on 2026-10-25.
 
 ## Current Windows snapshot
 
-- Executable: `bin/swc.exe` — 254,976 bytes, SHA-256
-  `C9DE67E01A66B05C8ABFE1F0FD2EF1DDFB7142BB0E0E3B1A1F1B945D38A447CD`.
-- Selfhost source: `source/windows/se/swc-selfhost-windows.se` — 8,364,732
-  bytes, SHA-256
-  `F15C9BAFD1B48B62150C33D4400F82EDEE816C621BFB79F19FE04C50E8A68CE8`.
-- Build manifest: `manifests/swc.smod`; it selects that source by a relative
-  path and records its SHA-256 and byte length.
-- Shared Semantic units and the transpiler matrix remain under their existing
-  `source/shared/se/` paths. Their SE content did not change in this update.
+- Executable: `bin/swc.exe` — 257,024 bytes, SHA-256 `ABC3FDFB3536438A46B0541F91A1AC599A61B7CA5D365AC8B364EBCECDADC626`.
+- Selfhost source: `source/windows/se/swc-selfhost-windows.se` — 8,353,641 bytes, SHA-256 `B8A9C24E70C47CC293D1596D71390D2EA77EFA08A0E0CF5D0258AC2AD00901FE`.
+- Build manifest: `manifests/swc.smod`; it selects that source by a relative path and records its SHA-256 and byte length.
+- Shared Semantic units and the transpiler matrix remain under their existing `source/shared/se/` paths. Their contents were not changed in this update.
 
 ## Build
 
@@ -24,20 +17,10 @@ From the repository root in PowerShell:
 ./crosscompiler/bin/swc.exe compile ./crosscompiler/manifests/swc.smod -o ./swc-rebuilt.exe --embed-all
 ```
 
-The manifest is the build entry for the complete Windows Semantic source.
 The checked-in executable is not replaced by this command.
 
 ## Verification boundary
 
-Direct-SE Stage1/2/3 and the SMOD `--embed-all` build produced the same
-SHA-256 as the checked-in executable. The staged repository-relative manifest
-was rebuilt once with that executable and produced the same SHA-256; see
-`docs/RELEASE-2026-10-25.md`.
+Stage1, Stage2, Stage3, and the repository-relative SMOD `--embed-all` build were byte-identical. Nine native fixtures verified the specialized signed/unsigned division, shift, and comparison paths, including malformed-input rejection. The complete results are in `source/shared/se/transpiler-matrix/reports/specialized-binary-arity-20261025.json`; details are in `docs/RELEASE-2026-10-25.md`.
 
-Native fixtures covered return 42, BindingPattern, integer division, unsigned
-comparison, and node-ID bounds. An out-of-capacity node ID was rejected without
-an EXE. The SMOD arena regression compiled sparse node IDs through 599,185;
-ID 599,186 was rejected without an EXE.
-
-These checks do not prove native execution for every UAST kind or transpiler
-route, nor absence of intermittent failures under other workloads.
+These checks do not prove complete support for every UAST kind, compiler primitive, or transpiler route.

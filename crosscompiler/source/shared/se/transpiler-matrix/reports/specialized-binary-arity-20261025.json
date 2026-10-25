@@ -1,0 +1,100 @@
+{
+  "schema": "swc.specialized-binary-contract-batch.v1",
+  "changed_helpers": [
+    "compile_signed_division_expr",
+    "compile_unsigned_division_expr",
+    "compile_unsigned_shift_expr",
+    "compile_unsigned_compare_expr"
+  ],
+  "contract": "exactly one left edge and one right edge; set compiler error and return before code emission on mismatch",
+  "stage1_sha256": "ABC3FDFB3536438A46B0541F91A1AC599A61B7CA5D365AC8B364EBCECDADC626",
+  "stage2_sha256": "ABC3FDFB3536438A46B0541F91A1AC599A61B7CA5D365AC8B364EBCECDADC626",
+  "stage3_sha256": "ABC3FDFB3536438A46B0541F91A1AC599A61B7CA5D365AC8B364EBCECDADC626",
+  "stage2_stage3_byte_identical": true,
+  "active_source_sha256": "B8A9C24E70C47CC293D1596D71390D2EA77EFA08A0E0CF5D0258AC2AD00901FE",
+  "active_source_bytes": 8353641,
+  "active_exe_sha256": "ABC3FDFB3536438A46B0541F91A1AC599A61B7CA5D365AC8B364EBCECDADC626",
+  "active_exe_bytes": 257024,
+  "native_cases": [
+    {
+      "case": "typed-operation-integer-divide-signed42",
+      "compile": 0,
+      "runtime": 42,
+      "expectedCompile": 0,
+      "expectedRuntime": 42,
+      "pass": true
+    },
+    {
+      "case": "typed-operation-integer-divide-extra-operand",
+      "compile": 3,
+      "runtime": null,
+      "expectedCompile": 3,
+      "expectedRuntime": null,
+      "pass": true
+    },
+    {
+      "case": "typed-operation-integer-shift-right",
+      "compile": 0,
+      "runtime": 42,
+      "expectedCompile": 0,
+      "expectedRuntime": 42,
+      "pass": true
+    },
+    {
+      "case": "typed-operation-unsigned-shift-right-highbit",
+      "compile": 0,
+      "runtime": 1,
+      "expectedCompile": 0,
+      "expectedRuntime": 1,
+      "pass": true
+    },
+    {
+      "case": "typed-operation-unsigned-less-highbit",
+      "compile": 0,
+      "runtime": 0,
+      "expectedCompile": 0,
+      "expectedRuntime": 0,
+      "pass": true
+    },
+    {
+      "case": "typed-operation-unsigned-greater-highbit",
+      "compile": 0,
+      "runtime": 1,
+      "expectedCompile": 0,
+      "expectedRuntime": 1,
+      "pass": true
+    },
+    {
+      "case": "typed-operation-unsigned32-shift-rejected",
+      "compile": 3,
+      "runtime": null,
+      "expectedCompile": 3,
+      "expectedRuntime": null,
+      "pass": true
+    },
+    {
+      "case": "typed-operation-signed32-divide-rejected",
+      "compile": 3,
+      "runtime": null,
+      "expectedCompile": 3,
+      "expectedRuntime": null,
+      "pass": true
+    },
+    {
+      "case": "typed-operation-integer-negate-missing-operand",
+      "compile": 3,
+      "runtime": null,
+      "expectedCompile": 3,
+      "expectedRuntime": null,
+      "pass": true
+    }
+  ],
+  "active_promoted": true,
+  "repo_relative_smod_embed_all": {
+    "exit": 0,
+    "output_bytes": 257024,
+    "sha256": "ABC3FDFB3536438A46B0541F91A1AC599A61B7CA5D365AC8B364EBCECDADC626",
+    "matches_published_binary": true,
+    "manifest_path": "../source/windows/se/swc-selfhost-windows.se"
+  }
+}
