@@ -6,11 +6,11 @@ dated 2026-10-25. Other platform artifacts were not changed in this update.
 
 ## Current Windows snapshot
 
-- Executable: `bin/swc.exe` — 245,248 bytes, SHA-256
-  `B0BF89D75BA534A523EF618D7E3A0BF6B4B1AC607409E710E699B2022CD59845`.
-- Selfhost source: `source/windows/se/swc-selfhost-windows.se` — 8,042,865
+- Executable: `bin/swc.exe` — 254,976 bytes, SHA-256
+  `C9DE67E01A66B05C8ABFE1F0FD2EF1DDFB7142BB0E0E3B1A1F1B945D38A447CD`.
+- Selfhost source: `source/windows/se/swc-selfhost-windows.se` — 8,364,732
   bytes, SHA-256
-  `4CCDA4C54D6EE0D06AD31F1F03C0A52C6E62F9FCD77B2EE9871B6B09F02F0343`.
+  `F15C9BAFD1B48B62150C33D4400F82EDEE816C621BFB79F19FE04C50E8A68CE8`.
 - Build manifest: `manifests/swc.smod`; it selects that source by a relative
   path and records its SHA-256 and byte length.
 - Shared Semantic units and the transpiler matrix remain under their existing
@@ -29,12 +29,15 @@ The checked-in executable is not replaced by this command.
 
 ## Verification boundary
 
-Direct-SE Stage1/2/3 output was byte-identical to the checked-in executable.
-The published relative-path `manifests/swc.smod` also produced byte-identical
-Stage2/Stage3 output with `--embed-all`; see `docs/RELEASE-2026-10-25.md`.
-Native fixtures covered signed division, remainder, return 42, tuple/index,
-and BindingPattern. Invalid division type cases were rejected.
+Direct-SE Stage1/2/3 and the SMOD `--embed-all` build produced the same
+SHA-256 as the checked-in executable. The staged repository-relative manifest
+was rebuilt once with that executable and produced the same SHA-256; see
+`docs/RELEASE-2026-10-25.md`.
 
-These checks do not prove that the previously observed intermittent access
-violation is fixed, nor do they prove native execution for every UAST kind or
-transpiler route. The dated reports document exact evidence and limitations.
+Native fixtures covered return 42, BindingPattern, integer division, unsigned
+comparison, and node-ID bounds. An out-of-capacity node ID was rejected without
+an EXE. The SMOD arena regression compiled sparse node IDs through 599,185;
+ID 599,186 was rejected without an EXE.
+
+These checks do not prove native execution for every UAST kind or transpiler
+route, nor absence of intermittent failures under other workloads.
