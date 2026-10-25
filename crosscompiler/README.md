@@ -1,26 +1,22 @@
 # SWC crosscompiler
 
-This directory keeps the Windows, Linux, and macOS crosscompiler sources and artifacts in the existing repository layout. The Windows snapshot was updated on 2026-10-25.
+This directory contains the current Windows SWC snapshot in the repository's existing layout. The executable and Semantic source were copied from the active `mwsplc` root on 2026-10-25.
 
 ## Current Windows snapshot
 
-- Executable: `bin/swc.exe` — 257,024 bytes, SHA-256 `ABC3FDFB3536438A46B0541F91A1AC599A61B7CA5D365AC8B364EBCECDADC626`.
-- Selfhost source: `source/windows/se/swc-selfhost-windows.se` — 8,353,641 bytes, SHA-256 `B8A9C24E70C47CC293D1596D71390D2EA77EFA08A0E0CF5D0258AC2AD00901FE`.
-- Build manifest: `manifests/swc.smod`; it selects that source by a relative path and records its SHA-256 and byte length.
-- Shared Semantic units and the transpiler matrix remain under their existing `source/shared/se/` paths. Their contents were not changed in this update.
+- Executable: `bin/swc.exe` — 263,168 bytes, SHA-256 `7FBFFF3558356830237416165F8E63CACA72A50EC47C81AE84F110EBFCFE1E0B`.
+- Selfhost source: `source/windows/se/swc-selfhost-windows.se` — 8,548,075 bytes, SHA-256 `7501FEF8D34BC6B5D8555D2090AE58F1B804B250C9F2296D0501356991ACB4EF`.
+- Manifest: `manifests/swc.smod` selects that source using the existing repository-relative path and records the matching source hash and byte length.
 
-## Build
+## Build and selfhost check
 
 From the repository root in PowerShell:
 
 ```powershell
-./crosscompiler/bin/swc.exe compile ./crosscompiler/manifests/swc.smod -o ./swc-rebuilt.exe --embed-all
+./crosscompiler/bin/swc.exe compile ./crosscompiler/manifests/swc.smod -o ./swc-stage2.exe --embed-all
+./swc-stage2.exe compile ./crosscompiler/manifests/swc.smod -o ./swc-stage3.exe --embed-all
 ```
 
-The checked-in executable is not replaced by this command.
+The 2026-10-25 check produced Stage 2 and Stage 3 at 263,168 bytes each. Both SHA-256 values matched the checked-in executable: `7FBFFF3558356830237416165F8E63CACA72A50EC47C81AE84F110EBFCFE1E0B`. Stage 2 also returned 0 for `version`. Outputs were written separately; the checked-in executable was not overwritten during validation.
 
-## Verification boundary
-
-Stage1, Stage2, Stage3, and the repository-relative SMOD `--embed-all` build were byte-identical. Nine native fixtures verified the specialized signed/unsigned division, shift, and comparison paths, including malformed-input rejection. The complete results are in `source/shared/se/transpiler-matrix/reports/specialized-binary-arity-20261025.json`; details are in `docs/RELEASE-2026-10-25.md`.
-
-These checks do not prove complete support for every UAST kind, compiler primitive, or transpiler route.
+This proves the tested Stage2/Stage3 selfhost path for this snapshot. It does not claim complete support for every UAST kind, compiler primitive, or transpiler route.
