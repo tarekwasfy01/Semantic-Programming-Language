@@ -2,21 +2,19 @@
 
 This directory keeps the Windows, Linux, and macOS crosscompiler sources and
 artifacts in the existing repository layout. The current Windows snapshot is
-dated 2026-10-23.
+dated 2026-10-25. Other platform artifacts were not changed in this update.
 
 ## Current Windows snapshot
 
-- Executable: `bin/swc.exe` — 234,496 bytes, SHA-256
-  `DCAF7908851E94C9F9E6A255725AC649F33A11C3C6082EFC9C1F2BE9E5365446`.
-- Selfhost source: `source/windows/se/swc-selfhost-windows.se` — 7,707,761
+- Executable: `bin/swc.exe` — 245,248 bytes, SHA-256
+  `B0BF89D75BA534A523EF618D7E3A0BF6B4B1AC607409E710E699B2022CD59845`.
+- Selfhost source: `source/windows/se/swc-selfhost-windows.se` — 8,042,865
   bytes, SHA-256
-  `BDD02D5CAD98380E28547BBFD403677E8B34CA14D9FFD4A24EC369F493C8C00E`.
+  `4CCDA4C54D6EE0D06AD31F1F03C0A52C6E62F9FCD77B2EE9871B6B09F02F0343`.
 - Build manifest: `manifests/swc.smod`; it selects that source by a relative
   path and records its SHA-256 and byte length.
 - Shared Semantic units and the transpiler matrix remain under their existing
-  `source/shared/se/` paths. This snapshot updates existing unit files and adds
-  missing units only inside the existing `units/` directory; it creates no new
-  directory tree.
+  `source/shared/se/` paths. Their SE content did not change in this update.
 
 ## Build
 
@@ -29,15 +27,14 @@ From the repository root in PowerShell:
 The manifest is the build entry for the complete Windows Semantic source.
 The checked-in executable is not replaced by this command.
 
-## Verification boundary for this snapshot
+## Verification boundary
 
-On 2026-10-23, `swc.exe version` returned `swc 2.3.2 windows-x64`. The native
-`return42.se` fixture compiled and exited with code 42. Stage2 and Stage3 both
-compiled the current `manifests/swc.smod` with `--embed-all`, exited 0, and
-produced byte-identical 234,496-byte executables matching the checked-in
-compiler SHA-256. The full manifest-based Stage2/Stage3 selfhost gate passes.
-The direct raw-`.se` invocation is not the validated build route; its Stage3
-attempt crashed. See `docs/RELEASE-2026-10-23.md` for exact commands and hashes.
+Direct-SE Stage1/2/3 output was byte-identical to the checked-in executable.
+The published relative-path `manifests/swc.smod` also produced byte-identical
+Stage2/Stage3 output with `--embed-all`; see `docs/RELEASE-2026-10-25.md`.
+Native fixtures covered signed division, remainder, return 42, tuple/index,
+and BindingPattern. Invalid division type cases were rejected.
 
-The dated reports from 2026-10-16 remain historical evidence and are not
-silently presented as fresh test results for this newer source snapshot.
+These checks do not prove that the previously observed intermittent access
+violation is fixed, nor do they prove native execution for every UAST kind or
+transpiler route. The dated reports document exact evidence and limitations.

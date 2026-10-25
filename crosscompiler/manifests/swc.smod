@@ -1,1 +1,20 @@
-{"schema":"slc.semantic-module.v1","name":"swc-root-only-current","version":"2026.10.23-current-selfhost-source","language":"semantic","entry_point":"main","dependencies":[],"files":[{"kind":"semantic","language":"semantic","path":"../source/windows/se/swc-selfhost-windows.se","semantic_path":"../source/windows/se/swc-selfhost-windows.se","source_hash":"BDD02D5CAD98380E28547BBFD403677E8B34CA14D9FFD4A24EC369F493C8C00E","sha256":"BDD02D5CAD98380E28547BBFD403677E8B34CA14D9FFD4A24EC369F493C8C00E","bytes":7707761,"status":"SEMANTIC_READY"}]}
+{
+  "schema": "slc.semantic-module.v1",
+  "name": "swc-root-only-current",
+  "version": "2026.10.24-signed-div-type-and-alloc-guards",
+  "language": "semantic",
+  "entry_point": "main",
+  "dependencies": [],
+  "files": [
+    {
+      "kind": "semantic",
+      "language": "semantic",
+      "path": "../source/windows/se/swc-selfhost-windows.se",
+      "semantic_path": "../source/windows/se/swc-selfhost-windows.se",
+      "source_hash": "4CCDA4C54D6EE0D06AD31F1F03C0A52C6E62F9FCD77B2EE9871B6B09F02F0343",
+      "sha256": "4CCDA4C54D6EE0D06AD31F1F03C0A52C6E62F9FCD77B2EE9871B6B09F02F0343",
+      "bytes": 8042865,
+      "status": "SEMANTIC_READY"
+    }
+  ]
+}
