@@ -1,0 +1,233 @@
+[
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-add.se",
+    "expected": 5,
+    "compile": 0,
+    "actual": 5,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-bit_and.se",
+    "expected": 2,
+    "compile": 0,
+    "actual": 2,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-bit_or.se",
+    "expected": 5,
+    "compile": 0,
+    "actual": 5,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-bit_xor.se",
+    "expected": 5,
+    "compile": 0,
+    "actual": 5,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-divide.se",
+    "expected": 24,
+    "compile": 0,
+    "actual": 24,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-equal.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-greater_or_equal.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-greater_than.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-less_or_equal.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-less_than.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-multiply.se",
+    "expected": 15,
+    "compile": 0,
+    "actual": 15,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-not_equal.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-remainder.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-shift_left.se",
+    "expected": 16,
+    "compile": 0,
+    "actual": 16,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-shift_right.se",
+    "expected": 9,
+    "compile": 0,
+    "actual": 9,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-check-subtract.se",
+    "expected": 5,
+    "compile": 0,
+    "actual": 5,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/matrix-unary-bitwise-not.se",
+    "expected": -43,
+    "compile": 0,
+    "actual": -43,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/matrix-unary-negate.se",
+    "expected": -42,
+    "compile": 0,
+    "actual": -42,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/matrix-unary-not-nested.se",
+    "expected": 0,
+    "compile": 0,
+    "actual": 0,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/matrix-unary-not-nonzero.se",
+    "expected": 0,
+    "compile": 0,
+    "actual": 0,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/matrix-unary-not.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/return42.se",
+    "expected": 42,
+    "compile": 0,
+    "actual": 42,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-int_abs-call--42.se",
+    "expected": 42,
+    "compile": 0,
+    "actual": 42,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-int_abs-call-42.se",
+    "expected": 42,
+    "compile": 0,
+    "actual": 42,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-int_abs-call-0.se",
+    "expected": 0,
+    "compile": 0,
+    "actual": 0,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-conditional-lazy.se",
+    "expected": 42,
+    "compile": 0,
+    "actual": 42,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-family-linked.se",
+    "expected": 42,
+    "compile": 0,
+    "actual": 42,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-alias-less_equal.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-alias-greater_equal.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-alias-not.se",
+    "expected": 1,
+    "compile": 0,
+    "actual": 1,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-conditional-missing-condition.se",
+    "expected": 3,
+    "compile": 3,
+    "actual": null,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-conditional-missing-then.se",
+    "expected": 3,
+    "compile": 3,
+    "actual": null,
+    "pass": true
+  },
+  {
+    "fixture": "crosscompiler/source/windows/se/v10-conditional-missing-else.se",
+    "expected": 3,
+    "compile": 3,
+    "actual": null,
+    "pass": true
+  }
+]

@@ -36,7 +36,7 @@ function Read-SemanticGraph([string]$Path) {
                 foreach ($item in @($document.nodes)) { $nodes.Add($item) }
                 foreach ($item in @($document.relations)) { $relations.Add($item) }
                 if ($nodes.Count -gt 0) {
-                    return [pscustomobject]@{ Path=$resolved; Nodes=$nodes; Relations=$relations; Extensions=$document.extensions }
+                    return [pscustomobject]@{ Path=$resolved; Nodes=$nodes; Relations=$relations; Extensions=$document.extensions; Metadata=$document.metadata }
                 }
             }
         }
@@ -46,7 +46,7 @@ function Read-SemanticGraph([string]$Path) {
         }
     }
     $oneLineNodes = [regex]::Match($whole, '(?m)^nodes=\[(?<json>.*)\]\r?\nrelations=\[', [Text.RegularExpressions.RegexOptions]::Singleline)
-    $oneLineRelations = [regex]::Match($whole, '(?m)^relations=\[(?<json>.*)\]\r?\nmetadata=', [Text.RegularExpressions.RegexOptions]::Singleline)
+    $oneLineRelations = [regex]::Match($whole, '(?m)^relations=\[(?<json>.*)\]\r?\n(?:metadata|extensions)=', [Text.RegularExpressions.RegexOptions]::Singleline)
     if ($oneLineNodes.Success -and $oneLineRelations.Success) {
         $nodeBody = $oneLineNodes.Groups['json'].Value.Trim().TrimStart(',')
         $relationBody = $oneLineRelations.Groups['json'].Value.Trim().TrimStart(',')
@@ -70,7 +70,13 @@ function Read-SemanticGraph([string]$Path) {
             foreach ($item in @((('[' + $nodeBody + ']') | ConvertFrom-Json))) { $nodes.Add($item) }
             foreach ($item in @((('[' + $relationBody + ']') | ConvertFrom-Json))) { $relations.Add($item) }
             if ($nodes.Count -eq 0) { throw "Linked semantic graph contains no nodes: $resolved" }
-            return [pscustomobject]@{ Path=$resolved; Nodes=$nodes; Relations=$relations; Extensions=$null }
+            $metadata = $null
+            $extensions = $null
+            $metadataMatch = [regex]::Match($whole, '(?m)^metadata=(?<json>\{[^\r\n]*\})[ \t]*\r?$')
+            if ($metadataMatch.Success) { $metadata = $metadataMatch.Groups['json'].Value | ConvertFrom-Json }
+            $extensionsMatch = [regex]::Match($whole, '(?m)^extensions=(?<json>\{[^\r\n]*\})[ \t]*\r?$')
+            if ($extensionsMatch.Success) { $extensions = $extensionsMatch.Groups['json'].Value | ConvertFrom-Json }
+            return [pscustomobject]@{ Path=$resolved; Nodes=$nodes; Relations=$relations; Extensions=$extensions; Metadata=$metadata }
         } catch {
             # Large selfhost graphs can contain a valid line-oriented node
             # stream that is not a single JSON array after historical merges.
@@ -95,7 +101,16 @@ function Read-SemanticGraph([string]$Path) {
         elseif ($section -eq 'relations') { $relations.Add($item) }
     }
     if ($nodes.Count -eq 0) { throw "No compact semantic graph found in $resolved" }
-    [pscustomobject]@{ Path=$resolved; Nodes=$nodes; Relations=$relations; Extensions=$null }
+    $metadata = $null
+    $extensions = $null
+    foreach ($line in [IO.File]::ReadLines($resolved)) {
+        if ($line -match '^metadata=(?<json>\{.*\})\s*$') {
+            $metadata = $Matches['json'] | ConvertFrom-Json
+        } elseif ($line -match '^extensions=(?<json>\{.*\})\s*$') {
+            $extensions = $Matches['json'] | ConvertFrom-Json
+        }
+    }
+    [pscustomobject]@{ Path=$resolved; Nodes=$nodes; Relations=$relations; Extensions=$extensions; Metadata=$metadata }
 }
 
 function New-GraphIndex([object]$Graph) {
@@ -107,6 +122,7 @@ function New-GraphIndex([object]$Graph) {
     $closureAssignments = @{}
     foreach ($node in $Graph.Nodes) {
         $id = [string]$node.id
+        if ($nodeById.ContainsKey($id)) { throw "Duplicate Semantic node ID '$id' in $($Graph.Path)" }
         $nodeById[$id] = $node
         if ($node.structural_kind -eq 'ClosureExpr' -and $node.fields.operation.function_binding) {
             $binding = [string]$node.fields.operation.function_binding
@@ -164,6 +180,35 @@ function New-GraphIndex([object]$Graph) {
                 $closures[$semanticBinding] = [string]$closures[$nativeBinding]
             }
         }
+    }
+    # Standalone Document-1 primitive units publish their exact public name,
+    # semantic binding, and closure node through semantic_exports. Preserve
+    # that explicit export contract instead of guessing aliases from spelling.
+    foreach ($export in @($Graph.Extensions.semantic_exports)) {
+        if ($null -eq $export) { continue }
+        $semanticBinding = [string]$export.binding
+        $closureId = [string]$export.closure_id
+        $publicName = [string]$export.name
+        if ($semanticBinding -and $nodeById.ContainsKey($closureId) -and
+            $nodeById[$closureId].structural_kind -eq 'ClosureExpr') {
+            if ($closures.ContainsKey($semanticBinding) -and $closures[$semanticBinding] -ne $closureId) {
+                throw "Document-1 export '$semanticBinding' maps to conflicting closures."
+            }
+            $closures[$semanticBinding] = $closureId
+            if ($publicName) { $closures[$publicName] = $closureId }
+        }
+    }
+    # ISA-L function-per-file projections retain the source-level function
+    # identity and native assignment binding in Document-1 metadata.
+    # Reconnect that explicit provenance; never infer a name from body symbols.
+    $sourceFunctionName = [string]$Graph.Metadata.original_function_name
+    $sourceNativeBinding = [string]$Graph.Metadata.original_native_binding
+    if ($sourceFunctionName -and $sourceNativeBinding -and $closures.ContainsKey($sourceNativeBinding)) {
+        if ($closures.ContainsKey($sourceFunctionName) -and
+            $closures[$sourceFunctionName] -ne $closures[$sourceNativeBinding]) {
+            throw "Source metadata maps function '$sourceFunctionName' ambiguously."
+        }
+        $closures[$sourceFunctionName] = [string]$closures[$sourceNativeBinding]
     }
     # Linked Semantic graphs may contain historical duplicate implementations
     # of one binding.  Last-write-wins can select a one-node placeholder that
@@ -252,7 +297,41 @@ function Rewrite-NodeReferences([string]$Json, [hashtable]$Map) {
     })
 }
 
+function Complete-ExplicitCalleeRelations([object]$Graph) {
+    # A dependency walk already accepts the rich `value` call target below,
+    # but SWC's native child(..., callee, 0) requires an explicit callee edge.
+    # Project ONLY the existing authoritative fields.callee node reference.
+    # Retain the original fields, value edges and all semantic relations.
+    $known=[Collections.Generic.HashSet[string]]::new()
+    $calleeEdges=@{}
+    foreach($node in $Graph.Nodes){[void]$known.Add([string]$node.id)}
+    foreach($edge in $Graph.Relations){
+        if($edge.kind -ne 'syntax.child' -or $edge.to.domain -ne 'node' -or $edge.attributes.role -ne 'callee'){continue}
+        $from=[string]$edge.from
+        if(!$calleeEdges.ContainsKey($from)){$calleeEdges[$from]=[Collections.Generic.List[object]]::new()}
+        $calleeEdges[$from].Add($edge)
+    }
+    $added=[Collections.Generic.List[object]]::new()
+    foreach($node in $Graph.Nodes){
+        if($node.structural_kind -ne 'CallExpr' -or !$node.fields.PSObject.Properties['callee']){continue}
+        $fact=$node.fields.callee
+        if($fact.domain -ne 'node'){continue}
+        $id=[string]$node.id;$target=[string]$fact.id
+        if(!$known.Contains($target)){throw "CallExpr $id has fields.callee pointing to missing node $target"}
+        if($calleeEdges.ContainsKey($id)){
+            $edges=$calleeEdges[$id]
+            if($edges.Count -ne 1 -or [string]$edges[0].to.id -cne $target -or [int]$edges[0].attributes.ordinal -ne 0){throw "CallExpr $id has conflicting callee field/relation evidence"}
+            continue
+        }
+        $Graph.Relations.Add([pscustomobject]@{kind='syntax.child';from=[int]$id;to=[pscustomobject]@{domain='node';id=$target};attributes=[pscustomobject]@{role='callee';ordinal=0}})
+        $added.Add([pscustomobject]@{source=$Graph.Path;call=[int]$id;callee=[int]$target;rule='explicit_fields_callee_to_syntax_child'})
+    }
+    return $added.ToArray()
+}
+
+$calleeProjections=[Collections.Generic.List[object]]::new()
 $core = Read-SemanticGraph $CorePath
+foreach($projection in @(Complete-ExplicitCalleeRelations $core)){$calleeProjections.Add($projection)}
 $coreIndex = New-GraphIndex $core
 $sources = [Collections.Generic.List[object]]::new()
 foreach ($pathPattern in $UnitPath) {
@@ -263,6 +342,7 @@ foreach ($pathPattern in $UnitPath) {
     foreach ($file in $matches) {
         try {
             $graph = Read-SemanticGraph $file.FullName
+            foreach($projection in @(Complete-ExplicitCalleeRelations $graph)){$calleeProjections.Add($projection)}
             $sources.Add([pscustomobject]@{ Graph=$graph; Index=(New-GraphIndex $graph) })
         } catch {
             Write-Warning $_.Exception.Message
@@ -291,7 +371,6 @@ foreach ($source in $sources) {
         }
     }
 }
-
 # Preserve package-qualified backend calls when a transpiled Go unit stores
 # its ClosureExpr binding with the equivalent underscore spelling.  Add only
 # aliases whose target ClosureExpr is present; do not infer arbitrary names.
@@ -309,6 +388,22 @@ foreach ($source in $sources) {
             $catalog[$internalName].Path -eq $source.Graph.Path -and
             $catalog[$publicName].Root -eq $catalog[$internalName].Root) {
             $bindingLookup[$internalName] = $publicName
+        }
+    }
+}
+foreach ($source in $sources) {
+    foreach ($export in @($source.Graph.Extensions.semantic_exports)) {
+        if ($null -eq $export) { continue }
+        $publicName = [string]$export.name
+        $semanticBinding = [string]$export.binding
+        $closureId = [string]$export.closure_id
+        if (!$publicName -or !$semanticBinding -or !$source.Index.NodeById.ContainsKey($closureId)) { continue }
+        $node = $source.Index.NodeById[$closureId]
+        if ($node.structural_kind -ne 'ClosureExpr' -or
+            [string]$node.fields.operation.function_binding -ne $semanticBinding) { continue }
+        if (($catalog.ContainsKey($semanticBinding) -and $catalog[$semanticBinding].Root -eq $closureId) -or
+            ($coreIndex.Closures.ContainsKey($semanticBinding) -and $coreIndex.Closures[$semanticBinding] -eq $closureId)) {
+            $bindingLookup[$publicName] = $semanticBinding
         }
     }
 }
@@ -436,6 +531,29 @@ if ($EnablePebIntrinsic) { [void]$nativeRuntimeBindings.Add('ifree_peb_address')
 if ($EnableWin64CallIntrinsics) {
     foreach ($arity in 0..7) { [void]$nativeRuntimeBindings.Add('ifree_win64_call'+$arity) }
 }
+# A selected source unit can resolve to an implementation that already exists
+# in the core graph.  Its own callees still belong to the final closure and
+# must be checked: validating only the incoming source snapshot can falsely
+# report a closed dependency set when the retained core body calls an absent
+# helper (for example __index_get in matrixUASTKind).
+$coreDependencyBindings = [Collections.Generic.HashSet[string]]::new()
+$coreDependencyQueue = [Collections.Generic.Queue[string]]::new()
+foreach ($binding in $selected) {
+    if ($coreIndex.Closures.ContainsKey([string]$binding) -and !$replace.Contains([string]$binding)) {
+        $coreDependencyQueue.Enqueue([string]$binding)
+    }
+}
+while ($coreDependencyQueue.Count -gt 0) {
+    $coreBinding = $coreDependencyQueue.Dequeue()
+    if (!$coreDependencyBindings.Add($coreBinding)) { continue }
+    $coreIds = Get-SyntaxSubtree ([string]$coreIndex.Closures[$coreBinding]) $coreIndex
+    foreach ($callee in (Get-FunctionCalls $coreIds $coreIndex $bindingLookup)) {
+        $dependencyEdges.Add([pscustomobject]@{ caller=('core:' + $coreBinding); callee=[string]$callee })
+        if ($coreIndex.Closures.ContainsKey([string]$callee) -and !$replace.Contains([string]$callee)) {
+            $coreDependencyQueue.Enqueue([string]$callee)
+        }
+    }
+}
 if ($coreIndex.Closures.ContainsKey('compile_ifree_win64_call') -and $coreIndex.Closures.ContainsKey('compile_expr')) {
     $compileIds = Get-SyntaxSubtree ([string]$coreIndex.Closures['compile_expr']) $coreIndex
     $compileCalls = Get-FunctionCalls $compileIds $coreIndex $bindingLookup
@@ -472,6 +590,22 @@ foreach ($binding in $replace) {
 $outputNodes = [Collections.Generic.List[string]]::new()
 $outputRelations = [Collections.Generic.List[string]]::new()
 $usedIds = [Collections.Generic.HashSet[int]]::new()
+$coreCalleeIds = [Collections.Generic.HashSet[string]]::new()
+$coreCalleeCalls = @{}
+foreach ($callId in $coreIndex.ChildEdges.Keys) {
+    $callNode = $coreIndex.NodeById[[string]$callId]
+    if ($null -eq $callNode -or $callNode.structural_kind -ne 'CallExpr') { continue }
+    foreach ($edge in @($coreIndex.ChildEdges[$callId] | Sort-Object Ordinal)) {
+        if ($edge.Role -notin @('callee','function','target','value')) { continue }
+        $calleeNode = $coreIndex.NodeById[[string]$edge.Id]
+        if ($null -ne $calleeNode -and $calleeNode.structural_kind -eq 'SymbolRef') {
+            [void]$coreCalleeIds.Add([string]$edge.Id)
+            $coreCalleeCalls[[string]$edge.Id] = [string]$callId
+            break
+        }
+    }
+}
+$coreCallRebindings = [Collections.Generic.List[object]]::new()
 $maxId = 0
 $nextFreeId = 1
 $maxRootOrdinal = -1
@@ -492,7 +626,31 @@ foreach ($node in $core.Nodes) {
     [void]$usedIds.Add([int]$node.id)
     $maxId = [Math]::Max($maxId, [int]$node.id)
     if ($node.structural_kind -eq 'SymbolRef') {
-        $node.fields = Order-SymbolFields $node.fields
+        $fields = $node.fields
+        if ($coreCalleeIds.Contains([string]$node.id)) {
+            $calleeName = [string]$fields.name
+            if ($calleeName.StartsWith('native_var_')) { $calleeName = $calleeName.Substring('native_var_'.Length) }
+            if ($bindingLookup.ContainsKey($calleeName)) {
+                $resolvedBinding = [string]$bindingLookup[$calleeName]
+                # Compatibility aliases are needed for the imported closure's
+                # own dependency references. Applying them to every retained
+                # core call silently rewrites unrelated compiler paths (for
+                # example mem_load8 -> load8) whenever any unit is imported.
+                # Rebind retained core calls only when the user explicitly
+                # selected that binding for replacement.
+                $shouldRebindCoreCall = $replace.Contains($calleeName) -or $replace.Contains($resolvedBinding)
+                if ($shouldRebindCoreCall -and [string]$fields.name -ne $resolvedBinding) {
+                    $coreCallRebindings.Add([pscustomobject]@{
+                        call=[string]$coreCalleeCalls[[string]$node.id]
+                        callee_node=[string]$node.id
+                        from=[string]$fields.name
+                        to=$resolvedBinding
+                    })
+                    $fields.name = $resolvedBinding
+                }
+            }
+        }
+        $node.fields = Order-SymbolFields $fields
     }
     $outputNodes.Add(($node | ConvertTo-Json -Depth 100 -Compress))
 }
@@ -512,6 +670,10 @@ foreach ($relation in $core.Relations) {
 }
 
 $imported = [Collections.Generic.List[object]]::new()
+$preservedContracts = [Collections.Generic.List[object]]::new()
+$preservedContractRefs = [Collections.Generic.List[object]]::new()
+$preservedExports = [Collections.Generic.List[object]]::new()
+$sourceExtensionRecords = [Collections.Generic.List[object]]::new()
 foreach ($binding in @($selected | Sort-Object)) {
     if (!$catalog.ContainsKey($binding)) { continue }
     if ($coreIndex.Closures.ContainsKey($binding) -and !$replace.Contains($binding)) { continue }
@@ -572,6 +734,30 @@ foreach ($binding in @($selected | Sort-Object)) {
         $fields = (Order-SymbolFields ($fields | ConvertFrom-Json)) | ConvertTo-Json -Depth 100 -Compress
         $outputNodes.Add('{"id":' + $map[$oldId] + ',"structural_kind":' + ([string]$node.structural_kind | ConvertTo-Json -Compress) + ',"fields":' + $fields + '}')
     }
+    # The SWC native call walker consumes `call.calls` in addition to the
+    # structural callee child. Document-1 primitive units often carry only
+    # `syntax.child(role=callee)`. Project the explicit callee edge without
+    # changing its target or inferring a name-based target.
+    foreach ($callId in $candidate.Index.ChildEdges.Keys) {
+        $callNode = $candidate.Index.NodeById[[string]$callId]
+        if ($null -eq $callNode -or $callNode.structural_kind -ne 'CallExpr' -or !$map.ContainsKey([string]$callId)) { continue }
+        $hasCallEdge = $false
+        foreach ($relation in $candidate.Graph.Relations) {
+            if ($relation.kind -eq 'call.calls' -and [string]$relation.from -eq [string]$callId) { $hasCallEdge = $true; break }
+        }
+        if ($hasCallEdge) { continue }
+        foreach ($edge in @($candidate.Index.ChildEdges[[string]$callId] | Sort-Object Ordinal)) {
+            if ($edge.Role -notin @('callee','function','target','value') -or !$map.ContainsKey([string]$edge.Id)) { continue }
+            $calleeNode = $candidate.Index.NodeById[[string]$edge.Id]
+            if ($null -eq $calleeNode -or $calleeNode.structural_kind -ne 'SymbolRef') { continue }
+            $callRelation = [ordered]@{
+                kind='call.calls'; from=[int]$map[[string]$callId]
+                to=[ordered]@{domain='node';id=[string]$map[[string]$edge.Id]}
+            }
+            $outputRelations.Add(($callRelation | ConvertTo-Json -Depth 20 -Compress))
+            break
+        }
+    }
     $relationCount = 0
     foreach ($relation in $candidate.Graph.Relations) {
         $from = [string]$relation.from
@@ -583,6 +769,31 @@ foreach ($binding in @($selected | Sort-Object)) {
         $json = [regex]::Replace($json, '"from":' + [regex]::Escape($from) + '(?=,)', '"from":' + $map[$from], 1)
         $outputRelations.Add($json)
         $relationCount++
+    }
+    $contractIds = [Collections.Generic.HashSet[string]]::new()
+    foreach ($contract in @($candidate.Graph.Extensions.semantic_document_1_contracts)) {
+        if ($null -eq $contract -or [string]$contract.function_binding -ne $binding) { continue }
+        [void]$contractIds.Add([string]$contract.id)
+        $preservedContracts.Add($contract)
+    }
+    foreach ($reference in @($candidate.Graph.Extensions.contract_refs)) {
+        if ($null -eq $reference -or !$contractIds.Contains([string]$reference.contract_id)) { continue }
+        $oldRefId = [string]$reference.node_id
+        if (!$map.ContainsKey($oldRefId)) { throw "Contract reference for '$binding' points outside its imported closure." }
+        $preservedContractRefs.Add([pscustomobject]@{ node_id=[int]$map[$oldRefId]; contract_id=[string]$reference.contract_id })
+    }
+    foreach ($export in @($candidate.Graph.Extensions.semantic_exports)) {
+        if ($null -eq $export -or [string]$export.binding -ne $binding) { continue }
+        $oldExportId = [string]$export.closure_id
+        if (!$map.ContainsKey($oldExportId)) { throw "Semantic export for '$binding' points outside its imported closure." }
+        $preservedExports.Add([pscustomobject]@{ name=[string]$export.name; binding=$binding; closure_id=[int]$map[$oldExportId] })
+    }
+    if ($null -ne $candidate.Graph.Extensions) {
+        $sourceExtensionRecords.Add([pscustomobject]@{
+            binding=$binding; source=$candidate.Path
+            source_extensions=$candidate.Graph.Extensions
+            node_id_map=$map
+        })
     }
     $maxRootOrdinal++
     $rootRelation = [ordered]@{
@@ -614,6 +825,12 @@ $builder = [Text.StringBuilder]::new()
 [void]$builder.AppendLine('relations=[')
 [void]$builder.AppendLine(($outputRelations -join ",`n"))
 [void]$builder.AppendLine(']')
+[void]$builder.AppendLine(('extensions=' + ([ordered]@{
+    semantic_document_1_contracts=@($preservedContracts)
+    contract_refs=@($preservedContractRefs)
+    semantic_exports=@($preservedExports)
+    imported_unit_extensions=@($sourceExtensionRecords)
+} | ConvertTo-Json -Depth 100 -Compress)))
 [void]$builder.AppendLine('metadata={"swc.import":"semantic-function-closure.v1","relation_policy":"all_internal_relations_preserved"}')
 [void]$builder.AppendLine('}')
 
@@ -630,8 +847,10 @@ $report = [ordered]@{
     unresolved_callees=@($unresolvedCallees | Sort-Object)
     replaced_bindings=@($replace | Sort-Object); imported=$imported
     dependency_edges=$dependencyEdges; native_runtime_bindings=@($nativeRuntimeBindings | Sort-Object)
+    core_call_rebindings=@($coreCallRebindings)
     output_nodes=$outputNodes.Count
     output_relations=$outputRelations.Count
+    explicit_callee_projections=@($calleeProjections)
 }
 $reportParent = Split-Path -Parent $ReportPath
 if ($reportParent) { New-Item -ItemType Directory -Force -Path $reportParent | Out-Null }

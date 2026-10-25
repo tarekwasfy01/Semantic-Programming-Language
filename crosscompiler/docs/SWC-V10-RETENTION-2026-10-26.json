@@ -1,0 +1,12 @@
+{
+  "base_nodes": 33927,
+  "base_relations": 44117,
+  "merged_nodes": 42963,
+  "merged_relations": 53371,
+  "added_closures": 635,
+  "changed_base_nodes": 0,
+  "lost_base_relations": 0,
+  "duplicate_node_ids": 0,
+  "explicit_call_relations_added_after_import": 1,
+  "final_relations": 53372
+}
