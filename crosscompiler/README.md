@@ -1,27 +1,24 @@
 # SWC crosscompiler
 
-The current Windows snapshot was updated on 2026-10-26 in the existing repository layout.
+Current Windows selfhost, validated 2026-10-26.
 
-## Validated Windows build
+- `bin/swc.exe`: 407,552 bytes; SHA-256 `B37F784751F2909B357DD068F70598F3A26E839863B9AEDA30EDF1D0D921902A`.
+- Complete source graph: `source/windows/se/swc-selfhost-windows.se`.
+- `manifests/swc.smod` uses a repository-relative source path and its matching SHA-256.
+- The active compiler, Stage 2 and Stage 3 reproduce the same bytes. The native return42 probe exits 42.
+- The graph includes the V10 compiler closures, Go helper units V11-V16 and 19 V17 contract checker closures. Original Go helper units are stored with version prefixes in the existing `source/shared/se/units/transpiler-go` directory. Contract overlays are evidence, not executable implementations.
+- Six already-lowered Core Boolean fixtures pass. Raw rich Boolean lowering and the Go transpile CLI remain incomplete.
 
-- Executable: bin/swc.exe — 343,552 bytes, SHA256 ED889C815874AF4E057A959E6D9793E6A44D0520FB70E829FC202240757EDF5B.
-- Source: source/windows/se/swc-selfhost-windows.se — 11175384 bytes, SHA256 0696AD18A1352831D428DDA9D7D3980634FFE8C8BEEC1091A36DCCEEA6C22996.
-- Manifest: manifests/swc.smod selects the source with a repository-relative path and matching hash.
-- All 635 V10 function closures are compiled into native code. Original units are grouped under source/shared/se/units/backend/v10.
-- Stage 2 and Stage 3 are byte-identical; Stage 3 was built from SMOD with --embed-all.
-- 33 native checks passed, including lazy conditional branches, V10 family calls, aliases, regressions and malformed-input rejection.
-- The PE has no static import directory and no appended source payload. Code and constants use the existing .text section.
+## Reproduce from the repository root
 
-## Reproduce the selfhost
+```powershell
+./crosscompiler/bin/swc.exe compile ./crosscompiler/manifests/swc.smod -o ./swc-stage2.exe --embed-all
+./swc-stage2.exe compile ./crosscompiler/manifests/swc.smod -o ./swc-stage3.exe --embed-all
+Get-FileHash ./crosscompiler/bin/swc.exe, ./swc-stage2.exe, ./swc-stage3.exe
+```
 
-From the repository root in PowerShell:
+All three hashes must match the hash above. Generated proof executables are temporary.
 
-    ./crosscompiler/bin/swc.exe compile ./crosscompiler/manifests/swc.smod -o ./swc-stage2.exe --embed-all
-    ./swc-stage2.exe compile ./crosscompiler/manifests/swc.smod -o ./swc-stage3.exe --embed-all
-    Get-FileHash ./swc-stage2.exe, ./swc-stage3.exe -Algorithm SHA256
+See [selfhost validation](docs/selfhost_validation.json), [current UAST status](docs/SWC-UAST-V17-V18-STATUS-2026-10-26.md), [Go helper integration and CLI limitations](docs/SWC-GO-FRONTEND-V11-V16-2026-10-26.md), and [native Core Boolean results](docs/SWC-UAST-V18-SWC-NATIVE-REPORT-2026-10-26.json).
 
-Both generated files must match the executable hash above. Remove generated proof executables after checking them.
-
-See [integration details](docs/SWC-V10-INTEGRATION-2026-10-26.md), [selfhost evidence](docs/SWC-V10-VALIDATION-2026-10-26.json), and [native checks](docs/SWC-V10-NATIVE-CHECKS-2026-10-26.json).
-
-These results prove this Windows compiler snapshot and the tested inputs. They do not establish complete native coverage for every UAST kind or full Go-transpiler CLI parity. Linux and macOS artifacts retain their previous validation status.
+Superseded Windows binaries, manifests, sources and historical crosscompiler documents are preserved in the existing `../old_compiler_artifacts/SWC` archive. Linux and macOS artifacts retain their previous validation status; this update validates the Windows selfhost only.

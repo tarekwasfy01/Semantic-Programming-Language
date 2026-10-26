@@ -1,0 +1,757 @@
+[
+  {
+    "id": "se-v16:go16_add",
+    "binding": "go16_add",
+    "closure_node_id": 1,
+    "group": "arith",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64, a+b in i64 range",
+    "ensures": "a+b",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_sub",
+    "binding": "go16_sub",
+    "closure_node_id": 9,
+    "group": "arith",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64, a-b in i64 range",
+    "ensures": "a-b",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_mul",
+    "binding": "go16_mul",
+    "closure_node_id": 17,
+    "group": "arith",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64, a*b in i64 range",
+    "ensures": "a*b",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_div",
+    "binding": "go16_div",
+    "closure_node_id": 25,
+    "group": "arith",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "b != 0; !(a==INT64_MIN && b==-1)",
+    "ensures": "Go integer quotient truncating toward 0",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_rem",
+    "binding": "go16_rem",
+    "closure_node_id": 33,
+    "group": "arith",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "b != 0",
+    "ensures": "Go signed remainder",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_neg",
+    "binding": "go16_neg",
+    "closure_node_id": 41,
+    "group": "arith",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "a != INT64_MIN",
+    "ensures": "-a",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_positive",
+    "binding": "go16_positive",
+    "closure_node_id": 48,
+    "group": "arith",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "any i64",
+    "ensures": "identity",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_inc",
+    "binding": "go16_inc",
+    "closure_node_id": 53,
+    "group": "arith",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "a != INT64_MAX",
+    "ensures": "a+1",
+    "depends_on": [
+      "go16_add"
+    ],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_dec",
+    "binding": "go16_dec",
+    "closure_node_id": 61,
+    "group": "arith",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "a != INT64_MIN",
+    "ensures": "a-1",
+    "depends_on": [
+      "go16_sub"
+    ],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_eq",
+    "binding": "go16_eq",
+    "closure_node_id": 69,
+    "group": "compare",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64 operands",
+    "ensures": "bool i64 (0 or 1)",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_ne",
+    "binding": "go16_ne",
+    "closure_node_id": 77,
+    "group": "compare",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64 operands",
+    "ensures": "bool i64 (0 or 1)",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_lt",
+    "binding": "go16_lt",
+    "closure_node_id": 85,
+    "group": "compare",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64 operands",
+    "ensures": "bool i64 (0 or 1)",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_le",
+    "binding": "go16_le",
+    "closure_node_id": 93,
+    "group": "compare",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64 operands",
+    "ensures": "bool i64 (0 or 1)",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_gt",
+    "binding": "go16_gt",
+    "closure_node_id": 101,
+    "group": "compare",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64 operands",
+    "ensures": "bool i64 (0 or 1)",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_ge",
+    "binding": "go16_ge",
+    "closure_node_id": 109,
+    "group": "compare",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64 operands",
+    "ensures": "bool i64 (0 or 1)",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_and",
+    "binding": "go16_and",
+    "closure_node_id": 117,
+    "group": "bits",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64, two complement",
+    "ensures": "exact bitwise result",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_or",
+    "binding": "go16_or",
+    "closure_node_id": 125,
+    "group": "bits",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64, two complement",
+    "ensures": "exact bitwise result",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_xor",
+    "binding": "go16_xor",
+    "closure_node_id": 133,
+    "group": "bits",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64, two complement",
+    "ensures": "exact bitwise result",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_andnot",
+    "binding": "go16_andnot",
+    "closure_node_id": 141,
+    "group": "bits",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64, two complement",
+    "ensures": "exact bitwise result",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_not",
+    "binding": "go16_not",
+    "closure_node_id": 151,
+    "group": "bool",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "a,b bool_i64 for logical operators",
+    "ensures": "Go boolean result represented as i64",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_bool",
+    "binding": "go16_bool",
+    "closure_node_id": 157,
+    "group": "bool",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "a,b bool_i64 for logical operators",
+    "ensures": "Go boolean result represented as i64",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_and_bool",
+    "binding": "go16_and_bool",
+    "closure_node_id": 164,
+    "group": "bool",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "a,b bool_i64 for logical operators",
+    "ensures": "Go boolean result represented as i64",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_or_bool",
+    "binding": "go16_or_bool",
+    "closure_node_id": 175,
+    "group": "bool",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "a,b bool_i64 for logical operators",
+    "ensures": "Go boolean result represented as i64",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_select",
+    "binding": "go16_select",
+    "closure_node_id": 186,
+    "group": "flow",
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "arity": 3,
+    "requires": "condition boolean i64",
+    "ensures": "then value or else value",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_clamp",
+    "binding": "go16_clamp",
+    "closure_node_id": 196,
+    "group": "flow",
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "arity": 3,
+    "requires": "b<=c signed i64",
+    "ensures": "min(max(a,b),c)",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_min",
+    "binding": "go16_min",
+    "closure_node_id": 213,
+    "group": "flow",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64",
+    "ensures": "minimum",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_max",
+    "binding": "go16_max",
+    "closure_node_id": 224,
+    "group": "flow",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "signed i64",
+    "ensures": "maximum",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_pow2_0_31",
+    "binding": "go16_pow2_0_31",
+    "closure_node_id": 235,
+    "group": "shift",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "0<=a<=31",
+    "ensures": "2^a or -1",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_shl_nonneg",
+    "binding": "go16_shl_nonneg",
+    "closure_node_id": 400,
+    "group": "shift",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "0<=a<=2^30-1, 0<=b<=31, product <=INT64_MAX",
+    "ensures": "a<<b, -1 invalid",
+    "depends_on": [
+      "go16_pow2_0_31"
+    ],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_shr_nonneg",
+    "binding": "go16_shr_nonneg",
+    "closure_node_id": 427,
+    "group": "shift",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "0<=a<=2^30-1,0<=b<=31",
+    "ensures": "a>>b, -1 invalid",
+    "depends_on": [
+      "go16_pow2_0_31"
+    ],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_int64_fits",
+    "binding": "go16_int64_fits",
+    "closure_node_id": 454,
+    "group": "typing",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "64-bit argument already representable",
+    "ensures": "1",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_bool_normalize",
+    "binding": "go16_bool_normalize",
+    "closure_node_id": 459,
+    "group": "typing",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "numeric i64",
+    "ensures": "normalized bool_i64",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_signed_range8",
+    "binding": "go16_signed_range8",
+    "closure_node_id": 466,
+    "group": "typing",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "i64",
+    "ensures": "fits Go int8",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_signed_range16",
+    "binding": "go16_signed_range16",
+    "closure_node_id": 477,
+    "group": "typing",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "i64",
+    "ensures": "fits Go int16",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_signed_range32",
+    "binding": "go16_signed_range32",
+    "closure_node_id": 488,
+    "group": "typing",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "i64",
+    "ensures": "fits Go int32",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_uint8_range",
+    "binding": "go16_uint8_range",
+    "closure_node_id": 499,
+    "group": "typing",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "i64",
+    "ensures": "fits Go uint8",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_uint16_range",
+    "binding": "go16_uint16_range",
+    "closure_node_id": 510,
+    "group": "typing",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "i64",
+    "ensures": "fits Go uint16",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_uint32_range",
+    "binding": "go16_uint32_range",
+    "closure_node_id": 521,
+    "group": "typing",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "i64",
+    "ensures": "fits Go uint32",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_bool_from_equal",
+    "binding": "go16_bool_from_equal",
+    "closure_node_id": 532,
+    "group": "typing",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "i64",
+    "ensures": "bool_i64",
+    "depends_on": [
+      "go16_eq"
+    ],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_bool_from_less",
+    "binding": "go16_bool_from_less",
+    "closure_node_id": 541,
+    "group": "typing",
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "arity": 2,
+    "requires": "i64",
+    "ensures": "bool_i64",
+    "depends_on": [
+      "go16_lt"
+    ],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_is_binary_digit",
+    "binding": "go16_is_binary_digit",
+    "closure_node_id": 550,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "is radix digit",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_binary_digit_value",
+    "binding": "go16_binary_digit_value",
+    "closure_node_id": 561,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "digit or -1",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_is_octal_digit",
+    "binding": "go16_is_octal_digit",
+    "closure_node_id": 577,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "is radix digit",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_octal_digit_value",
+    "binding": "go16_octal_digit_value",
+    "closure_node_id": 588,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "digit or -1",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_is_decimal_digit",
+    "binding": "go16_is_decimal_digit",
+    "closure_node_id": 604,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "is radix digit",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_decimal_digit_value",
+    "binding": "go16_decimal_digit_value",
+    "closure_node_id": 615,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "digit or -1",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_hex_digit_value",
+    "binding": "go16_hex_digit_value",
+    "closure_node_id": 631,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "hex digit 0..15 or -1",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_accumulate_radix",
+    "binding": "go16_accumulate_radix",
+    "closure_node_id": 669,
+    "group": "literal",
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "arity": 3,
+    "requires": "b in {2,8,10,16},c valid digit, result fits i64",
+    "ensures": "accumulator for integer literal",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_ascii_underscore",
+    "binding": "go16_ascii_underscore",
+    "closure_node_id": 680,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "true on underscore",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_is_space",
+    "binding": "go16_is_space",
+    "closure_node_id": 687,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "Go ASCII whitespace",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  },
+  {
+    "id": "se-v16:go16_is_digit",
+    "binding": "go16_is_digit",
+    "closure_node_id": 706,
+    "group": "literal",
+    "parameters": [
+      "a"
+    ],
+    "arity": 1,
+    "requires": "ASCII byte",
+    "ensures": "decimal digit",
+    "depends_on": [],
+    "status": "executable Core expression in bounded domain"
+  }
+]

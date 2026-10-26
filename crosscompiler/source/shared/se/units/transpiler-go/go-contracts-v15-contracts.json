@@ -1,0 +1,1361 @@
+[
+  {
+    "id": "se-v15:go15_bin_digit",
+    "function_binding": "go15_bin_digit",
+    "closure_node_id": 1,
+    "family": "go15.number",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "a is a source byte",
+    "ensures": "byte belongs to the digit set",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_oct_digit",
+    "function_binding": "go15_oct_digit",
+    "closure_node_id": 12,
+    "family": "go15.number",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "a is a source byte",
+    "ensures": "byte belongs to the digit set",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_decimal_digit",
+    "function_binding": "go15_decimal_digit",
+    "closure_node_id": 23,
+    "family": "go15.number",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "a is a source byte",
+    "ensures": "byte belongs to the digit set",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_hex_digit",
+    "function_binding": "go15_hex_digit",
+    "closure_node_id": 34,
+    "family": "go15.number",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII byte",
+    "ensures": "hex digit, case insensitive",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_decimal_digit"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_hex_value",
+    "function_binding": "go15_hex_value",
+    "closure_node_id": 59,
+    "family": "go15.number",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII byte",
+    "ensures": "0..15 for hex, -1 invalid",
+    "returns": "i64",
+    "dependencies": [
+      "go15_decimal_digit"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_binary_value",
+    "function_binding": "go15_binary_value",
+    "closure_node_id": 93,
+    "family": "go15.number",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII byte",
+    "ensures": "0..1, otherwise -1",
+    "returns": "i64",
+    "dependencies": [
+      "go15_bin_digit"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_octal_value",
+    "function_binding": "go15_octal_value",
+    "closure_node_id": 105,
+    "family": "go15.number",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII byte",
+    "ensures": "0..7, otherwise -1",
+    "returns": "i64",
+    "dependencies": [
+      "go15_oct_digit"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_decimal_value",
+    "function_binding": "go15_decimal_value",
+    "closure_node_id": 117,
+    "family": "go15.number",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII byte",
+    "ensures": "0..9, otherwise -1",
+    "returns": "i64",
+    "dependencies": [
+      "go15_decimal_digit"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_radix_digit",
+    "function_binding": "go15_radix_digit",
+    "closure_node_id": 129,
+    "family": "go15.number",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "b in {2,8,10,16} (else invalid)",
+    "ensures": "digit value or -1",
+    "returns": "i64",
+    "dependencies": [
+      "go15_binary_value",
+      "go15_decimal_value",
+      "go15_hex_value",
+      "go15_octal_value"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_accumulate_digit",
+    "function_binding": "go15_accumulate_digit",
+    "closure_node_id": 163,
+    "family": "go15.number",
+    "arity": 4,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "requires": "0<=a<=1e6; d>=a; c valid digit",
+    "ensures": "return a*base+c or -1; caller checks larger overflows",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_decimal_pair",
+    "function_binding": "go15_decimal_pair",
+    "closure_node_id": 206,
+    "family": "go15.number",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "two ASCII bytes",
+    "ensures": "integer value 0..99, -1 invalid",
+    "returns": "i64",
+    "dependencies": [
+      "go15_decimal_digit",
+      "go15_decimal_value"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_decimal_triple",
+    "function_binding": "go15_decimal_triple",
+    "closure_node_id": 231,
+    "family": "go15.number",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "three ASCII bytes",
+    "ensures": "integer 0..999, -1 invalid",
+    "returns": "i64",
+    "dependencies": [
+      "go15_decimal_digit",
+      "go15_decimal_pair",
+      "go15_decimal_value"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_numeric_prefix",
+    "function_binding": "go15_numeric_prefix",
+    "closure_node_id": 262,
+    "family": "go15.number",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "two ASCII bytes",
+    "ensures": "recognize Go base prefix (16/2/8) or decimal 10",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_is_underscore",
+    "function_binding": "go15_is_underscore",
+    "closure_node_id": 319,
+    "family": "go15.number",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII byte",
+    "ensures": "Go numeric digit separator",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_digit_or_underscore",
+    "function_binding": "go15_digit_or_underscore",
+    "closure_node_id": 326,
+    "family": "go15.number",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "b valid radix",
+    "ensures": "1 for underscore or radix digit",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_radix_digit"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_cont_byte",
+    "function_binding": "go15_cont_byte",
+    "closure_node_id": 343,
+    "family": "go15.utf8",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "0<=a<=255",
+    "ensures": "continuation byte",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_lead2",
+    "function_binding": "go15_lead2",
+    "closure_node_id": 354,
+    "family": "go15.utf8",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "0<=a<=255",
+    "ensures": "valid 2-byte lead",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_lead3",
+    "function_binding": "go15_lead3",
+    "closure_node_id": 365,
+    "family": "go15.utf8",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "0<=a<=255",
+    "ensures": "3-byte lead",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_lead4",
+    "function_binding": "go15_lead4",
+    "closure_node_id": 376,
+    "family": "go15.utf8",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "0<=a<=255",
+    "ensures": "4-byte lead",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_valid2",
+    "function_binding": "go15_valid2",
+    "closure_node_id": 387,
+    "family": "go15.utf8",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are byte values",
+    "ensures": "valid 2-byte UTF8 sequence",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_cont_byte",
+      "go15_lead2"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_valid3",
+    "function_binding": "go15_valid3",
+    "closure_node_id": 401,
+    "family": "go15.utf8",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "a,b,c are byte values",
+    "ensures": "valid shortest 3-byte UTF8 non-surrogate sequence",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_cont_byte",
+      "go15_lead3"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_valid4",
+    "function_binding": "go15_valid4",
+    "closure_node_id": 438,
+    "family": "go15.utf8",
+    "arity": 4,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "requires": "a,b,c,d bytes",
+    "ensures": "valid 4-byte UTF8 <= U+10ffff",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_cont_byte",
+      "go15_lead4"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_utf8_bom",
+    "function_binding": "go15_utf8_bom",
+    "closure_node_id": 480,
+    "family": "go15.utf8",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "bytes",
+    "ensures": "UTF8 BOM",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_valid_ascii",
+    "function_binding": "go15_valid_ascii",
+    "closure_node_id": 499,
+    "family": "go15.utf8",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "0<=a<=255",
+    "ensures": "one byte ASCII",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_utf8_seq_length",
+    "function_binding": "go15_utf8_seq_length",
+    "closure_node_id": 510,
+    "family": "go15.utf8",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "0<=a<=255",
+    "ensures": "number of bytes or -1",
+    "returns": "i64",
+    "dependencies": [
+      "go15_lead2",
+      "go15_lead3",
+      "go15_lead4",
+      "go15_valid_ascii"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_decode2",
+    "function_binding": "go15_decode2",
+    "closure_node_id": 535,
+    "family": "go15.utf8",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "bytes",
+    "ensures": "Unicode scalar or -1",
+    "returns": "i64",
+    "dependencies": [
+      "go15_valid2"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_decode3",
+    "function_binding": "go15_decode3",
+    "closure_node_id": 555,
+    "family": "go15.utf8",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "bytes",
+    "ensures": "Unicode scalar or -1",
+    "returns": "i64",
+    "dependencies": [
+      "go15_valid3"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_decode4",
+    "function_binding": "go15_decode4",
+    "closure_node_id": 583,
+    "family": "go15.utf8",
+    "arity": 4,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "requires": "bytes",
+    "ensures": "Unicode scalar or -1",
+    "returns": "i64",
+    "dependencies": [
+      "go15_valid4"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_operator_star",
+    "function_binding": "go15_operator_star",
+    "closure_node_id": 619,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "single ASCII token",
+    "ensures": "operator star",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_operator_slash",
+    "function_binding": "go15_operator_slash",
+    "closure_node_id": 626,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "single ASCII token",
+    "ensures": "operator slash",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_operator_percent",
+    "function_binding": "go15_operator_percent",
+    "closure_node_id": 633,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "single ASCII token",
+    "ensures": "operator percent",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_operator_plus",
+    "function_binding": "go15_operator_plus",
+    "closure_node_id": 640,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "single ASCII token",
+    "ensures": "operator plus",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_operator_minus",
+    "function_binding": "go15_operator_minus",
+    "closure_node_id": 647,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "single ASCII token",
+    "ensures": "operator minus",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_operator_ampersand",
+    "function_binding": "go15_operator_ampersand",
+    "closure_node_id": 654,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "single ASCII token",
+    "ensures": "operator ampersand",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_operator_caret",
+    "function_binding": "go15_operator_caret",
+    "closure_node_id": 661,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "single ASCII token",
+    "ensures": "operator caret",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_operator_pipe",
+    "function_binding": "go15_operator_pipe",
+    "closure_node_id": 668,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "single ASCII token",
+    "ensures": "operator pipe",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_binary_precedence",
+    "function_binding": "go15_binary_precedence",
+    "closure_node_id": 675,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII token subset",
+    "ensures": "precedence 4 additive/5 multiplicative; -1 unsupported",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_pratt_left_binding",
+    "function_binding": "go15_pratt_left_binding",
+    "closure_node_id": 718,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "supported binary op",
+    "ensures": "left binding power 2*precedence",
+    "returns": "i64",
+    "dependencies": [
+      "go15_binary_precedence"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_pratt_right_binding",
+    "function_binding": "go15_pratt_right_binding",
+    "closure_node_id": 734,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "supported binary op",
+    "ensures": "right binding power = lbp+1",
+    "returns": "i64",
+    "dependencies": [
+      "go15_binary_precedence"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_should_reduce",
+    "function_binding": "go15_should_reduce",
+    "closure_node_id": 752,
+    "family": "go15.parser",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a=current op lbp, b=minimum bound",
+    "ensures": "Pratt reduction decision",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_can_parse_binary",
+    "function_binding": "go15_can_parse_binary",
+    "closure_node_id": 770,
+    "family": "go15.parser",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a ASCII operator, b minimum binding power",
+    "ensures": "Pratt parser accepts binary op at bound",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_binary_precedence",
+      "go15_pratt_left_binding"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_is_open_delim",
+    "function_binding": "go15_is_open_delim",
+    "closure_node_id": 788,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII byte",
+    "ensures": "opening delimiter",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_is_close_delim",
+    "function_binding": "go15_is_close_delim",
+    "closure_node_id": 805,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII byte",
+    "ensures": "closing delimiter",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_match_delim",
+    "function_binding": "go15_match_delim",
+    "closure_node_id": 822,
+    "family": "go15.parser",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "ASCII delimiter pair",
+    "ensures": "matching bracket pair",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_delim_depth_delta",
+    "function_binding": "go15_delim_depth_delta",
+    "closure_node_id": 858,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII byte",
+    "ensures": "parser delimiter depth increment",
+    "returns": "i64",
+    "dependencies": [
+      "go15_is_close_delim",
+      "go15_is_open_delim"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_balanced_depth_step",
+    "function_binding": "go15_balanced_depth_step",
+    "closure_node_id": 873,
+    "family": "go15.parser",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a>=0 current depth",
+    "ensures": "updated depth or -1 for early close",
+    "returns": "i64",
+    "dependencies": [
+      "go15_delim_depth_delta"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_can_insert_semicolon",
+    "function_binding": "go15_can_insert_semicolon",
+    "closure_node_id": 892,
+    "family": "go15.parser",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a=Go token class ID 1..15, b=LF or EOF",
+    "ensures": "semicolon decision, V14 token ABI",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_token_is_terminator",
+    "function_binding": "go15_token_is_terminator",
+    "closure_node_id": 916,
+    "family": "go15.parser",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "ASCII token or EOF=-1",
+    "ensures": "semicolon, close brace or EOF",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_closure_body_edge_count_ok",
+    "function_binding": "go15_closure_body_edge_count_ok",
+    "closure_node_id": 933,
+    "family": "go15.uast",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "a is count of given relation role",
+    "ensures": "exactly one edge required",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_return_expr_edge_count_ok",
+    "function_binding": "go15_return_expr_edge_count_ok",
+    "closure_node_id": 940,
+    "family": "go15.uast",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "a is count of given relation role",
+    "ensures": "exactly one edge required",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_call_callee_edge_count_ok",
+    "function_binding": "go15_call_callee_edge_count_ok",
+    "closure_node_id": 947,
+    "family": "go15.uast",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "a is count of given relation role",
+    "ensures": "exactly one edge required",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_op_left_edge_count_ok",
+    "function_binding": "go15_op_left_edge_count_ok",
+    "closure_node_id": 954,
+    "family": "go15.uast",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "a is count of given relation role",
+    "ensures": "exactly one edge required",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_op_right_edge_count_ok",
+    "function_binding": "go15_op_right_edge_count_ok",
+    "closure_node_id": 961,
+    "family": "go15.uast",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "a is count of given relation role",
+    "ensures": "exactly one edge required",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_parameters_match_arguments",
+    "function_binding": "go15_parameters_match_arguments",
+    "closure_node_id": 968,
+    "family": "go15.uast",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b>=0",
+    "ensures": "call arity matches closure arity",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_unique_binding",
+    "function_binding": "go15_unique_binding",
+    "closure_node_id": 976,
+    "family": "go15.uast",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "a=count of bindings by name",
+    "ensures": "unique closure name",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_complete_binary_op",
+    "function_binding": "go15_complete_binary_op",
+    "closure_node_id": 983,
+    "family": "go15.uast",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "relation counts >=0",
+    "ensures": "two operands each exactly once",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_op_left_edge_count_ok",
+      "go15_op_right_edge_count_ok"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_call_target_closed",
+    "function_binding": "go15_call_target_closed",
+    "closure_node_id": 997,
+    "family": "go15.uast",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "a callee-count b target-count c arity",
+    "ensures": "callee and resolved target present",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_call_callee_edge_count_ok",
+      "go15_parameters_match_arguments"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_complete_closure",
+    "function_binding": "go15_complete_closure",
+    "closure_node_id": 1017,
+    "family": "go15.uast",
+    "arity": 4,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "requires": "a body count b name binding count; c,d nonnegative counts",
+    "ensures": "structurally complete closure predicate",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_closure_body_edge_count_ok",
+      "go15_unique_binding"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_node_ref_in_bounds",
+    "function_binding": "go15_node_ref_in_bounds",
+    "closure_node_id": 1041,
+    "family": "go15.uast",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "b positive node count",
+    "ensures": "target node ref within bounds",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_graph_edge_valid",
+    "function_binding": "go15_graph_edge_valid",
+    "closure_node_id": 1055,
+    "family": "go15.uast",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "a,b ids c total count",
+    "ensures": "both graph endpoints valid",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_node_ref_in_bounds"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_can_link_closure",
+    "function_binding": "go15_can_link_closure",
+    "closure_node_id": 1072,
+    "family": "go15.uast",
+    "arity": 5,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "requires": "a body b binding c params d locals e unresolved refs",
+    "ensures": "safe structural closure linking predicate",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_complete_closure"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_align16",
+    "function_binding": "go15_align16",
+    "closure_node_id": 1092,
+    "family": "go15.native",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "0<=a<=1e6",
+    "ensures": "16-byte aligned ceiling",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_align512",
+    "function_binding": "go15_align512",
+    "closure_node_id": 1103,
+    "family": "go15.native",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "0<=a<=1e6",
+    "ensures": "512-byte PE file aligned ceiling",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_align4096",
+    "function_binding": "go15_align4096",
+    "closure_node_id": 1114,
+    "family": "go15.native",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "0<=a<=1e6",
+    "ensures": "4096-byte section alignment",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_rel32_delta",
+    "function_binding": "go15_rel32_delta",
+    "closure_node_id": 1125,
+    "family": "go15.native",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "addresses are bounded i64",
+    "ensures": "target-(source+instruction_length)",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_rel32_fits",
+    "function_binding": "go15_rel32_fits",
+    "closure_node_id": 1136,
+    "family": "go15.native",
+    "arity": 1,
+    "parameters": [
+      "a"
+    ],
+    "requires": "i64 input",
+    "ensures": "PC relative displacement fits int32",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_rel32_safe",
+    "function_binding": "go15_rel32_safe",
+    "closure_node_id": 1147,
+    "family": "go15.native",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "nonoverflowing target/src",
+    "ensures": "valid rel32 target",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go15_rel32_delta",
+      "go15_rel32_fits"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_coff_reloc_record_ok",
+    "function_binding": "go15_coff_reloc_record_ok",
+    "closure_node_id": 1160,
+    "family": "go15.native",
+    "arity": 5,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "requires": "a RVA b symbolidx c type d secidx e reserved",
+    "ensures": "COFF relocation fields encodable",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_win64_call_frame",
+    "function_binding": "go15_win64_call_frame",
+    "closure_node_id": 1205,
+    "family": "go15.native",
+    "arity": 5,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "requires": "a argcount <=6 b,c saved slots d,e local bytes",
+    "ensures": "total aligned call frame bytes (conservative)",
+    "returns": "i64",
+    "dependencies": [
+      "go15_align16"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_pe_section_ok",
+    "function_binding": "go15_pe_section_ok",
+    "closure_node_id": 1266,
+    "family": "go15.native",
+    "arity": 6,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "requires": "bounded RVA rawPtr virtualSize rawSize sectAlign fileAlign",
+    "ensures": "PE section alignment + size guard",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_pe_sections_nonoverlap",
+    "function_binding": "go15_pe_sections_nonoverlap",
+    "closure_node_id": 1332,
+    "family": "go15.native",
+    "arity": 6,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "requires": "a,b first [start,len], c,d second; e,f reserved",
+    "ensures": "nonoverlapping PE sections",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_pe_code_in_image",
+    "function_binding": "go15_pe_code_in_image",
+    "closure_node_id": 1354,
+    "family": "go15.native",
+    "arity": 6,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "requires": "a code RVA, b imageEnd, c codeEnd, d codeEnd2, e,f metadata",
+    "ensures": "bounded section layout",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_win64_six_arg_mix",
+    "function_binding": "go15_win64_six_arg_mix",
+    "closure_node_id": 1388,
+    "family": "go15.native",
+    "arity": 6,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "requires": "small signed values avoiding overflow",
+    "ensures": "weighted checksum of six distinct arguments",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_win64_five_arg_mix",
+    "function_binding": "go15_win64_five_arg_mix",
+    "closure_node_id": 1420,
+    "family": "go15.native",
+    "arity": 5,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e"
+    ],
+    "requires": "small signed values",
+    "ensures": "weighted checksum of five args",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  },
+  {
+    "id": "se-v15:go15_win64_nested_arg_mix",
+    "function_binding": "go15_win64_nested_arg_mix",
+    "closure_node_id": 1447,
+    "family": "go15.native",
+    "arity": 6,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "requires": "small signed values",
+    "ensures": "nested 6->5 argument ABI test",
+    "returns": "i64",
+    "dependencies": [
+      "go15_win64_five_arg_mix"
+    ],
+    "notes": "",
+    "implementation": "Core-SE expression body (no host import)"
+  }
+]

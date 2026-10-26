@@ -1,0 +1,26 @@
+[
+  {
+    "from": "go16_inc",
+    "to": "go16_add"
+  },
+  {
+    "from": "go16_dec",
+    "to": "go16_sub"
+  },
+  {
+    "from": "go16_shl_nonneg",
+    "to": "go16_pow2_0_31"
+  },
+  {
+    "from": "go16_shr_nonneg",
+    "to": "go16_pow2_0_31"
+  },
+  {
+    "from": "go16_bool_from_equal",
+    "to": "go16_eq"
+  },
+  {
+    "from": "go16_bool_from_less",
+    "to": "go16_lt"
+  }
+]

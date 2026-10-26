@@ -1,0 +1,1615 @@
+[
+  {
+    "id": "se-v14:go14_digit",
+    "closure_node_id": 1,
+    "function_binding": "go14_digit",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 48 <= c <= 57",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_lower",
+    "closure_node_id": 12,
+    "function_binding": "go14_lower",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 97 <= c <= 122",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_upper",
+    "closure_node_id": 23,
+    "function_binding": "go14_upper",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 65 <= c <= 90",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_hex_upper",
+    "closure_node_id": 34,
+    "function_binding": "go14_hex_upper",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 65 <= c <= 70",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_hex_lower",
+    "closure_node_id": 45,
+    "function_binding": "go14_hex_lower",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 97 <= c <= 102",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_octal",
+    "closure_node_id": 56,
+    "function_binding": "go14_octal",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 48 <= c <= 55",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_ascii",
+    "closure_node_id": 67,
+    "function_binding": "go14_ascii",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 0 <= c <= 127",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_utf8_cont",
+    "closure_node_id": 78,
+    "function_binding": "go14_utf8_cont",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 128 <= c <= 191",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_utf8_lead2",
+    "closure_node_id": 89,
+    "function_binding": "go14_utf8_lead2",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 194 <= c <= 223",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_utf8_lead3",
+    "closure_node_id": 100,
+    "function_binding": "go14_utf8_lead3",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 224 <= c <= 239",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_utf8_lead4",
+    "closure_node_id": 111,
+    "function_binding": "go14_utf8_lead4",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 240 <= c <= 244",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_line_break_control_range",
+    "closure_node_id": 122,
+    "function_binding": "go14_line_break_control_range",
+    "group": "go.lex.byte",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0 <= c <= 255 (except boundary probes)",
+    "ensures": "returns 1 iff 10 <= c <= 13",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_ident_start",
+    "closure_node_id": 133,
+    "function_binding": "go14_ident_start",
+    "group": "go.lex.identifier",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0<=c<=127",
+    "ensures": "ASCII identifier start",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_lower",
+      "go14_upper"
+    ],
+    "notes": "Unicode general category XID_Start needs a separate Unicode table",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_ident_continue",
+    "closure_node_id": 148,
+    "function_binding": "go14_ident_continue",
+    "group": "go.lex.identifier",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0<=c<=127",
+    "ensures": "ASCII identifier continuation",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_digit",
+      "go14_ident_start"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_blank",
+    "closure_node_id": 159,
+    "function_binding": "go14_blank",
+    "group": "go.lex.identifier",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0<=c<=127",
+    "ensures": "Go blank class HT/SP",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_newline",
+    "closure_node_id": 170,
+    "function_binding": "go14_newline",
+    "group": "go.lex.identifier",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0<=c<=127",
+    "ensures": "Go newline LF",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_hex",
+    "closure_node_id": 177,
+    "function_binding": "go14_hex",
+    "group": "go.lex.identifier",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "ASCII code unit",
+    "ensures": "hex digit predicate",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_digit",
+      "go14_hex_lower",
+      "go14_hex_upper"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_ascii_casefold_lower",
+    "closure_node_id": 192,
+    "function_binding": "go14_ascii_casefold_lower",
+    "group": "go.lex.identifier",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0<=c<=127",
+    "ensures": "ASCII A-Z mapped to a-z",
+    "returns": "i64",
+    "dependencies": [
+      "go14_upper"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_hex_value",
+    "closure_node_id": 204,
+    "function_binding": "go14_hex_value",
+    "group": "go.lex.identifier",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "ASCII character code",
+    "ensures": "value 0..15 or -1 if invalid",
+    "returns": "i64",
+    "dependencies": [
+      "go14_digit",
+      "go14_hex_lower",
+      "go14_hex_upper"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_dec_value",
+    "closure_node_id": 230,
+    "function_binding": "go14_dec_value",
+    "group": "go.lex.identifier",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "ASCII character code",
+    "ensures": "value 0..9 or -1",
+    "returns": "i64",
+    "dependencies": [
+      "go14_digit"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_utf8_sequence_length",
+    "closure_node_id": 242,
+    "function_binding": "go14_utf8_sequence_length",
+    "group": "go.lex.identifier",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "0<=c<=255",
+    "ensures": "UTF8 leading byte length 1..4; invalid -1",
+    "returns": "i64",
+    "dependencies": [
+      "go14_ascii",
+      "go14_utf8_lead2",
+      "go14_utf8_lead3",
+      "go14_utf8_lead4"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_utf8_decode2",
+    "closure_node_id": 267,
+    "function_binding": "go14_utf8_decode2",
+    "group": "go.lex.utf8",
+    "arity": 2,
+    "parameters": [
+      "c",
+      "d"
+    ],
+    "requires": "both byte values in 0..255",
+    "ensures": "Unicode scalar U+0080..U+07FF or -1",
+    "returns": "i64",
+    "dependencies": [
+      "go14_utf8_cont",
+      "go14_utf8_lead2"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_utf8_decode3",
+    "closure_node_id": 290,
+    "function_binding": "go14_utf8_decode3",
+    "group": "go.lex.utf8",
+    "arity": 3,
+    "parameters": [
+      "c",
+      "d",
+      "e"
+    ],
+    "requires": "all args 0..255",
+    "ensures": "valid non-surrogate scalar U+0800..FFFF or -1",
+    "returns": "i64",
+    "dependencies": [
+      "go14_utf8_cont",
+      "go14_utf8_lead3"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_utf8_decode4",
+    "closure_node_id": 378,
+    "function_binding": "go14_utf8_decode4",
+    "group": "go.lex.utf8",
+    "arity": 4,
+    "parameters": [
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "requires": "all args 0..255",
+    "ensures": "Unicode scalar U+10000..U+10FFFF or -1",
+    "returns": "i64",
+    "dependencies": [
+      "go14_utf8_cont",
+      "go14_utf8_lead4"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_unicode_scalar",
+    "closure_node_id": 471,
+    "function_binding": "go14_unicode_scalar",
+    "group": "go.lex.utf8",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "c signed integer",
+    "ensures": "scalar range excluding surrogates",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_define_pair",
+    "closure_node_id": 490,
+    "function_binding": "go14_define_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is ':='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_eq_pair",
+    "closure_node_id": 502,
+    "function_binding": "go14_eq_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '=='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_ne_pair",
+    "closure_node_id": 514,
+    "function_binding": "go14_ne_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '!='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_le_pair",
+    "closure_node_id": 526,
+    "function_binding": "go14_le_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '<='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_ge_pair",
+    "closure_node_id": 538,
+    "function_binding": "go14_ge_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '>='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_and_pair",
+    "closure_node_id": 550,
+    "function_binding": "go14_and_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '&&'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_or_pair",
+    "closure_node_id": 562,
+    "function_binding": "go14_or_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '||'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_inc_pair",
+    "closure_node_id": 574,
+    "function_binding": "go14_inc_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '++'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_dec_pair",
+    "closure_node_id": 586,
+    "function_binding": "go14_dec_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '--'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_shift_left_pair",
+    "closure_node_id": 598,
+    "function_binding": "go14_shift_left_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '<<'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_shift_right_pair",
+    "closure_node_id": 610,
+    "function_binding": "go14_shift_right_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '>>'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_add_assign_pair",
+    "closure_node_id": 622,
+    "function_binding": "go14_add_assign_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '+='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_sub_assign_pair",
+    "closure_node_id": 634,
+    "function_binding": "go14_sub_assign_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '-='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_mul_assign_pair",
+    "closure_node_id": 646,
+    "function_binding": "go14_mul_assign_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '*='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_div_assign_pair",
+    "closure_node_id": 658,
+    "function_binding": "go14_div_assign_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '/='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_mod_assign_pair",
+    "closure_node_id": 670,
+    "function_binding": "go14_mod_assign_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '%='",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_and_not_pair",
+    "closure_node_id": 682,
+    "function_binding": "go14_and_not_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '&^'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_line_comment_pair",
+    "closure_node_id": 694,
+    "function_binding": "go14_line_comment_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '//'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_block_comment_pair",
+    "closure_node_id": 706,
+    "function_binding": "go14_block_comment_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '/*'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_block_end_pair",
+    "closure_node_id": 718,
+    "function_binding": "go14_block_end_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '*/'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_arrow_pair",
+    "closure_node_id": 730,
+    "function_binding": "go14_arrow_pair",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "a,b are ASCII code units",
+    "ensures": "return 1 iff pair is '<-'",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_ellipsis_triple",
+    "closure_node_id": 742,
+    "function_binding": "go14_ellipsis_triple",
+    "group": "go.lex.operator",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "a,b,c ASCII",
+    "ensures": "three dots operator",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_left_shift_assign",
+    "closure_node_id": 759,
+    "function_binding": "go14_left_shift_assign",
+    "group": "go.lex.operator",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "ASCII",
+    "ensures": "<<= compound operator",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_shift_left_pair"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_right_shift_assign",
+    "closure_node_id": 773,
+    "function_binding": "go14_right_shift_assign",
+    "group": "go.lex.operator",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "ASCII",
+    "ensures": ">>= compound operator",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_shift_right_pair"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_and_not_assign",
+    "closure_node_id": 787,
+    "function_binding": "go14_and_not_assign",
+    "group": "go.lex.operator",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "ASCII",
+    "ensures": "&^= compound operator",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_and_not_pair"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_go_comment_start",
+    "closure_node_id": 801,
+    "function_binding": "go14_go_comment_start",
+    "group": "go.lex.operator",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "ASCII",
+    "ensures": "// or /*",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_block_comment_pair",
+      "go14_line_comment_pair"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_valid_escape",
+    "closure_node_id": 815,
+    "function_binding": "go14_valid_escape",
+    "group": "go.lex.operator",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "ASCII value after backslash",
+    "ensures": "supported common Go single ASCII escapes, not full Unicode sequences",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_go_escaped_byte",
+    "closure_node_id": 850,
+    "function_binding": "go14_go_escaped_byte",
+    "group": "go.lex.operator",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "ASCII escape code after backslash",
+    "ensures": "decoded byte for n,r,t,0,backslash,quotes; -1 otherwise",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_eligible_token_class",
+    "closure_node_id": 888,
+    "function_binding": "go14_eligible_token_class",
+    "group": "go.lex.semicolon",
+    "arity": 1,
+    "parameters": [
+      "t"
+    ],
+    "requires": "t in enumerated go14 token class ABI",
+    "ensures": "Go automatic semicolon insertion after eligible tokens",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "Class IDs defined in contracts/token_classes.json",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_insert_on_linebreak",
+    "closure_node_id": 899,
+    "function_binding": "go14_insert_on_linebreak",
+    "group": "go.lex.semicolon",
+    "arity": 2,
+    "parameters": [
+      "t",
+      "a"
+    ],
+    "requires": "t=token class; a=next raw byte",
+    "ensures": "insert semicolon iff eligible and LF",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_eligible_token_class"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_insert_on_eof",
+    "closure_node_id": 911,
+    "function_binding": "go14_insert_on_eof",
+    "group": "go.lex.semicolon",
+    "arity": 2,
+    "parameters": [
+      "t",
+      "a"
+    ],
+    "requires": "EOF encoded as -1",
+    "ensures": "insert semicolon iff eligible and EOF",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_eligible_token_class"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_u8_in_range",
+    "closure_node_id": 923,
+    "function_binding": "go14_u8_in_range",
+    "group": "core.integer",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "signed i64 input",
+    "ensures": "fits unsigned byte",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_u16_in_range",
+    "closure_node_id": 934,
+    "function_binding": "go14_u16_in_range",
+    "group": "core.integer",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "signed i64 input",
+    "ensures": "fits unsigned short",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_i8_in_range",
+    "closure_node_id": 945,
+    "function_binding": "go14_i8_in_range",
+    "group": "core.integer",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "signed i64 input",
+    "ensures": "fits signed i8",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_i16_in_range",
+    "closure_node_id": 956,
+    "function_binding": "go14_i16_in_range",
+    "group": "core.integer",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "signed i64 input",
+    "ensures": "fits signed i16",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_i32_in_range",
+    "closure_node_id": 967,
+    "function_binding": "go14_i32_in_range",
+    "group": "core.integer",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "signed i64 input",
+    "ensures": "fits signed i32",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_align16",
+    "closure_node_id": 978,
+    "function_binding": "go14_align16",
+    "group": "core.integer",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "0<=x<2^63-15",
+    "ensures": "smallest multiple of 16 >= x",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_align512",
+    "closure_node_id": 989,
+    "function_binding": "go14_align512",
+    "group": "core.integer",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "0<=x<2^63-511",
+    "ensures": "smallest multiple of 512 >= x",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_align4096",
+    "closure_node_id": 1000,
+    "function_binding": "go14_align4096",
+    "group": "core.integer",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "0<=x<2^63-4095",
+    "ensures": "smallest multiple of 4096 >= x",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_align_power2",
+    "closure_node_id": 1011,
+    "function_binding": "go14_align_power2",
+    "group": "core.integer",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "a"
+    ],
+    "requires": "x>=0; a positive power of 2; x+a-1<=INT64_MAX",
+    "ensures": "aligned up to a; a=0 is invalid",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_rel8_fits",
+    "closure_node_id": 1025,
+    "function_binding": "go14_rel8_fits",
+    "group": "native.relocation",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "signed displacement",
+    "ensures": "true iff short branch displacement fits",
+    "returns": "i64",
+    "dependencies": [
+      "go14_i8_in_range"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_rel32_fits",
+    "closure_node_id": 1032,
+    "function_binding": "go14_rel32_fits",
+    "group": "native.relocation",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "signed displacement",
+    "ensures": "true iff 32-bit PC-relative displacement fits",
+    "returns": "i64",
+    "dependencies": [
+      "go14_i32_in_range"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_rel32_delta",
+    "closure_node_id": 1039,
+    "function_binding": "go14_rel32_delta",
+    "group": "native.relocation",
+    "arity": 3,
+    "parameters": [
+      "x",
+      "y",
+      "z"
+    ],
+    "requires": "x=symbol VA; y=patch VA; z=instruction displacement-end size; no signed overflow",
+    "ensures": "symbol VA - (patch VA + instruction size)",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_rel32_safe",
+    "closure_node_id": 1050,
+    "function_binding": "go14_rel32_safe",
+    "group": "native.relocation",
+    "arity": 3,
+    "parameters": [
+      "x",
+      "y",
+      "z"
+    ],
+    "requires": "all addresses signed i64 nonoverlapping arithmetic",
+    "ensures": "rel32 displacement range test",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_rel32_delta",
+      "go14_rel32_fits"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_win64_shadow_space_ok",
+    "closure_node_id": 1063,
+    "function_binding": "go14_win64_shadow_space_ok",
+    "group": "native.relocation",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "x=reserved shadow bytes >=0",
+    "ensures": "Win64 requires >=32 shadow bytes",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_pe_file_alignment_ok",
+    "closure_node_id": 1070,
+    "function_binding": "go14_pe_file_alignment_ok",
+    "group": "native.relocation",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "x proposed simplified file alignment",
+    "ensures": "subset of common legal PE file alignments",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "Simplified whitelist, not all PE-spec legal alignments",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_pe_section_alignment_ok",
+    "closure_node_id": 1089,
+    "function_binding": "go14_pe_section_alignment_ok",
+    "group": "native.relocation",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "x=section alignment; y=file alignment positive",
+    "ensures": "simplified section >= file and >= 512; power-of-two separately required",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_section_end",
+    "closure_node_id": 1101,
+    "function_binding": "go14_section_end",
+    "group": "native.relocation",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "x=start>=0; y=size>=0; x+y<=INT64_MAX",
+    "ensures": "end address",
+    "returns": "i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_sections_overlap",
+    "closure_node_id": 1109,
+    "function_binding": "go14_sections_overlap",
+    "group": "native.relocation",
+    "arity": 4,
+    "parameters": [
+      "x",
+      "y",
+      "z",
+      "t"
+    ],
+    "requires": "half-open intervals [x,y),[z,t) with 0<=start<=end",
+    "ensures": "1 iff nonempty overlap",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_section_valid",
+    "closure_node_id": 1123,
+    "function_binding": "go14_section_valid",
+    "group": "native.relocation",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "signed offsets",
+    "ensures": "0<=start<=end",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_reference_in_bounds",
+    "closure_node_id": 1135,
+    "function_binding": "go14_reference_in_bounds",
+    "group": "semantic.graph",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "y=node count >=0",
+    "ensures": "reference index is valid",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_distinct_node_ids",
+    "closure_node_id": 1147,
+    "function_binding": "go14_distinct_node_ids",
+    "group": "semantic.graph",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "two node IDs",
+    "ensures": "distinctness guard for edge endpoints",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_arity_matches",
+    "closure_node_id": 1155,
+    "function_binding": "go14_arity_matches",
+    "group": "semantic.graph",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "x=actual args; y=parameter count >=0",
+    "ensures": "true iff exact arity",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_binary_operands_complete",
+    "closure_node_id": 1163,
+    "function_binding": "go14_binary_operands_complete",
+    "group": "semantic.graph",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "x=left edge count; y=right edge count",
+    "ensures": "exactly one edge per binary operand",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_closure_edges_complete",
+    "closure_node_id": 1175,
+    "function_binding": "go14_closure_edges_complete",
+    "group": "semantic.graph",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "x=body edge count; y=top-level binding count",
+    "ensures": "closure has body and one binding",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_no_imports",
+    "closure_node_id": 1187,
+    "function_binding": "go14_no_imports",
+    "group": "semantic.graph",
+    "arity": 1,
+    "parameters": [
+      "x"
+    ],
+    "requires": "x=external import declaration count",
+    "ensures": "true iff zero declarations",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "Does not prove absence of runtime dependencies",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_contract_violation",
+    "closure_node_id": 1194,
+    "function_binding": "go14_contract_violation",
+    "group": "semantic.graph",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "x=actual; y=required amount",
+    "ensures": "returns 1 when contract check fails",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_can_merge_core",
+    "closure_node_id": 1202,
+    "function_binding": "go14_can_merge_core",
+    "group": "semantic.graph",
+    "arity": 4,
+    "parameters": [
+      "x",
+      "y",
+      "z",
+      "t"
+    ],
+    "requires": "input enum index_base and value_model IDs",
+    "ensures": "merge only identical Core models",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "Cannot replace semantic normalization",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_call_target_closed",
+    "closure_node_id": 1216,
+    "function_binding": "go14_call_target_closed",
+    "group": "semantic.graph",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "x=target node id; y=program node count",
+    "ensures": "valid target index; actual ClosureExpr kind validated separately",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_reference_in_bounds"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_duplicate_closure_name",
+    "closure_node_id": 1229,
+    "function_binding": "go14_duplicate_closure_name",
+    "group": "semantic.graph",
+    "arity": 2,
+    "parameters": [
+      "x",
+      "y"
+    ],
+    "requires": "x,y are hashes/IDs not raw strings",
+    "ensures": "detects same identifier hash/ID (collision possible)",
+    "returns": "bool_i64",
+    "dependencies": [],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_go_byte_identifier",
+    "closure_node_id": 1237,
+    "function_binding": "go14_go_byte_identifier",
+    "group": "compiler.pipeline",
+    "arity": 1,
+    "parameters": [
+      "c"
+    ],
+    "requires": "ASCII only",
+    "ensures": "Go lexer identifier continuation",
+    "returns": "i64",
+    "dependencies": [
+      "go14_ident_continue"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_go_utf8_valid2",
+    "closure_node_id": 1244,
+    "function_binding": "go14_go_utf8_valid2",
+    "group": "compiler.pipeline",
+    "arity": 2,
+    "parameters": [
+      "a",
+      "b"
+    ],
+    "requires": "two UTF8 bytes",
+    "ensures": "valid two-byte UTF8 sequence",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_utf8_decode2"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_go_utf8_valid3",
+    "closure_node_id": 1255,
+    "function_binding": "go14_go_utf8_valid3",
+    "group": "compiler.pipeline",
+    "arity": 3,
+    "parameters": [
+      "a",
+      "b",
+      "c"
+    ],
+    "requires": "three UTF8 bytes",
+    "ensures": "valid 3-byte UTF8 scalar",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_utf8_decode3"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_go_utf8_valid4",
+    "closure_node_id": 1268,
+    "function_binding": "go14_go_utf8_valid4",
+    "group": "compiler.pipeline",
+    "arity": 4,
+    "parameters": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "requires": "four UTF8 bytes",
+    "ensures": "valid 4-byte UTF8 scalar",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_utf8_decode4"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_go_source_linebreak_semicolon",
+    "closure_node_id": 1283,
+    "function_binding": "go14_go_source_linebreak_semicolon",
+    "group": "compiler.pipeline",
+    "arity": 2,
+    "parameters": [
+      "t",
+      "a"
+    ],
+    "requires": "token ABI and next byte",
+    "ensures": "Go semicolon on LF",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_insert_on_linebreak"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_go_verify_binary_node",
+    "closure_node_id": 1292,
+    "function_binding": "go14_go_verify_binary_node",
+    "group": "compiler.pipeline",
+    "arity": 3,
+    "parameters": [
+      "x",
+      "y",
+      "z"
+    ],
+    "requires": "left edge count, right edge count, import count",
+    "ensures": "valid binary operation subset",
+    "returns": "bool_i64",
+    "dependencies": [
+      "go14_binary_operands_complete",
+      "go14_no_imports"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  },
+  {
+    "id": "se-v14:go14_go_relocate_branch",
+    "closure_node_id": 1306,
+    "function_binding": "go14_go_relocate_branch",
+    "group": "compiler.pipeline",
+    "arity": 3,
+    "parameters": [
+      "x",
+      "y",
+      "z"
+    ],
+    "requires": "signed i64 addresses, no overflow",
+    "ensures": "relative displacement or INT32_MIN-1 sentinel",
+    "returns": "i64",
+    "dependencies": [
+      "go14_rel32_delta",
+      "go14_rel32_safe"
+    ],
+    "notes": "",
+    "implementation": "executable Core expression, no external imports"
+  }
+]

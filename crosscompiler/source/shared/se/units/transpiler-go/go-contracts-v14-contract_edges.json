@@ -1,0 +1,462 @@
+[
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1,
+    "to_contract_id": "se-v14:go14_digit"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 12,
+    "to_contract_id": "se-v14:go14_lower"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 23,
+    "to_contract_id": "se-v14:go14_upper"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 34,
+    "to_contract_id": "se-v14:go14_hex_upper"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 45,
+    "to_contract_id": "se-v14:go14_hex_lower"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 56,
+    "to_contract_id": "se-v14:go14_octal"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 67,
+    "to_contract_id": "se-v14:go14_ascii"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 78,
+    "to_contract_id": "se-v14:go14_utf8_cont"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 89,
+    "to_contract_id": "se-v14:go14_utf8_lead2"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 100,
+    "to_contract_id": "se-v14:go14_utf8_lead3"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 111,
+    "to_contract_id": "se-v14:go14_utf8_lead4"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 122,
+    "to_contract_id": "se-v14:go14_line_break_control_range"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 133,
+    "to_contract_id": "se-v14:go14_ident_start"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 148,
+    "to_contract_id": "se-v14:go14_ident_continue"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 159,
+    "to_contract_id": "se-v14:go14_blank"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 170,
+    "to_contract_id": "se-v14:go14_newline"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 177,
+    "to_contract_id": "se-v14:go14_hex"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 192,
+    "to_contract_id": "se-v14:go14_ascii_casefold_lower"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 204,
+    "to_contract_id": "se-v14:go14_hex_value"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 230,
+    "to_contract_id": "se-v14:go14_dec_value"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 242,
+    "to_contract_id": "se-v14:go14_utf8_sequence_length"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 267,
+    "to_contract_id": "se-v14:go14_utf8_decode2"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 290,
+    "to_contract_id": "se-v14:go14_utf8_decode3"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 378,
+    "to_contract_id": "se-v14:go14_utf8_decode4"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 471,
+    "to_contract_id": "se-v14:go14_unicode_scalar"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 490,
+    "to_contract_id": "se-v14:go14_define_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 502,
+    "to_contract_id": "se-v14:go14_eq_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 514,
+    "to_contract_id": "se-v14:go14_ne_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 526,
+    "to_contract_id": "se-v14:go14_le_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 538,
+    "to_contract_id": "se-v14:go14_ge_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 550,
+    "to_contract_id": "se-v14:go14_and_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 562,
+    "to_contract_id": "se-v14:go14_or_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 574,
+    "to_contract_id": "se-v14:go14_inc_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 586,
+    "to_contract_id": "se-v14:go14_dec_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 598,
+    "to_contract_id": "se-v14:go14_shift_left_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 610,
+    "to_contract_id": "se-v14:go14_shift_right_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 622,
+    "to_contract_id": "se-v14:go14_add_assign_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 634,
+    "to_contract_id": "se-v14:go14_sub_assign_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 646,
+    "to_contract_id": "se-v14:go14_mul_assign_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 658,
+    "to_contract_id": "se-v14:go14_div_assign_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 670,
+    "to_contract_id": "se-v14:go14_mod_assign_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 682,
+    "to_contract_id": "se-v14:go14_and_not_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 694,
+    "to_contract_id": "se-v14:go14_line_comment_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 706,
+    "to_contract_id": "se-v14:go14_block_comment_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 718,
+    "to_contract_id": "se-v14:go14_block_end_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 730,
+    "to_contract_id": "se-v14:go14_arrow_pair"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 742,
+    "to_contract_id": "se-v14:go14_ellipsis_triple"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 759,
+    "to_contract_id": "se-v14:go14_left_shift_assign"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 773,
+    "to_contract_id": "se-v14:go14_right_shift_assign"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 787,
+    "to_contract_id": "se-v14:go14_and_not_assign"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 801,
+    "to_contract_id": "se-v14:go14_go_comment_start"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 815,
+    "to_contract_id": "se-v14:go14_valid_escape"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 850,
+    "to_contract_id": "se-v14:go14_go_escaped_byte"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 888,
+    "to_contract_id": "se-v14:go14_eligible_token_class"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 899,
+    "to_contract_id": "se-v14:go14_insert_on_linebreak"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 911,
+    "to_contract_id": "se-v14:go14_insert_on_eof"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 923,
+    "to_contract_id": "se-v14:go14_u8_in_range"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 934,
+    "to_contract_id": "se-v14:go14_u16_in_range"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 945,
+    "to_contract_id": "se-v14:go14_i8_in_range"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 956,
+    "to_contract_id": "se-v14:go14_i16_in_range"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 967,
+    "to_contract_id": "se-v14:go14_i32_in_range"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 978,
+    "to_contract_id": "se-v14:go14_align16"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 989,
+    "to_contract_id": "se-v14:go14_align512"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1000,
+    "to_contract_id": "se-v14:go14_align4096"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1011,
+    "to_contract_id": "se-v14:go14_align_power2"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1025,
+    "to_contract_id": "se-v14:go14_rel8_fits"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1032,
+    "to_contract_id": "se-v14:go14_rel32_fits"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1039,
+    "to_contract_id": "se-v14:go14_rel32_delta"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1050,
+    "to_contract_id": "se-v14:go14_rel32_safe"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1063,
+    "to_contract_id": "se-v14:go14_win64_shadow_space_ok"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1070,
+    "to_contract_id": "se-v14:go14_pe_file_alignment_ok"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1089,
+    "to_contract_id": "se-v14:go14_pe_section_alignment_ok"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1101,
+    "to_contract_id": "se-v14:go14_section_end"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1109,
+    "to_contract_id": "se-v14:go14_sections_overlap"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1123,
+    "to_contract_id": "se-v14:go14_section_valid"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1135,
+    "to_contract_id": "se-v14:go14_reference_in_bounds"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1147,
+    "to_contract_id": "se-v14:go14_distinct_node_ids"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1155,
+    "to_contract_id": "se-v14:go14_arity_matches"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1163,
+    "to_contract_id": "se-v14:go14_binary_operands_complete"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1175,
+    "to_contract_id": "se-v14:go14_closure_edges_complete"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1187,
+    "to_contract_id": "se-v14:go14_no_imports"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1194,
+    "to_contract_id": "se-v14:go14_contract_violation"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1202,
+    "to_contract_id": "se-v14:go14_can_merge_core"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1216,
+    "to_contract_id": "se-v14:go14_call_target_closed"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1229,
+    "to_contract_id": "se-v14:go14_duplicate_closure_name"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1237,
+    "to_contract_id": "se-v14:go14_go_byte_identifier"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1244,
+    "to_contract_id": "se-v14:go14_go_utf8_valid2"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1255,
+    "to_contract_id": "se-v14:go14_go_utf8_valid3"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1268,
+    "to_contract_id": "se-v14:go14_go_utf8_valid4"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1283,
+    "to_contract_id": "se-v14:go14_go_source_linebreak_semicolon"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1292,
+    "to_contract_id": "se-v14:go14_go_verify_binary_node"
+  },
+  {
+    "kind": "semantic.contract_for",
+    "from_closure_node_id": 1306,
+    "to_contract_id": "se-v14:go14_go_relocate_branch"
+  }
+]

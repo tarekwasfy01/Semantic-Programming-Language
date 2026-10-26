@@ -1,0 +1,23 @@
+{
+  "id_range": [
+    1,
+    15
+  ],
+  "classes": {
+    "1": "identifier",
+    "2": "int",
+    "3": "float",
+    "4": "imag",
+    "5": "rune",
+    "6": "string",
+    "7": "break",
+    "8": "continue",
+    "9": "fallthrough",
+    "10": "return",
+    "11": "++",
+    "12": "--",
+    "13": ")",
+    "14": "]",
+    "15": "}"
+  }
+}

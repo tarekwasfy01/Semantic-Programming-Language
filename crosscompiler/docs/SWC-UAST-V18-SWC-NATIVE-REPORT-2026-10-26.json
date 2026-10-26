@@ -1,0 +1,50 @@
+[
+  {
+    "fixture": "bool_andand_0_1_1.se",
+    "compile_exit": 0,
+    "run_exit": 0,
+    "expected_exit": 0,
+    "pass": true,
+    "size": 16384
+  },
+  {
+    "fixture": "bool_andand_1_0_0.se",
+    "compile_exit": 0,
+    "run_exit": 0,
+    "expected_exit": 0,
+    "pass": true,
+    "size": 16384
+  },
+  {
+    "fixture": "bool_andand_1_0_1.se",
+    "compile_exit": 0,
+    "run_exit": 1,
+    "expected_exit": 1,
+    "pass": true,
+    "size": 16384
+  },
+  {
+    "fixture": "bool_oror_0_0_0.se",
+    "compile_exit": 0,
+    "run_exit": 0,
+    "expected_exit": 0,
+    "pass": true,
+    "size": 16384
+  },
+  {
+    "fixture": "bool_oror_0_0_1.se",
+    "compile_exit": 0,
+    "run_exit": 1,
+    "expected_exit": 1,
+    "pass": true,
+    "size": 16384
+  },
+  {
+    "fixture": "bool_oror_1_1_1.se",
+    "compile_exit": 0,
+    "run_exit": 1,
+    "expected_exit": 1,
+    "pass": true,
+    "size": 16384
+  }
+]

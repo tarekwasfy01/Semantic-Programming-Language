@@ -52,7 +52,7 @@ The repository contains the native Semantic crosscompiler in [`crosscompiler/`](
 For the exact Windows source/manifest revision, active executable hash, and
 current validation limitations, see the [crosscompiler status](./crosscompiler/README.md).
 
-Windows update (2026-10-26): the active SWC is 343,552 bytes and includes 635 V10 Semantic function closures as native code. Stage2/Stage3 are byte-identical through SMOD Embed-All, and 33 native checks pass. The PE has no static DLL/CRT imports or appended payload. Windows APIs are resolved dynamically; Windows remains required. See the [release evidence](./crosscompiler/docs/SWC-V10-VALIDATION-2026-10-26.json).
+Windows update (2026-10-26): the active SWC is 407,552 bytes. The V17 selfhost includes the V10 compiler closures, Go helper units V11-V16 and 19 V17 contract checkers. Stage 1/2/3 are byte-identical, the return42 probe passes, and six Core Boolean fixtures execute correctly. Raw rich Boolean lowering and the Go transpile CLI remain incomplete. See the [current validation](./crosscompiler/docs/selfhost_validation.json).
 
 The crosscompiler is built from Semantic source units and contains the complete compiler structure required for frontend processing, UAST handling, module resolution, lowering, backend code generation, and target-specific executable emission.
 
@@ -403,3 +403,4 @@ The Go bootstrap compiler, GUI, CLI and importable package are maintained in:
 Semantic Programming Language is licensed under the terms provided in [LICENSE](LICENSE).
 
 Copyright (c) 2026 Tarek Wasfy and Contributors
+

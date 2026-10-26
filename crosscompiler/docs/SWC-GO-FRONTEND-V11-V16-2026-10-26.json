@@ -1,0 +1,59 @@
+{
+  "schema": "swc.go-frontend-integration.v1",
+  "date": "2026-10-26",
+  "active_exe": {
+    "path": "swc.exe",
+    "bytes": 402944,
+    "sha256": "81ADEFC7BCD26C5F914E985875CD979616B81332FCE703343563433362732959"
+  },
+  "active_se": {
+    "path": "src/swc-selfhost-windows.se",
+    "bytes": 12883932,
+    "sha256": "F1C8B37700CDCC1D38857A9D9BD92EDE3CBE880800310A6320A263DA452BD8E4"
+  },
+  "import": {
+    "source_units": 225,
+    "selected_bindings": 305,
+    "imported_closures": 298,
+    "deduplicated_bindings": 7,
+    "missing_bindings": 0,
+    "unresolved_callees": 0,
+    "nodes": 49857,
+    "relations": 60644
+  },
+  "selfhost": {
+    "stage2": "BYTE_IDENTICAL",
+    "stage3": "BYTE_IDENTICAL",
+    "stage1_sha256": "81ADEFC7BCD26C5F914E985875CD979616B81332FCE703343563433362732959",
+    "stage2_sha256": "81ADEFC7BCD26C5F914E985875CD979616B81332FCE703343563433362732959",
+    "stage3_sha256": "81ADEFC7BCD26C5F914E985875CD979616B81332FCE703343563433362732959",
+    "smod_embed_all": "PASS",
+    "smod_output_sha256": "81ADEFC7BCD26C5F914E985875CD979616B81332FCE703343563433362732959"
+  },
+  "native_checks": [
+    {
+      "fixture": "V11 GoFrontend-Core-Closed-Smoke.se",
+      "pe_bytes": 29184,
+      "exit_code": 42
+    },
+    {
+      "fixture": "V12 GoFrontend-V12-Smoke.se",
+      "pe_bytes": 30208,
+      "exit_code": 42
+    },
+    {
+      "fixture": "V16 Go-V16-SelfTest.se",
+      "pe_bytes": 25600,
+      "exit_code": 0,
+      "encoded_assertions": 51
+    }
+  ],
+  "go_cli": {
+    "command": "swc transpile go semantic <input.go> -o <output.se>",
+    "status": "CRASH_REPRODUCED_BASELINE_AND_CANDIDATE",
+    "exit_status": -1073741819,
+    "root_cause": "recursive dispatch cycle",
+    "frontend_to_uast": "NOT_CONNECTED"
+  },
+  "baseline_backup": "backup/before-go-v16-integration-20261026"
+}

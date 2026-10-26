@@ -1,0 +1,89 @@
+{
+  "schema": "swc.current-state-build.v1",
+  "compiler": "C:\\Users\\tarek\\Desktop\\mwsplc\\tmp\\native-next\\final.exe",
+  "source": "C:\\Users\\tarek\\Desktop\\mwsplc\\tmp\\native-next\\final.se",
+  "probe": "C:\\Users\\tarek\\Desktop\\mwsplc\\tests\\return42.se",
+  "version": {
+    "arguments": "version",
+    "exit_code": 0,
+    "seconds": 0.052,
+    "output": "swc 2.3.2 windows-x64"
+  },
+  "help": {
+    "arguments": "help",
+    "exit_code": 0,
+    "seconds": 0.014,
+    "output": "swc compile <input.se|input.sp|input.spz|input.json|input.smod> -o <output.exe> [--embed-all|--embed-needed|--no-modules]\r\nswc help\r\nswc version\r\nPending: show-modules, list-modules, setpath, setmodulestore, transpile"
+  },
+  "stage2": {
+    "command": {
+      "arguments": "compile C:\\Users\\tarek\\Desktop\\mwsplc\\tmp\\native-next\\final.se -o C:\\Users\\tarek\\Desktop\\mwsplc\\tmp\\native-next\\final-selfhost\\stage2.exe --embed-all",
+      "exit_code": 0,
+      "seconds": 11.408,
+      "output": ""
+    },
+    "artifact": {
+      "exists": true,
+      "bytes": 146432,
+      "sha256": "39DAE62B08BDB1362C05BEF46C9315D121255E074C78ABDE883E8CF410AB4DD9"
+    },
+    "pe": {
+      "valid": true,
+      "x64": true,
+      "entry_in_text": true,
+      "trivial_entry_stub": false
+    },
+    "runtime": {
+      "started": true,
+      "timed_out": false,
+      "exit_code": 0
+    },
+    "passed": true
+  },
+  "stage3": {
+    "command": {
+      "arguments": "compile C:\\Users\\tarek\\Desktop\\mwsplc\\tmp\\native-next\\final.se -o C:\\Users\\tarek\\Desktop\\mwsplc\\tmp\\native-next\\final-selfhost\\stage3.exe --embed-all",
+      "exit_code": 0,
+      "seconds": 12.71,
+      "output": ""
+    },
+    "artifact": {
+      "exists": true,
+      "bytes": 146432,
+      "sha256": "39DAE62B08BDB1362C05BEF46C9315D121255E074C78ABDE883E8CF410AB4DD9"
+    },
+    "pe": {
+      "valid": true,
+      "x64": true,
+      "entry_in_text": true,
+      "trivial_entry_stub": false
+    },
+    "runtime": {
+      "started": true,
+      "timed_out": false,
+      "exit_code": 0
+    },
+    "passed": true
+  },
+  "byte_stable": true,
+  "runtime_probe": {
+    "command": {
+      "arguments": "compile C:\\Users\\tarek\\Desktop\\mwsplc\\tests\\return42.se -o C:\\Users\\tarek\\Desktop\\mwsplc\\tmp\\native-next\\final-selfhost\\return42.exe --no-modules",
+      "exit_code": 0,
+      "seconds": 0.061,
+      "output": ""
+    },
+    "artifact": {
+      "exists": true,
+      "bytes": 3072,
+      "sha256": "25A954126DCB4AA97DE78EBC70E6657670C85BF72DCC0F75DFF85D04ABB86B58"
+    },
+    "runtime": {
+      "started": true,
+      "timed_out": false,
+      "exit_code": 42
+    },
+    "passed": true
+  },
+  "overall": true
+}
