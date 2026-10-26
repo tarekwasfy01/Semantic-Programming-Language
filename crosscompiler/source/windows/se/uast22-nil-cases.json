@@ -1,0 +1,52 @@
+[
+  {
+    "name": "nil_pointer",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "nil_no_type",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "nil_interface",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "nil_wrong_width",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "nil_width_prefix",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "nil_no_abi",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "nil_wrong_abi",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "nil_effect",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "nil_tagged",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "nil_one_based",
+    "compile_exit": 3,
+    "exit": 0
+  }
+]

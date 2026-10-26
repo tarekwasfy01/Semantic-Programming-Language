@@ -1,0 +1,84 @@
+[
+  {
+    "id": "v19.contract.loop_header_valid",
+    "function": "loop_header_valid",
+    "arity": 2,
+    "preconditions": [
+      "condition edge count equals one",
+      "body edge count equals one"
+    ],
+    "postconditions": [
+      "returns 1 if and only if header has one test and one body"
+    ],
+    "target": "Core signed 64-bit integer, 0/1 booleans",
+    "scope": "small validation primitive, not universal Go ABI"
+  },
+  {
+    "id": "v19.contract.control_depth_valid",
+    "function": "control_depth_valid",
+    "arity": 1,
+    "preconditions": [
+      "depth is a lexical nesting depth"
+    ],
+    "postconditions": [
+      "returns 1 exactly if inside at least one loop"
+    ],
+    "target": "Core signed 64-bit integer, 0/1 booleans",
+    "scope": "small validation primitive, not universal Go ABI"
+  },
+  {
+    "id": "v19.contract.break_target_matches",
+    "function": "break_target_matches",
+    "arity": 2,
+    "preconditions": [
+      "lexical loop id is known",
+      "explicit target id is known"
+    ],
+    "postconditions": [
+      "returns 1 only for equal loop ids"
+    ],
+    "target": "Core signed 64-bit integer, 0/1 booleans",
+    "scope": "small validation primitive, not universal Go ABI"
+  },
+  {
+    "id": "v19.contract.continue_target_matches",
+    "function": "continue_target_matches",
+    "arity": 2,
+    "preconditions": [
+      "lexical loop id is known",
+      "explicit target id is known"
+    ],
+    "postconditions": [
+      "continues at nearest loop test"
+    ],
+    "target": "Core signed 64-bit integer, 0/1 booleans",
+    "scope": "small validation primitive, not universal Go ABI"
+  },
+  {
+    "id": "v19.contract.iterator_in_bounds",
+    "function": "iterator_in_bounds",
+    "arity": 2,
+    "preconditions": [
+      "position and length are signed i64",
+      "length is nonnegative"
+    ],
+    "postconditions": [
+      "returns 1 iff 0<=position<length"
+    ],
+    "target": "Core signed 64-bit integer, 0/1 booleans",
+    "scope": "small validation primitive, not universal Go ABI"
+  },
+  {
+    "id": "v19.contract.boolean_encoding_valid",
+    "function": "boolean_encoding_valid",
+    "arity": 1,
+    "preconditions": [
+      "value is a signed Core i64"
+    ],
+    "postconditions": [
+      "recognizes canonical boolean 0 or 1; no global tagged-value-model proof"
+    ],
+    "target": "Core signed 64-bit integer, 0/1 booleans",
+    "scope": "small validation primitive, not universal Go ABI"
+  }
+]

@@ -1,0 +1,94 @@
+{
+  "schema": "swc.uast22-constant-index-verification.v1",
+  "scope": "negative-only",
+  "verified_at": "2026-10-26T20:21:32.7137250+01:00",
+  "compiler_sha256": "4FB88651E091255BDAB7166ADDECCB76FC55F239FF28FA9FBFE47C07560377E6",
+  "tests": [
+    {
+      "test": "index_not_immutable",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_false_immutable",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_effect",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_element_effect",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_wrong_element_type",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_bad_constant_type",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_negative",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_overflow",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_out_of_range",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_tagged",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_one_based",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_dynamic_not_yet_supported",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_65_elements",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_duplicate_ordinal",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_unselected_effect",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_unselected_overflow",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "index_unselected_wrong_type",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    }
+  ],
+  "full_uast_lowerable": false
+}

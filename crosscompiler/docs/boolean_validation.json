@@ -1,0 +1,233 @@
+{
+  "schema": "swc.typed-boolean-native-verification.v1",
+  "verified_at": "2026-10-26T21:52:32.6353964+01:00",
+  "compiler_sha256": "C2C423D5F0E45501DDB33FC4A0C7CFDCB75CBA2236BEC203CA45CCBE317B47BA",
+  "tests": [
+    {
+      "test": "and_0_0",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "D76DECC04923B23DB8374E961E3B540D672A56A8D61854645250B680888FCB29"
+    },
+    {
+      "test": "and_0_1",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "6816FFA28B27FB9077778DA9D3E2179E98B535A0B6B23F93A11B671BCBEEE511"
+    },
+    {
+      "test": "and_1_0",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "D8936F90D15CCC4F67921F07CB4976DD598E070B099A9CE689CA99AC045C4566"
+    },
+    {
+      "test": "and_1_1",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "C10BBBD3DB54C027E8FB118FC29E062A6EE57B552EB46B7F0E91FC9A48114B30"
+    },
+    {
+      "test": "or_0_0",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "FCB2F3927228EA1997FF1F382EBA010B2FF120CAD2600D138687F0C57F6A3A6A"
+    },
+    {
+      "test": "or_0_1",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "A6697D93F2823BE133FF9507142121C95180069EFDC2B2144D5C67AFC7A4DB63"
+    },
+    {
+      "test": "or_1_0",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "C53CF0F77C3D49C031D5B08643E2D79876C591F880F223BDB78F92062747E803"
+    },
+    {
+      "test": "or_1_1",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "3EFEEC6BA9FEC7AC5E15D93DE6B4A33354C91CE08B4AD0ABA120B9B2EC55A463"
+    },
+    {
+      "test": "eq_0_0",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "AC267633D41E32CFA4AECE3A2EB6966B901C51AC86A504027FC6152C6239FE5D"
+    },
+    {
+      "test": "eq_0_1",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "1B9CFF0249413FE52E18F3016E3FFB0D29B690DA66B653F056E8AFBCA1BB0961"
+    },
+    {
+      "test": "eq_1_0",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "0CDF2D1F9A16C9A1BF0EC42E1679749B0A33C61835D25B83BD2F59182B22151D"
+    },
+    {
+      "test": "eq_1_1",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "49298811DB35A2C90726C7D99E696A880A71056B815B4849E9E954F9FCFAAA28"
+    },
+    {
+      "test": "ne_0_0",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "C56DB54EE12D21AC66E08B3344F33FADB0D95A63DB9F97DAF7BCF13365B14FD9"
+    },
+    {
+      "test": "ne_0_1",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "3E1978E59B5C9E44285FE45538E2721C47229611C6AA71119E5A9B2740295B85"
+    },
+    {
+      "test": "ne_1_0",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "860CB9699F8AE230F347DE4B752D421325BFCE0D9879E97EEDEBF7CFF910D435"
+    },
+    {
+      "test": "ne_1_1",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "C9CD4B25A1EB24D07ED968D355957E29CC998C30EEC2E96A4489D0DC51467082"
+    },
+    {
+      "test": "not_0",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "0F79C659F52506DF85E9B7CDD4C6EBDACAF162287476155ECD1D53AA4ECB3907"
+    },
+    {
+      "test": "literal_0",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "4D4A3AF1CCD77937B919A89600CC37E0679F87968CB0022684207383BFB4308F"
+    },
+    {
+      "test": "not_1",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "8B66C5A4C708C5DFC434B9B6B1A071DEF085DA832038F17CFF024C3960DAC47A"
+    },
+    {
+      "test": "literal_1",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "92BE502EFEBEF5C2AA73A42EE9B4621F4B7BE357F348042E0C50976F12E295FF"
+    },
+    {
+      "test": "and_skip_trap",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "29B49A642860E065BC24CD5F6B79B79AF21157DC999331A4EEE1BBB0EB98FED9"
+    },
+    {
+      "test": "or_skip_trap",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "DD9700D62CE49F11B3296BB00CA0099FC34F0BD7B16531726A9297EFBC791462"
+    },
+    {
+      "test": "and_order_0",
+      "requested_workers": 0,
+      "exit": 10,
+      "sha256": "116F0B49224692841BB9530144EB02A2E62FC2ADE6964143A832C9AF35EDD6B6"
+    },
+    {
+      "test": "and_order_1",
+      "requested_workers": 0,
+      "exit": 20,
+      "sha256": "5F106819932ACB2962B6B5A9C336F2B4D186579EEF434193D50163748007C42D"
+    },
+    {
+      "test": "or_order_0",
+      "requested_workers": 0,
+      "exit": 21,
+      "sha256": "685EA01806EBF4DDC71312ED320532B44116E410D6B1135D4ED4D7F8F7BF009E"
+    },
+    {
+      "test": "or_order_1",
+      "requested_workers": 0,
+      "exit": 11,
+      "sha256": "8D84FBEF7214D8A4DD90CCC9D66256A3E9CBE7AC6D75B6D064DB3B2B72A4449B"
+    },
+    {
+      "test": "nested",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "9FA5150FB76765414E8D93C770CCEED497361F6F30DF986D3BB23336CA27601D"
+    },
+    {
+      "test": "parallel_boolean",
+      "requested_workers": 1,
+      "exit": 6,
+      "sha256": "39B59ED0CFC78964AED3BBA79E80037CAC826628813EA1CE0F762E11E3F88F17"
+    },
+    {
+      "test": "parallel_boolean",
+      "requested_workers": 2,
+      "exit": 6,
+      "sha256": "39B59ED0CFC78964AED3BBA79E80037CAC826628813EA1CE0F762E11E3F88F17"
+    },
+    {
+      "test": "parallel_boolean",
+      "requested_workers": 0,
+      "exit": 6,
+      "sha256": "39B59ED0CFC78964AED3BBA79E80037CAC826628813EA1CE0F762E11E3F88F17"
+    },
+    {
+      "test": "reject_missing_type",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_uncertain_operator",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_integer_rhs",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_missing_rhs",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_duplicate_rhs",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_invalid_bool_literal",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_untyped_not",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_duplicate_unary",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_conflicting_semantics",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    }
+  ],
+  "full_go_frontend_native_ready": false
+}

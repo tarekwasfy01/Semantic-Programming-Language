@@ -1,0 +1,147 @@
+[
+  {
+    "name": "packed_00",
+    "compile_exit": 0,
+    "exit": 16
+  },
+  {
+    "name": "raw_00",
+    "compile_exit": 0,
+    "exit": 16
+  },
+  {
+    "name": "packed_01",
+    "compile_exit": 0,
+    "exit": 17
+  },
+  {
+    "name": "raw_01",
+    "compile_exit": 0,
+    "exit": 17
+  },
+  {
+    "name": "packed_02",
+    "compile_exit": 0,
+    "exit": 10
+  },
+  {
+    "name": "raw_02",
+    "compile_exit": 0,
+    "exit": 10
+  },
+  {
+    "name": "packed_03",
+    "compile_exit": 0,
+    "exit": 24
+  },
+  {
+    "name": "raw_03",
+    "compile_exit": 0,
+    "exit": 24
+  },
+  {
+    "name": "packed_04",
+    "compile_exit": 0,
+    "exit": 20
+  },
+  {
+    "name": "raw_04",
+    "compile_exit": 0,
+    "exit": 20
+  },
+  {
+    "name": "packed_05",
+    "compile_exit": 0,
+    "exit": 8
+  },
+  {
+    "name": "raw_05",
+    "compile_exit": 0,
+    "exit": 8
+  },
+  {
+    "name": "raw_simple",
+    "compile_exit": 0,
+    "exit": 3
+  },
+  {
+    "name": "raw_empty_index",
+    "compile_exit": 0,
+    "exit": -1
+  },
+  {
+    "name": "raw_invalid_byte",
+    "compile_exit": 0,
+    "exit": -1
+  },
+  {
+    "name": "raw_invalid_index",
+    "compile_exit": 0,
+    "exit": -1
+  },
+  {
+    "name": "raw_invalid_slice",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "raw_aggregate_order",
+    "compile_exit": 0,
+    "exit": 60
+  },
+  {
+    "name": "raw_index_order",
+    "compile_exit": 0,
+    "exit": 50
+  },
+  {
+    "name": "raw_slice_order",
+    "compile_exit": 0,
+    "exit": 50
+  },
+  {
+    "name": "raw_foreach_once",
+    "compile_exit": 0,
+    "exit": 17
+  },
+  {
+    "name": "raw_foreach_break_continue",
+    "compile_exit": 0,
+    "exit": 7
+  },
+  {
+    "name": "reject_write_index",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_tagged_model",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_one_based",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_generic_slice",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_missing_bound",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_seven_elements",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "runtime_221",
+    "compile_exit": 0,
+    "exit": 0
+  }
+]

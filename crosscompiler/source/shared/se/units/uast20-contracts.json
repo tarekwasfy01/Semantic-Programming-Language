@@ -1,0 +1,93 @@
+[
+  {
+    "id": "uast20.switch_case_count_valid",
+    "function": "switch_case_count_valid",
+    "arity": 1,
+    "preconditions": [
+      "count is the number of case bodies"
+    ],
+    "postconditions": [
+      "accept nonempty switches"
+    ],
+    "target": "explicit Core signed i64",
+    "scope": "lexical/structural invariant only; type-switch runtime and tagged representation unproven"
+  },
+  {
+    "id": "uast20.switch_one_discriminator",
+    "function": "switch_one_discriminator",
+    "arity": 1,
+    "preconditions": [
+      "count is the number of syntactic discriminators"
+    ],
+    "postconditions": [
+      "discriminator evaluated exactly once"
+    ],
+    "target": "explicit Core signed i64",
+    "scope": "lexical/structural invariant only; type-switch runtime and tagged representation unproven"
+  },
+  {
+    "id": "uast20.switch_default_unique",
+    "function": "switch_default_unique",
+    "arity": 1,
+    "preconditions": [
+      "count is nonnegative"
+    ],
+    "postconditions": [
+      "at most one default branch"
+    ],
+    "target": "explicit Core signed i64",
+    "scope": "lexical/structural invariant only; type-switch runtime and tagged representation unproven"
+  },
+  {
+    "id": "uast20.switch_break_target_matches",
+    "function": "switch_break_target_matches",
+    "arity": 2,
+    "preconditions": [
+      "IDs refer to lexical nodes"
+    ],
+    "postconditions": [
+      "switch break targets nearest switch unless a loop is nested deeper"
+    ],
+    "target": "explicit Core signed i64",
+    "scope": "lexical/structural invariant only; type-switch runtime and tagged representation unproven"
+  },
+  {
+    "id": "uast20.switch_continuation_targets_loop",
+    "function": "switch_continuation_targets_loop",
+    "arity": 2,
+    "preconditions": [
+      "continue has a nearest enclosing loop"
+    ],
+    "postconditions": [
+      "continue never targets switch exit"
+    ],
+    "target": "explicit Core signed i64",
+    "scope": "lexical/structural invariant only; type-switch runtime and tagged representation unproven"
+  },
+  {
+    "id": "uast20.switch_integer_case_match",
+    "function": "switch_integer_case_match",
+    "arity": 2,
+    "preconditions": [
+      "both args are signed Core i64"
+    ],
+    "postconditions": [
+      "returns exactly 1 for equal tag and case"
+    ],
+    "target": "explicit Core signed i64",
+    "scope": "lexical/structural invariant only; type-switch runtime and tagged representation unproven"
+  },
+  {
+    "id": "uast20.switch_valid_control_target",
+    "function": "switch_valid_control_target",
+    "arity": 2,
+    "preconditions": [
+      "node IDs are nonnegative signed 64-bit values"
+    ],
+    "postconditions": [
+      "reject negative node IDs"
+    ],
+    "target": "explicit Core signed i64",
+    "scope": "lexical/structural invariant only; type-switch runtime and tagged representation unproven"
+  }
+]

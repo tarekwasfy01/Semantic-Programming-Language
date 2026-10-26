@@ -1,0 +1,71 @@
+{
+  "schema": "swc.uast22-pointer-null-verification.v1",
+  "verified_at": "2026-10-26T21:52:01.1634577+01:00",
+  "compiler_sha256": "C2C423D5F0E45501DDB33FC4A0C7CFDCB75CBA2236BEC203CA45CCBE317B47BA",
+  "tests": [
+    {
+      "test": "nil_pointer",
+      "requested_workers": 1,
+      "exit": 0,
+      "sha256": "50002A7C28877E49053BC090CA09196CA532FA58B7C661C449C7D42FAE8291C8"
+    },
+    {
+      "test": "nil_pointer",
+      "requested_workers": 2,
+      "exit": 0,
+      "sha256": "50002A7C28877E49053BC090CA09196CA532FA58B7C661C449C7D42FAE8291C8"
+    },
+    {
+      "test": "nil_pointer",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "50002A7C28877E49053BC090CA09196CA532FA58B7C661C449C7D42FAE8291C8"
+    },
+    {
+      "test": "nil_no_type",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "nil_interface",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "nil_wrong_width",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "nil_width_prefix",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "nil_no_abi",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "nil_wrong_abi",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "nil_effect",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "nil_tagged",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "nil_one_based",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    }
+  ],
+  "full_uast_lowerable": false
+}

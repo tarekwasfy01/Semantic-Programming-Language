@@ -1,0 +1,297 @@
+[
+  {
+    "case": 1,
+    "label": "literal 0.0",
+    "expected_i64": 0
+  },
+  {
+    "case": 2,
+    "label": "literal -0.0",
+    "expected_i64": -9223372036854775808
+  },
+  {
+    "case": 3,
+    "label": "literal 1.25",
+    "expected_i64": 4608308318706860032
+  },
+  {
+    "case": 4,
+    "label": "literal -2.5",
+    "expected_i64": -4610560118520545280
+  },
+  {
+    "case": 5,
+    "label": "literal +3.125",
+    "expected_i64": 4614219293217783808
+  },
+  {
+    "case": 6,
+    "label": "literal 0.1",
+    "expected_i64": 4591870180066957722
+  },
+  {
+    "case": 7,
+    "label": "literal 1e2",
+    "expected_i64": 4636737291354636288
+  },
+  {
+    "case": 8,
+    "label": "literal 1E-2",
+    "expected_i64": 4576918229304087675
+  },
+  {
+    "case": 9,
+    "label": "literal .5",
+    "expected_i64": 4602678819172646912
+  },
+  {
+    "case": 10,
+    "label": "literal 5.",
+    "expected_i64": 4617315517961601024
+  },
+  {
+    "case": 11,
+    "label": "literal 5e-324",
+    "expected_i64": 1
+  },
+  {
+    "case": 12,
+    "label": "literal 2.2250738585072014e-308",
+    "expected_i64": 4503599627370496
+  },
+  {
+    "case": 13,
+    "label": "literal 1.7976931348623157e308",
+    "expected_i64": 9218868437227405311
+  },
+  {
+    "case": 14,
+    "label": "literal 9007199254740993",
+    "expected_i64": 4845873199050653696
+  },
+  {
+    "case": 15,
+    "label": "literal 1.00000000000000011102230246251565404236316680908203125",
+    "expected_i64": 4607182418800017408
+  },
+  {
+    "case": 16,
+    "label": "literal 1.0000000000000002220446049250313080847263336181640625",
+    "expected_i64": 4607182418800017409
+  },
+  {
+    "case": 17,
+    "label": "literal 1e-400",
+    "expected_i64": 0
+  },
+  {
+    "case": 18,
+    "label": "literal -1e-400",
+    "expected_i64": -9223372036854775808
+  },
+  {
+    "case": 19,
+    "label": "arithmetic 1.25+2.5",
+    "expected_i64": 4615626668101337088
+  },
+  {
+    "case": 20,
+    "label": "arithmetic 5.5-2.0",
+    "expected_i64": 4615063718147915776
+  },
+  {
+    "case": 21,
+    "label": "arithmetic 1.5*4.0",
+    "expected_i64": 4618441417868443648
+  },
+  {
+    "case": 22,
+    "label": "arithmetic 7.0/2.0",
+    "expected_i64": 4615063718147915776
+  },
+  {
+    "case": 23,
+    "label": "arithmetic -3.0/2.0",
+    "expected_i64": -4613937818241073152
+  },
+  {
+    "case": 24,
+    "label": "arithmetic -0.0+-0.0",
+    "expected_i64": -9223372036854775808
+  },
+  {
+    "case": 25,
+    "label": "arithmetic 1.0/0.0",
+    "expected_i64": 9218868437227405312
+  },
+  {
+    "case": 26,
+    "label": "arithmetic -1.0/0.0",
+    "expected_i64": -4503599627370496
+  },
+  {
+    "case": 27,
+    "label": "arithmetic 5e-324+5e-324",
+    "expected_i64": 2
+  },
+  {
+    "case": 28,
+    "label": "arithmetic 2.2250738585072014e-308/2.0",
+    "expected_i64": 2251799813685248
+  },
+  {
+    "case": 29,
+    "label": "arithmetic 1.0/3.0",
+    "expected_i64": 4599676419421066581
+  },
+  {
+    "case": 30,
+    "label": "arithmetic 1.0+1.1102230246251565e-16",
+    "expected_i64": 4607182418800017408
+  },
+  {
+    "case": 31,
+    "label": "negate 1.25",
+    "expected_i64": -4615063718147915776
+  },
+  {
+    "case": 32,
+    "label": "negate 0.0",
+    "expected_i64": -9223372036854775808
+  },
+  {
+    "case": 33,
+    "label": "negate -0.0",
+    "expected_i64": 0
+  },
+  {
+    "case": 34,
+    "label": "finite compare ==",
+    "expected_i64": 0
+  },
+  {
+    "case": 35,
+    "label": "finite compare !=",
+    "expected_i64": 1
+  },
+  {
+    "case": 36,
+    "label": "finite compare <",
+    "expected_i64": 1
+  },
+  {
+    "case": 37,
+    "label": "finite compare <=",
+    "expected_i64": 1
+  },
+  {
+    "case": 38,
+    "label": "finite compare >",
+    "expected_i64": 0
+  },
+  {
+    "case": 39,
+    "label": "finite compare >=",
+    "expected_i64": 0
+  },
+  {
+    "case": 40,
+    "label": "NaN left ==",
+    "expected_i64": 0
+  },
+  {
+    "case": 41,
+    "label": "NaN left !=",
+    "expected_i64": 1
+  },
+  {
+    "case": 42,
+    "label": "NaN left <",
+    "expected_i64": 0
+  },
+  {
+    "case": 43,
+    "label": "NaN left <=",
+    "expected_i64": 0
+  },
+  {
+    "case": 44,
+    "label": "NaN left >",
+    "expected_i64": 0
+  },
+  {
+    "case": 45,
+    "label": "NaN left >=",
+    "expected_i64": 0
+  },
+  {
+    "case": 46,
+    "label": "NaN right ==",
+    "expected_i64": 0
+  },
+  {
+    "case": 47,
+    "label": "NaN right !=",
+    "expected_i64": 1
+  },
+  {
+    "case": 48,
+    "label": "NaN right <",
+    "expected_i64": 0
+  },
+  {
+    "case": 49,
+    "label": "NaN right <=",
+    "expected_i64": 0
+  },
+  {
+    "case": 50,
+    "label": "NaN right >",
+    "expected_i64": 0
+  },
+  {
+    "case": 51,
+    "label": "NaN right >=",
+    "expected_i64": 0
+  },
+  {
+    "case": 52,
+    "label": "signed zero equality",
+    "expected_i64": 1
+  },
+  {
+    "case": 53,
+    "label": "subnormal positive",
+    "expected_i64": 1
+  },
+  {
+    "case": 54,
+    "label": "infinity greater than maximum finite",
+    "expected_i64": 1
+  },
+  {
+    "case": 55,
+    "label": "lazy typed float conditional",
+    "expected_i64": 4615063718147915776
+  },
+  {
+    "case": 56,
+    "label": "canonical semantic ID takes precedence",
+    "expected_i64": 4615626668101337088
+  },
+  {
+    "case": 57,
+    "label": "canonical typed float comparison",
+    "expected_i64": 1
+  },
+  {
+    "case": 58,
+    "label": "effectful float calls preserve values",
+    "expected_i64": 4615626668101337088
+  },
+  {
+    "case": 59,
+    "label": "left-to-right exactly-once operand effects",
+    "expected_i64": 12
+  }
+]

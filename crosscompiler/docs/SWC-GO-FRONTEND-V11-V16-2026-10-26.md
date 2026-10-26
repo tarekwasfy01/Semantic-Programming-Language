@@ -1,5 +1,9 @@
 # SWC Go-Frontend Units V11–V16 — 2026-10-26
 
+This is the historical Go-helper integration baseline. For the current active
+compiler binary and native parallel build, see [crosscompiler status](../README.md).
+The frontend coverage and limitations recorded below remain unchanged.
+
 ## Integrated native Semantic units
 
 The active SWC graph now contains the closed V11 ASCII lexer, V12 bounded parser, V13 Rich-to-Core bridge helpers, and the V14–V16 compiler/primitive module units. The source units and upstream READMEs are retained under `src/units/frontend/go/`; non-executable contract overlays are retained separately under `src/units/frontend/go/contracts/`.

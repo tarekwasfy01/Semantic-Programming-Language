@@ -52,7 +52,7 @@ The repository contains the native Semantic crosscompiler in [`crosscompiler/`](
 For the exact Windows source/manifest revision, active executable hash, and
 current validation limitations, see the [crosscompiler status](./crosscompiler/README.md).
 
-Windows update (2026-10-26): the active SWC is 407,552 bytes. The V17 selfhost includes the V10 compiler closures, Go helper units V11-V16 and 19 V17 contract checkers. Stage 1/2/3 are byte-identical, the return42 probe passes, and six Core Boolean fixtures execute correctly. Raw rich Boolean lowering and the Go transpile CLI remain incomplete. See the [current validation](./crosscompiler/docs/selfhost_validation.json).
+Windows update (2026-10-26): the active SWC is 719,360 bytes and compiles functions with native Semantic workers. The 1,792-function selfhost selects 12 workers; the active compiler and two fresh selfhost builds are byte-identical, and return42 passes. V20 adds integer-switch control flow and V21 adds an explicitly bounded packed-byte runtime with native Aggregate/Index/Slice/ForEach lowering. All 321 build/run/rejection checks and 221 runtime vectors pass. The complete Go frontend remains incomplete. See the [V20/V21 native status](./crosscompiler/docs/SWC-UAST-V20-V21-NATIVE-2026-10-26.md) and [current validation](./crosscompiler/docs/selfhost_validation.json).
 
 The crosscompiler is built from Semantic source units and contains the complete compiler structure required for frontend processing, UAST handling, module resolution, lowering, backend code generation, and target-specific executable emission.
 
@@ -404,3 +404,5 @@ Semantic Programming Language is licensed under the terms provided in [LICENSE](
 
 Copyright (c) 2026 Tarek Wasfy and Contributors
 
+
+V24 heap-backed arrays and alias-preserving slice reads/writes now compile natively on Windows. See [V24 implementation](crosscompiler/docs/SWC-UAST-V24-HEAP-NATIVE-2026-10-26.md).

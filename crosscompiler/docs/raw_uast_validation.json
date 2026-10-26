@@ -1,0 +1,92 @@
+{
+  "schema": "swc.raw-uast-native-verification.v1",
+  "verified_at": "2026-10-26T21:51:50.8624106+01:00",
+  "compiler_sha256": "C2C423D5F0E45501DDB33FC4A0C7CFDCB75CBA2236BEC203CA45CCBE317B47BA",
+  "tests": [
+    {
+      "test": "source_vectors",
+      "requested_workers": 1,
+      "exit": 0,
+      "sha256": "EE77CCE1A056DEBA4A6A22863E78BD0E5953E14D00F7276F0B819966FB8775C4"
+    },
+    {
+      "test": "source_vectors",
+      "requested_workers": 2,
+      "exit": 0,
+      "sha256": "EE77CCE1A056DEBA4A6A22863E78BD0E5953E14D00F7276F0B819966FB8775C4"
+    },
+    {
+      "test": "source_vectors",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "EE77CCE1A056DEBA4A6A22863E78BD0E5953E14D00F7276F0B819966FB8775C4"
+    },
+    {
+      "test": "index_effect",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "write_effect",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "aliased_receiver",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "unstable_snapshot",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "untyped_index",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "missing_policy",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "wrong_width",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "undeclared_symbol",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "unstable_symbol",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "source_tagged",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "unknown_copy",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "assigned_parameter",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "duplicate_parameter",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    }
+  ],
+  "raw_source_assertions": 93,
+  "full_uast_lowerable": false
+}

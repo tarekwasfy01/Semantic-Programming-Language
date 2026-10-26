@@ -1,0 +1,24 @@
+{
+  "schema": "swc.v22-constant-index-candidate.v1",
+  "verified_at": "2026-10-26T19:20:46.534792+00:00",
+  "candidate_sha256": "4FB88651E091255BDAB7166ADDECCB76FC55F239FF28FA9FBFE47C07560377E6",
+  "stage2_sha256": "4FB88651E091255BDAB7166ADDECCB76FC55F239FF28FA9FBFE47C07560377E6",
+  "byte_stable": true,
+  "selfhost_functions": 1728,
+  "workers": 12,
+  "existing_regression_checks": 165,
+  "tuple_exit": 8,
+  "negative_compile_checks": 17,
+  "array_execution": "blocked by Windows malware or potentially unwanted software protection",
+  "promoted": false,
+  "full_uast_lowerable": false,
+  "negative_output_preservation_verified": true,
+  "negative_report": "crosscompiler/docs/uast22_index_negative_validation.json",
+  "tuple_worker_modes": [
+    1,
+    2,
+    0
+  ],
+  "tuple_output_sha256": "B7082CEB4FDA8C62A74ECDA88C513492824CB20D4145403142F83482EE00A792",
+  "tuple_outputs_byte_identical": true
+}

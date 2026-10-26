@@ -1,0 +1,787 @@
+{
+  "schema": "swc.uast-lowering-inventory.v1",
+  "source": "crosscompiler\\proof\\v23\\package\\baseline\\Go-Frontend-Original.se",
+  "source_sha256": "C6DFEC3352C41B276E6D3E3A28EA5A8DE8E1AFD67D79B3323E27B0EDAFC61BF3",
+  "catalog_basis_sha256": "7e240dd92ceb6352320d167f40f3c23baba0ba2825504243a20014340231eae9",
+  "catalog_kinds": 109,
+  "observed_kinds": 19,
+  "observed_nodes": 18627,
+  "full_uast_lowerable": false,
+  "interpretation": "An executable subset is not proof that every instance, type, effect or source-language contract of a kind is lowerable. Type/effect/ABI and analysis nodes also require semantic consumption rather than standalone machine instructions.",
+  "kinds": [
+    {
+      "kind": "ABIContract",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "AddressOf",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "AggregateExpr",
+      "source_nodes": 1198,
+      "full_semantics_verified": false,
+      "native_subset": "Explicit bounded packed bytes; raw immutable stable-i64 parameter snapshots.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "Annotation",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ArraySliceType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "AssignStmt",
+      "source_nodes": 1129,
+      "full_semantics_verified": false,
+      "native_subset": "Existing scalar slots and flat binding-pattern paths.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "AtomicOp",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "AwaitExpr",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "Binding",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "BindingPattern",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": "Existing flat binding-pattern path; general destructuring is open.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "BindingResolution",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "BoolType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "BreakStmt",
+      "source_nodes": 26,
+      "full_semantics_verified": false,
+      "native_subset": "Nearest loop/switch with validated explicit control targets.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "CallExpr",
+      "source_nodes": 1790,
+      "full_semantics_verified": false,
+      "native_subset": "Named direct calls with at most six scalar arguments and supported intrinsics.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "CaptureRelation",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ChannelType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ChannelTypeOp",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "CloseOp",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ClosureExpr",
+      "source_nodes": 98,
+      "full_semantics_verified": false,
+      "native_subset": "Named scalar functions; mutable captures and indirect calls remain open.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "CompileTimeEval",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ComprehensionExpr",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ConcurrencyOp",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ConstantDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ContinueStmt",
+      "source_nodes": 33,
+      "full_semantics_verified": false,
+      "native_subset": "Nearest loop with validated control targets.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "ConvertExpr",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "DeferCleanupStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "DeferStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "Deref",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "DispatchResolution",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "DispatchSemantics",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "Effect",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "EmbeddedField",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ExecutionModel",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "FloatType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ForEachStmt",
+      "source_nodes": 104,
+      "full_semantics_verified": false,
+      "native_subset": "Existing pointer-aggregate iteration and bounded packed-byte iteration.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "ForeignDeclCall",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "FunctionDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "FunctionType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "GenericParam",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "GenericParamDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "GotoLabelStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "IRFact",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "IfStmt",
+      "source_nodes": 444,
+      "full_semantics_verified": false,
+      "native_subset": "Scalar conditional branches.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "ImportDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "IndexExpr",
+      "source_nodes": 437,
+      "full_semantics_verified": false,
+      "native_subset": "Bounded packed bytes; stable-i64 snapshots; proven V24 heap-view reads and effect-ordered writes with explicit sentinel policies.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "Instantiation",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "IntegerType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "InterfaceType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "InterfaceTypeDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "LayoutContract",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "LifetimeRegion",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "LiteralExpr",
+      "source_nodes": 2074,
+      "full_semantics_verified": false,
+      "native_subset": "Integer, Boolean and explicit finite binary64 literals; historical string-address path. General string/runtime representations remain open.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "LoopStmt",
+      "source_nodes": 23,
+      "full_semantics_verified": false,
+      "native_subset": "Scalar while and supported iteration paths.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "LoweringFact",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "MacroCompileTime",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "MapIndexExpr",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "MapType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "MemberAccessExpr",
+      "source_nodes": 1497,
+      "full_semantics_verified": false,
+      "native_subset": "Existing backend-specific layout paths; general layouts and lvalues remain open.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "MemoryManagement",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "MemoryModelContract",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "MethodDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "MethodExpr",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "MethodSet",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "MethodValue",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ModuleDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "NilLiteral",
+      "source_nodes": 361,
+      "full_semantics_verified": false,
+      "native_subset": "Explicit zero-represented 64-bit pointer and historical compiler nil forms.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "NominalTypeDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "OperationExpr",
+      "source_nodes": 1820,
+      "full_semantics_verified": false,
+      "native_subset": "Scalar integer operations, typed Boolean short circuiting, explicit native binary64 arithmetic/comparisons declared switch forms, and explicit V24 unsafe page-memory intrinsics.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "OptimizationFact",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "OptionalType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "OwnershipSemantics",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "PanicRecover",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ParameterDecl",
+      "source_nodes": 144,
+      "full_semantics_verified": false,
+      "native_subset": "Scalar native ABI with at most six arguments.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "PointerType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "RaisePanicStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ReceiveExpr",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "RecordTypeDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ReferenceType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ReflectionOp",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ReturnStmt",
+      "source_nodes": 340,
+      "full_semantics_verified": false,
+      "native_subset": "Scalar returns.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "SafetyRegion",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "Scope",
+      "source_nodes": 1193,
+      "full_semantics_verified": false,
+      "native_subset": "Ordered statement traversal, including sparse statement ordinals.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "SelectStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "SendStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "ShadowingRelation",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "SliceExpr",
+      "source_nodes": 6,
+      "full_semantics_verified": false,
+      "native_subset": "Bounded packed bytes; explicit-copy stable-i64 snapshots; proven V24 alias-preserving 64-bit heap views.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "SliceType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "SpawnStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "StringType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "SwitchMatchStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "SymbolRef",
+      "source_nodes": 5910,
+      "full_semantics_verified": false,
+      "native_subset": "Native local/parameter slots; raw snapshot reads require unique stable parameter binding.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "SynchronizationOp",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "TryStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "TupleExpr",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": "Raw bounded immutable stable-i64 snapshot reads.",
+      "status": "subset_evidence"
+    },
+    {
+      "kind": "TupleResult",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "TupleType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "TypeAssertExpr",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "TypeConstraint",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "TypeInferenceFact",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "TypeRelation",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "TypeSet",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "TypeSwitchStmt",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "UnionVariantType",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "UnsafeIntrinsic",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "VariableDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "VariableDeclGroup",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "VariantTypeDecl",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "Visibility",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    },
+    {
+      "kind": "YieldExpr",
+      "source_nodes": 0,
+      "full_semantics_verified": false,
+      "native_subset": null,
+      "status": "no_full_native_coverage_proof"
+    }
+  ],
+  "open_families": [
+    "General typed memory layout, allocation, aliasing and lvalue writes",
+    "General floating environments/conversions, strings, maps, interfaces and dynamic dispatch",
+    "Closures, captures, methods and indirect calls",
+    "General patterns, tuples and multiple results",
+    "Panic/recover, cleanup, defer and exception semantics",
+    "Channels, select, spawn/await and synchronization semantics",
+    "Generics, reflection, unsafe and foreign ABI contracts",
+    "Complete type/binding/ownership analysis and source-language preservation",
+    "Complete original Go frontend and native transpile CLI"
+  ]
+}

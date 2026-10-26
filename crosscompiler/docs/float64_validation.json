@@ -1,0 +1,224 @@
+{
+  "schema": "swc.float64-native-verification.v1",
+  "verified_at": "2026-10-26T21:51:42.4887750+01:00",
+  "compiler_sha256": "C2C423D5F0E45501DDB33FC4A0C7CFDCB75CBA2236BEC203CA45CCBE317B47BA",
+  "tests": [
+    {
+      "test": "runtime_matrix",
+      "requested_workers": 1,
+      "exit": 0,
+      "sha256": "5B9C17C12766A6DE0CB2472A46387342632B69399E59AD7E58F535E4309B4CF0"
+    },
+    {
+      "test": "runtime_matrix",
+      "requested_workers": 2,
+      "exit": 0,
+      "sha256": "5B9C17C12766A6DE0CB2472A46387342632B69399E59AD7E58F535E4309B4CF0"
+    },
+    {
+      "test": "runtime_matrix",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "5B9C17C12766A6DE0CB2472A46387342632B69399E59AD7E58F535E4309B4CF0"
+    },
+    {
+      "test": "reject_literal_1",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_literal_2",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_literal_3",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_literal_4",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_literal_5",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_literal_6",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_literal_7",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_literal_8",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_width",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_ieee",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_kind",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_effect",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_missing_type",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_mixed_arithmetic",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_mixed_comparison",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_inexact_operation",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_missing_result_type",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_float_condition",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_mixed_conditional",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_foreign_float_abi",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_tagged",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "legacy_boolean_false",
+      "requested_workers": 1,
+      "exit": 0,
+      "sha256": "4D4A3AF1CCD77937B919A89600CC37E0679F87968CB0022684207383BFB4308F"
+    },
+    {
+      "test": "legacy_boolean_false",
+      "requested_workers": 2,
+      "exit": 0,
+      "sha256": "4D4A3AF1CCD77937B919A89600CC37E0679F87968CB0022684207383BFB4308F"
+    },
+    {
+      "test": "legacy_boolean_false",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "4D4A3AF1CCD77937B919A89600CC37E0679F87968CB0022684207383BFB4308F"
+    },
+    {
+      "test": "legacy_boolean_true",
+      "requested_workers": 1,
+      "exit": 1,
+      "sha256": "92BE502EFEBEF5C2AA73A42EE9B4621F4B7BE357F348042E0C50976F12E295FF"
+    },
+    {
+      "test": "legacy_boolean_true",
+      "requested_workers": 2,
+      "exit": 1,
+      "sha256": "92BE502EFEBEF5C2AA73A42EE9B4621F4B7BE357F348042E0C50976F12E295FF"
+    },
+    {
+      "test": "legacy_boolean_true",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "92BE502EFEBEF5C2AA73A42EE9B4621F4B7BE357F348042E0C50976F12E295FF"
+    },
+    {
+      "test": "parallel_functions",
+      "requested_workers": 1,
+      "exit": 0,
+      "sha256": "9DF10E6D1155D3E4EF773F3F910ACE19C944F9C817C68F95AC0BFD144A9586AB"
+    },
+    {
+      "test": "parallel_functions",
+      "requested_workers": 2,
+      "exit": 0,
+      "sha256": "9DF10E6D1155D3E4EF773F3F910ACE19C944F9C817C68F95AC0BFD144A9586AB"
+    },
+    {
+      "test": "parallel_functions",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "9DF10E6D1155D3E4EF773F3F910ACE19C944F9C817C68F95AC0BFD144A9586AB"
+    },
+    {
+      "test": "float-equal",
+      "requested_workers": 1,
+      "exit": 1,
+      "sha256": "B25D9ADFBCAF16F6D961B33B9BE916C1B3D7DF8F6FFF39BC5EFF46C811F7CA83"
+    },
+    {
+      "test": "float-equal",
+      "requested_workers": 2,
+      "exit": 1,
+      "sha256": "B25D9ADFBCAF16F6D961B33B9BE916C1B3D7DF8F6FFF39BC5EFF46C811F7CA83"
+    },
+    {
+      "test": "float-equal",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "B25D9ADFBCAF16F6D961B33B9BE916C1B3D7DF8F6FFF39BC5EFF46C811F7CA83"
+    },
+    {
+      "test": "float-less-than",
+      "requested_workers": 1,
+      "exit": 1,
+      "sha256": "E80B84F727644D63AA7040E80BCD202A6E8ACDB09BAD929FAA43DB5C190A30ED"
+    },
+    {
+      "test": "float-less-than",
+      "requested_workers": 2,
+      "exit": 1,
+      "sha256": "E80B84F727644D63AA7040E80BCD202A6E8ACDB09BAD929FAA43DB5C190A30ED"
+    },
+    {
+      "test": "float-less-than",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "E80B84F727644D63AA7040E80BCD202A6E8ACDB09BAD929FAA43DB5C190A30ED"
+    }
+  ],
+  "runtime_assertions": 59,
+  "parallel_runtime_assertions": 16,
+  "parallel_fixture_functions": 18,
+  "full_uast_lowerable": false
+}

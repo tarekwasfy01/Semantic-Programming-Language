@@ -1,0 +1,22 @@
+[
+  {
+    "name": "arity_2",
+    "exit": 42
+  },
+  {
+    "name": "arity_3",
+    "exit": 42
+  },
+  {
+    "name": "arity_4",
+    "exit": 42
+  },
+  {
+    "name": "arity_5",
+    "exit": 42
+  },
+  {
+    "name": "arity_6",
+    "exit": 42
+  }
+]

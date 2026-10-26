@@ -1,0 +1,72 @@
+[
+  {
+    "name": "source_vectors",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "index_effect",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "write_effect",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "aliased_receiver",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "unstable_snapshot",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "untyped_index",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "missing_policy",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "wrong_width",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "undeclared_symbol",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "unstable_symbol",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "source_tagged",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "unknown_copy",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "assigned_parameter",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "duplicate_parameter",
+    "compile_exit": 3,
+    "exit": null
+  }
+]

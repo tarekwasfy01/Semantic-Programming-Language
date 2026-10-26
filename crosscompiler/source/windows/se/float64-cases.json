@@ -1,0 +1,137 @@
+[
+  {
+    "name": "runtime_matrix",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "reject_literal_1",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_literal_2",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_literal_3",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_literal_4",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_literal_5",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_literal_6",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_literal_7",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_literal_8",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_width",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_ieee",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_kind",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_effect",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_missing_type",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_mixed_arithmetic",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_mixed_comparison",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_inexact_operation",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_missing_result_type",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_float_condition",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_mixed_conditional",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_foreign_float_abi",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "reject_tagged",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "legacy_boolean_false",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "legacy_boolean_true",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "parallel_functions",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "float-equal",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "float-less-than",
+    "compile_exit": 0,
+    "exit": 1
+  }
+]

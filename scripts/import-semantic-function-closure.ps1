@@ -483,6 +483,9 @@ if ($EnableWin64CallIntrinsics -or $coreIndex.Closures.ContainsKey('compile_ifre
         $bindingLookup['ifree_win64_call'+$arity] = 'ifree_win64_call'+$arity
     }
 }
+if ($coreIndex.Closures.ContainsKey('swc_compile_function_address')) {
+    $bindingLookup['ifree_function_address'] = 'ifree_function_address'
+}
 
 $requested = [Collections.Generic.Queue[string]]::new()
 if ($ImportAll) {
@@ -566,6 +569,13 @@ if ($coreIndex.Closures.ContainsKey('compile_expr') -and $coreIndex.Closures.Con
     $compileCalls = Get-FunctionCalls $compileIds $coreIndex $bindingLookup
     if ($compileCalls.Contains('emit_win64_peb_address')) {
         [void]$nativeRuntimeBindings.Add('ifree_peb_address')
+    }
+}
+if ($coreIndex.Closures.ContainsKey('compile_expr') -and $coreIndex.Closures.ContainsKey('swc_compile_function_address')) {
+    $compileIds = Get-SyntaxSubtree ([string]$coreIndex.Closures['compile_expr']) $coreIndex
+    $compileCalls = Get-FunctionCalls $compileIds $coreIndex $bindingLookup
+    if ($compileCalls.Contains('swc_compile_function_address')) {
+        [void]$nativeRuntimeBindings.Add('ifree_function_address')
     }
 }
 foreach ($edge in $dependencyEdges) {

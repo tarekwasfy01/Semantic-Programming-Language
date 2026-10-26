@@ -1,0 +1,187 @@
+[
+  {
+    "name": "and_0_0",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "and_0_1",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "and_1_0",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "and_1_1",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "or_0_0",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "or_0_1",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "or_1_0",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "or_1_1",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "eq_0_0",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "eq_0_1",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "eq_1_0",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "eq_1_1",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "ne_0_0",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "ne_0_1",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "ne_1_0",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "ne_1_1",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "not_0",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "literal_0",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "not_1",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "literal_1",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "and_skip_trap",
+    "compile_exit": 0,
+    "exit": 0
+  },
+  {
+    "name": "or_skip_trap",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "and_order_0",
+    "compile_exit": 0,
+    "exit": 10
+  },
+  {
+    "name": "and_order_1",
+    "compile_exit": 0,
+    "exit": 20
+  },
+  {
+    "name": "or_order_0",
+    "compile_exit": 0,
+    "exit": 21
+  },
+  {
+    "name": "or_order_1",
+    "compile_exit": 0,
+    "exit": 11
+  },
+  {
+    "name": "nested",
+    "compile_exit": 0,
+    "exit": 1
+  },
+  {
+    "name": "parallel_boolean",
+    "compile_exit": 0,
+    "exit": 6
+  },
+  {
+    "name": "reject_missing_type",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_uncertain_operator",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_integer_rhs",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_missing_rhs",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_duplicate_rhs",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_invalid_bool_literal",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_untyped_not",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_duplicate_unary",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_conflicting_semantics",
+    "compile_exit": 3,
+    "exit": null
+  }
+]

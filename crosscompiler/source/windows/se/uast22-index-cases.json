@@ -1,0 +1,97 @@
+[
+  {
+    "name": "constant_array",
+    "compile_exit": 0,
+    "exit": 5
+  },
+  {
+    "name": "constant_tuple",
+    "compile_exit": 0,
+    "exit": 8
+  },
+  {
+    "name": "index_not_immutable",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_false_immutable",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_effect",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_element_effect",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_wrong_element_type",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_bad_constant_type",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_negative",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_overflow",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_out_of_range",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_tagged",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_one_based",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_dynamic_not_yet_supported",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_65_elements",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_duplicate_ordinal",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_unselected_effect",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_unselected_overflow",
+    "compile_exit": 3,
+    "exit": 0
+  },
+  {
+    "name": "index_unselected_wrong_type",
+    "compile_exit": 3,
+    "exit": 0
+  }
+]

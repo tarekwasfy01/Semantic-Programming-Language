@@ -1,0 +1,144 @@
+{
+  "schema": "swc.uast19-native-verification.v1",
+  "verified_at": "2026-10-26T21:52:36.9400867+01:00",
+  "compiler_sha256": "C2C423D5F0E45501DDB33FC4A0C7CFDCB75CBA2236BEC203CA45CCBE317B47BA",
+  "logical_processors": 12,
+  "tests": [
+    {
+      "test": "continue_then_break",
+      "requested_workers": 0,
+      "exit": 4,
+      "sha256": "2A1C8BE192BC2EDD584B10365973AA9D9E0765ABD152BA0CF18353FFD82BA39F"
+    },
+    {
+      "test": "nested_loops",
+      "requested_workers": 0,
+      "exit": 5,
+      "sha256": "BFBB2520A2F8DBCEA004475389BE75524214E41C7D3F1776AB733467BFDB775C"
+    },
+    {
+      "test": "while_true_break",
+      "requested_workers": 0,
+      "exit": 6,
+      "sha256": "C09CFA7AA7246FD2263AF98D30C0F6A172E87AE82E54EA75D06EE27A6AED4A97"
+    },
+    {
+      "test": "fixed_literal_foreach",
+      "requested_workers": 0,
+      "exit": 10,
+      "sha256": "EF032E6A30AF84AE787FDDD8A562E31E379FBD4B1001772D947544FEF39CA2C7"
+    },
+    {
+      "test": "contracts",
+      "requested_workers": 0,
+      "exit": 6,
+      "sha256": "2FD1A111FC174DE1150871B2699EE466EBFA2C9D67F2C75B0B98DD0492AF7854"
+    },
+    {
+      "test": "raw_static_foreach",
+      "requested_workers": 0,
+      "exit": 7,
+      "sha256": "CD87189C57B122A6F20F92863745368114566D25020B229EE363BFDC2CEA1CB7"
+    },
+    {
+      "test": "parallel_loops",
+      "requested_workers": 1,
+      "exit": 38,
+      "sha256": "54E60ED142AB054294DECF81EFE98F10490F49D9F7A041806C83A87BE8E8E37F"
+    },
+    {
+      "test": "parallel_loops",
+      "requested_workers": 2,
+      "exit": 38,
+      "sha256": "54E60ED142AB054294DECF81EFE98F10490F49D9F7A041806C83A87BE8E8E37F"
+    },
+    {
+      "test": "parallel_loops",
+      "requested_workers": 0,
+      "exit": 38,
+      "sha256": "54E60ED142AB054294DECF81EFE98F10490F49D9F7A041806C83A87BE8E8E37F"
+    },
+    {
+      "test": "bool_andand_0_1_1",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "5E083DD3AB9CFE1161818A709E11C7F1012911BF142533A81DFBF668139B8C84"
+    },
+    {
+      "test": "bool_andand_1_0_0",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "8EE6DAC98F759407B50B5B26FE0CE93EC859159BE4596E862A3FA3B1C6B045EC"
+    },
+    {
+      "test": "bool_andand_1_0_1",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "E51D213F7A378C286554D64A7F8AA08AE3E0747B48C7749B4E076E377DFF3810"
+    },
+    {
+      "test": "bool_oror_0_0_0",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "6FBD50DC3A95994F0BA496D92889254602FEBC1F900DE9568B0CAFAB8591B99A"
+    },
+    {
+      "test": "bool_oror_0_0_1",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "A4C64CA90D7CDA9073E9C994F7B67F6B841E930106C60070BCFA279E58A3DA4E"
+    },
+    {
+      "test": "bool_oror_1_1_1",
+      "requested_workers": 0,
+      "exit": 1,
+      "sha256": "7D768FA39217976C1FDA592A1302D1B365E21E54E00D59DFC939B20A4C1D1A0F"
+    },
+    {
+      "test": "mismatched-field-target",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "mismatched-edge-target",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "missing-explicit-edge",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "duplicate-control-edge",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "invalid-control-role",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "duplicate-loop-condition",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "dynamic-foreach-sequence",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "break-outside-loop",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "cross-closure-control-target",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    }
+  ],
+  "full_go_frontend_native_ready": false
+}

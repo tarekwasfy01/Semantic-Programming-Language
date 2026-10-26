@@ -1,0 +1,45 @@
+{
+  "schema": "swc.parallel-verification.v1",
+  "verified_at": "2026-10-26T21:52:24.9098961+01:00",
+  "compiler_sha256": "C2C423D5F0E45501DDB33FC4A0C7CFDCB75CBA2236BEC203CA45CCBE317B47BA",
+  "logical_processors": 12,
+  "tests": [
+    {
+      "test": "functions",
+      "requested_workers": 1,
+      "sha256": "64B706EBC8C8C366695D8EEFD819710070846A5B29D7BF773B7F4A7D3AA7EF40",
+      "exit": 44
+    },
+    {
+      "test": "functions",
+      "requested_workers": 2,
+      "sha256": "64B706EBC8C8C366695D8EEFD819710070846A5B29D7BF773B7F4A7D3AA7EF40",
+      "exit": 44
+    },
+    {
+      "test": "functions",
+      "requested_workers": 0,
+      "sha256": "64B706EBC8C8C366695D8EEFD819710070846A5B29D7BF773B7F4A7D3AA7EF40",
+      "exit": 44
+    },
+    {
+      "test": "function-address",
+      "exit": 42
+    },
+    {
+      "test": "parallel-address-missing",
+      "compile_exit": 3,
+      "output_created": false
+    },
+    {
+      "test": "parallel-address-arity",
+      "compile_exit": 3,
+      "output_created": false
+    },
+    {
+      "test": "failed-worker",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    }
+  ]
+}

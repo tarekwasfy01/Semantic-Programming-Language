@@ -1,0 +1,45 @@
+{
+  "schema": "swc.uast22-selector-verification.v1",
+  "verified_at": "2026-10-26T21:52:05.3666940+01:00",
+  "compiler_sha256": "C2C423D5F0E45501DDB33FC4A0C7CFDCB75CBA2236BEC203CA45CCBE317B47BA",
+  "tests": [
+    {
+      "test": "supplied-selftest",
+      "requested_workers": 1,
+      "exit": 25,
+      "sha256": "11B432B40E36543932F73E33056670B470AFBB6D4726AAAF6381100DA62CC84C"
+    },
+    {
+      "test": "supplied-selftest",
+      "requested_workers": 2,
+      "exit": 25,
+      "sha256": "11B432B40E36543932F73E33056670B470AFBB6D4726AAAF6381100DA62CC84C"
+    },
+    {
+      "test": "supplied-selftest",
+      "requested_workers": 0,
+      "exit": 25,
+      "sha256": "11B432B40E36543932F73E33056670B470AFBB6D4726AAAF6381100DA62CC84C"
+    },
+    {
+      "test": "selector-boundaries",
+      "requested_workers": 1,
+      "exit": 42,
+      "sha256": "0B4E3CEE0D4DE869F38D4BA2B2FB0C49BEA1F66DE912900E7709F0B5D5F1E344"
+    },
+    {
+      "test": "selector-boundaries",
+      "requested_workers": 2,
+      "exit": 42,
+      "sha256": "0B4E3CEE0D4DE869F38D4BA2B2FB0C49BEA1F66DE912900E7709F0B5D5F1E344"
+    },
+    {
+      "test": "selector-boundaries",
+      "requested_workers": 0,
+      "exit": 42,
+      "sha256": "0B4E3CEE0D4DE869F38D4BA2B2FB0C49BEA1F66DE912900E7709F0B5D5F1E344"
+    }
+  ],
+  "boundary_assertions": 25,
+  "full_uast_lowerable": false
+}

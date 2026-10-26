@@ -1,6 +1,15 @@
 # SWC UAST V17/V18 integration status — 2026-10-26
 
-## Promoted selfhost candidate
+This report records the V17 promotion before native parallel function compilation.
+The current active binary and source are described in
+[parallel compiler status](SWC-PARALLEL-FUNCTIONS-2026-10-26.md) and
+[current validation](selfhost_validation.json). The UAST limitations below remain.
+
+The later [typed Boolean implementation](SWC-TYPED-BOOLEAN-NATIVE-2026-10-26.md)
+now handles the declared Core Boolean subset directly. The V18 observations below
+are historical; the full Go frontend remains incomplete.
+
+## Historical V17 selfhost promotion
 
 `swc.exe` and `src/swc-selfhost-windows.se` now point to the validated V17-contract candidate. The prior active files and manifest are preserved under `backup/before-uast-v17-contract-promotion-20261026/`.
 

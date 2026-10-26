@@ -1,0 +1,137 @@
+[
+  {
+    "name": "matched_case",
+    "compile_exit": 0,
+    "exit": 30
+  },
+  {
+    "name": "switch_break",
+    "compile_exit": 0,
+    "exit": 20
+  },
+  {
+    "name": "default_not_first",
+    "compile_exit": 0,
+    "exit": 14
+  },
+  {
+    "name": "continue_inside_switch",
+    "compile_exit": 0,
+    "exit": 5
+  },
+  {
+    "name": "loop_break_inside_switch",
+    "compile_exit": 0,
+    "exit": 14
+  },
+  {
+    "name": "nested_switches",
+    "compile_exit": 0,
+    "exit": 12
+  },
+  {
+    "name": "contracts",
+    "compile_exit": 0,
+    "exit": 7
+  },
+  {
+    "name": "integer_min",
+    "compile_exit": 0,
+    "exit": 42
+  },
+  {
+    "name": "integer_max",
+    "compile_exit": 0,
+    "exit": 42
+  },
+  {
+    "name": "no_default_miss",
+    "compile_exit": 0,
+    "exit": 42
+  },
+  {
+    "name": "discriminator_once",
+    "compile_exit": 0,
+    "exit": 17
+  },
+  {
+    "name": "packed_switch",
+    "compile_exit": 0,
+    "exit": 5
+  },
+  {
+    "name": "reject_duplicate_case",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_duplicate_default",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_missing_discriminator",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_type_switch",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_dynamic_switch",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_nonliteral_case",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_float_case",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_case_overflow",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_case_underflow",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_wrong_field_target",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_missing_control_edge",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_wrong_transfer",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_continue_to_switch",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "reject_standalone_case",
+    "compile_exit": 3,
+    "exit": null
+  },
+  {
+    "name": "parallel_switches",
+    "compile_exit": 0,
+    "exit": 102
+  }
+]

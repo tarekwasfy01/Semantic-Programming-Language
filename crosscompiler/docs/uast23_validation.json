@@ -1,0 +1,47 @@
+{
+  "schema": "swc.uast23-verification.v1",
+  "verified_at": "2026-10-26T21:51:57.5097634+01:00",
+  "compiler_sha256": "C2C423D5F0E45501DDB33FC4A0C7CFDCB75CBA2236BEC203CA45CCBE317B47BA",
+  "tests": [
+    {
+      "test": "archive-smoke",
+      "requested_workers": 1,
+      "exit": 0,
+      "sha256": "4E9A91707DD43E740561A2028B7AC49F0D3DB878095247292489F06BD6E15935"
+    },
+    {
+      "test": "archive-smoke",
+      "requested_workers": 2,
+      "exit": 0,
+      "sha256": "4E9A91707DD43E740561A2028B7AC49F0D3DB878095247292489F06BD6E15935"
+    },
+    {
+      "test": "archive-smoke",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "4E9A91707DD43E740561A2028B7AC49F0D3DB878095247292489F06BD6E15935"
+    },
+    {
+      "test": "runtime-vectors",
+      "requested_workers": 1,
+      "exit": 0,
+      "sha256": "B4DB2510A5DDFA065B0EC08ABF4F9CAF1F65FBF3E972C21C44E95FE026E80E12"
+    },
+    {
+      "test": "runtime-vectors",
+      "requested_workers": 2,
+      "exit": 0,
+      "sha256": "B4DB2510A5DDFA065B0EC08ABF4F9CAF1F65FBF3E972C21C44E95FE026E80E12"
+    },
+    {
+      "test": "runtime-vectors",
+      "requested_workers": 0,
+      "exit": 0,
+      "sha256": "B4DB2510A5DDFA065B0EC08ABF4F9CAF1F65FBF3E972C21C44E95FE026E80E12"
+    }
+  ],
+  "archive_vector_assertions": 90,
+  "extra_full_i64_assertions": 3,
+  "group_selftest_assertions": 1,
+  "full_uast_lowerable": false
+}

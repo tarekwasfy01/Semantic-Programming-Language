@@ -1,7 +1,7 @@
 {
   "schema": "slc.semantic-module.v1",
-  "name": "swc-uast17-contracts",
-  "version": "2026.10.26-uast-v17-contracts",
+  "name": "swc-native-parallel-uast24",
+  "version": "2026.10.26-parallel-uast24",
   "language": "semantic",
   "entry_point": "main",
   "dependencies": [],
@@ -11,10 +11,10 @@
       "language": "semantic",
       "path": "../source/windows/se/swc-selfhost-windows.se",
       "semantic_path": "../source/windows/se/swc-selfhost-windows.se",
-      "source_hash": "EEC3F4B556EC69AA3CD66C3F8AA88B31220058D383926DE8935754F598AD01DA",
-      "sha256": "EEC3F4B556EC69AA3CD66C3F8AA88B31220058D383926DE8935754F598AD01DA",
-      "bytes": 12717146,
-      "status": "SELFHOST_VERIFIED_STAGE2_STAGE3_BYTE_IDENTICAL"
+      "source_hash": "C81BD71FC8EE981520D3113EB24CDBE81A08FA22E647E067E101AD2FF43BB596",
+      "sha256": "C81BD71FC8EE981520D3113EB24CDBE81A08FA22E647E067E101AD2FF43BB596",
+      "bytes": 16848295,
+      "status": "SELFHOST_VERIFIED_BYTE_IDENTICAL_PARALLEL_UAST24"
     }
   ]
 }

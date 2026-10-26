@@ -1,0 +1,168 @@
+{
+  "schema": "swc.uast20-native-verification.v1",
+  "verified_at": "2026-10-26T21:52:41.5122177+01:00",
+  "compiler_sha256": "C2C423D5F0E45501DDB33FC4A0C7CFDCB75CBA2236BEC203CA45CCBE317B47BA",
+  "tests": [
+    {
+      "test": "matched_case",
+      "requested_workers": 0,
+      "exit": 30,
+      "sha256": "921E0E7782DD3AA45434F26B077DC84D68C3435E25AA957C8E8EAD76D735E4FC"
+    },
+    {
+      "test": "switch_break",
+      "requested_workers": 0,
+      "exit": 20,
+      "sha256": "39DF710897823DFEC37ACCFB5E19EC1D594FBD5881B5722032CCD89EEAC980F0"
+    },
+    {
+      "test": "default_not_first",
+      "requested_workers": 0,
+      "exit": 14,
+      "sha256": "3163FD1CA2D9CA4F44112230CC9F5DE295BCF300F866F3FBDBE7E2CB225FDC03"
+    },
+    {
+      "test": "continue_inside_switch",
+      "requested_workers": 0,
+      "exit": 5,
+      "sha256": "7EE2DBFC7DB7A29AA4C132A9FB38045DCB597DA20FBC3490A625441DB0D5A193"
+    },
+    {
+      "test": "loop_break_inside_switch",
+      "requested_workers": 0,
+      "exit": 14,
+      "sha256": "CFBEFAE8F7C98172908A3EEC81959DA17590C3233A51E4DAF6631FB8D2044FA5"
+    },
+    {
+      "test": "nested_switches",
+      "requested_workers": 0,
+      "exit": 12,
+      "sha256": "F30DEB5AD4F1D418053846F5A799783FBE6EBA8EC6384D10D3FC17CB67282640"
+    },
+    {
+      "test": "contracts",
+      "requested_workers": 0,
+      "exit": 7,
+      "sha256": "628700A6D7569E7BD05393318E734528C42C950DC8BB92F40CE800492701018B"
+    },
+    {
+      "test": "integer_min",
+      "requested_workers": 0,
+      "exit": 42,
+      "sha256": "3AFEE2A4971E18DBABE3B2FABD073762346904678119661052AA7C367BB6C5BA"
+    },
+    {
+      "test": "integer_max",
+      "requested_workers": 0,
+      "exit": 42,
+      "sha256": "D00B21EB9302ACFED829E6B05F534BEAAC8D6EBA3248A9D07AAFCA7137F7D395"
+    },
+    {
+      "test": "no_default_miss",
+      "requested_workers": 0,
+      "exit": 42,
+      "sha256": "020D9D498A004610B63FCC199B5D0769A65F1FDE5B60D5F1CA8CA2006A012898"
+    },
+    {
+      "test": "discriminator_once",
+      "requested_workers": 0,
+      "exit": 17,
+      "sha256": "2CAB2C26C920A6AA83A06E560DECDB8D2F005CA1D6B3552A1672F185E2862866"
+    },
+    {
+      "test": "packed_switch",
+      "requested_workers": 0,
+      "exit": 5,
+      "sha256": "9CF7A9A91F06FE98A91DB8537FCA198CA9C6FBD26DA2CA6A83236D6030754642"
+    },
+    {
+      "test": "reject_duplicate_case",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_duplicate_default",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_missing_discriminator",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_type_switch",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_dynamic_switch",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_nonliteral_case",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_float_case",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_case_overflow",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_case_underflow",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_wrong_field_target",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_missing_control_edge",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_wrong_transfer",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_continue_to_switch",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "reject_standalone_case",
+      "compile_exit": 3,
+      "existing_output_preserved": true
+    },
+    {
+      "test": "parallel_switches",
+      "requested_workers": 1,
+      "exit": 102,
+      "sha256": "82893653C86F43358017E7EB9FA67EE0EF5A97A2AA9E02226F418C0B68A72322"
+    },
+    {
+      "test": "parallel_switches",
+      "requested_workers": 2,
+      "exit": 102,
+      "sha256": "82893653C86F43358017E7EB9FA67EE0EF5A97A2AA9E02226F418C0B68A72322"
+    },
+    {
+      "test": "parallel_switches",
+      "requested_workers": 0,
+      "exit": 102,
+      "sha256": "82893653C86F43358017E7EB9FA67EE0EF5A97A2AA9E02226F418C0B68A72322"
+    }
+  ],
+  "full_go_frontend_native_ready": false
+}
