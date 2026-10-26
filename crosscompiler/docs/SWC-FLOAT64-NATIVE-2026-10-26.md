@@ -38,7 +38,7 @@ normalized to the Boolean representation, correcting the old `true`-as-zero
 behavior. This is tested independently and may require a new compiler
 generation before byte stability is reached.
 
-`verify-float64.ps1` checks the original V22 float source tests, 59 independent
+The recorded checks cover the original V22 float source tests, 59 independent
 runtime assertions and malformed/type/ABI cases. The assertions compare exact
 binary64 bit patterns, decimal and arithmetic rounding boundaries, subnormals,
 signed zero, infinities, NaN on both sides of comparisons, canonical operation

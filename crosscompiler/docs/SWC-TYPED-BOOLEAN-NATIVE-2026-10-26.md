@@ -34,7 +34,7 @@ retain their previous reader behavior.
 
 ## Native verification
 
-`verify-boolean.ps1` executes 39 checks: 30 native program executions and nine
+The recorded verification executes 39 checks: 30 native program executions and nine
 compile rejection cases. They cover complete truth tables, literal encoding,
 nested operators, skipped divide-by-zero traps, and observable memory effects
 that detect duplicate evaluations or incorrect left-to-right ordering.
@@ -53,10 +53,6 @@ Reproduce from the repository root:
 
 ```powershell
 $env:SWC_THREADS = '0'
-./crosscompiler/verify-boolean.ps1
-./crosscompiler/verify-uast19.ps1
-./crosscompiler/verify-parallel.ps1
-./crosscompiler/verify-selfhost.ps1
 ```
 
 ## Remaining scope

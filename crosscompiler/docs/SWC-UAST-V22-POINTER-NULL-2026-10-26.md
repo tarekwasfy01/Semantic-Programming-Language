@@ -13,7 +13,7 @@ Workers receive the existing immutable graph and emit the proven zero value
 using their own context. No new worker state or runtime dependency is needed.
 
 The original supplied V22 pointer-null program and independent malformed
-variants are tested by `verify-uast22-null.ps1`. Successful compilation is run
+variants are tested by the recorded verification. Successful compilation is run
 with 1, 2 and automatic workers and compared byte for byte. Rejected programs
 must return compiler error 3 without overwriting an existing output file.
 

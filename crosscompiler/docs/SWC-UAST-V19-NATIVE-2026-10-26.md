@@ -30,7 +30,7 @@ requires neither Python nor the archive's reference backend.
 
 ## Native verification
 
-`verify-uast19.ps1` performs 24 checks against Windows PE programs:
+The recorded verification performs 24 checks against Windows PE programs:
 
 | Cases | Result |
 | --- | --- |
@@ -46,7 +46,7 @@ Negative cases cover mismatched field and edge targets, a missing explicit edge,
 duplicate control edges, an invalid transfer role, duplicate loop conditions,
 dynamic foreach sequences, break outside a loop and cross-closure control flow.
 
-The existing seven checks in `verify-parallel.ps1` also pass. Selfhost builds use
+The seven additional checks also pass. Selfhost builds use
 12 workers for 1,712 functions on the validation machine; Stage 3 was observed
 with 13 native threads including its main thread. The active compiler, Stage 2
 and Stage 3 have identical hashes, and Stage 3 freshly compiles and runs return42.
@@ -58,9 +58,6 @@ Reproduce from the repository root:
 ```powershell
 $env:SWC_THREADS = '0'
 $env:SWC_PARALLEL_TRACE = '1'
-./crosscompiler/verify-uast19.ps1
-./crosscompiler/verify-parallel.ps1
-./crosscompiler/verify-selfhost.ps1
 ```
 
 ## Archive provenance and remaining scope

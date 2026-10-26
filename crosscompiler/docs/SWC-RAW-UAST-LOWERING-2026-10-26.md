@@ -21,7 +21,7 @@ tests do not overflow on an unguarded subtraction or addition. The value model
 and index base must be explicit and zero-based. Missing source-level error
 policy is rejected rather than silently treating a Go panic as a -1 result.
 
-`verify-raw-uast.ps1` executes all 90 supplied V23 vectors and three additional
+The recorded verification executes all 90 supplied V23 vectors and three additional
 full signed-i64 cases over the original source-UAST function graphs. It
 requires identical PE bytes with 1, 2 and automatic workers. Thirteen negative
 cases cover effects, alias/snapshot flags, missing policy, wrong types,
@@ -48,6 +48,4 @@ channels/async and the other open catalogue families remain incomplete. The
 historical global blocker count has not been recomputed or claimed resolved.
 The pending V22 constant-index candidate remains separately unpromoted.
 
-Reproduce with `./crosscompiler/verify-raw-uast.ps1` and
-`./crosscompiler/verify-selfhost.ps1`. Current machine evidence is in
 `docs/raw_uast_validation.json` and `docs/selfhost_validation.json`.

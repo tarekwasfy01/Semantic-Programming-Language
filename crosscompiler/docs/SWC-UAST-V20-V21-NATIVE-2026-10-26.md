@@ -88,13 +88,6 @@ Reproduce from the repository root:
 ```powershell
 $env:SWC_THREADS = '0'
 $env:SWC_PARALLEL_TRACE = '1'
-./crosscompiler/verify-uast20.ps1
-./crosscompiler/verify-uast21.ps1
-./crosscompiler/verify-boolean.ps1
-./crosscompiler/verify-uast19.ps1
-./crosscompiler/verify-parallel.ps1
-./crosscompiler/verify-call-order.ps1
-./crosscompiler/verify-selfhost.ps1
 ```
 
 Current hashes and native results are in `selfhost_validation.json`,

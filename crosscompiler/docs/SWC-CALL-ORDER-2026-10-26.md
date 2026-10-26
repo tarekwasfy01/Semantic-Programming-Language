@@ -20,7 +20,7 @@ the memory history and parameter positions against explicit decimal constants.
 The old compiler fails the six-argument fixture with exit 92: correct parameter
 positions but reversed side effects. The corrected compiler returns 42.
 
-`verify-call-order.ps1` builds and runs each fixture with 1, 2 and automatic
+The recorded checks build and runs each fixture with 1, 2 and automatic
 workers and requires identical executable bytes across these modes, for 15
 checks. The fixtures contain three functions, so automatic mode is bounded by
 that function count. Larger existing parallel fixtures exercise all host cores.
@@ -31,10 +31,6 @@ change does not claim those paths complete.
 
 Run from the repository root:
 
-```powershell
-./crosscompiler/verify-call-order.ps1
-./crosscompiler/verify-selfhost.ps1
-```
 
 Machine-readable evidence is retained in `call_order_validation.json` and the
 current `selfhost_validation.json`.

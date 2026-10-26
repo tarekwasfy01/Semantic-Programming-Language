@@ -25,6 +25,5 @@ prove the general original Go frontend or full UAST lowering. The pending V22
 constant-index candidate remains separate because Windows blocked its original
 array-test executable.
 
-Run `./crosscompiler/verify-uast23.ps1` and `./crosscompiler/verify-selfhost.ps1`.
 Archive SHA-256:
 `07C576F30B8D412CDC6D54BF8751CCC1EC0C1FBAC18404FCB5DB10862B314546`.

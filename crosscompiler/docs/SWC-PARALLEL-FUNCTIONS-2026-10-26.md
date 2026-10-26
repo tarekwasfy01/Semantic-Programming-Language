@@ -71,12 +71,8 @@ prints the selected worker count, function count and two-pass mode.
 
 From the repository root:
 
-```powershell
-./crosscompiler/verify-parallel.ps1
-./crosscompiler/verify-selfhost.ps1
-```
 
-The scripts write executables and JSON reports under the ignored
+Verification outputs were written under the ignored
 `crosscompiler/proof/` directory. The active complete graph and native executable
 are sufficient to reproduce the build; no Python or Go compilation step is needed.
 

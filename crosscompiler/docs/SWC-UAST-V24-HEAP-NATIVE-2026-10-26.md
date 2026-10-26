@@ -23,7 +23,6 @@ slices recursively lower into calls to the corresponding runtime closures.
 The input graph must contain the required named runtime closures with matching
 arity; runtime insertion into an arbitrary input graph is not automatic.
 
-Run `./crosscompiler/verify-uast24.ps1`. It builds each of the 25 archive
 runtime cases with 1, 2 and automatic workers; the generated programs compare
 full i64 results before returning. Two unchanged source-UAST fixtures verify
 nested slicing/read (8) and aliasing write (42) with all three worker settings.

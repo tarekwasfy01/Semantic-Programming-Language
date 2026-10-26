@@ -20,11 +20,10 @@ existing output file. They include 65 elements, duplicate ordinals and invalid
 or effectful elements that are not selected. Windows blocked the
 generated original constant-array executable with a malware or potentially
 unwanted software message, so that executable has not been run and its expected
-exit 5 is not verified. `verify-uast22-index.ps1` records the intended full
+exit 5 is not verified. The validation report records the intended full
 verification and stops when Windows prevents execution.
 Candidate evidence is in `uast22_index_candidate_validation.json`.
-The independently runnable negative suite is `verify-uast22-index.ps1
--NegativeOnly`; its report is `uast22_index_negative_validation.json`.
+Negative suite results are retained in `uast22_index_negative_validation.json`.
 
 The complete V22 semantics, dynamic indexing, copying slices and the general Go
 frontend remain outside this candidate's proven coverage.

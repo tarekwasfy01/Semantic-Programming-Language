@@ -16,7 +16,6 @@ Integer switches and their lexical control targets, seven V20 contracts, and the
 Aggregate/Index/Slice/ForEach UAST nodes compile natively with automatic runtime
 inclusion. All 321 build/run/rejection checks and 221 runtime vectors pass. See
 [V20/V21 implementation and boundaries](docs/SWC-UAST-V20-V21-NATIVE-2026-10-26.md).
-Run `./crosscompiler/verify-uast20.ps1` and `./crosscompiler/verify-uast21.ps1`.
 
 ## Typed native Boolean lowering
 
@@ -24,7 +23,6 @@ Typed Rich `&&`, `||`, `!`, `==` and `!=` are compiled directly by SWC. Short
 circuiting preserves left-to-right effects and evaluates operands once. All
 39 Boolean, 24 V19/Core and seven parallel checks pass. See the
 [Boolean implementation and evidence](docs/SWC-TYPED-BOOLEAN-NATIVE-2026-10-26.md)
-and run `./crosscompiler/verify-boolean.ps1`.
 
 ## V19 native integration
 
@@ -32,7 +30,6 @@ V19 loop targets, closure boundaries, sparse statement ordering and six callable
 contracts are integrated directly in Semantic. All 24 native V19/Core checks pass,
 including nine rejection cases and deterministic parallel loop output. The full
 archived Go frontend remains unsupported. See [V19 status](docs/SWC-UAST-V19-NATIVE-2026-10-26.md)
-and run `./crosscompiler/verify-uast19.ps1`.
 
 ## Parallel compilation
 
@@ -49,28 +46,13 @@ It requires no external worker program, Go runtime, Python runtime or build wrap
 Windows thread callbacks use an explicit ABI adapter and checked native function
 addresses. The existing Linux/macOS compiler roots are not changed by this update.
 
-Optional PowerShell controls:
-
-```powershell
-$env:SWC_THREADS = '0'          # Automatic; also the default when unset
-$env:SWC_THREADS = '1'          # Serial reference compilation
-$env:SWC_THREADS = '4'          # At most four workers
-$env:SWC_PARALLEL_TRACE = '1'   # Print the selected worker/function counts
-./crosscompiler/verify-parallel.ps1
-```
-
 On the validation machine, the selfhost build selected 12 workers and reached
 13 native threads including the main thread. Stage 1/2/3 are byte-identical.
 See [implementation and evidence](docs/SWC-PARALLEL-FUNCTIONS-2026-10-26.md).
 
-## Reproduce from the repository root
+## Selfhost build
 
-Run the local verification script to rebuild both stages, compare their hashes,
-and compile and execute return42 with Stage 3:
 
-```powershell
-./crosscompiler/verify-selfhost.ps1
-```
 
 Generated executables and `validation.json` are saved in the ignored
 `crosscompiler/proof/selfhost` directory. Both rebuilds can take several minutes.

@@ -6,7 +6,7 @@ Semantic compiler source. The imported closures retain their own Semantic
 control-flow and call-target relations. The existing compiler entry point stays
 unchanged. The import report resolves all selected transitive callees.
 
-`verify-uast22-selectors.ps1` builds and executes the package's original
+the recorded verification builds and executes the package's original
 self-test and a separate boundary program. The boundary program checks every
 valid index and the negative and upper-bound index for each of the five
 selectors: 25 assertions. Both programs are compiled using 1, 2 and automatic
@@ -23,5 +23,3 @@ emitted by SWC.
 
 Source archive SHA-256:
 `C50F57F3CB958C91EBF608C3D8829FFE42E3B255BEA40A7325430C304741E099`.
-Reproduce with `./crosscompiler/verify-uast22-selectors.ps1` and
-`./crosscompiler/verify-selfhost.ps1`.
