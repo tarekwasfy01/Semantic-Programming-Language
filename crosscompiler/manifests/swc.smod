@@ -1,7 +1,7 @@
 {
   "schema": "slc.semantic-module.v1",
-  "name": "swc-native-parallel-uast-v35-v43-v42-policy-v43-root-gpu-se",
-  "version": "2026.10.28-v43-root-policy-gpu-stage3-active",
+  "name": "swc-native-parallel-uast-v45-cluster-multi-interface",
+  "version": "2026.11.02-v45-multi-interface-stage2-stage3-byte-identical-active",
   "language": "semantic",
   "entry_point": "main",
   "dependencies": [],
@@ -9,12 +9,13 @@
     {
       "kind": "semantic",
       "language": "semantic",
-      "status": "V35_V37_V40_V41_V42_POLICY_V43_ROOT_POLICY_GPU_SE_STAGE2_STAGE3_BYTE_IDENTICAL_ACTIVE; GPU_KERNELS_NOT_CONNECTED",
-      "path": "../source/windows/se/swc-selfhost-windows-v43-root-policy-gpu-candidate.se",
-      "sha256": "3D427FD167B30EB408DC660D0D40F3C16D94CE49CE5901ED22A51837AB47A088",
-      "bytes": 41836857,
-      "semantic_path": "../source/windows/se/swc-selfhost-windows-v43-root-policy-gpu-candidate.se",
-      "source_hash": "3D427FD167B30EB408DC660D0D40F3C16D94CE49CE5901ED22A51837AB47A088"
+      "status": "V45_MULTI_INTERFACE_STAGE2_STAGE3_BYTE_IDENTICAL_ACTIVE; MULTI_INTERFACE_DISCOVERY_LOCAL_PASS; WORKER_ID_DEDUP_UNRESOLVED",
+      "path": "../source/windows/se/swc-selfhost-windows-v45-multi-interface-active.se",
+      "sha256": "02785102E98EB0C34C026ACE11C0CC4364326E93BAD8BE64250B9C2F957A021B",
+      "bytes": 56402319,
+      "semantic_path": "../source/windows/se/swc-selfhost-windows-v45-multi-interface-active.se",
+      "source_hash": "02785102E98EB0C34C026ACE11C0CC4364326E93BAD8BE64250B9C2F957A021B"
     }
   ]
 }
+

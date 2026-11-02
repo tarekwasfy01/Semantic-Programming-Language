@@ -52,7 +52,7 @@ The repository contains the native Semantic crosscompiler in [`crosscompiler/`](
 For the exact Windows source/manifest revision, active executable hash, and
 current validation limitations, see the [crosscompiler status](./crosscompiler/README.md).
 
-Windows update (2026-10-26): the active SWC is 719,360 bytes and compiles functions with native Semantic workers. The 1,792-function selfhost selects 12 workers; the active compiler and two fresh selfhost builds are byte-identical, and return42 passes. V20 adds integer-switch control flow and V21 adds an explicitly bounded packed-byte runtime with native Aggregate/Index/Slice/ForEach lowering. All 321 build/run/rejection checks and 221 runtime vectors pass. The complete Go frontend remains incomplete. See the [V20/V21 native status](./crosscompiler/docs/SWC-UAST-V20-V21-NATIVE-2026-10-26.md) and [current validation](./crosscompiler/docs/selfhost_validation.json).
+Windows update (2026-11-02): active SWC is the V45 multi-interface Semantic build, 1,981,440 bytes, SHA-256 `06C8DEF92D9BDBCAA16C5E46B4EB1157E71F20C72F36840FDE15A94A3B2D269B`. Stage2 and Stage3 from the active `.smod` source are byte-identical, and the native smoke program exits 42. LAN discovery, HMAC pairing and compiler/source transfer are experimental: the current active build has not yet delivered an `SFJ1` job frame in the authenticated end-to-end test. See [current crosscompiler status](./crosscompiler/README.md) for exact limits.
 
 The crosscompiler is built from Semantic source units and contains the complete compiler structure required for frontend processing, UAST handling, module resolution, lowering, backend code generation, and target-specific executable emission.
 
